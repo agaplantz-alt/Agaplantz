@@ -1,0 +1,314 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer_m9NzUG": {
+      "type": "footer",
+      "blocks": {
+        "group_H6VpwJ": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 6,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_LWt8Pz": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>Join our email list</h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_f9CFLH": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Restock alerts, new lab batches and grower notes.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "0.875rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_LWt8Pz",
+            "text_f9CFLH"
+          ]
+        },
+        "email_signup_crihX7": {
+          "type": "email-signup",
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "heading": "",
+            "heading_text_color": "",
+            "heading_preset": "h3",
+            "border_style": "all",
+            "input_style": "default",
+            "border_width": 1,
+            "border_radius": 2,
+            "input_background_color": "",
+            "input_text_color": "",
+            "input_border_color": "",
+            "input_type_preset": "paragraph",
+            "style_class": "button-unstyled",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
+            "display_type": "arrow",
+            "label": "Sign up",
+            "integrated_button": true,
+            "button_type_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_H6VpwJ",
+        "email_signup_crihX7"
+      ],
+      "name": "t:names.footer",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 20,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 48,
+        "padding-block-end": 32
+      }
+    },
+    "footer_utilities_jLGE8U": {
+      "type": "footer-utilities",
+      "blocks": {
+        "footer_copyright_3YEyQD": {
+          "type": "footer-copyright",
+          "name": "t:names.copyright",
+          "settings": {
+            "show_powered_by": true,
+            "text_color": "",
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "footer_policy_list_VCdnpa": {
+          "type": "footer-policy-list",
+          "settings": {
+            "text_color": "",
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "footer_copyright_3YEyQD",
+        "footer_policy_list_VCdnpa"
+      ],
+      "name": "t:names.utilities",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 24,
+        "background_color": "{{ settings.color_palette.background }}",
+        "divider_thickness": 0,
+        "divider_color": "",
+        "padding-block-start": 20,
+        "padding-block-end": 48
+      }
+    },
+    "17824054304ae9eab5": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fa8568c_BNYqW7": {
+          "type": "ai_gen_block_fa8568c",
+          "name": "Follow us on social",
+          "settings": {
+            "heading": "Follow us on",
+            "heading_size": 18,
+            "heading_color": "#2F2A22",
+            "heading_spacing": 20,
+            "tiktok_url": "https://www.tiktok.com/@agaplantz?_r=1&_t=ZS-97VhlhHs2Rs",
+            "instagram_url": "",
+            "facebook_url": "",
+            "etsy_url": "https://www.etsy.com/shop/agaplantz/?etsrc=sdt",
+            "pinterest_url": "",
+            "icon_size": 40,
+            "icon_spacing": 15,
+            "icon_border_radius": 50,
+            "icon_background": "#2F2A22",
+            "icon_hover_background": "#5C6B4C",
+            "icon_color": "#FBF8F2",
+            "icon_hover_color": "#FBF8F2",
+            "desktop_width_percent": 100,
+            "background_color": "#FBF8F2",
+            "padding_top": 30,
+            "padding_bottom": 30
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_651bd33_ntWJBH": {
+          "type": "ai_gen_block_651bd33",
+          "settings": {
+            "brand_heading": "AgaPlantz Inc.",
+            "brand_tagline": "Rare Tropical Plants & Tissue Culture Specimens",
+            "contact_heading": "Contact",
+            "address": "25 Fieldridge Cres Unit 46 Brampton, Ontario L6R 4G6 Canada",
+            "email": "agaplantz@gmail.com",
+            "phone": "+1 (647) 621-3033",
+            "hours": "Monday – Friday: 9:00 AM – 5:00 PM EST\nSaturday – Sunday: 11:00 AM – 4:00 PM EST",
+            "policies_heading": "Policies",
+            "policy_link_1_text": "Return & Refund Policy",
+            "policy_link_1_url": "shopify://policies/refund-policy",
+            "policy_link_2_text": "Shipping Policy",
+            "policy_link_2_url": "shopify://policies/shipping-policy",
+            "policy_link_3_text": "Payment Policy",
+            "policy_link_3_url": "shopify://pages/payment-policy",
+            "policy_link_4_text": "Terms of Service",
+            "policy_link_4_url": "shopify://policies/terms-of-service",
+            "policy_link_5_text": "Privacy Policy",
+            "policy_link_5_url": "shopify://policies/privacy-policy",
+            "quick_links_heading": "Quick links",
+            "quick_link_1_text": "FAQ",
+            "quick_link_1_url": "shopify://pages/faq",
+            "quick_link_2_text": "Contact Us",
+            "quick_link_2_url": "shopify://pages/contact",
+            "quick_link_3_text": "About Us",
+            "quick_link_3_url": "shopify://pages/about-us",
+            "quick_link_4_text": "Coming Soon",
+            "quick_link_4_url": "shopify://pages/coming-soon",
+            "quick_link_5_text": "Pre-Orders",
+            "quick_link_5_url": "shopify://pages/pre-order",
+            "show_social_links": false,
+            "social_heading": "Follow us on",
+            "tiktok_url": "",
+            "instagram_url": "",
+            "etsy_url": "",
+            "social_icon_background": "#2F2A22",
+            "social_icon_color": "#FBF8F2",
+            "social_icon_hover_background": "#5C6B4C",
+            "social_icon_hover_color": "#FBF8F2",
+            "copyright_text": "© 2026 AgaPlantz. All rights reserved.",
+            "payment_text": "Secure payments are processed through trusted payment providers.",
+            "background_color": "#F2EBDE",
+            "text_color": "#56503F",
+            "heading_color": "#2F2A22",
+            "link_color": "#56503F",
+            "link_hover_color": "#2F2A22",
+            "divider_color": "#DED3C2",
+            "heading_size": 16,
+            "text_size": 14,
+            "padding_top": 60,
+            "padding_bottom": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fa8568c_BNYqW7",
+        "ai_gen_block_651bd33_ntWJBH"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "footer_m9NzUG",
+    "footer_utilities_jLGE8U",
+    "17824054304ae9eab5"
+  ]
+}

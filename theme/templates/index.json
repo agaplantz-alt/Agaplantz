@@ -13,7 +13,7 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.875rem",
+            "font_size": "0.75rem",
             "line_height": "normal",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -39,9 +39,9 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-accent--family)",
-            "font_size": "3.5rem",
+            "font_size": "2.5rem",
             "line_height": "tight",
-            "letter_spacing": "normal",
+            "letter_spacing": "tight",
             "case": "none",
             "wrap": "balance",
             "text_color": "#FBF8F2",
@@ -65,7 +65,7 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "1.125rem",
+            "font_size": "1rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -136,8 +136,8 @@
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 43,
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     },
     "marquee_trust": {
@@ -149,7 +149,7 @@
             "text": "<p>Canada-wide shipping</p>",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.875rem",
+            "font_size": "0.75rem",
             "line_height": "normal",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -163,7 +163,7 @@
             "text": "<p>Rooted & acclimated before it ships</p>",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.875rem",
+            "font_size": "0.75rem",
             "line_height": "normal",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -177,7 +177,7 @@
             "text": "<p>Insulated seasonal packing</p>",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.875rem",
+            "font_size": "0.75rem",
             "line_height": "normal",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -191,7 +191,7 @@
             "text": "<p>Rare aroid specialists</p>",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.875rem",
+            "font_size": "0.75rem",
             "line_height": "normal",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -306,7 +306,7 @@
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 12
+            "border_radius": 2
           },
           "blocks": {
             "collection-card-image": {
@@ -369,8 +369,8 @@
         "section_width": "page-width",
         "gap": 16,
         "background_color": "",
-        "padding-block-start": 64,
-        "padding-block-end": 40
+        "padding-block-start": 80,
+        "padding-block-end": 48
       }
     },
     "products_rts": {
@@ -518,8 +518,8 @@
         "horizontal_alignment": "flex-start",
         "gap": 24,
         "background_color": "",
-        "padding-block-start": 40,
-        "padding-block-end": 56
+        "padding-block-start": 48,
+        "padding-block-end": 72
       }
     },
     "tissue_culture": {
@@ -602,7 +602,7 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_color": "#DED3C2",
-            "border_radius": 12,
+            "border_radius": 2,
             "padding-block-start": 24,
             "padding-block-end": 24,
             "padding-inline-start": 24,
@@ -673,7 +673,7 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_color": "#DED3C2",
-            "border_radius": 12,
+            "border_radius": 2,
             "padding-block-start": 24,
             "padding-block-end": 24,
             "padding-inline-start": 24,
@@ -753,8 +753,8 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 56,
-        "padding-block-end": 56
+        "padding-block-start": 72,
+        "padding-block-end": 72
       }
     },
     "why_agaplantz": {
@@ -1051,8 +1051,8 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 56,
-        "padding-block-end": 56
+        "padding-block-start": 72,
+        "padding-block-end": 72
       }
     },
     "newsletter": {
@@ -1134,8 +1134,8 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 64,
-        "padding-block-end": 80
+        "padding-block-start": 80,
+        "padding-block-end": 96
       }
     },
     "products_acclimated": {
@@ -1179,7 +1179,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h2>Acclimated and established</h2>",
+                "text": "<h2>Mature specimens</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1277,8 +1277,8 @@
         "horizontal_alignment": "flex-start",
         "gap": 24,
         "background_color": "",
-        "padding-block-start": 56,
-        "padding-block-end": 56
+        "padding-block-start": 72,
+        "padding-block-end": 72
       }
     }
   },
