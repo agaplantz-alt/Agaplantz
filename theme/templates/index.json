@@ -86,7 +86,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Shop ready to ship",
-            "link": "shopify://collections/ready-to-ship-tissue-culture",
+            "link": "shopify://collections/ready-to-ship",
             "open_in_new_tab": false,
             "style_class": "button-custom",
             "custom_button_background": "#FBF8F2",
@@ -503,7 +503,7 @@
       },
       "block_order": [],
       "settings": {
-        "collection": "ready-to-ship-tissue-culture",
+        "collection": "ready-to-ship",
         "layout_type": "grid",
         "carousel_on_mobile": true,
         "max_products": 8,
