@@ -7,7 +7,8 @@
           "type": "custom-liquid",
           "settings": {
             "custom_liquid": "<style>\n  /* hide this block's own wrapper so it adds no flex gap */\n  #Hero-{{ section.id }} .hero__content-wrapper > div:has(> style) { display: none; }\n\n  @media screen and (max-width: 749px) {\n    #Hero-{{ section.id }} [class*=\"__hero_heading\"] { --font-size: 1.875rem !important; }\n    #Hero-{{ section.id }} [class*=\"__hero_sub\"]     { --font-size: 0.9375rem !important; }\n    #Hero-{{ section.id }} [class*=\"__hero_eyebrow\"] { --font-size: 0.6875rem !important; }\n    #Hero-{{ section.id }} .hero__container {\n      --padding-block-start: 56px !important;\n      --padding-block-end: 56px !important;\n    }\n  }\n</style>"
-          }
+          },
+          "blocks": {}
         },
         "hero_eyebrow": {
           "type": "text",
@@ -24,7 +25,7 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "pretty",
-            "text_color": "#F2EBDE",
+            "text_color": "#f2ebde",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -101,7 +102,8 @@
             "link_text_color": "",
             "width": "fit-content",
             "custom_width": 100,
-            "width_mobile": "fit-content"
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
           },
           "blocks": {}
         }
@@ -137,7 +139,7 @@
         "section_height_custom": 50,
         "background_color": "rgba(0,0,0,0)",
         "toggle_overlay": true,
-        "overlay_color": "#2F2A22A6",
+        "overlay_color": "#2f2a22a6",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
