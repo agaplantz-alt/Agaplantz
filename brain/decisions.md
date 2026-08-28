@@ -23,3 +23,11 @@ sized down (H1 42 vs 56). Full detail in `brain/shopify.md`.
 page, collection and product templates. Ready-to-ship (36) and mature specimens
 (7) are the minority. Marketing and site decisions should assume the buyer is
 waiting for a plant, not receiving one immediately.
+
+## 2026-08-28 — Enforce memory capture with hooks, not good intentions
+
+An instruction in `CLAUDE.md` only works if Claude follows it. Hooks are run by
+the harness regardless. SessionStart loads the brain; Stop refuses to end a
+session while brain knowledge is uncommitted or unpushed — the remote container
+is ephemeral, so unpushed work is lost work. The Stop hook honours
+`stop_hook_active`, so it nudges once and never loops.

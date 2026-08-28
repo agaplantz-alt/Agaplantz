@@ -26,3 +26,9 @@ session, and `CLAUDE.md` points here.
 ## Adding to it during a session
 
 Just say "remember this" and Claude writes it to the right file and commits.
+
+## Automation
+
+`.claude/hooks/brain-load.sh` (SessionStart) loads this index and the core
+facts automatically. `.claude/hooks/brain-commit-check.sh` (Stop) blocks the
+end of a session while brain changes are uncommitted or unpushed.

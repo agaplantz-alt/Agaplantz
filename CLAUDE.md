@@ -45,3 +45,14 @@ Before editing, generating, or resizing any image for Agaplantz, read
 `brain/image-editing.md` and follow it. When the user corrects an edit, write
 the correction into that file and commit it — a correction that is not written
 down will be repeated.
+
+## Automation
+
+Two hooks in `.claude/settings.json` enforce the capture protocol, so it does
+not depend on Claude remembering to follow it:
+
+- **SessionStart** → `.claude/hooks/brain-load.sh` injects the brain index,
+  `brain/README.md` and `brain/business.md` into context at session start.
+- **Stop** → `.claude/hooks/brain-commit-check.sh` refuses to end the session
+  while `brain/` or `CLAUDE.md` has uncommitted edits, or while commits sit
+  unpushed. It blocks once, then lets the session end, so it can never loop.

@@ -10,5 +10,31 @@
   },
   "enabledPlugins": {
     "claude-ads@ai-marketing-hub-claude-ads": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/brain-load.sh\"",
+            "timeout": 15,
+            "statusMessage": "Loading Agaplantz brain..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/brain-commit-check.sh\"",
+            "timeout": 20,
+            "statusMessage": "Checking the brain is saved..."
+          }
+        ]
+      }
+    ]
   }
 }
