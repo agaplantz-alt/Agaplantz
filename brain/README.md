@@ -10,6 +10,7 @@ session, and `CLAUDE.md` points here.
 | `business.md` | What the business is, where it sells, economics, constraints |
 | `products.md` | Plants and product lines, prices, margins, stock reality |
 | `audience.md` | Who buys, why, objections, language they use |
+| `shopify.md` | The store: live theme, design system, catalog, apps |
 | `marketing.md` | Channels, budgets, what worked, what failed |
 | `image-editing.md` | How images and creatives must be edited — the look, sizes, never-dos |
 | `decisions.md` | Dated log of decisions and the reasoning behind them |

@@ -20,6 +20,25 @@ what we decided and why.
 - `docs/claude-ads-setup.md` — the Claude Ads plugin enabled for this repo.
 - `.claude/settings.json` — plugin/marketplace configuration.
 
+## Capture protocol — write it down as it happens
+
+Do not wait to be asked. During any session, the moment one of these appears,
+write it into the right `brain/` file and commit before the session ends:
+
+- A **fact** about the business — a price, a margin, a lead time, a supplier.
+- A **preference** — how something should look, sound, or be done.
+- A **correction** — anything the user says is wrong. These matter most; a
+  correction that is not written down gets repeated.
+- A **decision** and its reasoning → `brain/decisions.md`, dated.
+- A **result** — what a campaign, page, or change actually did.
+
+Prefer verifying over remembering: the Shopify, Meta, and analytics accounts are
+connected, so read the live state and record it with the date observed rather
+than relying on recall. Mark anything unverified as `(assumption)`.
+
+At the end of a working session, ask: *what did I learn here that the next
+session would need?* Write that, then commit.
+
 ## Images
 
 Before editing, generating, or resizing any image for Agaplantz, read
