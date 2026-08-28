@@ -169,6 +169,14 @@ inventory). Taken before any permanent delete — do the same before the next on
 - **Shopify never upscales images.** Asking for `width=3840` from a 2096px source
   returns 2096px and the browser stretches it — that was the blurry hero. Source must
   be at least as wide as the largest srcset entry (3840).
+- **A Horizon version upgrade re-seeds default sections into JSON templates.** The
+  4.1.4 upgrade put a stock `main-collection-list` section back at the top of
+  `templates/list-collections.json`, above the curated `shop_by_plant` /
+  `shop_by_stage` sections, which survived untouched underneath. It renders every
+  collection alphabetically — including `home-page` and image-less ones like Begonia,
+  which fall back to Shopify's t-shirt placeholder. `templates/index.json` was not
+  touched. **After every version upgrade, re-check each customised template for
+  re-seeded default sections**, not just the homepage.
 - Raw `collectionCreate` does **not** publish; `resourcePublications` comes back empty.
   Follow with `publishablePublish` to Online Store + Shop.
 - `bulkOperationRunMutation` is blocked; batched aliased mutations work fine.
