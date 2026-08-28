@@ -110,7 +110,7 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/edited-edited_57_8757cd36-eace-4cca-836a-a83e6a690ef9.png",
+        "image_1": "shopify://shop_images/agaplantz-hero-2026.jpg",
         "media_type_2": "image",
         "stack_media_on_mobile": true,
         "custom_mobile_media": false,
@@ -805,7 +805,7 @@
                     "label": "Browse",
                     "link": "shopify://collections/pre-order",
                     "open_in_new_tab": false,
-                    "style_class": "button-secondary",
+                    "style_class": "button",
                     "width": "custom",
                     "custom_width": 100,
                     "width_mobile": "custom",
