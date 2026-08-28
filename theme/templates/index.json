@@ -3,11 +3,17 @@
     "hero_main": {
       "type": "hero",
       "blocks": {
+        "hero_css": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<style>\n  /* hide this block's own wrapper so it adds no flex gap */\n  #Hero-{{ section.id }} .hero__content-wrapper > div:has(> style) { display: none; }\n\n  @media screen and (max-width: 749px) {\n    #Hero-{{ section.id }} [class*=\"__hero_heading\"] { --font-size: 1.875rem !important; }\n    #Hero-{{ section.id }} [class*=\"__hero_sub\"]     { --font-size: 0.9375rem !important; }\n    #Hero-{{ section.id }} [class*=\"__hero_eyebrow\"] { --font-size: 0.6875rem !important; }\n    #Hero-{{ section.id }} .hero__container {\n      --padding-block-start: 56px !important;\n      --padding-block-end: 56px !important;\n    }\n  }\n</style>"
+          }
+        },
         "hero_eyebrow": {
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Rare aroids · Grown and shipped from Canada</p>",
+            "text": "<p>Rare aroids · Grown in Canada</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -18,7 +24,7 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "pretty",
-            "text_color": "#C7D4B2",
+            "text_color": "#F2EBDE",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -59,7 +65,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Collector-grade Philodendron, Alocasia, Monstera and Anthurium — rooted, acclimated, and packed to travel safely across Canada.</p>",
+            "text": "<p>Collector-grade Philodendron, Alocasia, Monstera and Anthurium — rooted, acclimated and shipped Canada-wide.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -95,13 +101,13 @@
             "link_text_color": "",
             "width": "fit-content",
             "custom_width": 100,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100
+            "width_mobile": "fit-content"
           },
           "blocks": {}
         }
       },
       "block_order": [
+        "hero_css",
         "hero_eyebrow",
         "hero_heading",
         "hero_sub",
@@ -125,19 +131,19 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 14,
+        "gap": 12,
         "section_width": "page-width",
         "section_height": "large",
         "section_height_custom": 50,
         "background_color": "rgba(0,0,0,0)",
         "toggle_overlay": true,
-        "overlay_color": "#2F2A2296",
+        "overlay_color": "#2F2A22A6",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 43,
-        "padding-block-start": 80,
-        "padding-block-end": 80
+        "padding-block-start": 72,
+        "padding-block-end": 72
       }
     },
     "marquee_trust": {
