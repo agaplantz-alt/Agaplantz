@@ -19,3 +19,10 @@ what we decided and why.
 - `brain/` — persistent business memory (see below).
 - `docs/claude-ads-setup.md` — the Claude Ads plugin enabled for this repo.
 - `.claude/settings.json` — plugin/marketplace configuration.
+
+## Images
+
+Before editing, generating, or resizing any image for Agaplantz, read
+`brain/image-editing.md` and follow it. When the user corrects an edit, write
+the correction into that file and commit it — a correction that is not written
+down will be repeated.
