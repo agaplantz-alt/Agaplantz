@@ -531,7 +531,7 @@
         "gap": 24,
         "background_color": "",
         "padding-block-start": 48,
-        "padding-block-end": 72
+        "padding-block-end": 56
       }
     },
     "tissue_culture": {
@@ -543,17 +543,21 @@
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap": 8,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
+            "custom_height": 100,
             "background_media": "none",
             "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -563,28 +567,42 @@
           "blocks": {
             "tc_heading": {
               "type": "text",
-              "name": "t:names.heading",
               "settings": {
                 "text": "<h2>New to tissue culture?</h2>",
-                "type_preset": "h2",
+                "type_preset": "h3",
                 "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "padding-block-start": 0,
-                "padding-block-end": 0
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               }
             },
             "tc_body": {
               "type": "text",
               "settings": {
-                "text": "<p>Tissue culture plants are grown from a parent plant in a sterile lab environment — pest-free, disease-free, and true to type. It's how we can offer collector aroids that are otherwise almost impossible to find in Canada.</p>",
+                "text": "<p>Grown from a parent plant in a sterile lab — pest-free, disease-free and true to type. It's how we can offer collector aroids that are otherwise almost impossible to find in Canada.</p>",
                 "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "padding-block-start": 0,
-                "padding-block-end": 0
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               }
             }
           },
@@ -593,156 +611,227 @@
             "tc_body"
           ]
         },
-        "tc_rts": {
+        "tc_cards": {
           "type": "group",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
+            "content_direction": "row",
+            "vertical_on_mobile": false,
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "flex-start",
+            "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "flex-start",
-            "gap": 8,
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fill",
+            "height": "fit",
+            "custom_height": 100,
             "background_media": "none",
-            "background_color": "#FBF8F2",
-            "border": "solid",
+            "border": "none",
             "border_width": 1,
             "border_opacity": 100,
-            "border_color": "#DED3C2",
-            "border_radius": 2,
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 24,
-            "padding-inline-end": 24
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
-            "tc_rts_h": {
-              "type": "text",
+            "tc_rts": {
+              "type": "group",
               "settings": {
-                "text": "<h3>Ready to ship</h3>",
-                "type_preset": "h4",
-                "font": "var(--font-heading--family)",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              }
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 6,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "#FBF8F2",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "#DED3C2",
+                "border_radius": 2,
+                "padding-block-start": 18,
+                "padding-block-end": 18,
+                "padding-inline-start": 18,
+                "padding-inline-end": 18
+              },
+              "blocks": {
+                "h": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Ready to ship</h3>",
+                    "type_preset": "h5",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                },
+                "t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Rooted and acclimated. Ships in 1–3 business days.</p>",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 6,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                },
+                "b": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Shop now",
+                    "link": "shopify://collections/ready-to-ship-tissue-culture",
+                    "open_in_new_tab": false,
+                    "style_class": "button",
+                    "width": "custom",
+                    "custom_width": 100,
+                    "width_mobile": "custom",
+                    "custom_width_mobile": 100
+                  }
+                }
+              },
+              "block_order": [
+                "h",
+                "t",
+                "b"
+              ]
             },
-            "tc_rts_t": {
-              "type": "text",
+            "tc_pre": {
+              "type": "group",
               "settings": {
-                "text": "<p>Already rooted and acclimated in our greenhouse. Ships within 1–3 business days.</p>",
-                "type_preset": "paragraph",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 8
-              }
-            },
-            "tc_rts_b": {
-              "type": "button",
-              "settings": {
-                "label": "Shop ready to ship",
-                "link": "shopify://collections/ready-to-ship-tissue-culture",
-                "style_class": "button",
-                "width": "fit-content",
-                "width_mobile": "custom",
-                "custom_width_mobile": 100
-              }
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 6,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "#FBF8F2",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "#DED3C2",
+                "border_radius": 2,
+                "padding-block-start": 18,
+                "padding-block-end": 18,
+                "padding-inline-start": 18,
+                "padding-inline-end": 18
+              },
+              "blocks": {
+                "h": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Pre-order</h3>",
+                    "type_preset": "h5",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                },
+                "t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Reserved from our next lab batch, at a lower price.</p>",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 6,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                },
+                "b": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Browse",
+                    "link": "shopify://collections/pre-order",
+                    "open_in_new_tab": false,
+                    "style_class": "button-secondary",
+                    "width": "custom",
+                    "custom_width": 100,
+                    "width_mobile": "custom",
+                    "custom_width_mobile": 100
+                  }
+                }
+              },
+              "block_order": [
+                "h",
+                "t",
+                "b"
+              ]
             }
           },
           "block_order": [
-            "tc_rts_h",
-            "tc_rts_t",
-            "tc_rts_b"
-          ]
-        },
-        "tc_pre": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "flex-start",
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "flex-start",
-            "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill",
-            "background_media": "none",
-            "background_color": "#FBF8F2",
-            "border": "solid",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "#DED3C2",
-            "border_radius": 2,
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 24,
-            "padding-inline-end": 24
-          },
-          "blocks": {
-            "tc_pre_h": {
-              "type": "text",
-              "settings": {
-                "text": "<h3>Pre-order</h3>",
-                "type_preset": "h4",
-                "font": "var(--font-heading--family)",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              }
-            },
-            "tc_pre_t": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Reserved from our next lab batch at a lower price. We'll email you the moment your plant is ready to leave.</p>",
-                "type_preset": "paragraph",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 8
-              }
-            },
-            "tc_pre_b": {
-              "type": "button",
-              "settings": {
-                "label": "Browse pre-orders",
-                "link": "shopify://collections/pre-order",
-                "style_class": "button-secondary",
-                "width": "fit-content",
-                "width_mobile": "custom",
-                "custom_width_mobile": 100
-              }
-            }
-          },
-          "block_order": [
-            "tc_pre_h",
-            "tc_pre_t",
-            "tc_pre_b"
+            "tc_rts",
+            "tc_pre"
           ]
         }
       },
       "block_order": [
         "tc_intro",
-        "tc_rts",
-        "tc_pre"
+        "tc_cards"
       ],
       "settings": {
-        "content_direction": "row",
+        "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "flex-start",
@@ -765,289 +854,485 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "padding-block-start": 64,
+        "padding-block-end": 64
       }
     },
     "why_agaplantz": {
       "type": "section",
       "blocks": {
-        "why_1": {
-          "type": "group",
+        "why_header": {
+          "type": "text",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "height": "fit"
-          },
-          "blocks": {
-            "icon": {
-              "type": "icon",
-              "settings": {
-                "icon": "plant",
-                "width": 32,
-                "link": "",
-                "icon_color": "#5C6B4C"
-              }
-            },
-            "grp": {
-              "type": "group",
-              "settings": {
-                "gap": 4
-              },
-              "blocks": {
-                "h": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>Rooted before it ships</h3>",
-                    "type_preset": "h4",
-                    "font": "var(--font-heading--family)",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0
-                  }
-                },
-                "t": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Every plant is established and acclimated in our greenhouse — never shipped straight from the lab.</p>",
-                    "type_preset": "paragraph",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0
-                  }
-                }
-              },
-              "block_order": [
-                "h",
-                "t"
-              ]
-            }
-          },
-          "block_order": [
-            "icon",
-            "grp"
-          ]
+            "text": "<h2>Why collectors choose AgaPlantz</h2>",
+            "type_preset": "h3",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
         },
-        "why_2": {
+        "why_grid": {
           "type": "group",
           "settings": {
-            "content_direction": "column",
+            "content_direction": "row",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "height": "fit"
+            "gap": 28,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
-            "icon": {
-              "type": "icon",
-              "settings": {
-                "icon": "box",
-                "width": 32,
-                "link": "",
-                "icon_color": "#5C6B4C"
-              }
-            },
-            "grp": {
+            "why_pair_a": {
               "type": "group",
               "settings": {
-                "gap": 4
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 28,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
-                "h": {
-                  "type": "text",
+                "why_1": {
+                  "type": "group",
                   "settings": {
-                    "text": "<h3>Packed for the season</h3>",
-                    "type_preset": "h4",
-                    "font": "var(--font-heading--family)",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "flex-start",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
                     "padding-block-start": 0,
-                    "padding-block-end": 0
-                  }
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "icon": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "plant",
+                        "width": 28,
+                        "link": "",
+                        "icon_color": "#5C6B4C"
+                      }
+                    },
+                    "h": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<h3>Rooted before it ships</h3>",
+                        "type_preset": "h5",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "padding-block-start": 8,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "t": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Established and acclimated in our greenhouse — never straight from the lab.</p>",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-body--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "icon",
+                    "h",
+                    "t"
+                  ]
                 },
-                "t": {
-                  "type": "text",
+                "why_2": {
+                  "type": "group",
                   "settings": {
-                    "text": "<p>Insulated boxes and heat packs through the Canadian winter, so your plant arrives the way it left.</p>",
-                    "type_preset": "paragraph",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "flex-start",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
                     "padding-block-start": 0,
-                    "padding-block-end": 0
-                  }
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "icon": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "box",
+                        "width": 28,
+                        "link": "",
+                        "icon_color": "#5C6B4C"
+                      }
+                    },
+                    "h": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<h3>Packed for the season</h3>",
+                        "type_preset": "h5",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "padding-block-start": 8,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "t": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Insulated boxes and heat packs right through the Canadian winter.</p>",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-body--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "icon",
+                    "h",
+                    "t"
+                  ]
                 }
               },
               "block_order": [
-                "h",
-                "t"
+                "why_1",
+                "why_2"
+              ]
+            },
+            "why_pair_b": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 28,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "why_3": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "flex-start",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "icon": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "truck",
+                        "width": 28,
+                        "link": "",
+                        "icon_color": "#5C6B4C"
+                      }
+                    },
+                    "h": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<h3>Shipped Canada-wide</h3>",
+                        "type_preset": "h5",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "padding-block-start": 8,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "t": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Tracked delivery to every province, with local pickup available.</p>",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-body--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "icon",
+                    "h",
+                    "t"
+                  ]
+                },
+                "why_4": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "flex-start",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "icon": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "leaf",
+                        "width": 28,
+                        "link": "",
+                        "icon_color": "#5C6B4C"
+                      }
+                    },
+                    "h": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<h3>Pest-free by design</h3>",
+                        "type_preset": "h5",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "padding-block-start": 8,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "t": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Lab-propagated stock means no thrips, no mealybugs, no quarantine.</p>",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-body--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": [
+                    "icon",
+                    "h",
+                    "t"
+                  ]
+                }
+              },
+              "block_order": [
+                "why_3",
+                "why_4"
               ]
             }
           },
           "block_order": [
-            "icon",
-            "grp"
-          ]
-        },
-        "why_3": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "height": "fit"
-          },
-          "blocks": {
-            "icon": {
-              "type": "icon",
-              "settings": {
-                "icon": "truck",
-                "width": 32,
-                "link": "",
-                "icon_color": "#5C6B4C"
-              }
-            },
-            "grp": {
-              "type": "group",
-              "settings": {
-                "gap": 4
-              },
-              "blocks": {
-                "h": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>Shipped Canada-wide</h3>",
-                    "type_preset": "h4",
-                    "font": "var(--font-heading--family)",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0
-                  }
-                },
-                "t": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Tracked delivery to every province, with pickup available for local collectors.</p>",
-                    "type_preset": "paragraph",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0
-                  }
-                }
-              },
-              "block_order": [
-                "h",
-                "t"
-              ]
-            }
-          },
-          "block_order": [
-            "icon",
-            "grp"
-          ]
-        },
-        "why_4": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "height": "fit"
-          },
-          "blocks": {
-            "icon": {
-              "type": "icon",
-              "settings": {
-                "icon": "leaf",
-                "width": 32,
-                "link": "",
-                "icon_color": "#5C6B4C"
-              }
-            },
-            "grp": {
-              "type": "group",
-              "settings": {
-                "gap": 4
-              },
-              "blocks": {
-                "h": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>Pest-free by design</h3>",
-                    "type_preset": "h4",
-                    "font": "var(--font-heading--family)",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0
-                  }
-                },
-                "t": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Lab-propagated stock means no thrips, no mealybugs, and no quarantine shelf.</p>",
-                    "type_preset": "paragraph",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0
-                  }
-                }
-              },
-              "block_order": [
-                "h",
-                "t"
-              ]
-            }
-          },
-          "block_order": [
-            "icon",
-            "grp"
+            "why_pair_a",
+            "why_pair_b"
           ]
         }
       },
       "block_order": [
-        "why_1",
-        "why_2",
-        "why_3",
-        "why_4"
+        "why_header",
+        "why_grid"
       ],
       "settings": {
-        "content_direction": "row",
+        "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "flex-start",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
+        "gap": 28,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
@@ -1063,8 +1348,8 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "padding-block-start": 56,
+        "padding-block-end": 56
       }
     },
     "newsletter": {
@@ -1306,9 +1591,9 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 24,
-        "background_color": "",
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "background_color": "#F2EBDE",
+        "padding-block-start": 64,
+        "padding-block-end": 64
       }
     },
     "products_sale": {
@@ -1468,8 +1753,169 @@
         "horizontal_alignment": "flex-start",
         "gap": 24,
         "background_color": "#F2EBDE",
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "products_tc": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "tc_row_title": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2>Tissue culture pre-orders</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "tc_row_button": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "tc_row_title",
+            "tc_row_button"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 8,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "tcard_gallery": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 4,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "tcard_title": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {}
+            },
+            "tcard_price": {
+              "type": "price",
+              "name": "t:names.price",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "tcard_gallery",
+            "tcard_title",
+            "tcard_price"
+          ]
+        }
+      },
+      "block_order": [],
+      "settings": {
+        "collection": "pre-order",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 12,
+        "rows_gap": 28,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 24,
+        "background_color": "",
+        "padding-block-start": 48,
+        "padding-block-end": 48
       }
     }
   },
@@ -1477,9 +1923,10 @@
     "hero_main",
     "marquee_trust",
     "collections_genus",
+    "tissue_culture",
+    "products_tc",
     "products_sale",
     "products_rts",
-    "tissue_culture",
     "products_acclimated",
     "why_agaplantz",
     "newsletter"
