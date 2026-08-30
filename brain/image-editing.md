@@ -28,6 +28,11 @@ shot and placed on a synthetic backdrop.
   negative space all around
 - **Support stakes** are kept in frame when present (see Gloriosum Variegated)
 
+**When the editing happened:** the filename timestamps cluster on
+**2026-08-25, roughly 21:00-22:15** (`...T212126`, `...T220714`, `...T221144`).
+If the session that established these rules needs to be found again, that is the
+date to look for — the theme session was separate, on 2026-08-28 05:04-05:25 UTC.
+
 ### Backdrops in use — not consistent
 
 | Product | Backdrop |
