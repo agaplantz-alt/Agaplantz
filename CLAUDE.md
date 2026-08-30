@@ -205,8 +205,13 @@ only the *featured cards* are filtered to 5-star.
 out of both the average and the cards.
 
 A `skip_ids` list inside the block drops individual reviews from the *featured cards*
-only — the average still counts them. Used to keep photos shot inside humidity boxes
-off the lead card, and to skip wording that undersells ("came slightly bent").
+only — the average still counts them. Currently it skips one review whose text opens
+"came slightly bent".
+
+**Tissue-culture photos are wanted here, not filtered out.** Plantlets in prop boxes
+and humidity domes are what most customers actually receive, and a real one arriving
+healthy answers the objection that stops a first order. Do not "tidy" those photos
+out of the section — the owner asked for them specifically.
 
 ## Open items
 
