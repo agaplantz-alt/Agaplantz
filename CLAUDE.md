@@ -193,8 +193,13 @@ array in Liquid — no JSON parsing needed, and the section renders server-side.
 
 The block loops an explicit handle list (`all_products` is capped at **20 distinct
 handles per page**, so the list must stay under that), sums `loox.num_reviews` and
-`loox.avg_rating` for a true weighted average, then shows the first 5-star review
-with a photo from each of six different products.
+`loox.avg_rating` for a true weighted average, then fills cards with 5-star reviews
+that carry a photo and more than 25 characters of text.
+
+Two tunables at the top of the block: `max_cards` (11) and `per_product` (2). The
+per-product cap is what keeps one heavily-reviewed plant from filling the row —
+Spiritus Sancti alone has eight qualifying reviews. Raising `max_cards` past what
+the pool supports simply renders fewer cards; it never pads or repeats.
 
 The aggregate is computed live, so it never goes stale, and it counts the low
 ratings too (Gloriosum Variegated 1.0, Goeldii Mint 3.0, Tortum 3.5) — it reads
