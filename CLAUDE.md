@@ -196,10 +196,22 @@ handles per page**, so the list must stay under that), sums `loox.num_reviews` a
 `loox.avg_rating` for a true weighted average, then fills cards with 5-star reviews
 that carry a photo and more than 25 characters of text.
 
-Two tunables at the top of the block: `max_cards` (11) and `per_product` (2). The
-per-product cap is what keeps one heavily-reviewed plant from filling the row —
-Spiritus Sancti alone has eight qualifying reviews. Raising `max_cards` past what
-the pool supports simply renders fewer cards; it never pads or repeats.
+Selection is **round-robin**: each pass takes at most one review per plant, so the
+strongest photo from every plant lands before any plant gets a second card.
+Spiritus Sancti alone has eight qualifying reviews and would otherwise swamp the
+row. Card order follows the handle list, so reordering handles reorders the wall —
+that is how the labelled-bag photo is held at position 2.
+
+Tunables at the top of the block: `max_cards` (11), `per_product` (4, a ceiling that
+rarely binds now), `min_rating` (4 — admits one genuine 4-star review whose photo is
+among the best and whose text is positive). Asking for more cards than the pool
+supports simply renders fewer; it never pads or repeats.
+
+**Judge the photo, not just the rating.** Several 5-star reviews have pictures shot
+through a fogged prop-box lid or into packing wool, where the plant is invisible.
+Those are in `skip_ids`. What sells here is a plant you can actually see, a big
+well-rooted one, or the sealed bag with the lab label on it — that last one is proof
+the tissue culture is properly sourced and the owner asked for it specifically.
 
 The aggregate is computed live, so it never goes stale, and it counts the low
 ratings too (Gloriosum Variegated 1.0, Goeldii Mint 3.0, Tortum 3.5) — it reads
