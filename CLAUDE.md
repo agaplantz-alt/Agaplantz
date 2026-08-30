@@ -184,6 +184,26 @@ inventory). Taken before any permanent delete — do the same before the next on
   on a later retry — worth retrying before reporting a block.
 - `productVariantsBulkReorder` uses `position`, not `newPosition`.
 
+## Homepage reviews section
+
+`sections.reviews` renders customer reviews natively in Liquid rather than through
+Loox's JavaScript widget. Loox writes per-product metafields and `loox.review_feed`
+is type **json**, so `product.metafields.loox.review_feed.value.reviews` is a real
+array in Liquid — no JSON parsing needed, and the section renders server-side.
+
+The block loops an explicit handle list (`all_products` is capped at **20 distinct
+handles per page**, so the list must stay under that), sums `loox.num_reviews` and
+`loox.avg_rating` for a true weighted average, then shows the first 5-star review
+with a photo from each of six different products.
+
+The aggregate is computed live, so it never goes stale, and it counts the low
+ratings too (Gloriosum Variegated 1.0, Goeldii Mint 3.0, Tortum 3.5) — it reads
+4.7, not 5.0. Do not hardcode it and do not exclude the low ones from the maths;
+only the *featured cards* are filtered to 5-star.
+
+**When new products get reviews, add their handles to the list**, or they are left
+out of both the average and the cards.
+
 ## Open items
 
 **Hidden from the Online Store** — 7 ACTIVE products with stock, published to Google/
