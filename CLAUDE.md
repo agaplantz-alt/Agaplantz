@@ -204,6 +204,10 @@ only the *featured cards* are filtered to 5-star.
 **When new products get reviews, add their handles to the list**, or they are left
 out of both the average and the cards.
 
+A `skip_ids` list inside the block drops individual reviews from the *featured cards*
+only — the average still counts them. Used to keep photos shot inside humidity boxes
+off the lead card, and to skip wording that undersells ("came slightly bent").
+
 ## Open items
 
 **Hidden from the Online Store** — 7 ACTIVE products with stock, published to Google/
