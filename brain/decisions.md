@@ -31,3 +31,10 @@ the harness regardless. SessionStart loads the brain; Stop refuses to end a
 session while brain knowledge is uncommitted or unpushed — the remote container
 is ephemeral, so unpushed work is lost work. The Stop hook honours
 `stop_hook_active`, so it nudges once and never loops.
+
+## 2026-08-30 — Brain-load hook verified working in a live session
+
+The SessionStart hook fired and injected the brain index plus `business.md`
+into context before the first user message. Confirmed working, no restart
+needed. The Stop hook's block behaviour is pipe-tested but not yet observed
+firing in a real session.
