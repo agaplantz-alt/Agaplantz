@@ -213,10 +213,13 @@ A `skip_ids` list inside the block drops individual reviews from the *featured c
 only — the average still counts them. Currently it skips one review whose text opens
 "came slightly bent".
 
-**Tissue-culture photos are wanted here, not filtered out.** Plantlets in prop boxes
-and humidity domes are what most customers actually receive, and a real one arriving
-healthy answers the objection that stops a first order. Do not "tidy" those photos
-out of the section — the owner asked for them specifically.
+**Tissue-culture plantlets are wanted here** — that is what customers actually
+receive, and proof one arrived healthy answers the objection that stops a first
+order. What the owner rejected twice is not the subject but the *shot*: photos taken
+through a fogged prop-box lid, where condensation hides the plant. A plantlet in a
+cup or tray in daylight is exactly right; a murky one behind plastic is not. When
+skipping one, check the next review in that product's feed — the replacement is
+often another photo of the same kind.
 
 ## Open items
 
