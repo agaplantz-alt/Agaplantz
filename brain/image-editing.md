@@ -6,8 +6,46 @@ the image.
 
 ## Status
 
-TODO — the rules were taught in an earlier session that was not saved. They need
-to be recited once, then they are permanent.
+The *intent* (the rules taught in an earlier session) is still missing. But the
+*current practice* below was observed directly from live product images on
+2026-08-30 — three files pulled from the Shopify CDN and inspected.
+
+## Observed current practice (2026-08-30)
+
+Every product photo is a **composite**: the plant is cut out of the original
+shot and placed on a synthetic backdrop.
+
+- **Format:** 2048 x 2048 PNG, square, no transparency
+- **Filenames:** `edited-edited_-_<ISO timestamp>.png` — batch-exported from an
+  editing tool, one per plant
+- **Backdrop:** a studio scene with a visible wall/floor horizon line around
+  62-65% down the frame
+- **Light:** a diagonal shaft of window light across the wall, with a soft cast
+  shadow falling to the lower left. Added, not from the original photo.
+- **Pot:** the real nursery pot is kept — clear/frosted plastic, lava rock and
+  perlite substrate, visible mineral crust. Never swapped for a decorative pot.
+- **Plant position:** centred, occupying roughly the middle third, generous
+  negative space all around
+- **Support stakes** are kept in frame when present (see Gloriosum Variegated)
+
+### Backdrops in use — not consistent
+
+| Product | Backdrop |
+| --- | --- |
+| Monstera Bulbasaur (TC) | cold grey concrete/plaster |
+| Philodendron Gloriosum Variegated (mature) | warm cream travertine |
+| Philodendron Spiritus Sancti (ready to ship) | plain white seamless |
+
+**Two problems this creates:**
+
+1. **Backdrop colour is inconsistent across the catalogue.** A collection grid
+   mixes cold grey, warm cream and white. The store palette is warm
+   (`#FBF8F2` cream, `#F2EBDE` sand) — the cream travertine matches it, the
+   cold grey concrete fights it.
+2. **Scale is inconsistent.** The Spiritus Sancti (`IMG_0097.png` — the only
+   file not named `edited-edited`) shows the plant tiny in the frame, maybe a
+   tenth of the height the others occupy. Next to them in a grid it looks like
+   a lesser plant, which for a Spiritus Sancti is the opposite of the truth.
 
 ## The look
 
