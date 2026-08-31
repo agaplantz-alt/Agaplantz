@@ -233,6 +233,27 @@ cup or tray in daylight is exactly right; a murky one behind plastic is not. Whe
 skipping one, check the next review in that product's feed — the replacement is
 often another photo of the same kind.
 
+## Reviews on product pages
+
+Every plant page carries the same reviews wall, so a product with no reviews of its
+own is not left with an empty page. `templates/product.json` and
+`templates/product.tissue-culture.json` each get a `store_reviews` section, inserted
+after the two Loox app-block sections.
+
+**There are two product templates.** `product.tissue-culture.json` serves most of the
+catalogue. Adding a section to `templates/product.json` alone reaches only a handful
+of plants — check both, and check whether a third has appeared, with
+`files(filenames: ["templates/*"])`.
+
+The section reuses the homepage block with three changes: 6 cards instead of 11, the
+heading names the shop ("What collectors say about AgaPlantz"), and the loop skips
+`product.handle` so a plant's own reviews are not repeated below Loox's widget.
+
+Both Loox app blocks are set to `reviews_to_display: product_reviews_only`, which is
+why they render nothing on an unreviewed plant. That setting is a dropdown on the
+block in the theme editor; switching it is the native alternative to this section, but
+its enum values are not readable from the theme files, so it was not changed by API.
+
 ## Open items
 
 **Hidden from the Online Store** — 7 ACTIVE products with stock, published to Google/
