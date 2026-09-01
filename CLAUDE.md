@@ -254,6 +254,28 @@ why they render nothing on an unreviewed plant. That setting is a dropdown on th
 block in the theme editor; switching it is the native alternative to this section, but
 its enum values are not readable from the theme files, so it was not changed by API.
 
+## The batch cut-off date lives in five places
+
+When the pre-order cut-off changes, all of these need updating — they are separate
+hand-entered strings, not one setting:
+
+| File | Field | Format |
+| --- | --- | --- |
+| `sections/header-group.json` | `announcement_jeGMHt.text` | `Close September 25` |
+| `templates/page.pre-order.json` | `ai_gen_block_41bf156_tpPC39.cutoff_date` | `25 SEP 2026` |
+| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `25 SEPTEMBER` |
+| `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | hidden block |
+| `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | hidden block |
+
+The last two sit on `disabled: true` blocks, so customers do not see them — but they
+are kept in sync so re-enabling one never publishes a stale date. One of them shipped
+with the literal placeholder `[cutoff date]` still in it.
+
+`templates/product.json` carries no date (its pre-order block just links to the Pre
+Order page), and no date appears in product descriptions, collection descriptions or
+Shopify page bodies — checked. Searching the storefront HTML for `August` also matches
+Loox **review dates**, which are not ours to change.
+
 ## Open items
 
 **Hidden from the Online Store** — 7 ACTIVE products with stock, published to Google/
