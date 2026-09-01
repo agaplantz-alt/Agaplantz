@@ -73,7 +73,17 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
 7. `products_rts` — Ready to ship (`ready-to-ship`)
 8. `products_acclimated` — Mature specimens (`mature-specimens`), sand band
 9. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
-10. `newsletter`
+10. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
+
+There is **no `newsletter` section on the homepage**: it duplicated the email signup
+that Horizon's footer already renders on every page, so the homepage one was removed
+and the footer default kept. Both were identical `email-signup` blocks posting to
+`/contact`; neither was broken.
+
+The owner replaced the native `reviews` wall here with the Loox carousel. That block
+renders **nothing server-side** — an empty container filled by a ~74 KB script — so it
+is invisible to Google and shifts layout as it loads. The native wall still runs on
+product pages (`store_reviews`), where it renders in the HTML.
 
 Bands alternate sage / default / sand so no two same-coloured sections touch.
 
