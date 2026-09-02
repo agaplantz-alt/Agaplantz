@@ -184,39 +184,12 @@
                 "google_youtube_automated_discounts_price_p9FNpK": {
                   "type": "shopify://apps/google-youtube/blocks/automated_discounts_price/14ec7bd0-ac77-49a9-9417-90752398bdff",
                   "settings": {}
-                },
-                "text_price_lock": {
-                  "type": "text",
-                  "name": "Price lock note",
-                  "settings": {
-                    "text": "<p><strong>Your price is locked in.</strong> What you pay today is held until your plant ships — it will not change while your order is in the queue. Prices are re-set at the start of each new batch, in line with demand and lab supply.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "0.875rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "#2F2A22",
-                    "background": true,
-                    "background_color": "#E8EDE1",
-                    "corner_radius": 2,
-                    "padding-block-start": 12,
-                    "padding-block-end": 12,
-                    "padding-inline-start": 14,
-                    "padding-inline-end": 14
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "text_xrnftG",
                 "price_tVjtKg",
-                "google_youtube_automated_discounts_price_p9FNpK",
-                "text_price_lock"
+                "google_youtube_automated_discounts_price_p9FNpK"
               ]
             },
             "divider_VJhene": {
@@ -339,6 +312,32 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "text_price_lock": {
+              "type": "text",
+              "name": "Price lock note",
+              "settings": {
+                "text": "<p><strong>Your price is locked in.</strong> What you pay today is held until your plant ships — it will not change while your order is in the queue. Prices are re-set at the start of each new batch, in line with demand and lab supply.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.875rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#2F2A22",
+                "background": true,
+                "background_color": "#E8EDE1",
+                "corner_radius": 2,
+                "padding-block-start": 12,
+                "padding-block-end": 12,
+                "padding-inline-start": 14,
+                "padding-inline-end": 14
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -346,7 +345,8 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "text_aEtTtq",
+            "text_price_lock"
           ]
         }
       },

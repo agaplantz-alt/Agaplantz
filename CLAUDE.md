@@ -294,7 +294,7 @@ owner can edit them in the theme editor:
 
 | File | Block | What it says |
 | --- | --- | --- |
-| `templates/product.json` | `main` → `product-details` → `group_icgrde` → `text_price_lock` | short price-lock note, sage, under the price |
+| `templates/product.json` | `main` → `product-details` → `text_price_lock` | short price-lock note, sage, below the description |
 | `templates/product.tissue-culture.json` | same path | identical block |
 | `templates/page.pre-order.json` | `17824073197e77fd90` → `text_pricing_policy` | "How our pricing works", three points, sand card |
 | `sections/header-group.json` | `announcement_pricing` | headline slide, links to `/pages/pre-order` |
