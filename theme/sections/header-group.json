@@ -61,7 +61,8 @@
             "case": "none",
             "text_color": ""
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         },
         "announcement_HUGfag": {
           "type": "_announcement",
@@ -76,12 +77,27 @@
             "text_color": ""
           },
           "blocks": {}
+        },
+        "announcement_pricing": {
+          "type": "_announcement",
+          "settings": {
+            "text": "New Batch Pricing — Nearly 200 Plants Now Cheaper • Your Price Is Locked Until Your Plant Ships",
+            "link": "/pages/pre-order",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "announcement_nzpPzh",
         "announcement_4FEDb9",
         "announcement_jeGMHt",
+        "announcement_pricing",
         "announcement_JRWntd",
         "announcement_HUGfag"
       ],

@@ -286,6 +286,45 @@ Order page), and no date appears in product descriptions, collection description
 Shopify page bodies — checked. Searching the storefront HTML for `August` also matches
 Loox **review dates**, which are not ours to change.
 
+## Batch pricing notice
+
+Prices are locked at checkout until dispatch, and re-set at the start of each batch.
+The message lives in three places, all native `text` blocks (no custom Liquid), so the
+owner can edit them in the theme editor:
+
+| File | Block | What it says |
+| --- | --- | --- |
+| `templates/product.json` | `main` → `product-details` → `group_icgrde` → `text_price_lock` | short price-lock note, sage, under the price |
+| `templates/product.tissue-culture.json` | same path | identical block |
+| `templates/page.pre-order.json` | `17824073197e77fd90` → `text_pricing_policy` | "How our pricing works", three points, sand card |
+| `sections/header-group.json` | `announcement_pricing` | headline slide, links to `/pages/pre-order` |
+
+The Horizon `text` block takes `type_preset: "custom"` plus `font_size`, `background`,
+`background_color`, `corner_radius` and the four paddings — enough to build a tinted
+callout without a `custom-liquid` block. Its `text` setting is a **richtext** field, so
+only `<p> <strong> <em> <ul> <li> <h1>–<h6> <a> <br>` survive; no `<div>`, no inline
+`style`.
+
+**Do not write "prices are much cheaper" site-wide.** Measured like-for-like against
+`catalog-backup/products-full.jsonl` (588 variants matched on handle + variant name):
+**188 cheaper** (median −24%, 117 of them by ≥20%), **344 unchanged**, **56 higher** —
+some steeply (Gigas TC 30-pack $95→$414, Anthurium Crystallinum × Dorayaki +156%,
+Black Velvet +144%). Collectors track individual plants, so the copy says "nearly 200
+plants now cheaper", which is true and checkable. Re-measure before changing that
+number; the bulk query is
+`{ products { edges { node { id handle title variants { edges { node { id title price compareAtPrice } } } } } } }`
+(both `node` levels need `id` or the bulk operation is rejected).
+
+## Announcement bar
+
+`sections/header-group.json` → `header_announcements_ELa3gw` is the live bar; a second
+section `header_announcements_9jGBFp` is **disabled** and contradicts it ("Free delivery
+over $120" vs the live "Free shipping over $180"). Slides are hand-written strings with
+no expiry, so they go stale silently — `announcement_JRWntd`
+("Acclimated plants — 20% off, no minimum. Ends Aug 31") was still running on 2 Sep and
+was set `disabled: true` rather than deleted, so it can be brought back. **Check this bar
+for expired dates whenever the cut-off date changes.**
+
 ## Open items
 
 **Hidden from the Online Store** — 7 ACTIVE products with stock, published to Google/

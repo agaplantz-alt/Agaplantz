@@ -204,11 +204,38 @@
             "step_description_color": "#666666"
           },
           "blocks": {}
+        },
+        "text_pricing_policy": {
+          "type": "text",
+          "name": "How our pricing works",
+          "settings": {
+            "text": "<h3>How our pricing works</h3><p><strong>Your price is locked at checkout.</strong> The price you pay when you order is held until your plant ships. If prices move for the next batch, your order is not affected.</p><p><strong>Prices are re-set at the start of every batch.</strong> Each batch is priced fresh, based on demand and what the lab can supply — so a plant may cost more, or less, next batch than it does today.</p><p><strong>Prices have just come down.</strong> Our latest repricing brought nearly 200 plants down, many of them by 20–30%. Our lab costs fell, and we passed that on.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": true,
+            "background_color": "#F2EBDE",
+            "corner_radius": 12,
+            "padding-block-start": 28,
+            "padding-block-end": 28,
+            "padding-inline-start": 25,
+            "padding-inline-end": 25
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "ai_gen_block_e5c59f9_EfxLiM",
         "ai_gen_block_41bf156_tpPC39",
+        "text_pricing_policy",
         "ai_gen_block_cbef6a3_ePRYLR",
         "ai_gen_block_490e3dd_FgLCrV"
       ],
