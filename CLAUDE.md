@@ -124,10 +124,12 @@ mistake here (Tortum green $18 vs Tortum Variegated $130), so treat any variegat
 marker as disqualifying for a merge. Applying this strictly cut 10 candidate pairs to
 2 real duplicates.
 
-Consequence still unresolved: collection cards show a product's **first variant**, so
-Mature Specimens shows tissue-culture prices. Fixes are reordering variants (puts a
-cheap price on the product page) or splitting mature variants into own listings.
-Not decided.
+**Exception, settled 4 Sep: mature specimens are their own listings.** The merge rule
+could not survive contact with the homepage — a card shows one photo and one price per
+product, so a merged listing could not show a plantlet in the pre-order row and a mature
+plant in the Mature specimens row, and Mature specimens was quoting tissue-culture prices
+(Gloriosum Variegated at $84 rather than $350). The six merged mature variants were moved
+to their own products; see **Mature specimen listings** below.
 
 ### Collections
 
@@ -325,6 +327,41 @@ no expiry, so they go stale silently — `announcement_JRWntd`
 was set `disabled: true` rather than deleted, so it can be brought back. **Check this bar
 for expired dates whenever the cut-off date changes.**
 
+### Mature specimen listings
+
+Six mature variants were split out of their merged pre-order listings on 4 Sep. Each new
+product keeps the option name **`Plant Stage`** and variant titles starting
+**`Mature Plant`**, which is what the `mature-specimens` and `ready-to-ship` collection
+rules match on — rename either and the product silently leaves both collections.
+
+| New listing | Was on | Variants |
+| --- | --- | --- |
+| `monstera-devil-monster-premium-variegated-mature-specimen` | Devil Monster pre-order | $2580 |
+| `philodendron-caramel-marble-variegated-mature-specimen` | Caramel Marble pre-order | $450 / $350 |
+| `philodendron-gloriosum-variegated-mature-specimen` | Gloriosum Var. pre-order | $350 |
+| `philodendron-billietiae-variegated-mature-specimen` | Billietiae Var. pre-order | $250 / $450 |
+| `monstera-bulbasaur-mature-specimen` | Bulbasaur pre-order | $250 |
+| `philodendron-florida-beauty-variegated-mature-specimen` | Florida Beauty Var. | $150 |
+
+`philodendron-florida-beauty-x-tortum` was already mature-only and was left alone.
+
+Descriptions are written fresh rather than copied, to avoid duplicate content, and each
+links back to its tissue-culture listing. Tags drop `Pre-Order` and `Tissue culture` and
+gain `Mature Specimen`. All six are published to the same seven channels as the originals.
+
+**Florida Beauty Variegated's mature photo was a guess** — the owner had not assigned one,
+so the listing carries three candidate photos with the concrete-plinth shot first, matching
+how the other mature specimens are shot. Worth confirming.
+
+After the split, Devil Monster and Caramel Marble no longer needed a mature photo first,
+so their media were reordered to lead with the tissue-culture plantlet. Removing the mature
+variants also drops Billietiae Variegated and Florida Beauty Variegated out of
+`ready-to-ship`, correctly — they have no ready-to-ship stock.
+
+`catalog-backup/products-full-2026-09-04.jsonl` is the pre-split export (descriptions, SEO,
+options, media, variants with price/SKU/inventory). Take one before the next structural
+change too.
+
 ## Product photos: what drives the card, and the conflict it causes
 
 **A collection card shows `product.featured_media` — the product's first photo.** Not the
@@ -338,12 +375,12 @@ the plants inside the lab jar/bag; both count. Exceptions found: Devil Monster a
 Caramel Marble have a mature photo at #1, and Florida Beauty x Tortum is mature-only
 (correctly).
 
-**The conflict:** all 7 products in `mature-specimens` are also in `pre-order`, because
-stage is a variant. One product has one featured photo, so it is impossible to show a TC
-plantlet in the pre-order row *and* a mature plant in the mature row. The same applies to
-the price: the Mature specimens row shows Gloriosum Variegated at $84 (its TC price), not
-$350. Both only get fixed by splitting the 6 merged mature variants into their own
-listings. Not yet decided.
+**The conflict this caused, now resolved:** all 7 products in `mature-specimens` were also
+in `pre-order`, because stage is a variant. One product has one featured photo, so it was
+impossible to show a plantlet in the pre-order row *and* a mature plant in the mature row —
+and the mature row quoted tissue-culture prices. Fixed by splitting; see **Mature specimen
+listings** above. The same trap returns the moment a mature variant is added back to a
+merged listing.
 
 ### Variant image convention
 
