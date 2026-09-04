@@ -349,9 +349,12 @@ Descriptions are written fresh rather than copied, to avoid duplicate content, a
 links back to its tissue-culture listing. Tags drop `Pre-Order` and `Tissue culture` and
 gain `Mature Specimen`. All six are published to the same seven channels as the originals.
 
-**Florida Beauty Variegated's mature photo was a guess** — the owner had not assigned one,
-so the listing carries three candidate photos with the concrete-plinth shot first, matching
-how the other mature specimens are shot. Worth confirming.
+**Florida Beauty Variegated has no designated mature photo.** The owner never assigned one
+to the mature variant, so the listing carries three candidates. The concrete-plinth shot was
+tried first and the owner rejected it as too small; it now leads with `edited81`, the fullest
+plant of the three. Still unconfirmed — it needs a real photo of the actual specimen. That
+product also has no tissue-culture plantlet photo at all: its pre-order card is a styled
+windowsill shot.
 
 After the split, Devil Monster and Caramel Marble no longer needed a mature photo first,
 so their media were reordered to lead with the tissue-culture plantlet. Removing the mature
@@ -381,6 +384,13 @@ impossible to show a plantlet in the pre-order row *and* a mature plant in the m
 and the mature row quoted tissue-culture prices. Fixed by splitting; see **Mature specimen
 listings** above. The same trap returns the moment a mature variant is added back to a
 merged listing.
+
+**A card's price is `selected_or_first_available_variant.price`** (`snippets/price.liquid`),
+so it follows *variant order*, not the row the card appears in. A merged listing therefore
+quotes the same price in every row: Devil Monster reads $204 (its pre-order Premium) in the
+Ready to ship row, where the actual ready-to-ship price is $382. No variant ordering fixes
+both rows at once — the choice is a "From $X" range in the price snippet, or splitting, as
+was done for mature specimens. Left as-is for now.
 
 ### Variant image convention
 
