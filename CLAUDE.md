@@ -349,12 +349,16 @@ Descriptions are written fresh rather than copied, to avoid duplicate content, a
 links back to its tissue-culture listing. Tags drop `Pre-Order` and `Tissue culture` and
 gain `Mature Specimen`. All six are published to the same seven channels as the originals.
 
-**Florida Beauty Variegated has no designated mature photo.** The owner never assigned one
-to the mature variant, so the listing carries three candidates. The concrete-plinth shot was
-tried first and the owner rejected it as too small; it now leads with `edited81`, the fullest
-plant of the three. Still unconfirmed — it needs a real photo of the actual specimen. That
-product also has no tissue-culture plantlet photo at all: its pre-order card is a styled
-windowsill shot.
+**Florida Beauty Variegated's mature photo is confirmed:** the plant on the concrete plinth
+(`edited-edited_-_2026-08-25T213155.131…`), identified by the owner on 4 Sep. Its listing
+now carries that one photo only; the other two candidates were detached. Note the pre-order
+listing still has no tissue-culture plantlet photo — its card is a styled windowsill shot.
+
+**Media created from an existing CDN URL is shared between products.** `productSet` with
+`files: [{ originalSource: <cdn url> }]` reuses the same `MediaImage` id rather than making
+a copy, so the mature listings and their pre-order listings reference identical media ids.
+`productDeleteMedia` still only detaches from the product you name — verified by checking
+the other product afterwards — but check both before deleting anything.
 
 After the split, Devil Monster and Caramel Marble no longer needed a mature photo first,
 so their media were reordered to lead with the tissue-culture plantlet. Removing the mature
