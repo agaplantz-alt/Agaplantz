@@ -325,6 +325,56 @@ no expiry, so they go stale silently — `announcement_JRWntd`
 was set `disabled: true` rather than deleted, so it can be brought back. **Check this bar
 for expired dates whenever the cut-off date changes.**
 
+## Product photos: what drives the card, and the conflict it causes
+
+**A collection card shows `product.featured_media` — the product's first photo.** Not the
+variant image. `snippets/card-gallery.liquid` assigns `featured_media` directly, so
+setting a variant image changes the *product page* gallery and nothing else. This is why
+assigning mature photos to mature variants did not change the Mature specimens row.
+
+**Photo order convention: #1 is the tissue culture, #2 is the mature plant.** Verified by
+eye across ~40 products. The TC shot is either a plantlet held in tweezers on white, or
+the plants inside the lab jar/bag; both count. Exceptions found: Devil Monster and
+Caramel Marble have a mature photo at #1, and Florida Beauty x Tortum is mature-only
+(correctly).
+
+**The conflict:** all 7 products in `mature-specimens` are also in `pre-order`, because
+stage is a variant. One product has one featured photo, so it is impossible to show a TC
+plantlet in the pre-order row *and* a mature plant in the mature row. The same applies to
+the price: the Mature specimens row shows Gloriosum Variegated at $84 (its TC price), not
+$350. Both only get fixed by splitting the 6 merged mature variants into their own
+listings. Not yet decided.
+
+### Variant image convention
+
+Every "Tissue Culture" variant (pre-order and ready-to-ship) points at the product's
+first photo that is not already claimed by a Mature variant. Acclimated variants carry
+no photo, deliberately — there are no acclimated photos. Mature variants keep whatever
+the owner set. Counts after the September pass: TC pre-order 219/266, TC ready-to-ship
+20/20, acclimated 0/273, mature 8/9. The 47 TC variants with no photo belong to the 48
+active products that have no media at all.
+
+`productVariantsBulkUpdate` takes `mediaId` (a MediaImage gid, not a ProductImage gid —
+`variant.image.id` returns the latter, so match media by URL filename, not by id).
+`bulkOperationRunMutation` is blocked; 40 aliased mutations per call works fine.
+
+## Sold-out products
+
+Shopify has no "in stock first" collection sort, and every collection here is rule-based,
+so manual sorting is unavailable too. It is done in the theme instead:
+
+| File | What it does |
+| --- | --- |
+| `sections/product-list.liquid` | homepage rows — paginate widened to 50, in-stock first, then trimmed to `max_products` |
+| `sections/main-collection.liquid` | collection pages — in-stock first within each page of 24 |
+
+Both are `where: 'available', true` + `reject: 'available', true` + `concat`. Liquid only
+sees the current page, so collection pages sort per page, not across the whole collection;
+with 17 fully sold-out products that reads correctly nearly everywhere.
+
+**These are core Horizon files — a theme version upgrade overwrites them.** Re-apply the
+two edits after every upgrade, alongside the re-seeded-sections check above.
+
 ## Open items
 
 **Hidden from the Online Store** — 7 ACTIVE products with stock, published to Google/
