@@ -453,6 +453,38 @@ comparing `checksumMd5` against the local file.
 
 ## Collections never show a plant you cannot buy
 
+**Shopify evaluates variant-scoped collection conditions per variant.** A rule set of
+`variant_title contains "Acclimated"` **and** `variant_inventory > 0` matches only
+products where *the same variant* satisfies both — so "the acclimated one is in stock"
+is expressible natively, in the collection, with correct counts and pagination. This was
+not obvious and is the key to the whole thing; prefer it over theme filtering.
+
+Every all-conditions collection now carries `VARIANT_INVENTORY > 0`:
+
+| Collection | Rules |
+| --- | --- |
+| `pre-order` | variant title contains `Tissue Culture (Pre-Order)` + stock > 0 |
+| `ready-to-ship-tissue-culture` | variant title contains `Tissue Culture (Ready to Ship)` + stock > 0 |
+| `acclimated-plants` | variant title contains `Acclimated` + stock > 0 |
+| `mature-specimens` | variant title contains `Mature Plant` + stock > 0 |
+| `on-sale` | `IS_PRICE_REDUCED IS_SET` + stock > 0 — the same variant must be both discounted and in stock |
+| genus + `begonia` | title contains `<genus>` + stock > 0 |
+| `ready-to-ship` | three OR'd rules, so **no** AND condition is possible — the theme filter below is the only mechanism for this one |
+
+`ACCLIMATED PLANTS` (`acclimated-plants`) was created 4 Sep. The old one lived at the
+Shopify default **Home page** collection (`/collections/home-page`, id 314086195279),
+renamed to "IN STOCK ACCLIMATED PLANT" and hand-picked, so it listed mature specimens
+too. **That collection is invisible to the Admin API** — `collectionByHandle`, `node`
+and `collections` all return nothing for it, though the storefront renders it — so it
+cannot be edited or deleted from here. The main menu item was repointed to the new
+collection via `menuUpdate`; the old one is orphaned and the owner has to delete it in
+admin.
+
+The `/collections/acclimated-plants` → `/collections/ready-to-ship` redirect was deleted
+to free the handle.
+
+### The theme filter (still needed)
+
 Set 4 Sep. Hiding fully sold-out products is not enough, because plant stage is a
 variant: Monstera Bulbasaur has pre-order stock and no ready-to-ship stock, so it
 belongs in the pre-order collection but not in `ready-to-ship-tissue-culture`, where it
