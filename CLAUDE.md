@@ -405,6 +405,48 @@ active products that have no media at all.
 `variant.image.id` returns the latter, so match media by URL filename, not by id).
 `bulkOperationRunMutation` is blocked; 40 aliased mutations per call works fine.
 
+## Stage product rows (the homepage product rows)
+
+`sections/stage-products.liquid` replaced Horizon's stock `product-list` on all four
+homepage rows. Stock cards read `product.featured_media` and
+`product.selected_or_first_available_variant.price` — both properties of the *product*.
+Because plant stage is a variant, one listing sits in several rows and every row was
+forced to show the same photo and the same price. Ready to ship quoted Devil Monster at
+$204, its pre-order price, next to a mature plant photo.
+
+This section picks the variant that belongs to the row and builds the card from it: that
+variant's photo, price and compare-at price, plus a link carrying `?variant=<id>` so the
+product page opens already on that stage.
+
+| Section id | Collection | `stage_match` | Notes |
+| --- | --- | --- | --- |
+| `products_tc` | `pre-order` | `Tissue Culture (Pre-Order)` | |
+| `products_sale` | `on-sale` | *(blank)* | `sale_only: true` — only variants with a compare-at price |
+| `products_rts` | `ready-to-ship` | `Tissue Culture (Ready to Ship), Mature Plant` | `allow_fallback: true` |
+| `products_acclimated` | `mature-specimens` | `Mature Plant` | |
+
+**`allow_fallback`** exists for one-off plants sold as a single item, whose variant carries
+no stage in its name (Spiritus Sancti, Tortum, Atabapoense…). It falls back to the first
+available variant *only when the product has no stage-named variant at all*, so a merged
+listing never falls back onto the wrong stage's price.
+
+Only in-stock variants are shown, so the sold-out sorting in `product-list.liquid` no
+longer applies to the homepage — sold-out plants are simply absent from these rows. That
+file still carries the fix for any product row added from the theme editor.
+
+The heading reuses Horizon's `h3` preset class and the link its `button-unstyled` class,
+so both match the rest of the page without restating the type scale. Desktop is a grid of
+`columns`; mobile is a scroll-snap carousel with moss arrow buttons.
+
+### Uploading a section file
+
+`themeFilesUpsert` with `body: { type: URL }` **swallows validation errors** — it returns
+`userErrors: []` and simply does not write the file. Four silent no-ops here were one
+schema mistake (`"default": ""` is rejected: a setting's default can't be blank). When an
+upsert appears to succeed but the checksum does not change, re-send it with
+`body: { type: TEXT }`, which reports the real `FILE_VALIDATION_ERROR`. Always verify by
+comparing `checksumMd5` against the local file.
+
 ## Sold-out products
 
 Shopify has no "in stock first" collection sort, and every collection here is rule-based,
@@ -412,7 +454,7 @@ so manual sorting is unavailable too. It is done in the theme instead:
 
 | File | What it does |
 | --- | --- |
-| `sections/product-list.liquid` | homepage rows — paginate widened to 50, in-stock first, then trimmed to `max_products` |
+| `sections/product-list.liquid` | any product row added from the theme editor — paginate widened to 50, in-stock first, then trimmed to `max_products`. The homepage no longer uses this section |
 | `sections/main-collection.liquid` | collection pages — in-stock first within each page of 24 |
 
 Both are `where: 'available', true` + `reject: 'available', true` + `concat`. Liquid only
