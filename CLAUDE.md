@@ -135,7 +135,7 @@ to their own products; see **Mature specimen listings** below.
 
 | Handle | Title | Count |
 | --- | --- | --- |
-| `philodendron` / `alocasia` / `monstera` / `anthurium-1` | genus | 92 / 123 / 33 / 40 |
+| `philodendron` / `alocasia` / `monstera` / `anthurium-1` | genus, rule `TITLE CONTAINS <genus>` | 63 / 123 / 36 / 38 live |
 | `begonia` | BEGONIA | 10 (all DRAFT — not surfaced anywhere) |
 | `pre-order` | TISSUE CULTURE — PRE-ORDER | 283 |
 | `ready-to-ship-tissue-culture` | TISSUE CULTURE — READY TO SHIP | 19 |
@@ -451,6 +451,43 @@ upsert appears to succeed but the checksum does not change, re-send it with
 `body: { type: TEXT }`, which reports the real `FILE_VALIDATION_ERROR`. Always verify by
 comparing `checksumMd5` against the local file.
 
+## Collections never show a plant you cannot buy
+
+Set 4 Sep. Hiding fully sold-out products is not enough, because plant stage is a
+variant: Monstera Bulbasaur has pre-order stock and no ready-to-ship stock, so it
+belongs in the pre-order collection but not in `ready-to-ship-tissue-culture`, where it
+was sitting first in the row.
+
+`sections/main-collection.liquid` reads a collection metafield and shows a product only
+when *that collection's* variant is in stock:
+
+| Collection | `custom.stage_match` |
+| --- | --- |
+| `pre-order` | `Tissue Culture (Pre-Order)` |
+| `ready-to-ship-tissue-culture` | `Tissue Culture (Ready to Ship)` |
+| `ready-to-ship` | `Tissue Culture (Ready to Ship), Mature Plant` |
+| `mature-specimens` | `Mature Plant` |
+| everything else | *(blank)* — hides only what is completely sold out |
+
+A product whose variants carry no stage at all — a one-off specimen like Spiritus
+Sancti — is shown whenever anything on it is in stock, so those never vanish. With the
+metafield blank the same rule reduces to "hide anything sold out", which is why the
+genus collections need no setting.
+
+**The metafield definition must have `access: { storefront: PUBLIC_READ }`.** Created
+through `metafieldDefinitionCreate` it defaults to `storefront: NONE`, and Liquid then
+reads it as nil — the filter silently degrades to "hide sold out" with no error. That
+cost a debugging round; the symptom is a collection showing its full unfiltered count.
+
+Products are hidden *after* Shopify has paged them, so a page can hold fewer than 24
+cards. At current stock that is 15 of 19 on RTS tissue culture and 19 of 24 on
+Philodendron — acceptable; the alternative is per-collection inventory rules, which
+Shopify cannot express for `ready-to-ship` because its rules are OR-joined.
+
+**Collection descriptions were stored HTML-escaped** (`&lt;p&gt;…`) on five collections
+and rendered as literal `<p>` tags to customers. Fixed by re-setting `descriptionHtml`.
+Check any new collection description on the storefront, not just in admin.
+
 ## Sold-out products
 
 Shopify has no "in stock first" collection sort, and every collection here is rule-based,
@@ -459,7 +496,7 @@ so manual sorting is unavailable too. It is done in the theme instead:
 | File | What it does |
 | --- | --- |
 | `sections/product-list.liquid` | any product row added from the theme editor — paginate widened to 50, in-stock first, then trimmed to `max_products`. The homepage no longer uses this section |
-| `sections/main-collection.liquid` | collection pages — in-stock first within each page of 24 |
+| `sections/main-collection.liquid` | collection pages — now *hides* what you cannot buy; see the section above |
 
 Both are `where: 'available', true` + `reject: 'available', true` + `concat`. Liquid only
 sees the current page, so collection pages sort per page, not across the whole collection;

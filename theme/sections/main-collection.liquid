@@ -60,20 +60,45 @@
         {% assign products_per_page = section.settings.products_per_page %}
       {% endif %}
 
+      {% comment %}
+        AgaPlantz customisation — a collection never shows a plant you cannot buy.
+
+        Hiding only fully sold-out products is not enough here, because plant stage is
+        a variant: Monstera Bulbasaur has pre-order stock but no ready-to-ship stock,
+        so it belongs in the pre-order collection and not in the ready-to-ship one.
+        The collection's "Plant stage filter" metafield names the variant that
+        collection is about, and a plant is shown only when that variant is in stock.
+
+        A plant whose variants carry no stage at all — a one-off specimen — is shown
+        whenever anything on it is in stock, so those never disappear. With the
+        metafield blank the same rule reduces to "hide anything sold out".
+
+        Products are hidden after Shopify has paged them, so a page can hold fewer
+        than products_per_page cards.
+      {% endcomment %}
+      {% assign stage_needles = collection.metafields.custom.stage_match.value | split: ',' %}
+
       {% paginate collection.products by products_per_page %}
-        {% comment %}
-          AgaPlantz customisation — sold-out plants sink to the bottom.
-          Shopify has no "in stock first" collection sort and these are all automated
-          collections, which cannot be sorted manually, so the ordering is done here.
-          Liquid only sees the current page, so this sorts within each page of results.
-        {% endcomment %}
-        {% liquid
-          assign in_stock_products = collection.products | where: 'available', true
-          assign sold_out_products = collection.products | reject: 'available', true
-          assign ordered_products = in_stock_products | concat: sold_out_products
-        %}
         {% capture children %}
-          {% for product in ordered_products %}
+          {% for product in collection.products %}
+            {%- assign stage_seen = false -%}
+            {%- assign keep = false -%}
+            {%- for variant in product.variants -%}
+              {%- assign matched = false -%}
+              {%- for needle_raw in stage_needles -%}
+                {%- assign needle = needle_raw | strip -%}
+                {%- if needle != blank and variant.title contains needle -%}
+                  {%- assign matched = true -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if matched -%}
+                {%- assign stage_seen = true -%}
+                {%- if variant.available -%}{%- assign keep = true -%}{%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- unless stage_seen -%}{%- assign keep = product.available -%}{%- endunless -%}
+            {%- unless keep -%}{%- continue -%}{%- endunless -%}
             <li
               id="{{ section.id }}-{{ product.id }}"
               class="product-grid__item product-grid__item--{{ forloop.index0 }}"
