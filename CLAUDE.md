@@ -509,42 +509,26 @@ admin.
 The `/collections/acclimated-plants` → `/collections/ready-to-ship` redirect was deleted
 to free the handle.
 
-### The theme filter (still needed)
+### No theme filter any more
 
-Set 4 Sep. Hiding fully sold-out products is not enough, because plant stage is a
-variant: Monstera Bulbasaur has pre-order stock and no ready-to-ship stock, so it
-belongs in the pre-order collection but not in `ready-to-ship-tissue-culture`, where it
-was sitting first in the row.
+There *was* one — `sections/main-collection.liquid` read a `custom.stage_match` collection
+metafield and hid products whose stage variant was out of stock. It was removed on 6 Sep,
+along with the metafield definition, because the collection rules now do the same job
+natively and the two started to disagree.
 
-`sections/main-collection.liquid` reads a collection metafield and shows a product only
-when *that collection's* variant is in stock:
+The owner rewrote `ready-to-ship` themselves to `variant title NOT CONTAINS "Pre-Order"` +
+`stock > 0` + `type NOT_EQUALS "Service"` — better than the OR'd rules it replaced, because
+it also admits a plant whose only in-stock non-pre-order variant is Acclimated. The theme
+filter, still looking only for `Tissue Culture (Ready to Ship)` or `Mature Plant`, would
+have hidden exactly those plants: Bambino Pink, Nobilis Pink K, Micans, three Dragon
+Scales, Polly Pink, Joepii.
 
-| Collection | `custom.stage_match` |
-| --- | --- |
-| `pre-order` | `Tissue Culture (Pre-Order)` |
-| `ready-to-ship-tissue-culture` | `Tissue Culture (Ready to Ship)` |
-| `ready-to-ship` | `Tissue Culture (Ready to Ship), Mature Plant` |
-| `mature-specimens` | `Mature Plant` |
-| everything else | *(blank)* — hides only what is completely sold out |
+**The rule is: stock and stage filtering belongs in the collection, not the theme.** The
+owner asked for this explicitly, and it survives Horizon upgrades, keeps counts and
+pagination honest, and shows in admin where they can see it.
 
-A product whose variants carry no stage at all — a one-off specimen like Spiritus
-Sancti — is shown whenever anything on it is in stock, so those never vanish. With the
-metafield blank the same rule reduces to "hide anything sold out", which is why the
-genus collections need no setting.
-
-**The metafield definition must have `access: { storefront: PUBLIC_READ }`.** Created
-through `metafieldDefinitionCreate` it defaults to `storefront: NONE`, and Liquid then
-reads it as nil — the filter silently degrades to "hide sold out" with no error. That
-cost a debugging round; the symptom is a collection showing its full unfiltered count.
-
-Products are hidden *after* Shopify has paged them, so a page can hold fewer than 24
-cards. At current stock that is 15 of 19 on RTS tissue culture and 19 of 24 on
-Philodendron — acceptable; the alternative is per-collection inventory rules, which
-Shopify cannot express for `ready-to-ship` because its rules are OR-joined.
-
-**Collection descriptions were stored HTML-escaped** (`&lt;p&gt;…`) on five collections
-and rendered as literal `<p>` tags to customers. Fixed by re-setting `descriptionHtml`.
-Check any new collection description on the storefront, not just in admin.
+`sections/main-collection.liquid` is back to the version that only sorts in-stock first —
+now a no-op, since no collection contains a sold-out plant.
 
 ## Sold-out products
 
