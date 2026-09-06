@@ -451,6 +451,32 @@ upsert appears to succeed but the checksum does not change, re-send it with
 `body: { type: TEXT }`, which reports the real `FILE_VALIDATION_ERROR`. Always verify by
 comparing `checksumMd5` against the local file.
 
+## Running a sale
+
+**An automatic discount does not change the price on the storefront.** Shopify applies it
+to cart line items, so product pages, cards, the `Save X%` badge and the `on-sale`
+collection all still show the undiscounted price. Confirmed against Shopify's own docs;
+do not promise the merchant a strikethrough from an automatic discount.
+
+The two mechanisms, and what each buys:
+
+| | Automatic discount | Compare-at prices |
+| --- | --- | --- |
+| Where it shows | cart and checkout only | strikethrough + `Save X%` badge everywhere, joins `on-sale` |
+| Start / stop | dated, turns itself off | manual, someone must change ~700 variants back |
+| Risk | none, no product data touched | a missed revert leaves the sale running |
+
+**Labour Day 2026** (6–7 Sep) ran as an automatic discount: 20% off all items,
+`combinesWith` order and product discounts **false** so it cannot stack with the existing
+compare-at sales, shipping discounts **true** so free shipping over $180 still applies.
+It ends 2026-09-08T03:59:59Z, which is Monday 23:59 Toronto — the shop is
+`America/Toronto`, so always convert; September is UTC-4.
+
+`sections/header-group.json` carries `announcement_labour_day`, first in `block_order`.
+It says the discount is applied at checkout, because the prices on the page will not move.
+**That slide has no expiry and must be disabled when the sale ends** — same trap as the
+"Ends Aug 31" slide before it.
+
 ## Sale savings badge
 
 `snippets/price.liquid` renders a terracotta **Save X%** badge beside the price when the

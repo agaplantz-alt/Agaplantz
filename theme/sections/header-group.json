@@ -91,9 +91,24 @@
             "text_color": ""
           },
           "blocks": {}
+        },
+        "announcement_labour_day": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Labour Day Sale — 20% Off Everything • Discount Applied Automatically at Checkout • Ends Monday Night",
+            "link": "/collections",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
         }
       },
       "block_order": [
+        "announcement_labour_day",
         "announcement_nzpPzh",
         "announcement_4FEDb9",
         "announcement_jeGMHt",
