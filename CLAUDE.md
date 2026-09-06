@@ -451,6 +451,32 @@ upsert appears to succeed but the checksum does not change, re-send it with
 `body: { type: TEXT }`, which reports the real `FILE_VALIDATION_ERROR`. Always verify by
 comparing `checksumMd5` against the local file.
 
+## Sale savings badge
+
+`snippets/price.liquid` renders a terracotta **Save X%** badge beside the price when the
+selected variant has a compare-at price above its price. The percentage is worked out in
+Liquid from that variant, before the prices are formatted into strings, so it follows the
+plant stage the customer has selected — Devil Monster reads *Save 58%* on its pre-order
+variant and *Save 22%* on ready-to-ship, off the same $490 compare-at.
+
+It renders in two places, both wanted: the main price block and the sticky add-to-cart
+bar.
+
+**Scope it by handle, not by `is_product_card`.** That variable is derived from
+`template.name`, so it is false for *every* price on a product page — including the
+recommendation cards underneath, which each grew a badge on the first attempt. The guard
+is `product.handle == product_resource.handle`, which is nil-safe on collection pages.
+
+Styles are inline: a snippet cannot carry a `{% stylesheet %}` block. Collection and
+homepage cards deliberately keep their plain "Sale" badge — a card's percentage would
+have to come from product-level min/max prices, which on a merged listing is not the
+same variant and would print a wrong number.
+
+There is no campaign-name setting ("Labour Day Sale"). Adding one means editing
+`config/settings_schema.json` (50 KB) and leaves stale text on 300 product pages when the
+sale ends; the announcement bar already carries campaign names and the owner edits it
+themselves.
+
 ## Collections never show a plant you cannot buy
 
 **Shopify evaluates variant-scoped collection conditions per variant.** A rule set of
