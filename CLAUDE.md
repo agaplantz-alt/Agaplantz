@@ -35,7 +35,7 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of the last session: MAIN was `AgaPlantz 2026 (Claude) 0.1` = `149362769999`,
+As of the last session: MAIN was `AgaPlantz 2026 — collections + sale badge` = `149658697807`,
 Horizon **4.1.4**. Verify, don't assume.
 
 ### Uploading a large template
@@ -573,6 +573,27 @@ with 17 fully sold-out products that reads correctly nearly everywhere.
 **These are core Horizon files — a theme version upgrade overwrites them.** Re-apply the
 two edits after every upgrade, alongside the re-seeded-sections check above.
 
+## Acclimation guide page
+
+`/pages/acclimation-guide`. The Shopify page body is **empty** — the whole guide is
+hardcoded HTML inside `blocks/ai_gen_block_7be2211.liquid` (38 KB), referenced from
+`templates/page.acclamation-guide.json` as block `ai_gen_block_7be2211_7RazQm`. Note the
+misspelled template filename (`acclamation`), which is what the page's `template_suffix`
+points at. None of the guide's wording is exposed as a block setting, so **any copy change
+means rewriting the whole file** — the owner cannot edit this text in the theme editor.
+
+The file says the same things twice: once in the "What You'll Need" list and again inside
+the numbered steps, plus a third time in the `{% doc %} @prompt` comment at the top. Change
+all three or the page contradicts itself.
+
+Growing medium as of 7 Sep: sphagnum moss for **Monstera and Anthurium**; 50/50 Fluval
+Stratum and perlite for Philodendron, Alocasia and other aroids. "Ready-to-use" was dropped
+from the Betadine line — it now just reads "Diluted Betadine solution".
+
+Rebuilding the file by hand is error-prone. Verify it by reverse-applying the intended
+edits with `sed` and checking the result's md5 against the file you fetched — if it matches,
+nothing else drifted.
+
 ## Open items
 
 **Hidden from the Online Store** — 7 ACTIVE products with stock, published to Google/
@@ -610,6 +631,7 @@ Only the files that differ from stock Horizon are tracked:
 
 | Path | Purpose |
 | --- | --- |
+| `theme/blocks/ai_gen_block_7be2211.liquid` | acclimation guide (all copy hardcoded) |
 | `theme/config/settings_data.json` | global design tokens |
 | `theme/templates/index.json` | homepage |
 | `theme/templates/list-collections.json` | curated /collections |
