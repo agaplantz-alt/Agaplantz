@@ -1,0 +1,44 @@
+{
+  "skill_name": "commercial-pipeline",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I want a reel for the Cuprea Red Secret Mint pre-order, for instagram and tiktok. where do we start",
+      "expected_output": "Delivers a filled Stage 0 brief with 9:16 / 15s default, the exact store title, offer = pre-order, one angle, one true claim, hook, CTA",
+      "files": [],
+      "expectations": [
+        "Delivers a filled Stage 0 brief with 9:16 / 15s default, the exact store title, offer = pre-order, one angle, one true claim, hook, CTA",
+        "Plans the asset list including an honest tissue-culture plantlet reference, not only the mature plant",
+        "Names the next stage in one line and does not run ahead into the full video prompt",
+        "Contains no delivery date, no invented scarcity, no variegation guarantee, no US/international shipping language",
+        "Mentions checking the live listing / the format the store sells (single vs pack) or states the assumption"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "here's what I need: an image prompt for Alocasia Frydek Variegated on white, hero reference for the ad",
+      "expected_output": "Prompt is in a single plain-text code block with CAPS section labels in the house order (opening line, BACKGROUND LOCK, SUBJECT, LEAF LOCK, LIGHTING, COMPOSITION, STYLE, NEGATIVE, ASPECT RATIO)",
+      "files": [],
+      "expectations": [
+        "Prompt is in a single plain-text code block with CAPS section labels in the house order (opening line, BACKGROUND LOCK, SUBJECT, LEAF LOCK, LIGHTING, COMPOSITION, STYLE, NEGATIVE, ASPECT RATIO)",
+        "Includes a LEAF LOCK paragraph stating an exact leaf count and a physical variegation map (which leaf, which part, which colour)",
+        "Uses the anti-studio flat ambient lighting block and the four-way white background lock",
+        "Names the model, says batch 4, and gives three or four specific binary judging criteria with leaf/variegation consistency first",
+        "Contains no water droplets/mist language and no text/branding on the pot"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "the generation keeps giving the monstera a new leaf halfway through and the white patches move around between shots. fix the prompt",
+      "expected_output": "Names the failures (leaf count change, variegation wandering) and applies the master rule: promote to a dedicated LEAF LOCK instead of per-shot description",
+      "files": [],
+      "expectations": [
+        "Names the failures (leaf count change, variegation wandering) and applies the master rule: promote to a dedicated LEAF LOCK instead of per-shot description",
+        "Provides a LEAF LOCK block in absolutes with explicit negation (no leaf appears/unfurls/grows/drops), a physical leaf map, and a per-segment restatement requirement",
+        "Says to rewrite only the affected sections (LEAF LOCK, segment restatements, POSITIVE LOCKS) and what to re-batch, batch 4",
+        "Asks for or works from the actual leaf count in the generated reference rather than inventing plant facts",
+        "Does not re-roll or rewrite the whole prompt"
+      ]
+    }
+  ]
+}

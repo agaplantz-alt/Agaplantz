@@ -50,7 +50,7 @@ python scripts/build_listing.py "Philodendron Gloriosum Variegated" --preorder 8
 python scripts/build_listing.py "Alocasia Tiny Dancers" --preorder 28 --moq 100 --sku 100752 --pack 5 --min-order 5
 ```
 
-It prints a JSON spec (handle, product type, tags, variants, prices, SEO fields, and the pack line if any). Add `--rts` / `--acclimated` when Agam gave those prices. Run it with `--help` for the full list.
+It prints a JSON spec (handle, product type, tags, variants, prices, SEO fields, and the pack line if any). Add `--rts` / `--acclimated` when Agam gave those prices. Run it with `--help` for the full list. The script always builds a *create*-shaped spec; on the update path, lift only the fields you're changing from it and keep the live product's status, variant titles, and SKUs as they are.
 
 Then write the description following `references/description-guide.md`. That file has the paragraph structure, the voice, the two closing disclaimers, and real examples from the live store. Read it before writing — the store's descriptions have a specific rhythm (three short paragraphs, plant first, no marketing throat-clearing) and it's easy to drift into generic copy.
 
