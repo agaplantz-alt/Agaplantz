@@ -1,0 +1,80 @@
+{
+  "skill_name": "agaplantz-product-listing",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "new one coming from the lab this batch: Philodendron Florida Beauty Variegated. preorder price is $66, moq 10, catalogue number 100142. can you make the listing for the site? just write it up for me to check, don't push anything to shopify yet",
+      "expected_output": "A complete listing spec in store conventions: handle philodendron-florida-beauty-variegated-pre-order, type PHILODENDRON, vendor AgaPlantz, all 8 tags incl. moq10, three variants (Pre-Order PH-100142 $66, Acclimated PH-100142-AC price left to confirm, Ready to Ship no SKU ~$73 suggested), 4-paragraph HTML description ending with the variegation disclaimer, SEO title and meta, status DRAFT, open items listed. Note: a live listing with this exact title already exists (PH-100088, $33, handle without -pre-order), so the store check should surface it and ask new-vs-update.",
+      "files": [],
+      "expectations": [
+        "No Shopify write tool was called (create/update/delete)",
+        "Handle is exactly philodendron-florida-beauty-variegated-pre-order",
+        "Product type PHILODENDRON and vendor AgaPlantz stated",
+        "All store tags present: genus, full title, collector plant, moq10, Pre-Order, Rare Philodendron, rare houseplants Canada, Tissue culture",
+        "Three variants with the store's exact titles",
+        "SKUs PH-100142 (pre-order) and PH-100142-AC (acclimated)",
+        "Pre-order price $66.00 on the pre-order variant",
+        "Acclimated price left for Agam to confirm, not invented",
+        "Description closes with the exact variegation disclaimer in bold",
+        "Description body is 40–120 words, plain <p> paragraphs, plant name first",
+        "Description has no care instructions, prices, shipping, or timing",
+        "Flagged the existing live Florida Beauty listing (PH-100088) and asked new-vs-update instead of silently duplicating",
+        "Status is DRAFT / nothing published"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "the description on the Alocasia Frydek Variegated page is weak, reads like every other plant shop. can you rewrite it? keep it short",
+      "expected_output": "Rewritten description HTML in the store's shape: plant name is the first words, 3 short body paragraphs plus the bold variegation disclaimer, 60-110 words, no care instructions, no price/shipping/pre-order timing, no guarantees about variegation. Ideally checks the live product first and proposes an update (not an immediate write).",
+      "files": [],
+      "expectations": [
+        "No Shopify write tool was called (create/update/delete)",
+        "Rewritten description starts with 'Alocasia Frydek Variegated'",
+        "Body is 40–120 words (short, as asked)",
+        "Ends with the exact variegation disclaimer in bold",
+        "Uses only <p> paragraphs — no headings or lists in the description HTML",
+        "No care instructions, prices, shipping, or pre-order timing in the description",
+        "No guarantees about variegation or growth",
+        "Looked up the live product in Shopify before rewriting",
+        "Proposes the update for approval rather than applying it"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "add Anthurium Warocqueanum to the store, $52 pre-order. I don't have the rest of the details yet",
+      "expected_output": "The plant already exists in the store (handle anthurium-warocqueanum-pre-order, PH-100052, live at $36). Correct behaviour: find it, refuse to duplicate, surface the $36 vs $52 discrepancy, keep handle and SKU, invent no MOQ/acclimated price, list what's still needed, and ask Agam how to proceed without writing anything.",
+      "files": [],
+      "expectations": [
+        "No Shopify write tool was called (create/update/delete)",
+        "Detected that Anthurium Warocqueanum already exists in the store and did not propose a duplicate product",
+        "Kept the existing handle anthurium-warocqueanum-pre-order",
+        "Kept the existing SKU PH-100052 and invented no other PH- number",
+        "Surfaced the $36 (live) vs $52 (requested) price difference instead of silently repricing",
+        "Asked Agam how to proceed rather than applying a change",
+        "No new moqN tag invented (only the existing moq100, if any)",
+        "Acclimated price not invented (existing $54 kept, or marked to confirm/suggested)",
+        "Explicit list of what Agam still needs to supply",
+        "No guarantees about variegation, survival, or growth in any proposed copy",
+        "Did not state a delivery/arrival date or ETA as fact"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "lab confirmed a new one for the pack line: Alocasia Sarian Green, 30 plant pack at $48, moq 200, min order 5, catalogue no. 100377. not variegated obviously. write it up so I can check it, draft only",
+      "expected_output": "A pack-format listing: handle alocasia-sarian-green-pre-order, ALOCASIA, two variants (pre-order '- 30 Plant Pack' PH-100377 $48, Acclimated PH-100377-AC to confirm), tags with pack30/min-order-5/moq200, description with the bold pack line and the non-variegated closer, DRAFT, nothing created.",
+      "files": [],
+      "expectations": [
+        "No Shopify write tool was called (create/update/delete)",
+        "Handle is exactly alocasia-sarian-green-pre-order",
+        "Pre-order variant uses the pack-style title 'Tissue Culture (Pre-Order) - 30 Plant Pack' at $48.00 with SKU PH-100377",
+        "Only two variants — no Ready to Ship variant on a pack listing",
+        "Tags include pack30, min-order-5, moq200, Alocasia, Rare Alocasia, collector plant, Pre-Order, rare houseplants Canada, Tissue culture",
+        "Description includes the bold 'Ships as a set of thirty tissue-culture plantlets' pack line",
+        "Description closes with the non-variegated 'Each plant is unique' disclaimer in bold",
+        "Description body is 40–120 words, starts with the plant name, no care how-to, no prices/shipping/timing",
+        "Acclimated price left to confirm, not invented",
+        "Status DRAFT, nothing created"
+      ]
+    }
+  ]
+}
