@@ -35,7 +35,7 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of the last session: MAIN was `AgaPlantz 2026 — collections + sale badge` = `149658697807`,
+As of the last session: MAIN was `AgaPlantz 2026 — acclimation guide` = `149678161999`,
 Horizon **4.1.4**. Verify, don't assume.
 
 ### Uploading a large template
@@ -474,8 +474,26 @@ It ends 2026-09-08T03:59:59Z, which is Monday 23:59 Toronto — the shop is
 
 `sections/header-group.json` carries `announcement_labour_day`, first in `block_order`.
 It says the discount is applied at checkout, because the prices on the page will not move.
-**That slide has no expiry and must be disabled when the sale ends** — same trap as the
+The slide has no expiry, so it kept promising 20% off for four hours after the discount
+expired; it was set `disabled: true` on 8 Sep and left in `block_order` so it can be
+brought back. **Disable the slide in the same breath as ending a sale** — same trap as the
 "Ends Aug 31" slide before it.
+
+**What it earned.** 12 orders used the discount: $1,971 net, $2,433 gross, $461.80 given
+away. Against the Aug 23 – Sep 5 baseline of $489/day and 2.9 orders/day, the two sale days
+ran $1,077/day and 6.5 orders/day — roughly 2.2× on both, about $1,180 of extra revenue.
+
+Two things worth remembering next time. **The deadline did the work, not the 20%:** the
+final 7 hours produced $958, 49% of the whole sale, including the two largest orders. And
+**basket size did not move** — net AOV was $164 against a $167 baseline, so the entire gain
+was more people ordering, not bigger carts. The gross basket was bigger ($203) and the
+discount ate exactly that difference.
+
+The owner declined to extend it by a day on 8 Sep. Worth raising if a next sale comes up
+soon: there has been a 20%-ish promo running almost continuously since May (BUY2ORMORE,
+MIDSUMMER, GROW75/150/250, LAST3DAY20/30, ACCLIMATED SALE for a full month, three FOR WAIT
+BATCH discounts, Labour Day), so a collector has had little reason to ever pay list price.
+The 25 Sep batch cutoff is a real deadline that costs nothing.
 
 ## Sale savings badge
 

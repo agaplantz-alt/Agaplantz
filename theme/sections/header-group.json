@@ -94,6 +94,7 @@
         },
         "announcement_labour_day": {
           "type": "_announcement",
+          "disabled": true,
           "settings": {
             "text": "Labour Day Sale — 20% Off Everything • Discount Applied Automatically at Checkout • Ends Monday Night",
             "link": "/collections",
