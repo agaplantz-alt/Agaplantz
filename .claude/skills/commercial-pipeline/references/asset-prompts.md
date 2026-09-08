@@ -22,6 +22,10 @@ ASPECT RATIO
 
 Not every asset needs every section. Order does not vary.
 
+## Before writing any prompt: what already exists
+
+Check the listing photos and ask for phone shots. A real photo of the actual plant, cropped to a plain background, beats a generated hero on identity and needs no LEAF LOCK to be honest — it *is* the leaf lock. Use generated assets for what wasn't photographed: the location, the hands, the plantlet if no one shot it, a cleaner cutout when the real background is cluttered. When a real photo is the reference, still write its reference line in Stage 2 from what the photo shows, leaf by leaf.
+
 ## The five rules that matter
 
 **1. Flat light on anything that travels.** Plants and hands appear under every lighting state in the film. Bake a dramatic key into the reference and the model fights it in every segment. Use the anti-studio block:

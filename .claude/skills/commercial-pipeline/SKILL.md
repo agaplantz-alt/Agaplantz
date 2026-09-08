@@ -77,7 +77,9 @@ Plan the full asset list before generating anything. A social plant ad needs thr
 - **Hands** — a hands-only sheet (no face) with one identity anchor: nail colour, a ring, a sleeve cuff. Faces cost consistency and the ad doesn't need them.
 - **Logo** — never generate it. Use the file.
 
-Each asset is a separate prompt and a separate batch. Full craft rules in `references/asset-prompts.md`. The rules that matter most:
+**Use real photos before generating.** The store's listings carry product photos, and Agam has phone shots of every batch. A clean real photo of the actual plant on a plain background is a better identity reference than anything a model draws, and it makes the truth rules automatic. Generate only what doesn't exist: the location plate, the hands sheet, a plantlet shot if none was taken, a cutout of a real photo if the background is busy.
+
+Each generated asset is a separate prompt and a separate batch. Full craft rules in `references/asset-prompts.md`. The rules that matter most:
 
 - **References carry identity, prompts carry behaviour.** Flat ambient light on the plant and the hands so they survive every lighting state. The location is the exception and establishes the lighting design.
 - **Paired assets share paragraphs verbatim.** Plantlet-in-vessel and plant-on-shelf must read as the same variety: the leaf paragraph (shape, colour, variegation map) is copied word for word between the two prompts.
