@@ -67,7 +67,10 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
 1. `hero_main` — full-bleed image, gradient overlay, CTA "Shop" → ready-to-ship
 2. `marquee_trust` — scrolling trust strip, sage
 3. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium tiles
-4. `tissue_culture` — explainer; intro on top, two cards side-by-side (also on mobile)
+4. `tissue_culture` — explainer; intro on top, two cards side-by-side (also on mobile),
+   then `tc_guarantee`, a full-width strip carrying the Acclimation Guarantee. It sits
+   *below* the two stage cards deliberately: the reassurance lands after the customer has
+   picked a stage, and the explainer and both CTAs are kept rather than replaced.
 5. `products_tc` — Tissue culture pre-orders (`pre-order`, 283 products)
 6. `products_sale` — Collector favourites on sale (`on-sale`), sand band
 7. `products_rts` — Ready to ship (`ready-to-ship`)
