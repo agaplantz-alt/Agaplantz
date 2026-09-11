@@ -3,23 +3,23 @@
 <p><strong>Processing &amp; Handling Time</strong></p>
 <p>Orders are processed and shipped between Monday and Wednesday only.</p>
 <p>This schedule helps prevent plants from being held in shipping facilities over weekends, which can increase stress and transit damage.</p>
-<p>Handling time is typically 1–3 business days depending on order volume and weather conditions.</p>
+<p>Handling time is typically 1-3 business days depending on order volume and weather conditions.</p>
 <p>Orders placed after Wednesday may ship the following week.</p>
 <p><strong>Delivery Time</strong></p>
-<p>Estimated transit time after shipment is typically 1–5 business days depending on your location and selected shipping method.</p>
-<p>Estimated total delivery time:<br>- 2–8 business days from the date the order is placed</p>
+<p>Estimated transit time after shipment is typically 1-5 business days depending on your location and selected shipping method.</p>
+<p>Estimated total delivery time:<br>- 2-8 business days from the date the order is placed</p>
 <p>Delivery times are estimates only and may vary due to:<br>- weather conditions<br>- carrier delays<br>- holidays<br>- transportation disruptions</p>
 <p><strong>Shipping Locations</strong></p>
 <p>We currently ship within Canada only.</p>
 <p>We do not ship to P.O. Boxes.</p>
 <p><strong>Shipping Rates</strong></p>
 <p>We offer the following shipping options within Canada:</p>
-<p>- Standard Shipping — Flat Rate: $14.99 CAD<br>- Express Shipping — Flat Rate: $25 CAD</p>
+<p>- Standard Shipping - Flat Rate: $14.99 CAD<br>- Express Shipping - Flat Rate: $25 CAD</p>
 <p>Orders over $180 CAD qualify for free standard shipping.</p>
 <p>Shipping rates displayed at checkout are the final shipping charges for the order.</p>
 <p><strong>Replacement Shipping</strong></p>
-<p>Replacements sent under the <a href="/pages/30-day-plant-guarantee">30-Day Plant Guarantee</a> are charged a flat <strong>$14.99 CAD</strong> for shipping, whatever the plant’s price. That is charged per replacement parcel, not per plant — if more than one plant is being replaced at the same time, it is still $14.99.</p>
-<p>The 30-day guarantee window starts on the date the carrier marks your parcel <strong>delivered</strong>, which is the date shown on your tracking. Photograph your plant that day, as it comes out of the box — an arrival photo is required for a guarantee claim.</p>
+<p>Replacements sent under the <a href="/pages/30-day-plant-guarantee">30-Day Plant Guarantee</a> are charged a flat <strong>$14.99 CAD</strong> for shipping, whatever the plant cost. That is charged per replacement parcel, not per plant, so if more than one plant is being replaced at the same time it is still $14.99.</p>
+<p>The 30-day guarantee window starts on the date the carrier marks your parcel <strong>delivered</strong>, which is the date shown on your tracking. Photograph your plant that day, as it comes out of the box. An arrival photo is required for a guarantee claim.</p>
 <p><strong>Shipping Carriers</strong></p>
 <p>Orders may be shipped using carriers such as:<br>- Canada Post<br>- UPS<br>- FedEx<br>- Purolator</p>
 <p>Carrier selection may vary depending on destination and shipping availability.</p>

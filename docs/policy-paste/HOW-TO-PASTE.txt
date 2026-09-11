@@ -1,0 +1,53 @@
+HOW TO PASTE THESE INTO SHOPIFY
+===============================
+
+Three files, in the order that matters most:
+
+  1-REFUND-POLICY.txt      <- do this one first, it is the urgent one
+  2-SHIPPING-POLICY.txt
+  3-TERMS-OF-SERVICE.txt
+
+WHY THE LAST ONES CAME OUT WRONG
+--------------------------------
+The old files contained typographic characters (the long dash, curly
+apostrophes). Whatever opened them read them as a different character set, so
+every long dash turned into  a-euro-quote  gibberish.
+
+These files contain only plain keyboard characters. Nothing above plain ASCII
+is in them, so they cannot be scrambled no matter what opens them.
+
+THE STEPS
+---------
+1. Shopify admin -> Settings -> Policies.
+2. Click the policy you are replacing. The editor opens.
+3. In the editor toolbar, open the "..." menu on the right and choose the
+   HTML / source view (the <> option). This matters. If you paste into the
+   normal typing view you will see <p> tags as literal text.
+4. Select everything already in the box and delete it.
+5. Open the matching .txt file, select all, copy, and paste it in.
+6. Switch back out of the HTML view. You should see proper bold headings and
+   bullet lines, and NO strange characters.
+7. Save.
+
+HOW TO TELL IT WORKED
+---------------------
+Look for these, which should read cleanly:
+
+  Refund policy    "AgaPlantz 30-Day Plant Guarantee" heading,
+                   "An arrival photo is required.",
+                   "Free shipping on orders over $180"  (it used to wrongly
+                   say $120, which contradicted the shipping policy)
+
+  Shipping policy  a "Replacement Shipping" section, flat $14.99
+
+  Terms of service one new sentence in SECTION 3, pointing at the guarantee
+                   page. Everything else in that file is unchanged.
+
+If you see anything like  a-euro  or  A-with-a-hat  anywhere, stop and tell
+me: something re-encoded the text on the way through.
+
+WHY YOU ARE DOING THIS BY HAND
+------------------------------
+The Shopify app connected here does not hold the write_legal_policies
+permission, so policy text is the one thing on the store I cannot write.
+Everything else was applied directly.
