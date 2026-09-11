@@ -20,7 +20,7 @@ shipping charge, which is better for the customer. The guarantee covers day two 
 | --- | --- |
 | `snippets/acclimation-guarantee-badge.liquid` | **new** — every word of guarantee copy lives here |
 | `blocks/acclimation-guarantee.liquid` | **new** — product block, tier follows the selected variant |
-| `templates/page.30-day-plant-guarantee.json` | **new** — the page, native blocks, editable in the theme editor |
+| `templates/page.plant-guarantee.json` | **new** — the page, native blocks, editable in the theme editor |
 | `templates/product.json`, `product.tissue-culture.json` | badge inserted under Add to Cart |
 | `sections/header-group.json` | guarantee announcement slide, first in the rotation |
 | `snippets/cart-summary.liquid` | one line above checkout — covers cart page *and* drawer |

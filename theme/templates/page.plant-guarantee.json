@@ -551,7 +551,7 @@
             "text_need": {
               "type": "text",
               "settings": {
-                "text": "<p style=\"margin-top:12px\"><strong>Then, if something goes wrong:</strong></p><ul><li><strong>Get in touch within 30 days</strong> of the day your plant was delivered.</li><li><strong>Send photos of the problem</strong> — one of the whole plant, one close up on what has gone wrong — alongside your arrival photo.</li><li><strong>Have followed the <a href=\"/pages/acclimation-guide\">Acclimation Guide</a>.</strong> A tissue culture plantlet comes out of a sterile lab at near 100% humidity, and the guide is what bridges it to life in your home. Plants that skip that step rarely settle in, and that isn’t something a replacement fixes.</li></ul>",
+                "text": "<p><strong>Then, if something goes wrong:</strong></p><ul><li><strong>Get in touch within 30 days</strong> of the day your plant was delivered.</li><li><strong>Send photos of the problem</strong> — one of the whole plant, one close up on what has gone wrong — alongside your arrival photo.</li><li><strong>Have followed the <a href=\"/pages/acclimation-guide\">Acclimation Guide</a>.</strong> A tissue culture plantlet comes out of a sterile lab at near 100% humidity, and the guide is what bridges it to life in your home. Plants that skip that step rarely settle in, and that isn’t something a replacement fixes.</li></ul>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -566,7 +566,7 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 0,
+                "padding-block-start": 12,
                 "padding-block-end": 8,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0

@@ -643,7 +643,7 @@ cannot carry `{% stylesheet %}`, so its styles are inline, like `snippets/price.
 | --- | --- |
 | `snippets/acclimation-guarantee-badge.liquid` | the copy and markup; `context: 'product'` or `'cart'` |
 | `blocks/acclimation-guarantee.liquid` | product block — reads the variant, exposes settings, renders the snippet |
-| `templates/page.30-day-plant-guarantee.json` | the page, native `text`/`group` blocks so the owner can edit it |
+| `templates/page.plant-guarantee.json` | the page, native `text`/`group` blocks so the owner can edit it |
 
 **The tier must follow the variant, never `product.price`.** `product.price` is the product's
 *minimum* variant price and stage is a variant here, so a listing with a $150 Grade B and a
@@ -674,6 +674,35 @@ The footer block `ai_gen_block_651bd33.liquid` gained a sixth policy slot
 - `themeFilesDelete` and `themePublish` are blocked by the connector's safety policy, so an
   orphaned template can only be removed in admin, and the owner always publishes.
 - `pageCreate` / `pageUpdate` / `menuUpdate` / `urlRedirectCreate` all work fine.
+
+### Two ways a theme upload lies to you
+
+**1. Verify that every file you asked for came back, not that the ones that came back match.**
+`themeFilesUpsert` with a URL body returns `userErrors: []` on a *rejected* file, and a
+follow-up `files(filenames: [...])` query simply omits it. Comparing the checksums that come
+back looks like a pass. A whole template was reported as written this way when it had never
+been created — the page silently fell back to `templates/page.json` for hours. Always assert
+`len(returned) == len(requested)` and name the missing ones.
+
+**2. An inline `style=` attribute inside a `text` block's richtext setting rejects the whole
+file.** It does not get stripped on render — the upload is refused outright, silently. One
+`<p style="margin-top:12px">` in a 48 KB page template was enough. Use the block's own
+`padding-block-start` setting instead. Same allowed-tag list as the batch pricing notice
+above: `<p> <strong> <em> <ul> <li> <h1>–<h6> <a> <br>` and nothing else.
+
+**Template suffixes are fine starting with a digit** — `page.30-day-plant-guarantee.json` was
+wrongly blamed for this before the real cause was found. The page's suffix is now
+`plant-guarantee`, which is what `templates/page.plant-guarantee.json` serves; the page
+*handle* is `30-day-plant-guarantee` and is unrelated.
+
+### The FAQ accordion existed twice
+
+`templates/page.json` — the **default** page template — carried its own full copy of the
+15-question FAQ accordion (`ai_gen_block_138208e_JAjVmB`), on top of the one in
+`page.faq.json`. Every page without its own template therefore ended in a generic shipping
+FAQ: Payment Policy, Your Privacy Choices, and the guarantee page while it was falling back.
+Removed on 11 Sep — `templates/page.json` is now just `main`. The FAQ lives on `/pages/faq`
+only. If a page ever sprouts an FAQ nobody put there, this is why.
 
 ### JSON checksums do not round-trip
 
@@ -728,7 +757,8 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/snippets/acclimation-guarantee-badge.liquid` | all guarantee copy |
 | `theme/snippets/cart-summary.liquid` | core Horizon, patched for the cart line |
 | `theme/snippets/price.liquid` | Save X% badge |
-| `theme/templates/page.30-day-plant-guarantee.json` | the guarantee page |
+| `theme/templates/page.plant-guarantee.json` | the guarantee page (suffix `plant-guarantee`) |
+| `theme/templates/page.json` | default page template — FAQ accordion removed |
 | `theme/templates/page.faq.json` / `page.contact.json` | FAQ answers, contact email |
 | `theme/config/settings_data.json` | global design tokens |
 | `theme/templates/index.json` | homepage |
