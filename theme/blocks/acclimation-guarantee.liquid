@@ -1,0 +1,133 @@
+{% doc %}
+  Acclimation Guarantee badge for the product page.
+
+  Picks the tier from the SELECTED variant, not from product.price. product.price is the
+  product's minimum variant price, and plant stage is a variant here, so a merged listing
+  with a $54 tissue-culture variant and a $450 mature variant would otherwise advertise the
+  free tier on the $450 one. Horizon re-renders the product-information section on variant
+  change, so reading selected_or_first_available_variant keeps this in step with the picker.
+
+  All copy lives in snippets/acclimation-guarantee-badge.liquid.
+{% enddoc %}
+
+{%- liquid
+  assign block_settings = block.settings
+  assign product_resource = closest.product
+  assign selected_variant = product_resource.selected_or_first_available_variant
+  assign threshold_cents = block_settings.threshold | times: 100 | round
+-%}
+
+{%- if selected_variant != blank -%}
+  <div
+    class="acclimation-guarantee-block spacing-style"
+    style="
+      display: flex;
+      width: 100%;
+      padding-block-start: {{ block_settings.padding-block-start }}px;
+      padding-block-end: {{ block_settings.padding-block-end }}px;
+    "
+    {{ block.shopify_attributes }}
+  >
+    {% render 'acclimation-guarantee-badge',
+      context: 'product',
+      price: selected_variant.price,
+      threshold_cents: threshold_cents,
+      shipping_amount: block_settings.shipping_amount,
+      page_url: block_settings.page_url,
+      heading: block_settings.heading,
+      under_text: block_settings.under_text,
+      over_text: block_settings.over_text,
+      link_text: block_settings.link_text
+    %}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Acclimation guarantee",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the guarantee tier that applies to the variant the customer has selected."
+    },
+    {
+      "type": "number",
+      "id": "threshold",
+      "label": "Tier threshold (CAD)",
+      "default": 200,
+      "info": "Variants priced below this get the free-replacement wording. At or above, the 50% wording."
+    },
+    {
+      "type": "text",
+      "id": "shipping_amount",
+      "label": "Replacement shipping",
+      "default": "$14.99"
+    },
+    {
+      "type": "url",
+      "id": "page_url",
+      "label": "Guarantee page"
+    },
+    {
+      "type": "header",
+      "content": "Wording"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "AgaPlantz Acclimation Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "under_text",
+      "label": "Below the threshold",
+      "default": "Free replacement within 30 days if it doesn’t make it. You cover shipping ({shipping}).",
+      "info": "{shipping} is replaced by the amount above."
+    },
+    {
+      "type": "text",
+      "id": "over_text",
+      "label": "At or above the threshold",
+      "default": "Replacement at 50% of what you paid, within 30 days. You cover shipping ({shipping})."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link label",
+      "default": "How it works"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Acclimation guarantee",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

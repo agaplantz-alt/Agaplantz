@@ -5,6 +5,20 @@
     "header_announcements_ELa3gw": {
       "type": "header-announcements",
       "blocks": {
+        "announcement_guarantee": {
+          "type": "_announcement",
+          "settings": {
+            "text": "New: Acclimation Guarantee — Plants Under $200 Replaced Free Within 30 Days, You Cover Shipping • Learn More",
+            "link": "/pages/acclimation-guarantee",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
         "announcement_nzpPzh": {
           "type": "_announcement",
           "settings": {
@@ -109,6 +123,7 @@
         }
       },
       "block_order": [
+        "announcement_guarantee",
         "announcement_labour_day",
         "announcement_nzpPzh",
         "announcement_4FEDb9",

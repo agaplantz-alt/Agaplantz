@@ -287,6 +287,22 @@
               },
               "block_order": []
             },
+            "acclimation_guarantee": {
+              "type": "acclimation-guarantee",
+              "name": "Acclimation guarantee",
+              "settings": {
+                "threshold": 200,
+                "shipping_amount": "$14.99",
+                "page_url": "/pages/acclimation-guarantee",
+                "heading": "AgaPlantz Acclimation Guarantee",
+                "under_text": "Free replacement within 30 days if it doesn’t make it. You cover shipping ({shipping}).",
+                "over_text": "Replacement at 50% of what you paid, within 30 days. You cover shipping ({shipping}).",
+                "link_text": "How it works",
+                "padding-block-start": 8,
+                "padding-block-end": 4
+              },
+              "blocks": {}
+            },
             "text_aEtTtq": {
               "type": "text",
               "name": "Product description",
@@ -345,6 +361,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "acclimation_guarantee",
             "text_aEtTtq",
             "text_price_lock"
           ]

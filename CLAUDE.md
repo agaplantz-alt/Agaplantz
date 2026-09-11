@@ -35,7 +35,7 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of the last session: MAIN was `AgaPlantz 2026 — acclimation guide` = `149678161999`,
+As of the last session: MAIN was `AgaPlantz 2026 — sale ended` = `149711487055`,
 Horizon **4.1.4**. Verify, don't assume.
 
 ### Uploading a large template
@@ -583,6 +583,7 @@ so manual sorting is unavailable too. It is done in the theme instead:
 | --- | --- |
 | `sections/product-list.liquid` | any product row added from the theme editor — paginate widened to 50, in-stock first, then trimmed to `max_products`. The homepage no longer uses this section |
 | `sections/main-collection.liquid` | collection pages — now *hides* what you cannot buy; see the section above |
+| `snippets/cart-summary.liquid` | carries the Acclimation Guarantee line; see that section |
 
 Both are `where: 'available', true` + `reject: 'available', true` + `concat`. Liquid only
 sees the current page, so collection pages sort per page, not across the whole collection;
@@ -611,6 +612,67 @@ from the Betadine line — it now just reads "Diluted Betadine solution".
 Rebuilding the file by hand is error-prone. Verify it by reverse-applying the intended
 edits with `sed` and checking the result's md5 against the file you fetched — if it matches,
 nothing else drifted.
+
+## Acclimation Guarantee
+
+Launched 11 Sep. Every plant is covered for **30 days from the delivery scan**: under $200 a
+free replacement, $200 and over a replacement at **50% of what the customer paid** (not list
+price — they buy on sale often). Customer pays a flat **$14.99** replacement shipping, charged
+per parcel not per plant. One replacement per plant; store credit if the variety has sold out.
+Conditions: photos, and that they followed the Acclimation Guide. Claims go to
+`info@agaplantz.com`.
+
+**DOA is deliberately kept separate.** The 24-hour dead-on-arrival claim can end in a full
+refund with no shipping charge, which is *better* for the customer than the guarantee. The
+guarantee covers day two to day 30. Never let a DOA case get routed into the guarantee.
+
+**All guarantee copy lives in `snippets/acclimation-guarantee-badge.liquid`** — the product
+block and the cart both render it, so wording changes happen there and nowhere else. Snippets
+cannot carry `{% stylesheet %}`, so its styles are inline, like `snippets/price.liquid`.
+
+| File | Role |
+| --- | --- |
+| `snippets/acclimation-guarantee-badge.liquid` | the copy and markup; `context: 'product'` or `'cart'` |
+| `blocks/acclimation-guarantee.liquid` | product block — reads the variant, exposes settings, renders the snippet |
+| `templates/page.acclimation-guarantee.json` | the page, native `text`/`group` blocks so the owner can edit it |
+
+**The tier must follow the variant, never `product.price`.** `product.price` is the product's
+*minimum* variant price and stage is a variant here, so a listing with a $150 Grade B and a
+$204 Premium would advertise the free tier on both. The block reads
+`closest.product.selected_or_first_available_variant.price`; Horizon re-renders the
+`product-information` section on variant change, which is what keeps it in step — the same
+mechanism the `Save X%` badge relies on. Devil Monster pre-order is the **only** in-stock
+listing whose variants straddle $200, so it is the regression test: `?variant=45989665603663`
+($150) must read "Free replacement", `?variant=45988645666895` ($204) must read "50%".
+
+**`snippets/cart-summary.liquid` now carries the cart line and is a core Horizon file** — add
+it to the list of files to re-apply after every theme upgrade, alongside
+`sections/product-list.liquid` and `sections/main-collection.liquid`. One insertion covers both
+the cart page and the drawer: the drawer renders this snippet directly, bypassing
+`blocks/_cart-summary.liquid`.
+
+The footer block `ai_gen_block_651bd33.liquid` gained a sixth policy slot
+(`policy_link_6_text` / `_url`) because all five were used.
+
+### What the API would not let me do
+
+- **Policies are read-only from here.** `shopPolicyUpdate` returns *"Access denied … Required
+  access: `write_legal_policies`"*. The app does not hold that scope, so Refund / Shipping /
+  Terms edits must be pasted by the owner in Settings → Policies, or the scope granted.
+- `bulkOperationRunMutation` is **still** blocked ("can execute arbitrary mutations"), so there
+  is no way to push large bodies from a staged file. Anything the API takes as a full body has
+  to be sent inline.
+- `pageCreate` / `pageUpdate` / `menuUpdate` all work fine.
+
+### JSON checksums do not round-trip
+
+For a `.json` theme file **last written by the theme editor**, the API returns a
+pretty-printed body with an auto-generated `/* ... */` header, while `size` and `checksumMd5`
+describe a different stored form — strip the header and you still will not match, and it is
+not plain minification either. So the reverse-apply-and-compare-md5 trick only works on files
+*you* last wrote. For editor-written JSON, verify **semantically**: parse before and after and
+assert only the intended keys moved. Files you upload are stored as your exact bytes, so the
+checksum always matches on the way back.
 
 ## Open items
 
@@ -650,6 +712,13 @@ Only the files that differ from stock Horizon are tracked:
 | Path | Purpose |
 | --- | --- |
 | `theme/blocks/ai_gen_block_7be2211.liquid` | acclimation guide (all copy hardcoded) |
+| `theme/blocks/ai_gen_block_651bd33.liquid` | footer block (policy + quick links, email) |
+| `theme/blocks/acclimation-guarantee.liquid` | guarantee product block |
+| `theme/snippets/acclimation-guarantee-badge.liquid` | all guarantee copy |
+| `theme/snippets/cart-summary.liquid` | core Horizon, patched for the cart line |
+| `theme/snippets/price.liquid` | Save X% badge |
+| `theme/templates/page.acclimation-guarantee.json` | the guarantee page |
+| `theme/templates/page.faq.json` / `page.contact.json` | FAQ answers, contact email |
 | `theme/config/settings_data.json` | global design tokens |
 | `theme/templates/index.json` | homepage |
 | `theme/templates/list-collections.json` | curated /collections |

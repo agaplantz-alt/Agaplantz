@@ -452,6 +452,21 @@
       {{ block.settings.intro_text }}
     </div>
 
+    <div
+      class="ai-acclimation-guide__guarantee-{{ ai_gen_id }}"
+      style="padding: 16px 18px; margin: 0 0 8px; border: 1px solid #DED3C2; border-radius: 4px; background-color: #F2EBDE; font-size: {{ block.settings.step_content_size }}px; line-height: 1.6;"
+    >
+      <p style="margin: 0 0 8px;">
+        <strong>This guide is part of our Acclimation Guarantee.</strong>
+      </p>
+      <p style="margin: 0;">
+        If your plant doesn’t pull through within 30 days of delivery, we replace it — free on
+        plants under $200, and at 50% of what you paid on plants $200 and over. Following the steps
+        below is the one condition we hold to, so it is worth reading before you unbox.
+        <a href="/pages/acclimation-guarantee">Read the guarantee</a>.
+      </p>
+    </div>
+
     {% if block.settings.show_dividers %}
       <div class="ai-acclimation-guide__divider-{{ ai_gen_id }}"></div>
     {% endif %}
@@ -705,6 +720,13 @@
         <h3 class="ai-acclimation-guide__faq-question-{{ ai_gen_id }}">How long does acclimation take?</h3>
         <div class="ai-acclimation-guide__faq-answer-{{ ai_gen_id }}">
           <p>Typically 4–6 weeks from unboxing to full acclimation. Some plants may take longer depending on species and growing conditions. Be patient and follow the gradual process.</p>
+        </div>
+      </div>
+
+      <div class="ai-acclimation-guide__faq-{{ ai_gen_id }}">
+        <h3 class="ai-acclimation-guide__faq-question-{{ ai_gen_id }}">I followed all of this and my plant still didn’t pull through.</h3>
+        <div class="ai-acclimation-guide__faq-answer-{{ ai_gen_id }}">
+          <p>Then that is exactly what the <a href="/pages/acclimation-guarantee">Acclimation Guarantee</a> is for. Email <a href="mailto:info@agaplantz.com">info@agaplantz.com</a> within 30 days of delivery with your order number and clear photos of the plant, and we will replace it — free on plants under $200, and at 50% of what you paid on plants $200 and over.</p>
         </div>
       </div>
     </div>
