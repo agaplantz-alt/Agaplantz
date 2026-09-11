@@ -8,8 +8,8 @@
         "announcement_guarantee": {
           "type": "_announcement",
           "settings": {
-            "text": "New: Acclimation Guarantee — Plants Under $200 Replaced Free Within 30 Days, You Cover Shipping • Learn More",
-            "link": "/pages/acclimation-guarantee",
+            "text": "New: 30-Day Plant Guarantee — Plants Under $200 Replaced Free If They Don’t Make It • Learn More",
+            "link": "/pages/30-day-plant-guarantee",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
             "weight": "100",

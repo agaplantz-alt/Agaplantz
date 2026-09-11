@@ -448,14 +448,14 @@
             },
             "acclimation_guarantee": {
               "type": "acclimation-guarantee",
-              "name": "Acclimation guarantee",
+              "name": "30-Day Plant Guarantee",
               "settings": {
                 "threshold": 200,
                 "shipping_amount": "$14.99",
-                "page_url": "/pages/acclimation-guarantee",
-                "heading": "AgaPlantz Acclimation Guarantee",
-                "under_text": "Free replacement within 30 days if it doesn’t make it. You cover shipping ({shipping}).",
-                "over_text": "Replacement at 50% of what you paid, within 30 days. You cover shipping ({shipping}).",
+                "page_url": "/pages/30-day-plant-guarantee",
+                "heading": "30-Day Plant Guarantee",
+                "under_text": "Free replacement within 30 days if it doesn’t make it — just photograph it when it arrives. You cover shipping ({shipping}).",
+                "over_text": "Replacement at 50% of what you paid, within 30 days — just photograph it when it arrives. You cover shipping ({shipping}).",
                 "link_text": "How it works",
                 "padding-block-start": 8,
                 "padding-block-end": 4

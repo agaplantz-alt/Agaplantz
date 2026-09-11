@@ -834,7 +834,7 @@
         },
         "tc_guarantee": {
           "type": "group",
-          "name": "Acclimation Guarantee",
+          "name": "30-Day Plant Guarantee",
           "settings": {
             "content_direction": "row",
             "vertical_on_mobile": true,
@@ -939,7 +939,7 @@
                 "t": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>If your plant doesn’t pull through within 30 days of delivery, we replace it — free on plants under $200, and at 50% of what you paid above that. You cover shipping, a flat $14.99.</p>",
+                    "text": "<p>If your plant doesn’t pull through within 30 days of delivery, we replace it — free on plants under $200, and at 50% of what you paid above that. All we ask is that you photograph it the day it arrives.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -971,7 +971,7 @@
               "type": "button",
               "settings": {
                 "label": "How the guarantee works",
-                "link": "shopify://pages/acclimation-guarantee",
+                "link": "shopify://pages/30-day-plant-guarantee",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",

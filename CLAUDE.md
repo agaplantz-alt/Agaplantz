@@ -68,7 +68,7 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
 2. `marquee_trust` — scrolling trust strip, sage
 3. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium tiles
 4. `tissue_culture` — explainer; intro on top, two cards side-by-side (also on mobile),
-   then `tc_guarantee`, a full-width strip carrying the Acclimation Guarantee. It sits
+   then `tc_guarantee`, a full-width strip carrying the 30-Day Plant Guarantee. It sits
    *below* the two stage cards deliberately: the reassurance lands after the customer has
    picked a stage, and the explainer and both CTAs are kept rather than replaced.
 5. `products_tc` — Tissue culture pre-orders (`pre-order`, 283 products)
@@ -586,7 +586,7 @@ so manual sorting is unavailable too. It is done in the theme instead:
 | --- | --- |
 | `sections/product-list.liquid` | any product row added from the theme editor — paginate widened to 50, in-stock first, then trimmed to `max_products`. The homepage no longer uses this section |
 | `sections/main-collection.liquid` | collection pages — now *hides* what you cannot buy; see the section above |
-| `snippets/cart-summary.liquid` | carries the Acclimation Guarantee line; see that section |
+| `snippets/cart-summary.liquid` | carries the 30-Day Plant Guarantee line; see that section |
 
 Both are `where: 'available', true` + `reject: 'available', true` + `concat`. Liquid only
 sees the current page, so collection pages sort per page, not across the whole collection;
@@ -616,14 +616,20 @@ Rebuilding the file by hand is error-prone. Verify it by reverse-applying the in
 edits with `sed` and checking the result's md5 against the file you fetched — if it matches,
 nothing else drifted.
 
-## Acclimation Guarantee
+## 30-Day Plant Guarantee
 
-Launched 11 Sep. Every plant is covered for **30 days from the delivery scan**: under $200 a
+Launched 11 Sep. **Named "Acclimation Guarantee" for about an hour, then renamed** — it
+collided with the Acclimation Guide and the paid Acclimation Service, so customers could read
+it as something they had to buy. The internal filenames still say `acclimation-guarantee`;
+only the customer-facing wording changed. Every plant is covered for **30 days from the delivery scan**: under $200 a
 free replacement, $200 and over a replacement at **50% of what the customer paid** (not list
 price — they buy on sale often). Customer pays a flat **$14.99** replacement shipping, charged
 per parcel not per plant. One replacement per plant; store credit if the variety has sold out.
-Conditions: photos, and that they followed the Acclimation Guide. Claims go to
-`info@agaplantz.com`.
+Conditions: **an arrival photo taken the day it is delivered** (hard gate — no photo, no
+claim; it is the only way to tell a plant that arrived weak from one that was mistreated),
+photos of the problem, and that they followed the Acclimation Guide. Claims go to
+`info@agaplantz.com`. The photo rule applies only to orders delivered after launch — nobody
+in transit beforehand was told to take one; drop that sentence around mid-October.
 
 **DOA is deliberately kept separate.** The 24-hour dead-on-arrival claim can end in a full
 refund with no shipping charge, which is *better* for the customer than the guarantee. The
@@ -637,7 +643,7 @@ cannot carry `{% stylesheet %}`, so its styles are inline, like `snippets/price.
 | --- | --- |
 | `snippets/acclimation-guarantee-badge.liquid` | the copy and markup; `context: 'product'` or `'cart'` |
 | `blocks/acclimation-guarantee.liquid` | product block — reads the variant, exposes settings, renders the snippet |
-| `templates/page.acclimation-guarantee.json` | the page, native `text`/`group` blocks so the owner can edit it |
+| `templates/page.30-day-plant-guarantee.json` | the page, native `text`/`group` blocks so the owner can edit it |
 
 **The tier must follow the variant, never `product.price`.** `product.price` is the product's
 *minimum* variant price and stage is a variant here, so a listing with a $150 Grade B and a
@@ -665,7 +671,9 @@ The footer block `ai_gen_block_651bd33.liquid` gained a sixth policy slot
 - `bulkOperationRunMutation` is **still** blocked ("can execute arbitrary mutations"), so there
   is no way to push large bodies from a staged file. Anything the API takes as a full body has
   to be sent inline.
-- `pageCreate` / `pageUpdate` / `menuUpdate` all work fine.
+- `themeFilesDelete` and `themePublish` are blocked by the connector's safety policy, so an
+  orphaned template can only be removed in admin, and the owner always publishes.
+- `pageCreate` / `pageUpdate` / `menuUpdate` / `urlRedirectCreate` all work fine.
 
 ### JSON checksums do not round-trip
 
@@ -720,7 +728,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/snippets/acclimation-guarantee-badge.liquid` | all guarantee copy |
 | `theme/snippets/cart-summary.liquid` | core Horizon, patched for the cart line |
 | `theme/snippets/price.liquid` | Save X% badge |
-| `theme/templates/page.acclimation-guarantee.json` | the guarantee page |
+| `theme/templates/page.30-day-plant-guarantee.json` | the guarantee page |
 | `theme/templates/page.faq.json` / `page.contact.json` | FAQ answers, contact email |
 | `theme/config/settings_data.json` | global design tokens |
 | `theme/templates/index.json` | homepage |

@@ -1,5 +1,6 @@
 {% doc %}
-  Acclimation Guarantee badge for the product page.
+  30-Day Plant Guarantee badge for the product page.
+  (File name kept as acclimation-guarantee for continuity; the customer-facing name is the 30-Day Plant Guarantee.)
 
   Picks the tier from the SELECTED variant, not from product.price. product.price is the
   product's minimum variant price, and plant stage is a variant here, so a merged listing
@@ -44,7 +45,7 @@
 
 {% schema %}
 {
-  "name": "Acclimation guarantee",
+  "name": "30-Day Plant Guarantee",
   "tag": null,
   "settings": [
     {
@@ -77,20 +78,20 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "AgaPlantz Acclimation Guarantee"
+      "default": "30-Day Plant Guarantee"
     },
     {
       "type": "text",
       "id": "under_text",
       "label": "Below the threshold",
-      "default": "Free replacement within 30 days if it doesn’t make it. You cover shipping ({shipping}).",
+      "default": "Free replacement within 30 days if it doesn’t make it — just photograph it when it arrives. You cover shipping ({shipping}).",
       "info": "{shipping} is replaced by the amount above."
     },
     {
       "type": "text",
       "id": "over_text",
       "label": "At or above the threshold",
-      "default": "Replacement at 50% of what you paid, within 30 days. You cover shipping ({shipping})."
+      "default": "Replacement at 50% of what you paid, within 30 days — just photograph it when it arrives. You cover shipping ({shipping})."
     },
     {
       "type": "text",
@@ -125,7 +126,7 @@
   ],
   "presets": [
     {
-      "name": "Acclimation guarantee",
+      "name": "30-Day Plant Guarantee",
       "category": "Product"
     }
   ]

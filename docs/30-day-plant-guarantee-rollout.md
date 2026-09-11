@@ -1,4 +1,4 @@
-# Acclimation Guarantee — rollout changelog
+# 30-Day Plant Guarantee — rollout changelog
 
 Draft theme **`149825486927`** ("AgaPlantz 2026 — acclimation guarantee"), duplicated from
 MAIN `149711487055`. Preview: https://agaplantz.com/?preview_theme_id=149825486927
@@ -20,7 +20,7 @@ shipping charge, which is better for the customer. The guarantee covers day two 
 | --- | --- |
 | `snippets/acclimation-guarantee-badge.liquid` | **new** — every word of guarantee copy lives here |
 | `blocks/acclimation-guarantee.liquid` | **new** — product block, tier follows the selected variant |
-| `templates/page.acclimation-guarantee.json` | **new** — the page, native blocks, editable in the theme editor |
+| `templates/page.30-day-plant-guarantee.json` | **new** — the page, native blocks, editable in the theme editor |
 | `templates/product.json`, `product.tissue-culture.json` | badge inserted under Add to Cart |
 | `sections/header-group.json` | guarantee announcement slide, first in the rotation |
 | `snippets/cart-summary.liquid` | one line above checkout — covers cart page *and* drawer |
@@ -32,9 +32,9 @@ shipping charge, which is better for the customer. The guarantee covers day two 
 
 ## Applied to the live store already (not theme)
 
-- Page `/pages/acclimation-guarantee` created, published, with a plain-HTML body as a
+- Page `/pages/30-day-plant-guarantee` created, published, with a plain-HTML body as a
   fallback for any theme that lacks the template.
-- Main menu: "Acclimation Guarantee" added after "Acclimation Guide".
+- Main menu: "30-Day Plant Guarantee" added after "Acclimation Guide".
 - Payment Policy page body: email → `info@agaplantz.com`.
 - Contact page SEO description: was literally `Sandhuagam16@gmail.com`, now real copy.
 
@@ -50,6 +50,37 @@ shipping charge, which is better for the customer. The guarantee covers day two 
 - Sitewide sweep, 17 pages: `agaplantz@gmail.com` **0**, `Sandhuagam16@gmail.com` **0**.
 - Every uploaded file's `checksumMd5` matches the local copy. Both hand-edited Liquid files
   were verified by reverse-applying the edits and matching the original md5 byte for byte.
+
+## Renamed, and the arrival photo added (11 Sep, after first build)
+
+**Name.** Was "Acclimation Guarantee" — renamed to **30-Day Plant Guarantee**. The old name
+collided with the Acclimation *Guide* and the paid Acclimation *Service*: a customer reading
+"covered by our Acclimation Guarantee" could reasonably think they had to buy the Service to
+get it. The new name also states the window, so it works without further explanation.
+
+The page moved to `/pages/30-day-plant-guarantee`, with a 301 from the old URL. The old
+template `templates/page.acclimation-guarantee.json` is orphaned but still in the theme —
+`themeFilesDelete` is blocked by the connector, so delete it in admin if you want it gone.
+It is harmless: nothing points at it.
+
+**Arrival photo, now required on every plant.** The customer must photograph the plant the
+day it is delivered, as it comes out of the box, before unpacking. No arrival photo, no
+claim. It is the only way to tell a plant that arrived weak from one that arrived healthy
+and was then mistreated.
+
+Because this is a hard gate, it is stated in five places rather than buried: the product
+badge ("just photograph it when it arrives"), the homepage strip, Step 1 of the Acclimation
+Guide, the guarantee page (its own card, the first thing under *What we need from you*), and
+FAQ answer 4.
+
+**Grace for anyone already in transit.** The requirement applies only to orders delivered
+after the guarantee goes live — nobody who ordered before it existed was told to photograph
+anything. The guarantee page and the refund policy both say this. Once the theme has been
+live a month you can drop that sentence.
+
+**One thing this makes more urgent:** the arrival photo has to be asked for at the moment of
+delivery, not just on the website. The shipping-notification email is the right place, and
+it is the one surface I cannot edit — see the suggested line below.
 
 ## Still needs you
 
@@ -67,8 +98,7 @@ shipping charge, which is better for the customer. The guarantee covers day two 
 ## Flagged, not changed
 
 - **Order confirmation / shipping notification emails** carry no guarantee mention. Suggested
-  line, for Settings → Notifications: *"Your plant is covered by our Acclimation Guarantee for
-  30 days from delivery — see agaplantz.com/pages/acclimation-guarantee."* Transactional email
+  line, for Settings → Notifications: *"Photograph your plant the day it arrives, before you unpack it — it is required for our 30-Day Plant Guarantee. Details at agaplantz.com/pages/30-day-plant-guarantee."* Transactional email
   should not change without you seeing it, so I left it.
 - **Product descriptions** — untouched, as you asked.
 - **The Acclimation Service add-on ($12+, sold on tissue-culture pages) is an unresolved
@@ -81,8 +111,9 @@ shipping charge, which is better for the customer. The guarantee covers day two 
 ## Internal note — how to handle a claim
 
 A customer emails `info@agaplantz.com` within 30 days of their delivery date with an order
-number and photos. Check three things: the delivery scan is inside 30 days, the photos show
-the actual plant, and nothing in them says clear neglect — sitting in water, scorched in
+number, the photo they took the day it arrived, and photos of the problem now. Check four
+things: there is an arrival photo and the plant looks sound in it, the delivery scan is
+inside 30 days, the photos show the actual plant, and nothing in them says clear neglect — sitting in water, scorched in
 direct sun, or no humidity setup at all. If it passes, look up what they paid for that plant:
 under $200 the replacement is free and you invoice $14.99 shipping; $200 and over you invoice
 50% of the line price they paid plus the $14.99. One replacement per plant, same variety where

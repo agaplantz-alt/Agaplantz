@@ -1,5 +1,5 @@
 {% doc %}
-  Renders the AgaPlantz Acclimation Guarantee line.
+  Renders the AgaPlantz 30-Day Plant Guarantee line.
 
   This snippet is the single source of guarantee copy. The product block
   (blocks/acclimation-guarantee.liquid) and the cart (snippets/cart-summary.liquid)
@@ -13,7 +13,7 @@
                             so a merged listing would quote the cheapest stage's tier.
   @param {number} [threshold_cents] - Tier boundary in cents. Defaults to 20000 ($200).
   @param {string} [shipping_amount] - Replacement shipping, already formatted. Defaults to '$14.99'.
-  @param {string} [page_url] - The guarantee page. Defaults to '/pages/acclimation-guarantee'.
+  @param {string} [page_url] - The guarantee page. Defaults to '/pages/30-day-plant-guarantee'.
   @param {string} [heading] - Bold lead-in on the product line.
   @param {string} [under_text] - Copy below the threshold. '{shipping}' is substituted.
   @param {string} [over_text] - Copy at or above the threshold. '{shipping}' is substituted.
@@ -25,13 +25,13 @@
   assign ag_context = context | default: 'product'
   assign ag_threshold = threshold_cents | default: 20000
   assign ag_shipping = shipping_amount | default: '$14.99'
-  assign ag_url = page_url | default: '/pages/acclimation-guarantee'
-  assign ag_heading = heading | default: 'AgaPlantz Acclimation Guarantee'
+  assign ag_url = page_url | default: '/pages/30-day-plant-guarantee'
+  assign ag_heading = heading | default: '30-Day Plant Guarantee'
   assign ag_link = link_text | default: 'How it works'
 
-  assign default_under = 'Free replacement within 30 days if it doesn’t make it. You cover shipping ({shipping}).'
-  assign default_over = 'Replacement at 50% of what you paid, within 30 days. You cover shipping ({shipping}).'
-  assign default_cart = 'Covered by our Acclimation Guarantee'
+  assign default_under = 'Free replacement within 30 days if it doesn’t make it — just photograph it when it arrives. You cover shipping ({shipping}).'
+  assign default_over = 'Replacement at 50% of what you paid, within 30 days — just photograph it when it arrives. You cover shipping ({shipping}).'
+  assign default_cart = 'Covered by our 30-Day Plant Guarantee'
 
   assign ag_under = under_text | default: default_under | replace: '{shipping}', ag_shipping
   assign ag_over = over_text | default: default_over | replace: '{shipping}', ag_shipping

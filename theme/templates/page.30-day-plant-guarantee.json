@@ -96,7 +96,7 @@
             "text_heading": {
               "type": "text",
               "settings": {
-                "text": "<h1>Acclimation Guarantee</h1>",
+                "text": "<h1>30-Day Plant Guarantee</h1>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -121,7 +121,7 @@
             "text_intro": {
               "type": "text",
               "settings": {
-                "text": "<p>Tissue culture plants are young, and the first few weeks in a new home are the part that decides everything. We think that risk should sit with us, not with you. So if a plant you bought from us doesn’t pull through within 30 days of delivery, we replace it.</p><p>Here is exactly how that works — no small print you need to squint at.</p>",
+                "text": "<p>Tissue culture plants are young, and the first few weeks in a new home are the part that decides everything. We think that risk should sit with us, not with you. So if a plant you bought from us doesn’t pull through within 30 days of delivery, we replace it.</p><p>There is one thing we need you to do on day one. It takes ten seconds and it is the whole reason we can offer this — see <em>What we need from you</em> below.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -453,10 +453,105 @@
               },
               "blocks": {}
             },
+            "text_photo_card": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 6,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "#F2EBDE",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "#DED3C2",
+                "border_radius": 4,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 24,
+                "padding-block-end": 24,
+                "padding-inline-start": 24,
+                "padding-inline-end": 24
+              },
+              "blocks": {
+                "ph_t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>1. A photo on the day it arrives</h3>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h5",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 4,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "ph_b": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><strong>Before you do anything else, photograph your plant as it comes out of the box.</strong> One clear phone snap is enough.</p><p>This is the condition we cannot waive. It is the only way to tell a plant that arrived weak from one that arrived healthy and ran into trouble later — and it protects you as much as it protects us. If a plant turns up in poor shape, that photo is your evidence, not ours.</p><p><strong>No arrival photo, no claim.</strong></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "ph_t",
+                "ph_b"
+              ]
+            },
             "text_need": {
               "type": "text",
               "settings": {
-                "text": "<ul><li><strong>Get in touch within 30 days</strong> of the day your plant was delivered.</li><li><strong>Clear photos</strong> — one of the whole plant, one close up on what has gone wrong. We can’t assess a plant we can’t see.</li><li><strong>That you followed the <a href=\"/pages/acclimation-guide\">Acclimation Guide</a>.</strong> This is the one condition we hold to. A tissue culture plantlet comes out of a sterile lab at near 100% humidity, and the guide is what bridges it to life in your home. Plants that skip that step rarely settle in, and that isn’t something a replacement fixes.</li></ul>",
+                "text": "<p style=\"margin-top:12px\"><strong>Then, if something goes wrong:</strong></p><ul><li><strong>Get in touch within 30 days</strong> of the day your plant was delivered.</li><li><strong>Send photos of the problem</strong> — one of the whole plant, one close up on what has gone wrong — alongside your arrival photo.</li><li><strong>Have followed the <a href=\"/pages/acclimation-guide\">Acclimation Guide</a>.</strong> A tissue culture plantlet comes out of a sterile lab at near 100% humidity, and the guide is what bridges it to life in your home. Plants that skip that step rarely settle in, and that isn’t something a replacement fixes.</li></ul>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -506,7 +601,7 @@
             "text_not": {
               "type": "text",
               "settings": {
-                "text": "<ul><li>Plants that were clearly neglected — left sitting in water, put in direct sun, or grown without the humidity setup the guide asks for.</li><li>Anything outside the 30-day window.</li><li>Claims without photos.</li></ul><p>That’s the whole list. We’re not looking for reasons to say no — if you followed the guide and it still didn’t work out, that’s exactly what this is for.</p>",
+                "text": "<ul><li>Claims with no arrival photo.</li><li>Plants that were clearly neglected — left sitting in water, put in direct sun, or grown without the humidity setup the guide asks for.</li><li>Anything outside the 30-day window.</li></ul><p>That’s the whole list. We’re not looking for reasons to say no — if you took your photo, followed the guide, and it still didn’t work out, that’s exactly what this is for.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -556,7 +651,7 @@
             "text_claim": {
               "type": "text",
               "settings": {
-                "text": "<ol><li><strong>Email <a href=\"mailto:info@agaplantz.com\">info@agaplantz.com</a></strong> within 30 days of delivery, with your order number in the subject line.</li><li><strong>Attach your photos</strong> — the whole plant, and a close-up.</li><li><strong>We reply within 24–48 hours.</strong> Once it’s approved you pay the $14.99 shipping (plus the 50% if the plant was $200 or over) and your replacement goes out with the next batch.</li></ol>",
+                "text": "<ol><li><strong>Email <a href=\"mailto:info@agaplantz.com\">info@agaplantz.com</a></strong> within 30 days of delivery, with your order number in the subject line.</li><li><strong>Attach your arrival photo and your photos of the problem.</strong></li><li><strong>We reply within 24–48 hours.</strong> Once it’s approved you pay the $14.99 shipping (plus the 50% if the plant was $200 or over) and your replacement goes out with the next batch.</li></ol>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -606,7 +701,7 @@
             "faq_1_q": {
               "type": "text",
               "settings": {
-                "text": "<h3>Does this cover pre-orders?</h3>",
+                "text": "<h3>I didn’t photograph it when it arrived.</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -631,7 +726,7 @@
             "faq_1_a": {
               "type": "text",
               "settings": {
-                "text": "<p>Yes. The 30 days start the day your plant is delivered, not the day you order. A pre-order placed in September and delivered in November is covered right through December.</p>",
+                "text": "<p>Then we can’t process a guarantee claim, and we’re sorry — it’s the one thing we can’t work around, because without it there is no way to know what condition the plant was in when it reached you. Take one the moment you open the box; a phone photo is fine. If your plant was delivered before this guarantee started, get in touch anyway and we’ll work with you.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -656,7 +751,7 @@
             "faq_2_q": {
               "type": "text",
               "settings": {
-                "text": "<h3>Does it cover both tissue culture and acclimated plants?</h3>",
+                "text": "<h3>Does this cover pre-orders?</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -681,7 +776,7 @@
             "faq_2_a": {
               "type": "text",
               "settings": {
-                "text": "<p>Yes — every plant we sell, at every stage.</p>",
+                "text": "<p>Yes. The 30 days start the day your plant is delivered, not the day you order. A pre-order placed in September and delivered in November is covered right through December — and the arrival photo is due the day that parcel lands, not the day you ordered.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -706,7 +801,7 @@
             "faq_3_q": {
               "type": "text",
               "settings": {
-                "text": "<h3>What if the variety I bought is sold out?</h3>",
+                "text": "<h3>Does it cover both tissue culture and acclimated plants?</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -731,7 +826,7 @@
             "faq_3_a": {
               "type": "text",
               "settings": {
-                "text": "<p>You get store credit for what you paid for the plant, usable on anything in the shop. It doesn’t expire.</p>",
+                "text": "<p>Yes — every plant we sell, at every stage.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -756,7 +851,7 @@
             "faq_4_q": {
               "type": "text",
               "settings": {
-                "text": "<h3>I ordered several plants and only one didn’t make it.</h3>",
+                "text": "<h3>What if the variety I bought is sold out?</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -781,7 +876,7 @@
             "faq_4_a": {
               "type": "text",
               "settings": {
-                "text": "<p>Claim that one. Each plant is covered on its own. Shipping is charged per replacement parcel, not per plant — so if two need replacing at the same time, it’s still $14.99.</p>",
+                "text": "<p>You get store credit for what you paid for the plant, usable on anything in the shop. It doesn’t expire.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -806,7 +901,7 @@
             "faq_5_q": {
               "type": "text",
               "settings": {
-                "text": "<h3>Why do I pay shipping if the replacement is free?</h3>",
+                "text": "<h3>I ordered several plants and only one didn’t make it.</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -831,7 +926,7 @@
             "faq_5_a": {
               "type": "text",
               "settings": {
-                "text": "<p>Because shipping a live plant safely across Canada costs real money, and that $14.99 is what we hand to the carrier — it isn’t a fee. Everything else, the plant included, is on us.</p>",
+                "text": "<p>Claim that one. Each plant is covered on its own — so photograph them all on arrival, ideally in one shot with everything laid out. Shipping is charged per replacement parcel, not per plant, so if two need replacing at the same time it’s still $14.99.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -856,7 +951,7 @@
             "faq_6_q": {
               "type": "text",
               "settings": {
-                "text": "<h3>What counts as “delivered”?</h3>",
+                "text": "<h3>Why do I pay shipping if the replacement is free?</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -881,7 +976,7 @@
             "faq_6_a": {
               "type": "text",
               "settings": {
-                "text": "<p>The date the carrier marks your parcel delivered. That’s the date the 30 days run from, and it’s on your tracking.</p>",
+                "text": "<p>Because shipping a live plant safely across Canada costs real money, and that $14.99 is what we hand to the carrier — it isn’t a fee. Everything else, the plant included, is on us.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -906,7 +1001,7 @@
             "faq_7_q": {
               "type": "text",
               "settings": {
-                "text": "<h3>My plant arrived damaged. Is that this?</h3>",
+                "text": "<h3>What counts as “delivered”?</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -931,7 +1026,57 @@
             "faq_7_a": {
               "type": "text",
               "settings": {
-                "text": "<p>No — and the other route is better for you. If a plant arrives dead or badly damaged, contact us within <strong>24 hours</strong> of delivery for a dead-on-arrival claim, which can end in a full refund with no shipping charge. The Acclimation Guarantee covers what happens after that, from day two to day 30.</p>",
+                "text": "<p>The date the carrier marks your parcel delivered. That’s the date the 30 days run from, and it’s on your tracking.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 4,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "faq_8_q": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>My plant arrived damaged. Is that this?</h3>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h6",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 2,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "faq_8_a": {
+              "type": "text",
+              "settings": {
+                "text": "<p>No — and the other route is better for you. If a plant arrives dead or badly damaged, contact us within <strong>24 hours</strong> of delivery for a dead-on-arrival claim, which can end in a full refund with no shipping charge. Your arrival photo is exactly what that claim needs too. The 30-Day Plant Guarantee covers what happens after that, from day two to day 30.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -986,6 +1131,7 @@
             "group_tiers",
             "text_one_per",
             "text_need_h",
+            "text_photo_card",
             "text_need",
             "text_not_h",
             "text_not",
@@ -1006,6 +1152,8 @@
             "faq_6_a",
             "faq_7_q",
             "faq_7_a",
+            "faq_8_q",
+            "faq_8_a",
             "text_footer"
           ]
         }
@@ -1013,7 +1161,7 @@
       "block_order": [
         "group_guarantee"
       ],
-      "name": "Acclimation Guarantee",
+      "name": "30-Day Plant Guarantee",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
