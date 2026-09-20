@@ -14,18 +14,18 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Rare aroids · Grown in Canada</p>",
-            "width": "100%",
+            "text": "<p>Rare aroids · Acclimated in Canada</p>",
+            "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "line_height": "normal",
-            "letter_spacing": "loose",
+            "letter_spacing": "normal",
             "case": "uppercase",
             "wrap": "pretty",
-            "text_color": "#f2ebde",
+            "text_color": "#ffffff",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -67,8 +67,8 @@
           "name": "t:names.text",
           "settings": {
             "text": "<p>Collector-grade Philodendron, Alocasia, Monstera and Anthurium — rooted, acclimated and shipped Canada-wide.</p>",
-            "width": "100%",
-            "max_width": "narrow",
+            "width": "fit-content",
+            "max_width": "none",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
@@ -100,8 +100,8 @@
             "custom_button_text": "#2f2a22",
             "custom_button_border": "rgba(0,0,0,0)",
             "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
+            "width": "custom",
+            "custom_width": 13,
             "width_mobile": "fit-content",
             "custom_width_mobile": 100
           },
@@ -133,19 +133,19 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 12,
+        "gap": 4,
         "section_width": "page-width",
-        "section_height": "large",
-        "section_height_custom": 50,
+        "section_height": "full-screen",
+        "section_height_custom": 100,
         "background_color": "rgba(0,0,0,0)",
         "toggle_overlay": true,
-        "overlay_color": "#2f2a22a6",
+        "overlay_color": "#2f2a22d9",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 43,
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "blurred_reflection": true,
+        "reflection_opacity": 50,
+        "padding-block-start": 34,
+        "padding-block-end": 30
       }
     },
     "marquee_trust": {
@@ -260,10 +260,32 @@
       ],
       "settings": {
         "movement_direction": "normal",
-        "background_color": "#e8ede1",
+        "background_color": "#405029",
         "padding-block-start": 18,
         "padding-block-end": 18,
         "gap_between_elements": 56
+      }
+    },
+    "custom_liquid_KL8FyB": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "{% assign deadline = '2026-09-25T23:59:59-04:00' %}\n\n<style>\n  .aga-cd {\n    max-width: 720px; margin: 0 auto; padding: 44px 20px; text-align: center;\n    border-top: 1px solid rgba(0,0,0,.15); border-bottom: 1px solid rgba(0,0,0,.15);\n    color: #111;\n  }\n  .aga-cd__eyebrow { margin: 0 0 22px; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #111; }\n  .aga-cd__timer { display: flex; justify-content: center; gap: clamp(22px, 6vw, 52px); }\n  .aga-cd__num {\n    display: block; font-size: clamp(32px, 6.5vw, 50px); font-weight: 800; line-height: 1;\n    font-variant-numeric: tabular-nums; color: #111;\n  }\n  .aga-cd__lbl { display: block; margin-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #333; }\n  .aga-cd__sub { margin: 26px 0 0; font-size: 15px; font-weight: 600; line-height: 1.6; color: #222; }\n  .aga-cd__link {\n    display: inline-block; margin-top: 16px; padding-bottom: 3px;\n    font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;\n    color: #111; text-decoration: none; border-bottom: 2px solid #111;\n  }\n  .aga-cd__link:hover { opacity: .6; }\n</style>\n\n<section class=\"aga-cd\" data-deadline=\"{{ deadline }}\">\n  <p class=\"aga-cd__eyebrow\">Prices reset when this batch closes in</p>\n\n  <div class=\"aga-cd__timer\">\n    <div><span class=\"aga-cd__num\" data-u=\"d\">--</span><span class=\"aga-cd__lbl\">Days</span></div>\n    <div><span class=\"aga-cd__num\" data-u=\"h\">--</span><span class=\"aga-cd__lbl\">Hours</span></div>\n    <div><span class=\"aga-cd__num\" data-u=\"m\">--</span><span class=\"aga-cd__lbl\">Min</span></div>\n    <div><span class=\"aga-cd__num\" data-u=\"s\">--</span><span class=\"aga-cd__lbl\">Sec</span></div>\n  </div>\n\n  <p class=\"aga-cd__sub\">Every batch reprices to supply and demand — up or down. Your price locks the moment you order.</p>\n  <a class=\"aga-cd__link\" href=\"/collections/pre-order\">Lock in this batch’s price</a>\n</section>\n\n<script>\n(function () {\n  function init(box) {\n    if (box.getAttribute('data-ready')) return;\n    box.setAttribute('data-ready', '1');\n    var end = new Date(box.getAttribute('data-deadline')).getTime();\n    var q = function (sel) { return box.querySelector(sel); };\n    var pad = function (n) { return (n < 10 ? '0' : '') + n; };\n    function tick() {\n      var left = end - Date.now();\n      if (isNaN(end) || left <= 0) {\n        clearInterval(timer);\n        q('.aga-cd__timer').style.display = 'none';\n        q('.aga-cd__eyebrow').textContent = 'This batch has closed \\u2014 prices reset next batch';\n        q('.aga-cd__sub').textContent = 'The next batch opens at new pricing. Join the email list for first access.';\n        q('.aga-cd__link').textContent = 'Shop ready to ship';\n        q('.aga-cd__link').href = '/collections/ready-to-ship-tissue-culture';\n        return;\n      }\n      var s = Math.floor(left / 1000);\n      q('[data-u=\"d\"]').textContent = pad(Math.floor(s / 86400));\n      q('[data-u=\"h\"]').textContent = pad(Math.floor(s % 86400 / 3600));\n      q('[data-u=\"m\"]').textContent = pad(Math.floor(s % 3600 / 60));\n      q('[data-u=\"s\"]').textContent = pad(s % 60);\n    }\n    var timer = setInterval(tick, 1000);\n    tick();\n  }\n  function run() {\n    var all = document.querySelectorAll('.aga-cd');\n    for (var i = 0; i < all.length; i++) init(all[i]);\n  }\n  run();\n  document.addEventListener('DOMContentLoaded', run);\n  document.addEventListener('shopify:section:load', run);\n})();\n</script>",
+        "background_color": "{{ settings.color_palette.color4 }}",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "custom_liquid_RCAe6j": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<style>\n  .aga-cd {\n    max-width: 720px; margin: 0 auto; padding: 44px 20px; text-align: center;\n    border-top: 1px solid rgba(0,0,0,.15); border-bottom: 1px solid rgba(0,0,0,.15);\n    color: #111;\n  }\n  .aga-cd__eyebrow { margin: 0 0 22px; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #111; }\n  .aga-cd__timer { display: flex; justify-content: center; gap: clamp(22px, 6vw, 52px); }\n  .aga-cd__num {\n    display: block; font-family: var(--font-heading-family, inherit);\n    font-size: clamp(32px, 6.5vw, 50px); font-weight: 800; line-height: 1;\n    font-variant-numeric: tabular-nums; color: #111;\n  }\n  .aga-cd__lbl { display: block; margin-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #333; }\n  .aga-cd__sub { margin: 26px 0 0; font-size: 15px; font-weight: 600; line-height: 1.6; color: #222; }\n  .aga-cd__link {\n    display: inline-block; margin-top: 16px; padding-bottom: 3px;\n    font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;\n    color: #111; text-decoration: none; border-bottom: 2px solid #111;\n    transition: opacity .2s ease;\n  }\n  .aga-cd__link:hover { opacity: .6; }\n</style>",
+        "background_color": "{{ settings.color_palette.color4 }}",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "collections_genus": {
@@ -1731,8 +1753,8 @@
             "max-characters": 180,
             "autoplay": false,
             "autoplay-delay": 5,
-            "main-color": "#AE8868",
-            "stars-color": "#FF8D00",
+            "main-color": "#ae8868",
+            "stars-color": "#ff8d00",
             "show-review-text": true,
             "text-color": "",
             "reviewer-name-color": "",
@@ -1780,6 +1802,8 @@
   "order": [
     "hero_main",
     "marquee_trust",
+    "custom_liquid_KL8FyB",
+    "custom_liquid_RCAe6j",
     "collections_genus",
     "tissue_culture",
     "products_tc",
