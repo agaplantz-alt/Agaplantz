@@ -46,7 +46,8 @@
             "case": "none",
             "text_color": ""
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         },
         "announcement_4FEDb9": {
           "type": "_announcement",
@@ -67,7 +68,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "Tissue Culture Pre-Orders Close September 25 • Next Batch opens in Approximately 15-30 Days",
+            "text": "Tissue Culture Pre-Orders Close September 28 at 11:30 PM ET • Next Batch opens in Approximately 15-30 Days",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",

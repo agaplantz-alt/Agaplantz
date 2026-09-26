@@ -35,7 +35,7 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of the last session: MAIN was `AgaPlantz 2026 — sale ended` = `149711487055`,
+As of the last session: MAIN was `AgaPlantz 2026 — batch pricing headline` = `150159360079`,
 Horizon **4.1.4**. Verify, don't assume.
 
 ### Uploading a large template
@@ -66,17 +66,24 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
 
 1. `hero_main` — full-bleed image, gradient overlay, CTA "Shop" → ready-to-ship
 2. `marquee_trust` — scrolling trust strip, sage
-3. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium tiles
-4. `tissue_culture` — explainer; intro on top, two cards side-by-side (also on mobile),
+3. `custom_liquid_KL8FyB` — batch countdown, sand band. A `custom-liquid` section, not a
+   block: headline "This batch closes in", four Lora digits, the repricing line, a moss
+   CTA. The deadline is a hardcoded ISO string carrying the Toronto offset
+   (`assign deadline = '2026-09-28T23:30:00-04:00'`) — one of the six places the cut-off
+   date lives, and the only one that also needs the *time*. Classes are `aga-batch__*`;
+   when the timer hits zero the JS rewrites the headline, the line and the CTA in place
+   and hides the digits, so an expired batch never reads as a live one.
+4. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium tiles
+5. `tissue_culture` — explainer; intro on top, two cards side-by-side (also on mobile),
    then `tc_guarantee`, a full-width strip carrying the 30-Day Plant Guarantee. It sits
    *below* the two stage cards deliberately: the reassurance lands after the customer has
    picked a stage, and the explainer and both CTAs are kept rather than replaced.
-5. `products_tc` — Tissue culture pre-orders (`pre-order`, 283 products)
-6. `products_sale` — Collector favourites on sale (`on-sale`), sand band
-7. `products_rts` — Ready to ship (`ready-to-ship`)
-8. `products_acclimated` — Mature specimens (`mature-specimens`), sand band
-9. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
-10. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
+6. `products_tc` — Tissue culture pre-orders (`pre-order`, 283 products)
+7. `products_sale` — Collector favourites on sale (`on-sale`), sand band
+8. `products_rts` — Ready to ship (`ready-to-ship`)
+9. `products_acclimated` — Mature specimens (`mature-specimens`), sand band
+10. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
+11. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
 
 There is **no `newsletter` section on the homepage**: it duplicated the email signup
 that Horizon's footer already renders on every page, so the homepage one was removed
@@ -269,18 +276,26 @@ why they render nothing on an unreviewed plant. That setting is a dropdown on th
 block in the theme editor; switching it is the native alternative to this section, but
 its enum values are not readable from the theme files, so it was not changed by API.
 
-## The batch cut-off date lives in five places
+## The batch cut-off date lives in six places
 
 When the pre-order cut-off changes, all of these need updating — they are separate
-hand-entered strings, not one setting:
+hand-entered strings, not one setting. The current batch closes **28 Sep 2026, 23:30
+Toronto**, pushed back from 25 Sep on 26 Sep:
 
 | File | Field | Format |
 | --- | --- | --- |
-| `sections/header-group.json` | `announcement_jeGMHt.text` | `Close September 25` |
-| `templates/page.pre-order.json` | `ai_gen_block_41bf156_tpPC39.cutoff_date` | `25 SEP 2026` |
-| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `25 SEPTEMBER` |
+| `sections/header-group.json` | `announcement_jeGMHt.text` | `Close September 28 at 11:30 PM ET` |
+| `templates/index.json` | `custom_liquid_KL8FyB` → `assign deadline` | `2026-09-28T23:30:00-04:00` |
+| `templates/page.pre-order.json` | `ai_gen_block_41bf156_tpPC39.cutoff_date` | `28 SEP 2026` |
+| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `28 SEPTEMBER` |
 | `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | hidden block |
 | `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | hidden block |
+
+**Do the countdown first.** The other five are static strings that go stale quietly; the
+countdown flips itself to "This batch has closed" the second the deadline passes, so a
+missed date change is visible on the homepage within a minute. Its offset is `-04:00`
+through early November and `-05:00` after — the shop is `America/Toronto`, so always
+convert rather than writing a bare local time.
 
 The last two sit on `disabled: true` blocks, so customers do not see them — but they
 are kept in sync so re-enabling one never publishes a stale date. One of them shipped

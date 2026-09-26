@@ -90,7 +90,7 @@
           "settings": {
             "title": "Order Cut-Off Date Only Pre-Order",
             "date_label": "Cut-off Date:",
-            "cutoff_date": "25 SEP 2026",
+            "cutoff_date": "28 SEP 2026",
             "description": "<p>The cut-off date is the final day to place your order for this shipping cycle. Orders placed before this date will be included in the current batch and processed according to the schedule shown.</p><p>After the cut-off date has passed, new orders will move to the next available delivery schedule. Plants will then be prepared and shipped during the next shipping window.</p><p>Please note: Cut-off dates help us organize plant availability, preparation, and safe shipping timelines to ensure your plants arrive in the best condition.</p>",
             "desktop_width_percent": 100,
             "padding": 25,
