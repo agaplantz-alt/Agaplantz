@@ -67,8 +67,11 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
 1. `hero_main` — full-bleed image, gradient overlay, CTA "Shop" → ready-to-ship
 2. `marquee_trust` — scrolling trust strip, sage
 3. `custom_liquid_KL8FyB` — batch countdown, sand band. A `custom-liquid` section, not a
-   block: headline "This batch closes in", four Lora digits, the repricing line, a moss
-   CTA. The deadline is a hardcoded ISO string carrying the Toronto offset
+   block: a terracotta eyebrow ("3 more days added to this batch"), headline "This batch
+   closes in", four Lora digits, the repricing line, a moss CTA. **The eyebrow is a
+   hand-written string** — it says how many days this batch was extended by, so it has to
+   be re-counted or removed whenever the deadline moves, and it is hidden automatically
+   once the timer expires. The deadline is a hardcoded ISO string carrying the Toronto offset
    (`assign deadline = '2026-09-28T23:30:00-04:00'`) — one of the six places the cut-off
    date lives, and the only one that also needs the *time*. Classes are `aga-batch__*`;
    when the timer hits zero the JS rewrites the headline, the line and the CTA in place
