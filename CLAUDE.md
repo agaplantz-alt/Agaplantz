@@ -35,8 +35,10 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of the last session: MAIN was `AgaPlantz 2026 — batch pricing headline` = `150159360079`,
-Horizon **4.1.4**. Verify, don't assume.
+As of the last session: MAIN was `Updated copy of AgaPlantz 2026 — pre-order paused` = `167227654223`,
+Horizon **4.1.4**. Verify, don't assume. Note the name: Shopify prefixes **"Updated copy of"**
+automatically when the owner publishes a draft, so a theme called that is *our* work that
+they published, not something they hand-wrote.
 
 ### Uploading a large template
 
@@ -194,8 +196,16 @@ inventory). Taken before any permanent delete — do the same before the next on
 - **Shopify never upscales images.** Asking for `width=3840` from a 2096px source
   returns 2096px and the browser stretches it — that was the blurry hero. Source must
   be at least as wide as the largest srcset entry (3840).
-- **A Horizon version upgrade re-seeds default sections into JSON templates.** The
-  4.1.4 upgrade put a stock `main-collection-list` section back at the top of
+- **Publishing a theme re-seeds default sections into JSON templates — not just a
+  version upgrade.** It happened again on 29 Sep when the owner simply published a
+  draft: `main-collection-list` reappeared as `collection_list_Wfgh3m`, **first** in
+  `templates/list-collections.json`'s `order`, listing every collection alphabetically —
+  which quietly put `TISSUE CULTURE — PRE-ORDER` back on `/collections` a few hours
+  after it had been deliberately removed, along with the draft Begonias and the orphan
+  `IN STOCK ACCLIMATED PLANT`. The curated `shop_by_plant` / `shop_by_stage` sections
+  survived untouched underneath, settings intact. **Re-check `list-collections.json`
+  after every publish, not just after upgrades.** The original case: the 4.1.4 upgrade
+  put the same stock `main-collection-list` section back at the top of
   `templates/list-collections.json`, above the curated `shop_by_plant` /
   `shop_by_stage` sections, which survived untouched underneath. It renders every
   collection alphabetically — including `home-page` and image-less ones like Begonia,
@@ -300,7 +310,7 @@ restoring pre-orders is reversing this table and nothing else:
 | `templates/index.json` | `products_tc` — the "Tissue culture pre-orders" row | drop `disabled` |
 | `templates/index.json` | `tissue_culture` → `tc_cards` → `tc_pre` — the Pre-order card | drop `disabled` |
 | `sections/header-group.json` | `announcement_jeGMHt` (cut-off slide), `announcement_pricing` (batch pricing) | drop `disabled`, fix the hand-written date first |
-| `templates/list-collections.json` | `shop_by_stage.collection_list` — the `pre-order` tile | append `pre-order` back to the list |
+| `templates/list-collections.json` | `shop_by_stage.collection_list` — the `pre-order` tile, and the `main-collection-list` section that publishing re-seeds on top | append `pre-order` back to the list |
 | `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph` — the pre-order card's four strings | see below |
 | main menu (live data) | the `TISSUE CULTURE — PRE-ORDER` collection item | re-add pointing at `gid://shopify/Collection/314417578063` |
 
@@ -363,17 +373,22 @@ see them and renaming them would break links and SEO.
 ## The batch cut-off date lives in six places
 
 When the pre-order cut-off changes, all of these need updating — they are separate
-hand-entered strings, not one setting. The current batch closes **28 Sep 2026, 23:30
-Toronto**, pushed back from 25 Sep on 26 Sep:
+hand-entered strings, not one setting. **No date is set right now**: pre-orders are
+paused, so on 29 Sep every one of these was changed from `28 September` to a paused
+wording. There is no live cut-off to keep in sync until pre-orders reopen.
 
-| File | Field | Format |
+| File | Field | Now says |
 | --- | --- | --- |
-| `sections/header-group.json` | `announcement_jeGMHt.text` | `Close September 28 at 11:30 PM ET` |
-| `templates/index.json` | `custom_liquid_KL8FyB` → `assign deadline` | `2026-09-28T23:30:00-04:00` |
-| `templates/page.pre-order.json` | `ai_gen_block_41bf156_tpPC39.cutoff_date` | `28 SEP 2026` |
-| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `28 SEPTEMBER` |
-| `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | hidden block |
-| `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | hidden block |
+| `sections/header-group.json` | `announcement_jeGMHt.text` | `Tissue Culture Pre-Orders Are Paused • …` (slide disabled) |
+| `templates/index.json` | `custom_liquid_KL8FyB` → `assign deadline` | `2026-09-28T23:30:00-04:00` (section disabled, so it never renders) |
+| `templates/page.pre-order.json` | `ai_gen_block_41bf156_tpPC39.cutoff_date` | `PAUSED`, with `date_label` changed to `Status:` |
+| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `PAUSED` |
+| `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | `Pre-orders are paused.` (hidden block) |
+| `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | `Pre-orders are paused.` (hidden block) |
+
+Only two of the six were ever visible while paused: the Pre Order Details page card and
+the product-page card. The rest sit on disabled blocks and were changed anyway, because
+the owner reads them in the theme editor and a stale date there looks like a live one.
 
 **Do the countdown first.** The other five are static strings that go stale quietly; the
 countdown flips itself to "This batch has closed" the second the deadline passes, so a
