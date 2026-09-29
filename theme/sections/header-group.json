@@ -77,7 +77,8 @@
             "case": "none",
             "text_color": ""
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         },
         "announcement_pricing": {
           "type": "_announcement",
@@ -91,7 +92,8 @@
             "case": "none",
             "text_color": ""
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         },
         "announcement_JRWntd": {
           "type": "_announcement",

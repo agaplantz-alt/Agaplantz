@@ -275,7 +275,8 @@
         "section_width": "page-width",
         "padding-block-start": 0,
         "padding-block-end": 0
-      }
+      },
+      "disabled": true
     },
     "collections_genus": {
       "type": "collection-list",
@@ -835,7 +836,8 @@
                 "h",
                 "t",
                 "b"
-              ]
+              ],
+              "disabled": true
             }
           },
           "block_order": [
@@ -1052,7 +1054,8 @@
         "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
+      },
+      "disabled": true
     },
     "products_sale": {
       "type": "stage-products",
