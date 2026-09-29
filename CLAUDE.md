@@ -281,43 +281,80 @@ its enum values are not readable from the theme files, so it was not changed by 
 
 ## Pre-orders are paused (29 Sep 2026)
 
-The owner stopped taking pre-orders and asked for every pre-order mention to be hidden
-on the homepage — **hidden, not deleted**: "we will bring that back later". The store is
-selling ready-to-ship tissue culture, acclimated plants and mature specimens only.
+The owner stopped taking pre-orders. The line they drew, in their words: *"we are just
+hiding the main main parts, we are not completely cutting the pre-orders off — people
+that have ordered, if they need our information they can go look it up. Right now we are
+not selling it, so we just want to remove it from the place where we sell."*
 
-Everything below is a `disabled: true` flag or a blanked setting, and every id is still
-in its `order` / `block_order` list, so bringing pre-orders back is flipping these five
-things and nothing else:
+So the rule is **selling surfaces go, information surfaces stay.** `/pages/pre-order` is
+still published and still linked from both the main menu and the footer, deliberately —
+someone with a pre-order in flight has to be able to read what happens next. Do not
+unpublish that page or drop those two links.
 
-| File | What | How to restore |
+Everything removed is a `disabled: true` flag, a blanked setting or a list entry, so
+restoring pre-orders is reversing this table and nothing else:
+
+| File / place | What was removed | How to restore |
 | --- | --- | --- |
-| `templates/index.json` | `custom_liquid_KL8FyB` — the batch countdown | drop `disabled`, set a new deadline and re-count the "3 more days" eyebrow |
+| `templates/index.json` | `custom_liquid_KL8FyB` — the batch countdown | drop `disabled`, set a new deadline, re-count the "3 more days" eyebrow |
 | `templates/index.json` | `products_tc` — the "Tissue culture pre-orders" row | drop `disabled` |
 | `templates/index.json` | `tissue_culture` → `tc_cards` → `tc_pre` — the Pre-order card | drop `disabled` |
-| `sections/header-group.json` | `announcement_jeGMHt` (cut-off slide) and `announcement_pricing` (batch pricing, links to `/pages/pre-order`) | drop `disabled`, and fix the date first — it is hand-written |
-| `sections/footer-group.json` | `ai_gen_block_651bd33_ntWJBH.quick_link_5_text` / `_url` | restore `Pre-Orders` / `shopify://pages/pre-order` |
+| `sections/header-group.json` | `announcement_jeGMHt` (cut-off slide), `announcement_pricing` (batch pricing) | drop `disabled`, fix the hand-written date first |
+| `templates/list-collections.json` | `shop_by_stage.collection_list` — the `pre-order` tile | append `pre-order` back to the list |
+| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph` — the pre-order card's four strings | see below |
+| main menu (live data) | the `TISSUE CULTURE — PRE-ORDER` collection item | re-add pointing at `gid://shopify/Collection/314417578063` |
 
-With `tc_pre` hidden, the surviving "Ready to ship" card is `width: fill` in a row group,
-so it stretches the full width instead of sitting at half. That reads fine as a single
-CTA panel; if pre-orders stay off for long, the honest second card is Acclimated.
+**Kept on purpose:** the footer quick link (`quick_link_5_text` = `Pre-Order Details` →
+`shopify://pages/pre-order`), the `Pre Order Details ` main-menu item (note the trailing
+space in its title, which is theirs), and the pre-order half of
+`ai_gen_block_910fa12_UG8xK3` on `templates/product.json` — that one reads "Click this
+page for more information" and shares a block with the ready-to-ship dispatch
+explanation, so hiding it would cost real information.
 
-**The homepage is clean but the catalogue is not.** Hiding these only changes what the
-homepage *says*. Still live as of the pause, and none of it touched:
+### The product-page card could not simply be hidden
 
-- the `pre-order` collection still holds **310 products**, and `/collections/pre-order`
-  is still reachable and indexed
-- every product's `Tissue Culture (Pre-Order)` variant is still in stock and buyable
-- `templates/product.tissue-culture.json` still renders the pre-order block on ~300
-  product pages, carrying the **stale** `28 SEPTEMBER` cut-off
-- the main menu still carries `TISSUE CULTURE — PRE-ORDER` and `Pre Order Details`
-- `/pages/pre-order` is still published
+`blocks/ai_gen_block_c6aca6a.liquid` renders three cards — acclimation dome, pre-order,
+shipping — and the middle `<article>` has **no `{% if %}` guard**. Blanking its settings
+leaves an empty white card with an empty green date chip, and disabling the whole block
+would take the free-kit and acclimation-guide links with it. So the card's four strings
+were rewritten in place instead:
+
+| Setting | Was | Now |
+| --- | --- | --- |
+| `preorder_title` | `Pre-order` | `Pre-orders are paused` |
+| `preorder_text` | `Order by the date below to be in this batch.` | `We're not taking pre-orders at the moment. Everything listed here is ready to ship.` |
+| `preorder_date` | `28 SEPTEMBER` | `PAUSED` |
+| `preorder_note` | `Shipped after arrival and inspection. Tracking is provided the moment it leaves. Full refund if we can't deliver.` | `Already placed a pre-order? It is unaffected — see the Pre-Order Details page for timings and what happens next.` |
+
+Leaving the old copy was not an option: it said "Order by 28 SEPTEMBER" on ~300 product
+pages on 29 Sep, a sell prompt with a date that had already passed. If the card should
+vanish entirely rather than say this, the block file needs one `{% if
+block.settings.preorder_title != blank %}` around that `<article>` and its grid changed
+from `repeat(3,…)` to `repeat(auto-fit, minmax(240px,1fr))`.
+
+### What is still live, and why
+
+**A pre-order can still be bought.** Every plant still carries a
+`Tissue Culture (Pre-Order)` variant, in stock and selectable on its product page, and
+the `pre-order` collection still holds ~310 products at `/collections/pre-order` — no
+longer linked from anywhere, but reachable and indexed. Nothing on the storefront now
+*advertises* pre-orders, but nothing stops a checkout either. Closing that gap means
+zeroing those variants' inventory (a ~300-product data change — take a
+`catalog-backup/` export first) or unpublishing the collection. The owner has not asked
+for either; "we are just hiding the main main parts" reads as deliberately not going
+that far.
+
+Also untouched: ~300 product descriptions open with "Available as a tissue-culture
+pre-order plantlet or as a rooted, acclimated plant ready to ship" (the owner's standing
+rule is no description rewrites without approval), and the shipping line still mentions
+the *Arrives Before Pre-Order* checkout option, which existing mixed orders still use.
 
 **The menu is the one thing that cannot go on a draft.** `menuUpdate` writes to the live
-store immediately, so removing those two items takes effect before the owner has reviewed
-anything else — do it in the same breath as publishing, not before.
+store immediately, and it replaces the whole menu — read every item's `id`, `type` and
+`resourceId` first and send them all back, or items silently change type or disappear.
 
-Worth knowing: the remaining product rows were checked variant by variant and **none of
-them surfaces a pre-order variant**. `on-sale` and `ready-to-ship` are both scoped by
+Worth knowing: the surviving homepage product rows were checked variant by variant and
+**none surfaces a pre-order variant**. `on-sale` and `ready-to-ship` are both scoped by
 `VARIANT_INVENTORY > 0` per variant, and `stage-products.liquid` picks the row's own
 variant, so the sale row links Ready-to-Ship and Acclimated variants even on products
 whose *handle* still ends `-pre-order`. Those handles are legacy names; customers never
