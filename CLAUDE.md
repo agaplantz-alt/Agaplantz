@@ -80,7 +80,9 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
    date lives, and the only one that also needs the *time*. Classes are `aga-batch__*`;
    when the timer hits zero the JS rewrites the headline, the line and the CTA in place
    and hides the digits, so an expired batch never reads as a live one.
-4. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium tiles
+4. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium / **Begonia**
+   tiles. `max_collections` was `4` and silently drops the fifth handle — it is now 5,
+   and `columns` went 4 → 5 so the row stays one line instead of 4 plus an orphan.
 5. `tissue_culture` — explainer; intro on top, two cards side-by-side (also on mobile),
    then `tc_guarantee`, a full-width strip carrying the 30-Day Plant Guarantee. It sits
    *below* the two stage cards deliberately: the reassurance lands after the customer has
@@ -153,7 +155,7 @@ to their own products; see **Mature specimen listings** below.
 | Handle | Title | Count |
 | --- | --- | --- |
 | `philodendron` / `alocasia` / `monstera` / `anthurium-1` | genus, rule `TITLE CONTAINS <genus>` | 63 / 123 / 36 / 38 live |
-| `begonia` | BEGONIA | 10 (all DRAFT — not surfaced anywhere) |
+| `begonia` | BEGONIA | 29 live — **a fifth genus since 1 Oct**, see below |
 | `pre-order` | TISSUE CULTURE — PRE-ORDER | 283 |
 | `ready-to-ship-tissue-culture` | TISSUE CULTURE — READY TO SHIP | 19 |
 | `ready-to-ship` | READY TO SHIP | 36 |
@@ -163,7 +165,7 @@ to their own products; see **Mature specimen listings** below.
 `/collections` is a curated three-section page (`templates/list-collections.json`), in
 this order, set by the owner on 1 Oct:
 
-1. `shop_by_plant` — the four genus tiles (cream band)
+1. `shop_by_plant` — the five genus tiles, Begonia included (cream band, `columns: 5`)
 2. `shop_by_stage` — RTS, RTS tissue culture, acclimated, mature, pre-order (sand band)
 3. `shop_by_sale` — **a product row, not tiles.** It is a `stage-products` section (the
    same one the homepage rows use) pointed at `on-sale` with `sale_only: true` and a
@@ -181,6 +183,33 @@ collection. Publishing re-seeds it; see the Horizon gotchas.
 `catalog-backup/products-full.jsonl` is a full pre-deletion export of all 309 products
 (descriptions, SEO, media, option value IDs, variants with SKU/price/compare-at/
 inventory). Taken before any permanent delete — do the same before the next one.
+
+## Begonia — the fifth genus (1 Oct 2026)
+
+The owner added Begonia as a genus alongside Philodendron, Alocasia, Monstera and
+Anthurium. It is wired in three places: the homepage `collections_genus` row, the
+`shop_by_plant` row on `/collections`, and a `BEGONIA` item in the main menu's **Plants
+collections** submenu (alphabetical, after ANTHURIUM; `gid://shopify/Collection/317272391759`).
+
+The products are **real and live** — 29 in the collection, all ACTIVE, 100 units each,
+collection rule `TITLE CONTAINS Begonia` + `VARIANT_INVENTORY > 0` like the other genus.
+The old note that they were 10 DRAFT products is out of date.
+
+**But there is not a single Begonia photograph in the store.** Checked on 1 Oct:
+
+- all 29 products have `mediaCount: 0` — not one image between them
+- the `begonia` collection's own `image` is `null`
+- `files(query: "begonia")` returns **nothing**, so there is nothing to attach either
+
+So the genus tile falls back to Shopify's grey placeholder, and
+`/collections/begonia` renders 28 product cards with zero real images and 40
+placeholder references. Adding one collection image fixes the *tile* in both rows
+immediately — that is the cheapest single win and it needs no code. The collection page
+stays a wall of placeholders until the products themselves get photos.
+
+**Also publication-starved:** the `begonia` collection is published to **2** channels
+(Online Store, TikTok) where `philodendron` is on **7**. So Begonia is invisible to the
+Google, Meta and Microsoft feeds. `publishablePublish` fixes it; nobody has asked yet.
 
 ## Horizon gotchas, learned the hard way
 
@@ -836,7 +865,8 @@ Pink Princess Marble Galaxy (19), Golden Dragon Variegated (19).
 Philodendron Florida Beauty Variegated had the same problem and *was* published,
 because it was breaking the Mature Specimens row.
 
-- **Begonia** — 10 products, all DRAFT. Add to `/collections` once published.
+- **Begonia has no photographs at all** — see the section below. This is the one thing
+  holding the new genus back.
 - **Four naming near-matches** never eyeballed: Obliqua Peru vs Peruvian · Nairobi
   Nights Variegated vs A Grade · Dragon Scale Albo vs Albo Ultra · Thai Constellation
   vs Pro.
