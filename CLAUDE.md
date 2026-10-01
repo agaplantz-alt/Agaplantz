@@ -87,12 +87,14 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
    then `tc_guarantee`, a full-width strip carrying the 30-Day Plant Guarantee. It sits
    *below* the two stage cards deliberately: the reassurance lands after the customer has
    picked a stage, and the explainer and both CTAs are kept rather than replaced.
-6. `products_tc` — Tissue culture pre-orders (`pre-order`, 283 products)
-7. `products_sale` — Collector favourites on sale (`on-sale`), sand band
-8. `products_rts` — Ready to ship (`ready-to-ship`)
-9. `products_acclimated` — Mature specimens (`mature-specimens`), sand band
-10. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
-11. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
+6. `products_featured` — **the only product row on the homepage**, sand band. A
+   `stage-products` section on the manual `featured` collection; see below.
+7. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
+8. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
+
+**Disabled, still in `order` so they can come back:** `products_tc` (pre-order),
+`products_sale` (on-sale), `products_rts` (ready-to-ship), `products_acclimated`
+(mature-specimens). See **One featured row** below for why.
 
 There is **no `newsletter` section on the homepage**: it duplicated the email signup
 that Horizon's footer already renders on every page, so the homepage one was removed
@@ -152,21 +154,32 @@ to their own products; see **Mature specimen listings** below.
 
 ### Collections
 
+Counts as of 1 Oct 2026 — they move a lot, re-read rather than trusting these:
+
 | Handle | Title | Count |
 | --- | --- | --- |
-| `philodendron` / `alocasia` / `monstera` / `anthurium-1` | genus, rule `TITLE CONTAINS <genus>` | 63 / 123 / 36 / 38 live |
-| `begonia` | BEGONIA | 29 live — **a fifth genus since 1 Oct**, see below |
-| `pre-order` | TISSUE CULTURE — PRE-ORDER | 283 |
-| `ready-to-ship-tissue-culture` | TISSUE CULTURE — READY TO SHIP | 19 |
-| `ready-to-ship` | READY TO SHIP | 36 |
-| `mature-specimens` | MATURE SPECIMENS | 7 |
-| `on-sale` | ON SALE (rule: `IS_PRICE_REDUCED IS_SET`) | 62 |
+| `philodendron` / `alocasia` / `monstera` / `anthurium-1` | genus, rule `TITLE CONTAINS <genus>` | 186 / 236 / 48 / 72 |
+| `begonia` | BEGONIA | 29 — **a fifth genus since 1 Oct**, see below |
+| `pre-order` | TISSUE CULTURE — PRE-ORDER | 552 |
+| `ready-to-ship-tissue-culture` | TISSUE CULTURE — READY TO SHIP | 12 |
+| `mature-specimens` | MATURE SPECIMENS | 4 |
+| `acclimated-plants` | ACCLIMATED PLANTS | 13 |
+| `on-sale` | ON SALE (rule: `IS_PRICE_REDUCED IS_SET`) | 31 |
+| `featured` | FEATURED — **manual**, hand-picked, drives the homepage row | 8 |
+
+**`ready-to-ship` no longer exists.** The owner deleted it some time before 1 Oct, and
+`collectionByHandle(handle: "ready-to-ship")` now returns `null`. It had been wired into
+two places and both broke silently: the homepage `products_rts` row rendered a heading
+with **zero cards**, and the first tile of `shop_by_stage` on `/collections` pointed at a
+dead handle. Both are fixed. **A deleted collection does not announce itself** — if a row
+or a tile goes empty, check the collection still exists before debugging the theme.
 
 `/collections` is a curated three-section page (`templates/list-collections.json`), in
 this order, set by the owner on 1 Oct:
 
 1. `shop_by_plant` — the five genus tiles, Begonia included (cream band, `columns: 5`)
-2. `shop_by_stage` — RTS, RTS tissue culture, acclimated, mature, pre-order (sand band)
+2. `shop_by_stage` — RTS tissue culture, acclimated, mature, pre-order (sand band).
+   The `ready-to-ship` tile was dropped on 1 Oct: that collection no longer exists.
 3. `shop_by_sale` — **a product row, not tiles.** It is a `stage-products` section (the
    same one the homepage rows use) pointed at `on-sale` with `sale_only: true` and a
    blank `stage_match`, so each card shows the discounted variant's own photo and price.
@@ -210,6 +223,47 @@ stays a wall of placeholders until the products themselves get photos.
 **Also publication-starved:** the `begonia` collection is published to **2** channels
 (Online Store, TikTok) where `philodendron` is on **7**. So Begonia is invisible to the
 Google, Meta and Microsoft feeds. `publishablePublish` fixes it; nobody has asked yet.
+
+## One featured row (1 Oct 2026)
+
+The owner's complaint: *"when we scroll down it's kind of like showing same plants …
+there is a pre-order then ready to ship then on sale which is kind of containing the
+same plants … either we can feature some plants on home page."*
+
+**They were right, though not for the reason it looked like.** Measured on the live
+homepage: four rows, 20 cards rendered, and only **one** plant literally repeated
+(Devil Monster, in Pre-orders and On sale). The sameness was not duplication, it was
+that the rows are **four filters over one pool** — 15 of the 20 cards were
+`-pre-order` handles with the same kind of plantlet-on-white photo. Plus the Ready to
+ship row was rendering nothing at all, and Mature specimens was down to 4 products.
+Four rows of near-identical cards in a run turns a home page into a catalogue.
+
+So all four were switched off and replaced by one row, `products_featured`, on a
+**manual** collection:
+
+- `featured` / **FEATURED**, `gid://shopify/Collection/491312709711`, `sortOrder: MANUAL`,
+  published to Online Store + Shop
+- the section has `stage_match` blank and **`allow_fallback: true`**, so each card shows
+  that plant's first in-stock variant — which is the point: the row mixes stages
+- `show_view_all: false` — a curated row of 8 does not need a "view all" into a
+  collection of exactly 8
+
+**The owner curates it by dragging products in and out in admin**, no code and no theme
+edit. The eight seeded on 1 Oct were chosen for spread, not merchandising insight, and
+are meant to be replaced: Devil Monster mature ($2,466), Alocasia Black Velvet Pink,
+Anthurium Ace of Spades, Alocasia Cuprea Red Secret Super Pink, Alocasia Bambino Pink,
+Philodendron Pink Princess Marble Galaxy, Philodendron Florida Beauty Variegated,
+Philodendron Tortum ($18). Four genus, $18 → $2,466, and deliberately **not all
+pre-order** — three carry an acclimated or mature variant, which is exactly what the old
+rows could not do.
+
+`collectionCreate` accepts a `products` argument and **silently ignores it** — the
+collection came back with `productsCount: 0`. Use `collectionAddProducts` afterwards.
+Its response count is also stale; re-query the collection to confirm.
+
+If the sale row is wanted back it is one `disabled` flag on `products_sale`. The
+`/collections` page still carries a full On sale product row, so the discount story is
+not lost.
 
 ## Horizon gotchas, learned the hard way
 

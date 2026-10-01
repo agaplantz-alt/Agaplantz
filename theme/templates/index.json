@@ -1053,7 +1053,8 @@
         "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
+      },
+      "disabled": true
     },
     "products_sale": {
       "type": "stage-products",
@@ -1070,7 +1071,8 @@
         "background_color": "#f2ebde",
         "padding-block-start": 64,
         "padding-block-end": 64
-      }
+      },
+      "disabled": true
     },
     "products_rts": {
       "type": "stage-products",
@@ -1087,7 +1089,8 @@
         "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 56
-      }
+      },
+      "disabled": true
     },
     "products_acclimated": {
       "type": "stage-products",
@@ -1104,7 +1107,8 @@
         "background_color": "#f2ebde",
         "padding-block-start": 64,
         "padding-block-end": 64
-      }
+      },
+      "disabled": true
     },
     "why_agaplantz": {
       "type": "section",
@@ -1787,6 +1791,23 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "products_featured": {
+      "type": "stage-products",
+      "settings": {
+        "collection": "featured",
+        "heading": "Featured plants",
+        "stage_match": "",
+        "sale_only": false,
+        "allow_fallback": true,
+        "show_view_all": false,
+        "view_all_label": "View all",
+        "max_products": 8,
+        "columns": 4,
+        "background_color": "#f2ebde",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
     }
   },
   "order": [
@@ -1795,6 +1816,7 @@
     "custom_liquid_KL8FyB",
     "collections_genus",
     "tissue_culture",
+    "products_featured",
     "products_tc",
     "products_sale",
     "products_rts",
