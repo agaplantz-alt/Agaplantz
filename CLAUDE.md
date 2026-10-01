@@ -35,7 +35,8 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of the last session: MAIN was `Updated copy of AgaPlantz 2026 — pre-order paused` = `167227654223`,
+As of the last session: MAIN was `Updated copy of AgaPlantz 2026 — pre-order paused` = `167227654223`
+(the 29 Sep "paused wording" draft was never published, so its fixes were re-applied on top),
 Horizon **4.1.4**. Verify, don't assume. Note the name: Shopify prefixes **"Updated copy of"**
 automatically when the owner publishes a draft, so a theme called that is *our* work that
 they published, not something they hand-wrote.
@@ -69,12 +70,13 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
 1. `hero_main` — full-bleed image, gradient overlay, CTA "Shop" → ready-to-ship
 2. `marquee_trust` — scrolling trust strip, sage
 3. `custom_liquid_KL8FyB` — batch countdown, sand band. A `custom-liquid` section, not a
-   block: a terracotta eyebrow ("3 more days added to this batch"), headline "This batch
+   block: a terracotta eyebrow ("Pre-orders are open again"), headline "This batch
    closes in", four Lora digits, the repricing line, a moss CTA. **The eyebrow is a
-   hand-written string** — it says how many days this batch was extended by, so it has to
-   be re-counted or removed whenever the deadline moves, and it is hidden automatically
+   hand-written string** — it has no logic behind it. It has said "3 more days
+   added to this batch" and now says "Pre-orders are open again", so re-read it whenever
+   the deadline moves or it will state something that is no longer true. It hides itself
    once the timer expires. The deadline is a hardcoded ISO string carrying the Toronto offset
-   (`assign deadline = '2026-09-28T23:30:00-04:00'`) — one of the six places the cut-off
+   (`assign deadline = '2026-10-31T23:59:59-04:00'`) — one of the six places the cut-off
    date lives, and the only one that also needs the *time*. Classes are `aga-batch__*`;
    when the timer hits zero the JS rewrites the headline, the line and the CTA in place
    and hides the digits, so an expired batch never reads as a live one.
@@ -158,10 +160,20 @@ to their own products; see **Mature specimen listings** below.
 | `mature-specimens` | MATURE SPECIMENS | 7 |
 | `on-sale` | ON SALE (rule: `IS_PRICE_REDUCED IS_SET`) | 62 |
 
-`/collections` is a curated two-group page (`templates/list-collections.json`):
-**Shop by plant** (four genus) and **Shop by stage** (RTS, RTS tissue culture,
-mature, pre-order). Stock `main-collection-list` was replaced because the flat list
-mixed genus and stage and served no browsing purpose.
+`/collections` is a curated three-section page (`templates/list-collections.json`), in
+this order, set by the owner on 1 Oct:
+
+1. `shop_by_plant` — the four genus tiles (cream band)
+2. `shop_by_stage` — RTS, RTS tissue culture, acclimated, mature, pre-order (sand band)
+3. `shop_by_sale` — **a product row, not tiles.** It is a `stage-products` section (the
+   same one the homepage rows use) pointed at `on-sale` with `sale_only: true` and a
+   blank `stage_match`, so each card shows the discounted variant's own photo and price.
+   A single ON SALE tile would have been one lonely square; a row of eight real plants
+   is worth the space.
+
+Stock `main-collection-list` is deliberately **not** in `order` — it mixes genus and
+stage alphabetically and drags in the draft Begonias and the orphan `home-page`
+collection. Publishing re-seeds it; see the Horizon gotchas.
 
 `ACCLIMATED PLANTS` was deleted; `/collections/acclimated-plants` 301s to
 `/collections/ready-to-ship`.
@@ -289,106 +301,92 @@ why they render nothing on an unreviewed plant. That setting is a dropdown on th
 block in the theme editor; switching it is the native alternative to this section, but
 its enum values are not readable from the theme files, so it was not changed by API.
 
-## Pre-orders are paused (29 Sep 2026)
+## Pre-orders: paused 29 Sep, resumed 1 Oct 2026
 
-The owner stopped taking pre-orders. The line they drew, in their words: *"we are just
-hiding the main main parts, we are not completely cutting the pre-orders off — people
-that have ordered, if they need our information they can go look it up. Right now we are
-not selling it, so we just want to remove it from the place where we sell."*
+Pre-orders were switched off for two days and are **back on**, with a **31 Oct 2026**
+cut-off. Everything the pause touched has been reversed; this section is kept because
+the pause will happen again between batches and the list is the recipe.
 
-So the rule is **selling surfaces go, information surfaces stay.** `/pages/pre-order` is
-still published and still linked from both the main menu and the footer, deliberately —
-someone with a pre-order in flight has to be able to read what happens next. Do not
-unpublish that page or drop those two links.
+**How the pause was done, and how to redo it.** Every item is a `disabled: true` flag, a
+blanked setting or a list entry — nothing was deleted, and every id stayed in its
+`order` / `block_order` list:
 
-Everything removed is a `disabled: true` flag, a blanked setting or a list entry, so
-restoring pre-orders is reversing this table and nothing else:
-
-| File / place | What was removed | How to restore |
+| File / place | What to switch off | Back on |
 | --- | --- | --- |
-| `templates/index.json` | `custom_liquid_KL8FyB` — the batch countdown | drop `disabled`, set a new deadline, re-count the "3 more days" eyebrow |
+| `templates/index.json` | `custom_liquid_KL8FyB` — the batch countdown | drop `disabled`, set the new deadline, re-read the eyebrow |
 | `templates/index.json` | `products_tc` — the "Tissue culture pre-orders" row | drop `disabled` |
 | `templates/index.json` | `tissue_culture` → `tc_cards` → `tc_pre` — the Pre-order card | drop `disabled` |
-| `sections/header-group.json` | `announcement_jeGMHt` (cut-off slide), `announcement_pricing` (batch pricing) | drop `disabled`, fix the hand-written date first |
-| `templates/list-collections.json` | `shop_by_stage.collection_list` — the `pre-order` tile, and the `main-collection-list` section that publishing re-seeds on top | append `pre-order` back to the list |
-| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph` — the pre-order card's four strings | see below |
-| main menu (live data) | the `TISSUE CULTURE — PRE-ORDER` collection item | re-add pointing at `gid://shopify/Collection/314417578063` |
+| `sections/header-group.json` | `announcement_jeGMHt` (cut-off slide), `announcement_pricing` (batch pricing) | drop `disabled`, set the date first |
+| `templates/list-collections.json` | the `pre-order` entry in `shop_by_stage.collection_list` | append it back |
+| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph`'s four pre-order strings | restore them with the new date |
+| main menu (live data) | the `TISSUE CULTURE — PRE-ORDER` item | re-add with `resourceId: gid://shopify/Collection/314417578063` |
 
-**Kept on purpose:** the footer quick link (`quick_link_5_text` = `Pre-Order Details` →
-`shopify://pages/pre-order`), the `Pre Order Details ` main-menu item (note the trailing
-space in its title, which is theirs), and the pre-order half of
-`ai_gen_block_910fa12_UG8xK3` on `templates/product.json` — that one reads "Click this
-page for more information" and shares a block with the ready-to-ship dispatch
-explanation, so hiding it would cost real information.
+The line the owner drew, in their words: *"we are just hiding the main main parts, we are
+not completely cutting the pre-orders off — people that have ordered, if they need our
+information they can go look it up. Right now we are not selling it, so we just want to
+remove it from the place where we sell."* So: **selling surfaces go, information surfaces
+stay.** `/pages/pre-order` stayed published and stayed linked from the main menu and the
+footer throughout. Do not unpublish that page or drop those two links when pausing.
 
-### The product-page card could not simply be hidden
+### The product-page card cannot simply be hidden
 
 `blocks/ai_gen_block_c6aca6a.liquid` renders three cards — acclimation dome, pre-order,
 shipping — and the middle `<article>` has **no `{% if %}` guard**. Blanking its settings
 leaves an empty white card with an empty green date chip, and disabling the whole block
-would take the free-kit and acclimation-guide links with it. So the card's four strings
-were rewritten in place instead:
+would take the free-kit and acclimation-guide links with it. So during the pause its four
+strings were rewritten in place ("Pre-orders are paused" / "PAUSED" / …) rather than
+hidden, and restored on resume. If it should ever vanish outright, the block file needs
+one `{% if block.settings.preorder_title != blank %}` around that `<article>` and its grid
+changed from `repeat(3,…)` to `repeat(auto-fit, minmax(240px,1fr))`.
 
-| Setting | Was | Now |
-| --- | --- | --- |
-| `preorder_title` | `Pre-order` | `Pre-orders are paused` |
-| `preorder_text` | `Order by the date below to be in this batch.` | `We're not taking pre-orders at the moment. Everything listed here is ready to ship.` |
-| `preorder_date` | `28 SEPTEMBER` | `PAUSED` |
-| `preorder_note` | `Shipped after arrival and inspection. Tracking is provided the moment it leaves. Full refund if we can't deliver.` | `Already placed a pre-order? It is unaffected — see the Pre-Order Details page for timings and what happens next.` |
+### What a pause does *not* do
 
-Leaving the old copy was not an option: it said "Order by 28 SEPTEMBER" on ~300 product
-pages on 29 Sep, a sell prompt with a date that had already passed. If the card should
-vanish entirely rather than say this, the block file needs one `{% if
-block.settings.preorder_title != blank %}` around that `<article>` and its grid changed
-from `repeat(3,…)` to `repeat(auto-fit, minmax(240px,1fr))`.
+**A pre-order stays buyable.** Pausing only changes what the storefront *says*. Every
+plant keeps its in-stock, selectable `Tissue Culture (Pre-Order)` variant, and the
+`pre-order` collection keeps ~310 products at `/collections/pre-order` — unlinked during
+the pause, but reachable and indexed. Nothing advertises pre-orders, nothing blocks a
+checkout. Actually closing that gap means zeroing those variants' inventory (a
+~300-product data change — take a `catalog-backup/` export first) or unpublishing the
+collection. The owner has not asked for either, and "we are just hiding the main main
+parts" reads as deliberately not going that far.
 
-### What is still live, and why
-
-**A pre-order can still be bought.** Every plant still carries a
-`Tissue Culture (Pre-Order)` variant, in stock and selectable on its product page, and
-the `pre-order` collection still holds ~310 products at `/collections/pre-order` — no
-longer linked from anywhere, but reachable and indexed. Nothing on the storefront now
-*advertises* pre-orders, but nothing stops a checkout either. Closing that gap means
-zeroing those variants' inventory (a ~300-product data change — take a
-`catalog-backup/` export first) or unpublishing the collection. The owner has not asked
-for either; "we are just hiding the main main parts" reads as deliberately not going
-that far.
-
-Also untouched: ~300 product descriptions open with "Available as a tissue-culture
-pre-order plantlet or as a rooted, acclimated plant ready to ship" (the owner's standing
-rule is no description rewrites without approval), and the shipping line still mentions
-the *Arrives Before Pre-Order* checkout option, which existing mixed orders still use.
+Also never touched: ~300 product descriptions open with "Available as a tissue-culture
+pre-order plantlet or as a rooted, acclimated plant ready to ship" (standing rule: no
+description rewrites without approval), and the shipping line mentions the *Arrives
+Before Pre-Order* checkout option, which mixed orders still use.
 
 **The menu is the one thing that cannot go on a draft.** `menuUpdate` writes to the live
 store immediately, and it replaces the whole menu — read every item's `id`, `type` and
 `resourceId` first and send them all back, or items silently change type or disappear.
+Adding an item back is the same call with one entry that has no `id`.
 
-Worth knowing: the surviving homepage product rows were checked variant by variant and
-**none surfaces a pre-order variant**. `on-sale` and `ready-to-ship` are both scoped by
-`VARIANT_INVENTORY > 0` per variant, and `stage-products.liquid` picks the row's own
-variant, so the sale row links Ready-to-Ship and Acclimated variants even on products
-whose *handle* still ends `-pre-order`. Those handles are legacy names; customers never
-see them and renaming them would break links and SEO.
+Worth knowing: the homepage product rows were checked variant by variant during the
+pause and **none surfaced a pre-order variant**. `on-sale` and `ready-to-ship` are both
+scoped by `VARIANT_INVENTORY > 0` per variant, and `stage-products.liquid` picks the
+row's own variant, so the sale row links Ready-to-Ship and Acclimated variants even on
+products whose *handle* still ends `-pre-order`. Those handles are legacy names;
+customers never see them and renaming them would break links and SEO.
 
 ## The batch cut-off date lives in six places
 
 When the pre-order cut-off changes, all of these need updating — they are separate
-hand-entered strings, not one setting. **No date is set right now**: pre-orders are
-paused, so on 29 Sep every one of these was changed from `28 September` to a paused
-wording. There is no live cut-off to keep in sync until pre-orders reopen.
+hand-entered strings, not one setting. The current batch closes **31 Oct 2026, 23:59
+Toronto**. The owner gave the date only, not a time; end of day was assumed, unlike the
+28 Sep batch where they said 11:30 pm explicitly. 31 Oct is still **EDT (`-04:00`)** —
+Toronto flips to EST at 02:00 on 1 Nov, one day later.
 
 | File | Field | Now says |
 | --- | --- | --- |
-| `sections/header-group.json` | `announcement_jeGMHt.text` | `Tissue Culture Pre-Orders Are Paused • …` (slide disabled) |
-| `templates/index.json` | `custom_liquid_KL8FyB` → `assign deadline` | `2026-09-28T23:30:00-04:00` (section disabled, so it never renders) |
-| `templates/page.pre-order.json` | `ai_gen_block_41bf156_tpPC39.cutoff_date` | `PAUSED`, with `date_label` changed to `Status:` |
-| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `PAUSED` |
-| `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | `Pre-orders are paused.` (hidden block) |
-| `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | `Pre-orders are paused.` (hidden block) |
+| `sections/header-group.json` | `announcement_jeGMHt.text` | `Tissue Culture Pre-Orders Close October 31 • …` |
+| `templates/index.json` | `custom_liquid_KL8FyB` → `assign deadline` | `2026-10-31T23:59:59-04:00` |
+| `templates/page.pre-order.json` | `ai_gen_block_41bf156_tpPC39.cutoff_date` | `31 OCT 2026` (`date_label` back to `Cut-off Date:`) |
+| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `31 OCTOBER` |
+| `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | `Order by [31 OCTOBER]…` (hidden block) |
+| `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | `Order by [31 OCTOBER]…` (hidden block) |
 
-Only two of the six were ever visible while paused: the Pre Order Details page card and
-the product-page card. The rest sit on disabled blocks and were changed anyway, because
-the owner reads them in the theme editor and a stale date there looks like a live one.
+Two of the six are visible: the Pre Order Details page card and the product-page card.
+The other four sit on disabled blocks and are changed anyway, because the owner reads
+them in the theme editor and a stale date there looks like a live one.
 
 **Do the countdown first.** The other five are static strings that go stale quietly; the
 countdown flips itself to "This batch has closed" the second the deadline passes, so a

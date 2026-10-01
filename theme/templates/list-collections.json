@@ -310,7 +310,8 @@
           "ready-to-ship",
           "ready-to-ship-tissue-culture",
           "acclimated-plants",
-          "mature-specimens"
+          "mature-specimens",
+          "pre-order"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
@@ -327,12 +328,30 @@
         "gap": 12,
         "background_color": "#F2EBDE",
         "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "shop_by_sale": {
+      "type": "stage-products",
+      "settings": {
+        "collection": "on-sale",
+        "heading": "On sale",
+        "stage_match": "",
+        "sale_only": true,
+        "allow_fallback": false,
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "max_products": 8,
+        "columns": 4,
+        "background_color": "",
+        "padding-block-start": 56,
         "padding-block-end": 88
       }
     }
   },
   "order": [
     "shop_by_plant",
-    "shop_by_stage"
+    "shop_by_stage",
+    "shop_by_sale"
   ]
 }
