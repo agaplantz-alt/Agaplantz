@@ -264,12 +264,17 @@ Bulbasaur 45, White Monster 24, Spiritus Sancti 22, Devil Monster 20, Creme Brul
 Cuprea 16, Bambino Pink 16, Billietiae 13. Near-identical; Shopify's window is its own.
 Spiritus Sancti is absent only because it is out of stock, which is correct.
 
-### `sections/spotlight-plant.liquid`
+### `sections/spotlight-plant.liquid` — plants shown big, one per slide
 
-New section. Big photo one side, name / price / one line / moss CTA the other; stacks
-with the photo first on mobile. Settings: `product`, `eyebrow`, `heading` (blank = the
-plant's own name), `text`, `cta_label`, `image_position`, background and paddings — so
-the owner swaps the plant from the theme editor.
+Big photo one side, name / price / one line / moss CTA the other; stacks with the photo
+first on mobile. **Each slide is a block**, so the owner adds, removes and reorders
+plants in the theme editor. Block settings: `product`, `eyebrow`, `heading` (blank = the
+plant's own name), `text`, `cta_label`. Section settings: `image_position`, `autoplay`
+(on, 6s), background and paddings. `max_blocks: 6`.
+
+The track is CSS scroll-snap with arrows and dots; autoplay pauses on hover and on
+focus, and does nothing under `prefers-reduced-motion`. With a single block the controls
+are not rendered at all, so it degrades to the plain feature it started as.
 
 **It reads a variant, not the product**, for the same reason `stage-products` does:
 `product.price` is the cheapest stage and would under-quote what is in stock. It takes
@@ -278,11 +283,19 @@ struck through with a terracotta `Save X%` badge, names the stage, and the CTA c
 `?variant=` so the product page opens on it. If nothing is available it prints "Sold out
 for this batch" instead of a button.
 
-Seeded with **Monstera Devil Monster Premium Variegated** — 20 sold in 90 days and the
-**highest revenue plant in the shop** ($4,013), 197 units in stock, and on sale at $204
-from $306. Monstera Bulbasaur outsells it on units (45) but had **one unit left**, so a
-spotlight would have sold it out immediately — check stock before spotlighting a
-bestseller.
+Two slides as of 1 Oct:
+
+1. **Monstera Devil Monster Premium Variegated** — 20 sold in 90 days and the **highest
+   revenue plant in the shop** ($4,013), 197 units in stock. The owner raised Premium
+   from $204 to **$240** against the same $306 compare-at, so the badge moved 33% → 22%
+   on its own: **the section reads live variant data and never needs touching after a
+   price change.**
+2. **Alocasia Cuprea Red Secret Variegated Super Pink** — $162, 93 in stock, **no
+   compare-at**, so that slide renders with no strikethrough and no badge. Worth knowing
+   the sale treatment is conditional, not assumed.
+
+Monstera Bulbasaur outsells both on units (45) but had **one unit left**, so a spotlight
+would have sold it out immediately — check stock before spotlighting a bestseller.
 
 ## Horizon gotchas, learned the hard way
 
@@ -661,6 +674,14 @@ so both match the rest of the page without restating the type scale. Desktop is 
 
 ### Uploading a section file
 
+**A template is validated against the section schema already on the theme, not against
+the one in the same call.** Sending `sections/spotlight-plant.liquid` (newly gaining
+`blocks`) and `templates/index.json` (newly using those blocks) in **one**
+`themeFilesUpsert` wrote the section and **silently dropped the template** —
+`userErrors: []`, checksum unchanged. Re-sending the template on its own, once the
+section was in place, worked first time. **Upload the section first, then the template,
+in two calls.**
+
 `themeFilesUpsert` with `body: { type: URL }` **swallows validation errors** — it returns
 `userErrors: []` and simply does not write the file. Four silent no-ops here were one
 schema mistake (`"default": ""` is rejected: a setting's default can't be blank). When an
@@ -866,7 +887,8 @@ $204 Premium would advertise the free tier on both. The block reads
 `product-information` section on variant change, which is what keeps it in step — the same
 mechanism the `Save X%` badge relies on. Devil Monster pre-order is the **only** in-stock
 listing whose variants straddle $200, so it is the regression test: `?variant=45989665603663`
-($150) must read "Free replacement", `?variant=45988645666895` ($204) must read "50%".
+($150) must read "Free replacement", `?variant=45988645666895` (**$240** since 1 Oct, was
+$204) must read "50%".
 
 **`snippets/cart-summary.liquid` now carries the cart line and is a core Horizon file** — add
 it to the list of files to re-apply after every theme upgrade, alongside

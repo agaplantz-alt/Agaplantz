@@ -1,48 +1,19 @@
 {%- doc -%}
-  AgaPlantz — one plant, shown big. A single-product feature for the home page: large
-  photo on one side, name, price and a short line on the other.
+  AgaPlantz — plants shown big, one per slide. A slideshow of single-product features for
+  the home page: large photo on one side, name, price and a short line on the other.
+
+  Each slide is a block, so the owner adds, removes and reorders plants in the theme
+  editor. One block renders as a plain feature with no controls.
 
   It reads a VARIANT, not the product, for the same reason stage-products.liquid does:
   plant stage is a variant option here, so product.price is the cheapest stage and would
-  under-quote whatever is actually in stock. This picks the first available variant,
+  under-quote whatever is actually in stock. Each slide picks the first available variant,
   preferring one that is on sale, and the CTA carries ?variant= so the product page opens
-  on that stage. See CLAUDE.md, "One plant, shown big".
+  on that stage. See CLAUDE.md, "Plants shown big".
 {%- enddoc -%}
 
 {%- liquid
-  assign plant = section.settings.product
-  assign chosen = blank
-  assign sale_variant = blank
-
-  if plant != blank
-    for v in plant.variants
-      if v.available
-        if chosen == blank
-          assign chosen = v
-        endif
-        if sale_variant == blank and v.compare_at_price > v.price
-          assign sale_variant = v
-        endif
-      endif
-    endfor
-    if sale_variant != blank
-      assign chosen = sale_variant
-    endif
-    if chosen == blank
-      assign chosen = plant.selected_or_first_available_variant
-    endif
-  endif
-
-  assign media = plant.featured_media
-  if chosen != blank and chosen.image != blank
-    assign media = chosen.image
-  endif
-
-  assign saving = 0
-  if chosen != blank and chosen.compare_at_price > chosen.price
-    assign saving = chosen.compare_at_price | minus: chosen.price | times: 100.0 | divided_by: chosen.compare_at_price | round
-  endif
-
+  assign slides = section.blocks | where: 'type', 'plant'
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
   endif
@@ -50,64 +21,207 @@
 
 <div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
 
-{%- if plant != blank -%}
+{%- if slides.size > 0 -%}
   <div
     class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agsp"
     style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
+    data-agsp
+    data-autoplay="{% if section.settings.autoplay %}{{ section.settings.autoplay_seconds }}{% else %}0{% endif %}"
   >
-    <div class="agsp__grid{% if section.settings.image_position == 'right' %} agsp__grid--flip{% endif %}">
-      <a class="agsp__media" href="{{ plant.url }}{% if chosen != blank %}?variant={{ chosen.id }}{% endif %}">
-        {%- if media != blank -%}
-          {{ media | image_url: width: 1400 | image_tag:
-             widths: '400, 600, 800, 1000, 1400',
-             sizes: '(max-width: 749px) 100vw, 50vw',
-             loading: 'lazy',
-             class: 'agsp__img',
-             alt: plant.title }}
-        {%- endif -%}
-        {%- if saving > 0 -%}
-          <span class="agsp__badge">Save {{ saving }}%</span>
-        {%- endif -%}
-      </a>
+    <div class="agsp__viewport" data-agsp-viewport>
+      {%- for block in slides -%}
+        {%- liquid
+          assign plant = block.settings.product
+          assign chosen = blank
+          assign sale_variant = blank
+          if plant != blank
+            for v in plant.variants
+              if v.available
+                if chosen == blank
+                  assign chosen = v
+                endif
+                if sale_variant == blank and v.compare_at_price > v.price
+                  assign sale_variant = v
+                endif
+              endif
+            endfor
+            if sale_variant != blank
+              assign chosen = sale_variant
+            endif
+            if chosen == blank
+              assign chosen = plant.selected_or_first_available_variant
+            endif
+          endif
 
-      <div class="agsp__copy">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="agsp__eyebrow">{{ section.settings.eyebrow }}</p>
-        {%- endif -%}
+          assign media = plant.featured_media
+          if chosen != blank and chosen.image != blank
+            assign media = chosen.image
+          endif
 
-        <h2 class="agsp__title">
-          {%- if section.settings.heading != blank -%}{{ section.settings.heading }}{%- else -%}{{ plant.title }}{%- endif -%}
-        </h2>
+          assign saving = 0
+          if chosen != blank and chosen.compare_at_price > chosen.price
+            assign saving = chosen.compare_at_price | minus: chosen.price | times: 100.0 | divided_by: chosen.compare_at_price | round
+          endif
+        -%}
 
-        {%- if section.settings.text != blank -%}
-          <div class="agsp__text">{{ section.settings.text }}</div>
-        {%- endif -%}
+        <div class="agsp__slide" {{ block.shopify_attributes }}>
+          {%- if plant != blank -%}
+            <div class="agsp__grid{% if section.settings.image_position == 'right' %} agsp__grid--flip{% endif %}">
+              <a class="agsp__media" href="{{ plant.url }}{% if chosen != blank %}?variant={{ chosen.id }}{% endif %}">
+                {%- if media != blank -%}
+                  {{ media | image_url: width: 1400 | image_tag:
+                     widths: '400, 600, 800, 1000, 1400',
+                     sizes: '(max-width: 749px) 100vw, 50vw',
+                     loading: 'lazy',
+                     class: 'agsp__img',
+                     alt: plant.title }}
+                {%- endif -%}
+                {%- if saving > 0 -%}
+                  <span class="agsp__badge">Save {{ saving }}%</span>
+                {%- endif -%}
+              </a>
 
-        {%- if chosen != blank -%}
-          <p class="agsp__price">
-            {%- if chosen.compare_at_price > chosen.price -%}
-              <s class="agsp__was">{{ chosen.compare_at_price | money }}</s>
-            {%- endif -%}
-            <span class="agsp__now">{{ chosen.price | money }}</span>
-            {%- if chosen.title != 'Default Title' -%}
-              <span class="agsp__stage">{{ chosen.title }}</span>
-            {%- endif -%}
-          </p>
-        {%- endif -%}
+              <div class="agsp__copy">
+                {%- if block.settings.eyebrow != blank -%}
+                  <p class="agsp__eyebrow">{{ block.settings.eyebrow }}</p>
+                {%- endif -%}
 
-        {%- if plant.available -%}
-          <a class="agsp__cta" href="{{ plant.url }}{% if chosen != blank %}?variant={{ chosen.id }}{% endif %}">
-            {{ section.settings.cta_label }}
-          </a>
-        {%- else -%}
-          <p class="agsp__soldout">Sold out for this batch</p>
-        {%- endif -%}
-      </div>
+                <h2 class="agsp__title">
+                  {%- if block.settings.heading != blank -%}{{ block.settings.heading }}{%- else -%}{{ plant.title }}{%- endif -%}
+                </h2>
+
+                {%- if block.settings.text != blank -%}
+                  <div class="agsp__text">{{ block.settings.text }}</div>
+                {%- endif -%}
+
+                {%- if chosen != blank -%}
+                  <p class="agsp__price">
+                    {%- if chosen.compare_at_price > chosen.price -%}
+                      <s class="agsp__was">{{ chosen.compare_at_price | money }}</s>
+                    {%- endif -%}
+                    <span class="agsp__now">{{ chosen.price | money }}</span>
+                    {%- if chosen.title != 'Default Title' -%}
+                      <span class="agsp__stage">{{ chosen.title }}</span>
+                    {%- endif -%}
+                  </p>
+                {%- endif -%}
+
+                {%- if plant.available -%}
+                  <a class="agsp__cta" href="{{ plant.url }}{% if chosen != blank %}?variant={{ chosen.id }}{% endif %}">
+                    {{ block.settings.cta_label }}
+                  </a>
+                {%- else -%}
+                  <p class="agsp__soldout">Sold out for this batch</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
     </div>
+
+    {%- if slides.size > 1 -%}
+      <div class="agsp__controls">
+        <button class="agsp__arrow" type="button" data-agsp-prev aria-label="Previous plant">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="agsp__dots" data-agsp-dots role="tablist">
+          {%- for block in slides -%}
+            <button class="agsp__dot{% if forloop.first %} is-on{% endif %}" type="button" role="tab" data-agsp-dot="{{ forloop.index0 }}" aria-label="Plant {{ forloop.index }}"></button>
+          {%- endfor -%}
+        </div>
+        <button class="agsp__arrow" type="button" data-agsp-next aria-label="Next plant">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    {%- endif -%}
   </div>
 {%- endif -%}
 
+<script>
+(function () {
+  function init(root) {
+    if (root.getAttribute('data-ready')) return;
+    root.setAttribute('data-ready', '1');
+
+    var vp = root.querySelector('[data-agsp-viewport]');
+    var slides = root.querySelectorAll('.agsp__slide');
+    if (!vp || slides.length < 2) return;
+
+    var dots = root.querySelectorAll('[data-agsp-dot]');
+    var timer = null;
+    var seconds = parseInt(root.getAttribute('data-autoplay'), 10) || 0;
+
+    function current() {
+      return Math.round(vp.scrollLeft / vp.clientWidth);
+    }
+    function go(i) {
+      var n = slides.length;
+      var target = ((i % n) + n) % n;
+      vp.scrollTo({ left: target * vp.clientWidth, behavior: 'smooth' });
+    }
+    function paint() {
+      var i = current();
+      for (var d = 0; d < dots.length; d++) {
+        if (d === i) { dots[d].classList.add('is-on'); } else { dots[d].classList.remove('is-on'); }
+      }
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() {
+      stop();
+      if (seconds > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = setInterval(function () { go(current() + 1); }, seconds * 1000);
+      }
+    }
+
+    var prev = root.querySelector('[data-agsp-prev]');
+    var next = root.querySelector('[data-agsp-next]');
+    if (prev) prev.addEventListener('click', function () { go(current() - 1); stop(); });
+    if (next) next.addEventListener('click', function () { go(current() + 1); stop(); });
+    for (var d = 0; d < dots.length; d++) {
+      (function (idx) {
+        dots[idx].addEventListener('click', function () { go(idx); stop(); });
+      })(d);
+    }
+
+    var tick;
+    vp.addEventListener('scroll', function () {
+      clearTimeout(tick);
+      tick = setTimeout(paint, 80);
+    });
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    root.addEventListener('focusin', stop);
+
+    paint();
+    start();
+  }
+  function run() {
+    var all = document.querySelectorAll('[data-agsp]');
+    for (var i = 0; i < all.length; i++) init(all[i]);
+  }
+  run();
+  document.addEventListener('DOMContentLoaded', run);
+  document.addEventListener('shopify:section:load', run);
+})();
+</script>
+
 {% stylesheet %}
+  .agsp__viewport {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .agsp__viewport::-webkit-scrollbar { display: none; }
+
+  .agsp__slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: start;
+  }
+
   .agsp__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -209,6 +323,43 @@
     color: var(--color-foreground-muted, #56503F);
   }
 
+  .agsp__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-block-start: clamp(24px, 3vw, 36px);
+  }
+  .agsp__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgb(47 42 34 / 0.18);
+    border-radius: 2px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .agsp__arrow svg { width: 20px; height: 20px; }
+  .agsp__arrow:hover { background: #5C6B4C; border-color: #5C6B4C; color: #FBF8F2; }
+
+  .agsp__dots { display: flex; align-items: center; gap: 8px; }
+  .agsp__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(47 42 34 / 0.22);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .agsp__dot.is-on { background: #5C6B4C; transform: scale(1.35); }
+
   @media screen and (max-width: 749px) {
     .agsp__grid { grid-template-columns: 1fr; }
     .agsp__grid--flip .agsp__media { order: 0; }
@@ -220,12 +371,21 @@
   "name": "Plant spotlight",
   "tag": "section",
   "disabled_on": { "groups": ["header", "footer"] },
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "plant",
+      "name": "Plant",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Plant" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Collector favourite" },
+        { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the plant's own name." },
+        { "type": "richtext", "id": "text", "label": "Text" },
+        { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop this plant" }
+      ]
+    }
+  ],
   "settings": [
-    { "type": "product", "id": "product", "label": "Plant" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Collector favourite" },
-    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the plant's own name." },
-    { "type": "richtext", "id": "text", "label": "Text" },
-    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop this plant" },
     {
       "type": "select",
       "id": "image_position",
@@ -236,11 +396,15 @@
       ],
       "default": "left"
     },
+    { "type": "checkbox", "id": "autoplay", "label": "Change slide automatically", "default": true },
+    { "type": "range", "id": "autoplay_seconds", "label": "Seconds per slide", "min": 3, "max": 12, "step": 1, "unit": "s", "default": 6 },
     { "type": "header", "content": "Section layout" },
     { "type": "color", "id": "background_color", "label": "Background", "placeholder": "Default" },
     { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 64 },
     { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 64 }
   ],
-  "presets": [{ "name": "Plant spotlight", "category": "Products" }]
+  "presets": [
+    { "name": "Plant spotlight", "category": "Products", "blocks": [{ "type": "plant" }] }
+  ]
 }
 {% endschema %}
