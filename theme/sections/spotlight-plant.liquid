@@ -1,0 +1,246 @@
+{%- doc -%}
+  AgaPlantz — one plant, shown big. A single-product feature for the home page: large
+  photo on one side, name, price and a short line on the other.
+
+  It reads a VARIANT, not the product, for the same reason stage-products.liquid does:
+  plant stage is a variant option here, so product.price is the cheapest stage and would
+  under-quote whatever is actually in stock. This picks the first available variant,
+  preferring one that is on sale, and the CTA carries ?variant= so the product page opens
+  on that stage. See CLAUDE.md, "One plant, shown big".
+{%- enddoc -%}
+
+{%- liquid
+  assign plant = section.settings.product
+  assign chosen = blank
+  assign sale_variant = blank
+
+  if plant != blank
+    for v in plant.variants
+      if v.available
+        if chosen == blank
+          assign chosen = v
+        endif
+        if sale_variant == blank and v.compare_at_price > v.price
+          assign sale_variant = v
+        endif
+      endif
+    endfor
+    if sale_variant != blank
+      assign chosen = sale_variant
+    endif
+    if chosen == blank
+      assign chosen = plant.selected_or_first_available_variant
+    endif
+  endif
+
+  assign media = plant.featured_media
+  if chosen != blank and chosen.image != blank
+    assign media = chosen.image
+  endif
+
+  assign saving = 0
+  if chosen != blank and chosen.compare_at_price > chosen.price
+    assign saving = chosen.compare_at_price | minus: chosen.price | times: 100.0 | divided_by: chosen.compare_at_price | round
+  endif
+
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+-%}
+
+<div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
+
+{%- if plant != blank -%}
+  <div
+    class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agsp"
+    style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
+  >
+    <div class="agsp__grid{% if section.settings.image_position == 'right' %} agsp__grid--flip{% endif %}">
+      <a class="agsp__media" href="{{ plant.url }}{% if chosen != blank %}?variant={{ chosen.id }}{% endif %}">
+        {%- if media != blank -%}
+          {{ media | image_url: width: 1400 | image_tag:
+             widths: '400, 600, 800, 1000, 1400',
+             sizes: '(max-width: 749px) 100vw, 50vw',
+             loading: 'lazy',
+             class: 'agsp__img',
+             alt: plant.title }}
+        {%- endif -%}
+        {%- if saving > 0 -%}
+          <span class="agsp__badge">Save {{ saving }}%</span>
+        {%- endif -%}
+      </a>
+
+      <div class="agsp__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="agsp__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        <h2 class="agsp__title">
+          {%- if section.settings.heading != blank -%}{{ section.settings.heading }}{%- else -%}{{ plant.title }}{%- endif -%}
+        </h2>
+
+        {%- if section.settings.text != blank -%}
+          <div class="agsp__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if chosen != blank -%}
+          <p class="agsp__price">
+            {%- if chosen.compare_at_price > chosen.price -%}
+              <s class="agsp__was">{{ chosen.compare_at_price | money }}</s>
+            {%- endif -%}
+            <span class="agsp__now">{{ chosen.price | money }}</span>
+            {%- if chosen.title != 'Default Title' -%}
+              <span class="agsp__stage">{{ chosen.title }}</span>
+            {%- endif -%}
+          </p>
+        {%- endif -%}
+
+        {%- if plant.available -%}
+          <a class="agsp__cta" href="{{ plant.url }}{% if chosen != blank %}?variant={{ chosen.id }}{% endif %}">
+            {{ section.settings.cta_label }}
+          </a>
+        {%- else -%}
+          <p class="agsp__soldout">Sold out for this batch</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .agsp__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(24px, 5vw, 64px);
+  }
+  .agsp__grid--flip .agsp__media { order: 2; }
+
+  .agsp__media {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    background: rgb(47 42 34 / 0.04);
+  }
+  .agsp__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+  .agsp__badge {
+    position: absolute;
+    inset-block-start: 12px;
+    inset-inline-start: 12px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    background: #B4693C;
+    color: #FBF8F2;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .agsp__eyebrow {
+    margin: 0 0 14px;
+    color: #B4693C;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .agsp__title {
+    margin: 0;
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: clamp(26px, 4vw, 40px);
+    line-height: 1.15;
+  }
+  .agsp__text {
+    margin-block-start: 16px;
+    max-width: 46ch;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-foreground-muted, #56503F);
+  }
+  .agsp__text > :first-child { margin-block-start: 0; }
+  .agsp__text > :last-child { margin-block-end: 0; }
+
+  .agsp__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    margin: 22px 0 0;
+  }
+  .agsp__was { color: var(--color-foreground-muted, #56503F); font-size: 16px; }
+  .agsp__now { font-size: 22px; font-weight: 600; }
+  .agsp__stage {
+    flex-basis: 100%;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-foreground-muted, #56503F);
+  }
+
+  .agsp__cta {
+    display: inline-block;
+    margin-block-start: 26px;
+    padding: 15px 34px;
+    border-radius: 2px;
+    background: #5C6B4C;
+    color: #FBF8F2;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  .agsp__cta:hover, .agsp__cta:focus { background: #4A573D; color: #FBF8F2; }
+  .agsp__soldout {
+    margin-block-start: 26px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-foreground-muted, #56503F);
+  }
+
+  @media screen and (max-width: 749px) {
+    .agsp__grid { grid-template-columns: 1fr; }
+    .agsp__grid--flip .agsp__media { order: 0; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Plant spotlight",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "product", "id": "product", "label": "Plant" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Collector favourite" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the plant's own name." },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop this plant" },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Photo position on desktop",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "header", "content": "Section layout" },
+    { "type": "color", "id": "background_color", "label": "Background", "placeholder": "Default" },
+    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "presets": [{ "name": "Plant spotlight", "category": "Products" }]
+}
+{% endschema %}

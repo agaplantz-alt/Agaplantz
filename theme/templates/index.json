@@ -1792,21 +1792,35 @@
         "padding-block-end": 0
       }
     },
-    "products_featured": {
+    "products_popular": {
       "type": "stage-products",
       "settings": {
-        "collection": "featured",
-        "heading": "Featured plants",
+        "collection": "popular",
+        "heading": "Popular right now",
         "stage_match": "",
         "sale_only": false,
         "allow_fallback": true,
-        "show_view_all": false,
+        "show_view_all": true,
         "view_all_label": "View all",
         "max_products": 8,
         "columns": 4,
-        "background_color": "#f2ebde",
+        "background_color": "",
         "padding-block-start": 64,
         "padding-block-end": 64
+      }
+    },
+    "spotlight_plant": {
+      "type": "spotlight-plant",
+      "settings": {
+        "product": "monstera-devil-monster-premium-variegated-pre-order",
+        "eyebrow": "Collector favourite",
+        "heading": "",
+        "text": "<p>The one collectors keep coming back for — deep green leaves split with cream, and a variegation pattern no two plants share. On sale while this batch is open.</p>",
+        "cta_label": "Shop this plant",
+        "image_position": "left",
+        "background_color": "#f2ebde",
+        "padding-block-start": 72,
+        "padding-block-end": 72
       }
     }
   },
@@ -1815,8 +1829,9 @@
     "marquee_trust",
     "custom_liquid_KL8FyB",
     "collections_genus",
+    "spotlight_plant",
     "tissue_culture",
-    "products_featured",
+    "products_popular",
     "products_tc",
     "products_sale",
     "products_rts",

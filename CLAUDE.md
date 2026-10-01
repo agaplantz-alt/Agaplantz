@@ -87,10 +87,13 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
    then `tc_guarantee`, a full-width strip carrying the 30-Day Plant Guarantee. It sits
    *below* the two stage cards deliberately: the reassurance lands after the customer has
    picked a stage, and the explainer and both CTAs are kept rather than replaced.
-6. `products_featured` — **the only product row on the homepage**, sand band. A
-   `stage-products` section on the manual `featured` collection; see below.
-7. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
-8. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
+5. `spotlight_plant` — **one plant, shown big**, sand band. A `spotlight-plant` section;
+   see below. Sits between the genus tiles and the tissue-culture explainer.
+6. `tissue_culture` — the explainer (numbering above is off by one from here down)
+7. `products_popular` — **the only product row on the homepage**, cream band. A
+   `stage-products` section on the automated `popular` collection, sorted BEST_SELLING.
+8. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
+9. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
 
 **Disabled, still in `order` so they can come back:** `products_tc` (pre-order),
 `products_sale` (on-sale), `products_rts` (ready-to-ship), `products_acclimated`
@@ -165,7 +168,8 @@ Counts as of 1 Oct 2026 — they move a lot, re-read rather than trusting these:
 | `mature-specimens` | MATURE SPECIMENS | 4 |
 | `acclimated-plants` | ACCLIMATED PLANTS | 13 |
 | `on-sale` | ON SALE (rule: `IS_PRICE_REDUCED IS_SET`) | 31 |
-| `featured` | FEATURED — **manual**, hand-picked, drives the homepage row | 8 |
+| `popular` | POPULAR — automated, `sortOrder: BEST_SELLING`, drives the homepage row | ~all in stock |
+| `featured` | FEATURED — manual. **Built 1 Oct, rejected the same day, now unused.** Safe to delete | 8 |
 
 **`ready-to-ship` no longer exists.** The owner deleted it some time before 1 Oct, and
 `collectionByHandle(handle: "ready-to-ship")` now returns `null`. It had been wired into
@@ -224,46 +228,61 @@ stays a wall of placeholders until the products themselves get photos.
 (Online Store, TikTok) where `philodendron` is on **7**. So Begonia is invisible to the
 Google, Meta and Microsoft feeds. `publishablePublish` fixes it; nobody has asked yet.
 
-## One featured row (1 Oct 2026)
+## The homepage: popular, and one plant shown big (1 Oct 2026)
 
-The owner's complaint: *"when we scroll down it's kind of like showing same plants …
-there is a pre-order then ready to ship then on sale which is kind of containing the
-same plants … either we can feature some plants on home page."*
+Two passes on the same day. **Pass one** replaced four product rows with one hand-picked
+`featured` row. The owner rejected it — *"I don't like the feature plan. Maybe we should
+do the popular plants, and line them by how much they sold… we're not gonna show how
+much they sold, but we can use that number."* They also asked for one famous plant shown
+**in a big chunk**, an idea borrowed from another nursery's homepage, and said the genus
+tiles are fine as they are.
 
-**They were right, though not for the reason it looked like.** Measured on the live
-homepage: four rows, 20 cards rendered, and only **one** plant literally repeated
-(Devil Monster, in Pre-orders and On sale). The sameness was not duplication, it was
-that the rows are **four filters over one pool** — 15 of the 20 cards were
-`-pre-order` handles with the same kind of plantlet-on-white photo. Plus the Ready to
-ship row was rendering nothing at all, and Mature specimens was down to 4 products.
-Four rows of near-identical cards in a run turns a home page into a catalogue.
+### Why four rows had to go (the measurement, worth keeping)
 
-So all four were switched off and replaced by one row, `products_featured`, on a
-**manual** collection:
+Four rows, 20 cards rendered, and only **one** plant literally repeated. The sameness was
+not duplication: the rows were **four filters over one pool**, so 15 of the 20 cards were
+`-pre-order` handles with the same plantlet-on-white photo. Ready to ship rendered
+**zero** cards (its collection had been deleted) and Mature specimens was down to 4.
 
-- `featured` / **FEATURED**, `gid://shopify/Collection/491312709711`, `sortOrder: MANUAL`,
-  published to Online Store + Shop
-- the section has `stage_match` blank and **`allow_fallback: true`**, so each card shows
-  that plant's first in-stock variant — which is the point: the row mixes stages
-- `show_view_all: false` — a curated row of 8 does not need a "view all" into a
-  collection of exactly 8
+### `products_popular`
 
-**The owner curates it by dragging products in and out in admin**, no code and no theme
-edit. The eight seeded on 1 Oct were chosen for spread, not merchandising insight, and
-are meant to be replaced: Devil Monster mature ($2,466), Alocasia Black Velvet Pink,
-Anthurium Ace of Spades, Alocasia Cuprea Red Secret Super Pink, Alocasia Bambino Pink,
-Philodendron Pink Princess Marble Galaxy, Philodendron Florida Beauty Variegated,
-Philodendron Tortum ($18). Four genus, $18 → $2,466, and deliberately **not all
-pre-order** — three carry an acclimated or mature variant, which is exactly what the old
-rows could not do.
+A `stage-products` row on **`popular`** (`gid://shopify/Collection/491313004623`),
+automated, `sortOrder: BEST_SELLING`, published to Online Store + Shop. Rules:
+`VARIANT_INVENTORY > 0` + `TYPE != Service` + `TITLE NOT_CONTAINS "Starter Kit"` — the
+last two matter because the free Starter Kit (79 units) and the Acclimation Service
+add-on (37) outsell every plant and would otherwise lead the row.
 
-`collectionCreate` accepts a `products` argument and **silently ignores it** — the
-collection came back with `productsCount: 0`. Use `collectionAddProducts` afterwards.
-Its response count is also stale; re-query the collection to confirm.
+**BEST_SELLING was chosen over a manually ordered list so it never goes stale** — and
+`stage-products.liquid` does `paginate coll.products` / `for product in coll.products`,
+so it inherits the collection's sort. **No sales numbers are shown anywhere**, as asked;
+the ranking is the only thing that surfaces.
 
-If the sale row is wanted back it is one `disabled` flag on `products_sale`. The
-`/collections` page still carries a full On sale product row, so the discount story is
-not lost.
+Sanity check against ShopifyQL (`FROM sales SHOW net_items_sold GROUP BY product_title
+SINCE -90d`): the rendered order was Bulbasaur, Devil Monster, White Monster, Cuprea Red
+Secret, Bambino Pink, Creme Brulee, Billietiae, Nobilis Pink K against a 90-day ranking of
+Bulbasaur 45, White Monster 24, Spiritus Sancti 22, Devil Monster 20, Creme Brulee 18,
+Cuprea 16, Bambino Pink 16, Billietiae 13. Near-identical; Shopify's window is its own.
+Spiritus Sancti is absent only because it is out of stock, which is correct.
+
+### `sections/spotlight-plant.liquid`
+
+New section. Big photo one side, name / price / one line / moss CTA the other; stacks
+with the photo first on mobile. Settings: `product`, `eyebrow`, `heading` (blank = the
+plant's own name), `text`, `cta_label`, `image_position`, background and paddings — so
+the owner swaps the plant from the theme editor.
+
+**It reads a variant, not the product**, for the same reason `stage-products` does:
+`product.price` is the cheapest stage and would under-quote what is in stock. It takes
+the first available variant, **preferring one that is on sale**, shows the compare-at
+struck through with a terracotta `Save X%` badge, names the stage, and the CTA carries
+`?variant=` so the product page opens on it. If nothing is available it prints "Sold out
+for this batch" instead of a button.
+
+Seeded with **Monstera Devil Monster Premium Variegated** — 20 sold in 90 days and the
+**highest revenue plant in the shop** ($4,013), 197 units in stock, and on sale at $204
+from $306. Monstera Bulbasaur outsells it on units (45) but had **one unit left**, so a
+spotlight would have sold it out immediately — check stock before spotlighting a
+bestseller.
 
 ## Horizon gotchas, learned the hard way
 
@@ -960,6 +979,8 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/templates/index.json` | homepage |
 | `theme/templates/list-collections.json` | curated /collections |
 | `theme/sections/footer-group.json` | footer, all pages |
+| `theme/sections/stage-products.liquid` | variant-aware product row (homepage + /collections) |
+| `theme/sections/spotlight-plant.liquid` | one plant, shown big |
 | `catalog-backup/` | pre-deletion product export |
 
 Branch: `claude/shopify-theme-creation-ra78zf`. The local template is kept in sync
