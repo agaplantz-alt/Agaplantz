@@ -1845,12 +1845,70 @@
         "slide_devil",
         "slide_cuprea"
       ]
+    },
+    "batch_discounts": {
+      "type": "batch-discounts",
+      "blocks": {
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "day_from": 1,
+            "day_to": 5,
+            "percent": 20,
+            "label": ""
+          }
+        },
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "day_from": 6,
+            "day_to": 15,
+            "percent": 15,
+            "label": ""
+          }
+        },
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "day_from": 16,
+            "day_to": 20,
+            "percent": 10,
+            "label": ""
+          }
+        },
+        "t4": {
+          "type": "tier",
+          "settings": {
+            "day_from": 21,
+            "day_to": 30,
+            "percent": 0,
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "heading": "Order early, pay less",
+        "intro": "<p>Every batch opens with the biggest discount and steps down as it fills. Same plants, same batch — the only thing that changes is what you pay for waiting.</p>",
+        "start_date": "2026-10-01T00:00:00-04:00",
+        "minimum": "$100",
+        "footnote": "<p>Applied automatically at checkout on orders of $100 or more. Days are counted from the day this batch opened.</p>",
+        "background_color": "#e8ede1",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
     }
   },
   "order": [
     "hero_main",
     "marquee_trust",
     "custom_liquid_KL8FyB",
+    "batch_discounts",
     "collections_genus",
     "spotlight_plant",
     "tissue_culture",

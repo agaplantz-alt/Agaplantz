@@ -80,6 +80,9 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
    date lives, and the only one that also needs the *time*. Classes are `aga-batch__*`;
    when the timer hits zero the JS rewrites the headline, the line and the CTA in place
    and hides the digits, so an expired batch never reads as a live one.
+3b. `batch_discounts` — **the discount ladder**, sage band. A `batch-discounts` section;
+   see below. Sits directly under the countdown: the countdown says when the batch
+   closes, the ladder says what waiting costs.
 4. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium / **Begonia**
    tiles. `max_collections` was `4` and silently drops the fifth handle — it is now 5,
    and `columns` went 4 → 5 so the row stays one line instead of 4 plus an orphan.
@@ -296,6 +299,53 @@ Two slides as of 1 Oct:
 
 Monstera Bulbasaur outsells both on units (45) but had **one unit left**, so a spotlight
 would have sold it out immediately — check stock before spotlighting a bestseller.
+
+## Batch discount ladder (2 Oct 2026)
+
+The owner's scheme: the discount falls as the batch fills, so ordering early is worth
+money.
+
+| Days | Discount |
+| --- | --- |
+| 1–5 | 20% off orders $100+ |
+| 6–15 | 15% off orders $100+ |
+| 16–20 | 10% off orders $100+ |
+| 21–30 | regular price |
+
+`sections/batch-discounts.liquid` renders all four tiers at once with today's one
+marked "You are here", plus a live line — *"Right now: 20% off orders $100+. 4 days left
+at 20%, then it drops to 15%."* Past tiers dim to 45%, future ones sit plain. Four across
+on desktop, 2×2 on a phone.
+
+**The current tier is computed in Liquid, not JavaScript**, so it renders server-side —
+no flash of the wrong tier and Google sees it. Day index is
+`(('now' | date: '%s') - (start_date | date: '%s')) / 86400 | floor | plus: 1`.
+
+**`start_date` must carry the Toronto offset** (`2026-10-01T00:00:00-04:00`). Without it
+the date parses as UTC and the day boundary moves four hours, so between 8pm and midnight
+Toronto the badge would claim a tier that checkout does not honour. Switch to `-05:00`
+after 1 November, same as the countdown.
+
+Tiers are blocks (`day_from`, `day_to`, `percent`, optional `label`; `percent: 0` renders
+"Regular price"), so the ladder is reshaped in the theme editor without code.
+
+**Day 1 = 1 Oct 2026 is an inference, not something the owner stated.** It fits: pre-orders
+resumed 1 Oct, the ladder is 30 days, and the cut-off is 31 Oct. Confirm it when the next
+batch opens, and remember it is one setting.
+
+### The discounts themselves did not exist
+
+Checked at build time: **every automatic discount in the shop is EXPIRED.** The only
+ACTIVE ones are Loox review codes and `WELCOME10`, all code-based. So the ladder as
+published advertises money off that checkout would not give.
+
+This is the same class of trap as the "An automatic discount does not change the price on
+the storefront" note under **Running a sale**, but worse — there the price simply did not
+move; here the shop would promise a discount and deliver none. **Never publish this
+section without four matching automatic discounts in place.** They need
+`discountAutomaticBasicCreate`, each with its own `startsAt`/`endsAt` window and a
+`DiscountMinimumSubtotal` of $100, and `combinesWith` product discounts **false** so a
+tier cannot stack on top of the existing compare-at sales.
 
 ## Horizon gotchas, learned the hard way
 
@@ -1002,7 +1052,8 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/templates/list-collections.json` | curated /collections |
 | `theme/sections/footer-group.json` | footer, all pages |
 | `theme/sections/stage-products.liquid` | variant-aware product row (homepage + /collections) |
-| `theme/sections/spotlight-plant.liquid` | one plant, shown big |
+| `theme/sections/spotlight-plant.liquid` | plants shown big, one per slide |
+| `theme/sections/batch-discounts.liquid` | the batch discount ladder |
 | `catalog-backup/` | pre-deletion product export |
 
 Branch: `claude/shopify-theme-creation-ra78zf`. The local template is kept in sync
