@@ -121,9 +121,24 @@
             "text_color": ""
           },
           "blocks": {}
+        },
+        "announcement_early": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Order Early, Pay Less — The Pre-Order Discount Drops As This Batch Fills • Orders $100+",
+            "link": "/collections/pre-order",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
         }
       },
       "block_order": [
+        "announcement_early",
         "announcement_guarantee",
         "announcement_labour_day",
         "announcement_nzpPzh",

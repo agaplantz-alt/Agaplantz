@@ -617,6 +617,20 @@ no expiry, so they go stale silently — `announcement_JRWntd`
 was set `disabled: true` rather than deleted, so it can be brought back. **Check this bar
 for expired dates whenever the cut-off date changes.**
 
+`announcement_early` was added 2 Oct, **first** in `block_order`, linking to
+`/collections/pre-order`:
+
+> Order Early, Pay Less — The Pre-Order Discount Drops As This Batch Fills • Orders $100+
+
+**It deliberately names no percentage.** These blocks take plain text with no Liquid, so
+"20% off" written here would be wrong on 6 Oct, again on 16 Oct and again on 21 Oct — and
+this bar has already shipped two slides that went stale unnoticed. The wording above is
+true for the whole batch and needs changing only when the ladder itself changes. If a
+number is ever wanted here, it is three diary entries, not one edit.
+
+It carries the same caveat as the homepage ladder: **it promises a discount checkout does
+not give until the four automatic discounts exist.**
+
 ### Mature specimen listings
 
 Six mature variants were split out of their merged pre-order listings on 4 Sep. Each new
