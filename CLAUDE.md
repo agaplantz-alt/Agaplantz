@@ -79,10 +79,8 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
    (`assign deadline = '2026-10-31T23:59:59-04:00'`) — one of the six places the cut-off
    date lives, and the only one that also needs the *time*. Classes are `aga-batch__*`;
    when the timer hits zero the JS rewrites the headline, the line and the CTA in place
-   and hides the digits, so an expired batch never reads as a live one.
-3b. `batch_discounts` — **the discount ladder**, sage band. A `batch-discounts` section;
-   see below. Sits directly under the countdown: the countdown says when the batch
-   closes, the ladder says what waiting costs.
+   and hides the digits **and the discount ladder**, so an expired batch never reads as a
+   live one. The **discount ladder lives inside this same section** — see below.
 4. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium / **Begonia**
    tiles. `max_collections` was `4` and silently drops the fifth handle — it is now 5,
    and `columns` went 4 → 5 so the row stays one line instead of 4 plus an orphan.
@@ -305,33 +303,45 @@ would have sold it out immediately — check stock before spotlighting a bestsel
 The owner's scheme: the discount falls as the batch fills, so ordering early is worth
 money.
 
-| Days | Discount |
+| Dates | Discount |
 | --- | --- |
-| 1–5 | 20% off orders $100+ |
-| 6–15 | 15% off orders $100+ |
-| 16–20 | 10% off orders $100+ |
-| 21–30 | regular price |
+| Oct 1–5 | 20% off orders $100+ |
+| Oct 6–15 | 15% off orders $100+ |
+| Oct 16–20 | 10% off orders $100+ |
+| Oct 21–31 | Regular, full price |
 
-`sections/batch-discounts.liquid` renders all four tiers at once with today's one
-marked "You are here", plus a live line — *"Right now: 20% off orders $100+. 4 days left
-at 20%, then it drops to 15%."* Past tiers dim to 45%, future ones sit plain. Four across
-on desktop, 2×2 on a phone.
+**It lives inside `custom_liquid_KL8FyB`, the countdown section** — four compact cards
+between the digits and the "repriced to supply and demand" line, with the current one
+filled moss and carrying a terracotta **Now** pill. Four across on desktop, 2×2 under
+560px.
 
-**The current tier is computed in Liquid, not JavaScript**, so it renders server-side —
-no flash of the wrong tier and Google sees it. Day index is
-`(('now' | date: '%s') - (start_date | date: '%s')) / 86400 | floor | plus: 1`.
+It was first built as its own section, `sections/batch-discounts.liquid`, with a second
+countdown of its own ticking down to the next discount drop. The owner wanted the
+compact card row but **not** a second timer: *"keep the original batch timeline, don't
+change it by a discount change, just keep that same. And everything just add that
+discounts down there."* So the one timer still counts to the batch close
+(`2026-10-31T23:59:59-04:00`) and the ladder sits under it. **Do not retarget that timer
+at a tier boundary.** `sections/batch-discounts.liquid` is still in the theme, unused —
+it is a working standalone section if a ladder is ever wanted on another page.
 
-**`start_date` must carry the Toronto offset** (`2026-10-01T00:00:00-04:00`). Without it
-the date parses as UTC and the day boundary moves four hours, so between 8pm and midnight
-Toronto the badge would claim a tier that checkout does not honour. Switch to `-05:00`
-after 1 November, same as the countdown.
+**Which tier is "now" is computed in Liquid, not JavaScript**, so it renders server-side —
+no flash of the wrong tier, and Google sees it:
 
-Tiers are blocks (`day_from`, `day_to`, `percent`, optional `label`; `percent: 0` renders
-"Regular price"), so the ladder is reshaped in the theme editor without code.
+```liquid
+{% assign batch_start = '2026-10-01T00:00:00-04:00' %}
+assign day_now = 'now' | date: '%s' | minus: start_s | divided_by: 86400 | floor | plus: 1
+```
 
-**Day 1 = 1 Oct 2026 is an inference, not something the owner stated.** It fits: pre-orders
-resumed 1 Oct, the ladder is 30 days, and the cut-off is 31 Oct. Confirm it when the next
-batch opens, and remember it is one setting.
+**`batch_start` must carry the Toronto offset.** Without it the date parses as UTC, the
+day boundary moves four hours, and between 8pm and midnight Toronto the card would claim
+a tier checkout does not honour. Switch to `-05:00` after 1 November, same as `deadline`.
+
+The tier dates and percentages are **hand-written strings in the custom Liquid**, like
+everything else in this section. When the batch moves, they move with the deadline and
+the `batch_start` — add them to the cut-off checklist.
+
+**Day 1 = 1 Oct 2026 is an inference, not something the owner stated.** It fits:
+pre-orders resumed 1 Oct, the ladder is 30 days, the cut-off is 31 Oct.
 
 ### The discounts themselves did not exist
 
@@ -342,7 +352,7 @@ published advertises money off that checkout would not give.
 This is the same class of trap as the "An automatic discount does not change the price on
 the storefront" note under **Running a sale**, but worse — there the price simply did not
 move; here the shop would promise a discount and deliver none. **Never publish this
-section without four matching automatic discounts in place.** They need
+without four matching automatic discounts in place.** They need
 `discountAutomaticBasicCreate`, each with its own `startsAt`/`endsAt` window and a
 `DiscountMinimumSubtotal` of $100, and `combinesWith` product discounts **false** so a
 tier cannot stack on top of the existing compare-at sales.
@@ -1053,7 +1063,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/footer-group.json` | footer, all pages |
 | `theme/sections/stage-products.liquid` | variant-aware product row (homepage + /collections) |
 | `theme/sections/spotlight-plant.liquid` | plants shown big, one per slide |
-| `theme/sections/batch-discounts.liquid` | the batch discount ladder |
+| `theme/sections/batch-discounts.liquid` | standalone discount ladder — **unused**, the ladder lives in the countdown |
 | `catalog-backup/` | pre-deletion product export |
 
 Branch: `claude/shopify-theme-creation-ra78zf`. The local template is kept in sync
