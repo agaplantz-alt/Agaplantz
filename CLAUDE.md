@@ -352,6 +352,12 @@ scales; on a phone the stage caps at 420px wide. Each plant floats on a 6.5–9s
 `prefers-reduced-motion`. Two earlier compositions were rejected by eye before this one: a
 free scatter read as clutter, with two tweezers crossing. **"Organized" was the brief.**
 
+**No shadows, no glow.** The first version had a CSS `drop-shadow` on each cut-out, a floor
+ellipse under the cups and a radial lift behind the stage; the owner read all three as a
+halo (*"there is shadow I don't like behind them"*) and they were removed. The PNGs
+themselves are clean — the alpha channel was checked at 6× gain — so if a halo ever
+reappears it is CSS, not the files. Keep the plants flat on the moss.
+
 Slot order is positional — a tall rooted plant dropped into slot 1 gets a tweezer-fade mask
 it does not need. Keep plantlets in 1–3 and rooted plants in 4–5.
 
