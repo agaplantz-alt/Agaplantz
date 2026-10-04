@@ -15,7 +15,13 @@
   plantlets in tweezers — the tweezer ends fade out so the crop never shows — and slots 4–5
   are rooted plants that sit on an implied floor. Each slot is an image picker, so the owner
   can swap a photo; leave all five empty and the band falls back to the product's own photo.
-  Motion is CSS only and switches off under prefers-reduced-motion.
+  Two layers of motion, both off under prefers-reduced-motion. A slow CSS float on each
+  image, and a scroll-linked choreography on the stage: a tiny script writes the stage's
+  position in the viewport to --q (-1 … 1, 0 = centred) and --aq (its magnitude), and the
+  CSS does the rest — the plants spread apart and sit smaller when the band is off-centre,
+  converge and zoom to full size as it centres, turn slightly as you pass, and drift at
+  different speeds so the rows separate in depth. All of it is transform-only, one number
+  per frame, so it costs nothing to scroll.
 {%- enddoc -%}
 
 {%- liquid
@@ -49,7 +55,7 @@
         endfor
       -%}
       {%- if stage_count > 0 -%}
-        <a class="agmb__stage" href="{{ box.url }}" aria-label="{{ box.title | escape }}">
+        <a class="agmb__stage" href="{{ box.url }}" aria-label="{{ box.title | escape }}" data-agmb-stage>
           {%- for i in (1..5) -%}
             {%- assign key = 'plant_' | append: i -%}
             {%- assign img = section.settings[key] -%}
@@ -124,6 +130,44 @@
   </div>
 {%- endif -%}
 
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stages = [];
+  var ticking = false;
+
+  function collect() {
+    stages = Array.prototype.slice.call(document.querySelectorAll('[data-agmb-stage]'));
+  }
+  function update() {
+    ticking = false;
+    var vh = window.innerHeight || 1;
+    for (var i = 0; i < stages.length; i++) {
+      var r = stages[i].getBoundingClientRect();
+      // Skip stages that are far off screen; -1 … 1 covers entering to leaving.
+      if (r.bottom < -vh || r.top > vh * 2) continue;
+      var q = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+      q = Math.max(-1, Math.min(1, q));
+      stages[i].style.setProperty('--q', q.toFixed(4));
+      stages[i].style.setProperty('--aq', Math.abs(q).toFixed(4));
+    }
+  }
+  function schedule() {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }
+  function start() { collect(); update(); }
+
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  document.addEventListener('shopify:section:load', start);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+</script>
+
 {% stylesheet %}
   /* Horizon's .section does not consume --padding-block-*, so the band would sit flush
      against the sections above and below it. On a dark band that reads as a mistake. */
@@ -158,37 +202,55 @@
 
   /* The stage: five cut-outs, three lab plantlets over two rooted plants. Positions are
      percentages of a square, so the arrangement scales with the column. */
+  .agmb { overflow: hidden; }   /* the plants spread past the stage while off-centre */
   .agmb__stage {
     position: relative;
     display: block;
     aspect-ratio: 1 / 1;
+    --q: 0;    /* where the stage is in the viewport: -1 leaving at the top … 0 centred … 1 entering at the bottom */
+    --aq: 0;   /* its magnitude */
+    --k: 1;    /* amplitude scale, smaller on phones */
   }
+  /* The scroll choreography lives on the wrapper: spread (--sx/--sy, by distance from
+     centre), drift (--px/--py, by direction, so the rows move at different speeds),
+     a turn (--r) and a zoom that lands at 1 when the stage is centred. */
   .agmb__plant {
     position: absolute;
     display: block;
-    animation: agmb-float var(--d, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+    transform:
+      translate3d(
+        calc((var(--aq) * var(--sx, 0px) + var(--q) * var(--px, 0px)) * var(--k)),
+        calc((var(--aq) * var(--sy, 0px) + var(--q) * var(--py, 0px)) * var(--k)),
+        0
+      )
+      rotate(calc(var(--q) * var(--r, 0deg)))
+      scale(calc(1 - 0.3 * var(--aq)));
+    transition: transform 140ms ease-out;
     will-change: transform;
   }
+  /* The slow float sits on the image so it never fights the scroll transform. */
   .agmb__plant img {
     display: block;
     width: 100%;
     height: auto;
     -webkit-mask-image: var(--mask, none);
     mask-image: var(--mask, none);
+    animation: agmb-float var(--d, 7s) ease-in-out var(--delay, 0s) infinite alternate;
   }
   /* top row — the tweezers fade out toward the edge they come from, so the crop never shows */
-  .agmb__plant--1 { left: 0;    top: 7%; width: 45%; --d: 7.5s; --delay: -1s;   --mask: linear-gradient(135deg, #000 58%, transparent 90%); }
-  .agmb__plant--2 { left: 45%;  top: 1%; width: 27%; --d: 8.5s; --delay: -4s;   --mask: linear-gradient(160deg, #000 62%, transparent 92%); }
-  .agmb__plant--3 { right: 0;   top: 0;  width: 29%; --d: 6.5s; --delay: -2.5s; --mask: linear-gradient(205deg, #000 60%, transparent 92%); }
+  .agmb__plant--1 { left: 0;    top: 7%; width: 45%; --d: 7.5s; --delay: -1s;   --mask: linear-gradient(135deg, #000 58%, transparent 90%); --sx: -70px; --sy: -90px;  --px: -10px; --py: -40px; --r: -9deg; }
+  .agmb__plant--2 { left: 45%;  top: 1%; width: 27%; --d: 8.5s; --delay: -4s;   --mask: linear-gradient(160deg, #000 62%, transparent 92%); --sx: 0px;   --sy: -150px; --px: 0px;   --py: -70px; --r: 6deg; }
+  .agmb__plant--3 { right: 0;   top: 0;  width: 29%; --d: 6.5s; --delay: -2.5s; --mask: linear-gradient(205deg, #000 60%, transparent 92%); --sx: 70px;  --sy: -110px; --px: 10px;  --py: -55px; --r: 10deg; }
   /* bottom row — rooted plants, barely moving. No shadows anywhere: the owner asked for none. */
-  .agmb__plant--4 { left: 5%;  bottom: 0; width: 47%; --d: 9s; --delay: -6s; --amp: -4px; --rot: 0deg; }
-  .agmb__plant--5 { right: 9%; bottom: 0; width: 30%; --d: 8s; --delay: -3s; --amp: -4px; --rot: 0deg; }
+  .agmb__plant--4 { left: 5%;  bottom: 0; width: 47%; --d: 9s; --delay: -6s; --amp: -4px; --rot: 0deg; --sx: -60px; --sy: 100px; --px: -8px; --py: 25px; --r: -4deg; }
+  .agmb__plant--5 { right: 9%; bottom: 0; width: 30%; --d: 8s; --delay: -3s; --amp: -4px; --rot: 0deg; --sx: 70px;  --sy: 130px; --px: 10px; --py: 40px; --r: 6deg; }
   @keyframes agmb-float {
     from { transform: translateY(0) rotate(0); }
     to   { transform: translateY(var(--amp, -10px)) rotate(var(--rot, 0.8deg)); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .agmb__plant { animation: none; }
+    .agmb__plant img { animation: none; }
+    .agmb__plant { transform: none; transition: none; }
   }
 
   .agmb__copy { color: var(--agmb-ink); }
@@ -273,7 +335,7 @@
     .agmb__grid--flip .agmb__media,
     .agmb__grid--flip .agmb__stage { order: 0; }
     .agmb__img { aspect-ratio: 4 / 3; }
-    .agmb__stage { width: 100%; max-width: 420px; margin: 0 auto; }
+    .agmb__stage { width: 100%; max-width: 420px; margin: 0 auto; --k: 0.6; }
   }
 
   /* 2x2 tiers on a phone, the same shape as the batch discount ladder */

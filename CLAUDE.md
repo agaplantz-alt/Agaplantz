@@ -352,6 +352,26 @@ scales; on a phone the stage caps at 420px wide. Each plant floats on a 6.5–9s
 `prefers-reduced-motion`. Two earlier compositions were rejected by eye before this one: a
 free scatter read as clutter, with two tweezers crossing. **"Organized" was the brief.**
 
+**Scroll-linked motion (4 Oct).** The owner asked for the thing premium sites do where
+*"when you're scrolling down, all the subjects are moving pretty quickly … zoom in and circle
+around"* — on this band only. A 30-line script in the section writes two numbers to the
+stage on every frame: `--q`, where the stage is in the viewport (`1` entering at the
+bottom, `0` centred, `-1` leaving at the top) and `--aq`, its magnitude. The CSS does the
+choreography from those: each plant has a spread vector (`--sx/--sy`, by `--aq`, so they
+sit apart and at 70% size while off-centre and converge to the layout as it centres), a
+drift vector (`--px/--py`, by `--q`, different per row so the rows separate in depth — the
+top row travels faster), and a turn (`--r`, by `--q`, so they rotate one way coming in and
+the other going out). `--k` scales the amplitudes to 0.6 on phones. The scroll transform
+sits on the wrapper `<span>` and the slow float on the `<img>`, so the two never fight.
+`.agmb` is `overflow: hidden` because the spread pushes plants past the stage. Everything
+is transform-only and rAF-throttled; `prefers-reduced-motion` turns both layers off.
+
+Verified by scrolling a local render at 390px and reading `--q` back at four positions.
+**The desktop harness cannot scroll** — with Horizon's scripts blocked the body stays
+`overflow: hidden` at 100dvh — so desktop was checked by setting `--q` by hand; the maths
+is the same. Nothing about this is Horizon-specific; it survives upgrades as long as the
+section file does.
+
 **No shadows, no glow.** The first version had a CSS `drop-shadow` on each cut-out, a floor
 ellipse under the cups and a radial lift behind the stage; the owner read all three as a
 halo (*"there is shadow I don't like behind them"*) and they were removed. The PNGs
