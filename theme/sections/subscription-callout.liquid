@@ -9,6 +9,13 @@
   tier chips are read from the product's own variants — rename a tier or change a price
   in admin and this band follows, with no theme edit. Each chip carries ?variant= so the
   product page opens on that tier. A tier that is unavailable is simply not rendered.
+
+  The picture side is a "stage": up to five cut-out plant photos (transparent PNGs, see
+  Files: aga-box-*.png) arranged three-over-two and floating gently. Slots 1–3 are the lab
+  plantlets in tweezers — the tweezer ends fade out so the crop never shows — and slots 4–5
+  are rooted plants that sit on an implied floor. Each slot is an image picker, so the owner
+  can swap a photo; leave all five empty and the band falls back to the product's own photo.
+  Motion is CSS only and switches off under prefers-reduced-motion.
 {%- enddoc -%}
 
 {%- liquid
@@ -32,16 +39,43 @@
     "
   >
     <div class="agmb__grid{% if section.settings.image_position == 'right' %} agmb__grid--flip{% endif %}">
-      <a class="agmb__media" href="{{ box.url }}">
-        {%- if box.featured_media != blank -%}
-          {{ box.featured_media | image_url: width: 1000 | image_tag:
-             widths: '300, 440, 600, 800, 1000',
-             sizes: '(max-width: 749px) 100vw, 34vw',
-             loading: 'lazy',
-             class: 'agmb__img',
-             alt: box.title }}
-        {%- endif -%}
-      </a>
+      {%- liquid
+        assign stage_count = 0
+        for i in (1..5)
+          assign key = 'plant_' | append: i
+          if section.settings[key] != blank
+            assign stage_count = stage_count | plus: 1
+          endif
+        endfor
+      -%}
+      {%- if stage_count > 0 -%}
+        <a class="agmb__stage" href="{{ box.url }}" aria-label="{{ box.title | escape }}">
+          {%- for i in (1..5) -%}
+            {%- assign key = 'plant_' | append: i -%}
+            {%- assign img = section.settings[key] -%}
+            {%- if img != blank -%}
+              <span class="agmb__plant agmb__plant--{{ i }}">
+                {{ img | image_url: width: 800 | image_tag:
+                   widths: '200, 300, 400, 600, 800',
+                   sizes: '(max-width: 749px) 45vw, 18vw',
+                   loading: 'lazy',
+                   alt: '' }}
+              </span>
+            {%- endif -%}
+          {%- endfor -%}
+        </a>
+      {%- else -%}
+        <a class="agmb__media" href="{{ box.url }}">
+          {%- if box.featured_media != blank -%}
+            {{ box.featured_media | image_url: width: 1000 | image_tag:
+               widths: '300, 440, 600, 800, 1000',
+               sizes: '(max-width: 749px) 100vw, 34vw',
+               loading: 'lazy',
+               class: 'agmb__img',
+               alt: box.title }}
+          {%- endif -%}
+        </a>
+      {%- endif -%}
 
       <div class="agmb__copy">
         {%- if section.settings.eyebrow != blank -%}
@@ -105,7 +139,8 @@
     gap: clamp(24px, 4vw, 56px);
     color: var(--agmb-ink);
   }
-  .agmb__grid--flip .agmb__media { order: 2; }
+  .agmb__grid--flip .agmb__media,
+  .agmb__grid--flip .agmb__stage { order: 2; }
 
   .agmb__media {
     display: block;
@@ -119,6 +154,60 @@
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 2px;
+  }
+
+  /* The stage: five cut-outs, three lab plantlets over two rooted plants. Positions are
+     percentages of a square, so the arrangement scales with the column. */
+  .agmb__stage {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+  }
+  .agmb__stage::before {
+    content: "";
+    position: absolute;
+    inset: -4%;
+    background: radial-gradient(closest-side, rgb(251 248 242 / 0.11), rgb(251 248 242 / 0) 72%);
+    pointer-events: none;
+  }
+  .agmb__plant {
+    position: absolute;
+    display: block;
+    animation: agmb-float var(--d, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+    will-change: transform;
+  }
+  .agmb__plant img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 14px 18px rgb(0 0 0 / 0.26));
+    -webkit-mask-image: var(--mask, none);
+    mask-image: var(--mask, none);
+  }
+  /* top row — the tweezers fade out toward the edge they come from, so the crop never shows */
+  .agmb__plant--1 { left: 0;    top: 7%; width: 45%; --d: 7.5s; --delay: -1s;   --mask: linear-gradient(135deg, #000 58%, transparent 90%); }
+  .agmb__plant--2 { left: 45%;  top: 1%; width: 27%; --d: 8.5s; --delay: -4s;   --mask: linear-gradient(160deg, #000 62%, transparent 92%); }
+  .agmb__plant--3 { right: 0;   top: 0;  width: 29%; --d: 6.5s; --delay: -2.5s; --mask: linear-gradient(205deg, #000 60%, transparent 92%); }
+  /* bottom row — rooted plants, grounded on a soft floor shadow, barely moving */
+  .agmb__plant--4 { left: 5%;  bottom: 0; width: 47%; --d: 9s; --delay: -6s; --amp: -4px; --rot: 0deg; }
+  .agmb__plant--5 { right: 9%; bottom: 0; width: 30%; --d: 8s; --delay: -3s; --amp: -4px; --rot: 0deg; }
+  .agmb__plant--4::after,
+  .agmb__plant--5::after {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: -3%;
+    height: 8%;
+    background: radial-gradient(ellipse at center, rgb(0 0 0 / 0.32), rgb(0 0 0 / 0) 70%);
+    z-index: -1;
+  }
+  @keyframes agmb-float {
+    from { transform: translateY(0) rotate(0); }
+    to   { transform: translateY(var(--amp, -10px)) rotate(var(--rot, 0.8deg)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .agmb__plant { animation: none; }
   }
 
   .agmb__copy { color: var(--agmb-ink); }
@@ -200,8 +289,10 @@
 
   @media screen and (max-width: 749px) {
     .agmb__grid { grid-template-columns: 1fr; }
-    .agmb__grid--flip .agmb__media { order: 0; }
+    .agmb__grid--flip .agmb__media,
+    .agmb__grid--flip .agmb__stage { order: 0; }
     .agmb__img { aspect-ratio: 4 / 3; }
+    .agmb__stage { width: 100%; max-width: 420px; margin: 0 auto; }
   }
 
   /* 2x2 tiers on a phone, the same shape as the batch discount ladder */
@@ -218,6 +309,13 @@
   "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
     { "type": "product", "id": "product", "label": "Subscription product" },
+    { "type": "header", "content": "Plant photos", "info": "Cut-out PNGs with a transparent background. Slots 1–3 sit in the top row (lab plantlets), 4–5 in the bottom row (rooted plants). Leave all five empty to show the product's own photo instead." },
+    { "type": "image_picker", "id": "plant_1", "label": "Top left" },
+    { "type": "image_picker", "id": "plant_2", "label": "Top middle" },
+    { "type": "image_picker", "id": "plant_3", "label": "Top right" },
+    { "type": "image_picker", "id": "plant_4", "label": "Bottom left" },
+    { "type": "image_picker", "id": "plant_5", "label": "Bottom right" },
+    { "type": "header", "content": "Copy" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Not sure what to buy?" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Let us choose. Every month.", "info": "Leave blank to use the product's own name." },
     { "type": "richtext", "id": "text", "label": "Text", "default": "<p>A rare tropical plant, picked by us and delivered to your door every month. You choose the tier, we choose the plant.</p>" },

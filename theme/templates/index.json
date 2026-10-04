@@ -1850,6 +1850,11 @@
       "type": "subscription-callout",
       "settings": {
         "product": "monthly-mystery-plant-box",
+        "plant_1": "shopify://shop_images/aga-box-plantlet-green.png",
+        "plant_2": "shopify://shop_images/aga-box-plantlet-pink.png",
+        "plant_3": "shopify://shop_images/aga-box-monstera-variegated.png",
+        "plant_4": "shopify://shop_images/aga-box-alocasia-dark-cup.png",
+        "plant_5": "shopify://shop_images/aga-box-alocasia-pink-cup.png",
         "eyebrow": "Not sure what to buy?",
         "heading": "Let us choose. Every month.",
         "text": "<p>A rare tropical plant, picked by us and delivered to your door every month. You choose the tier, we choose the plant.</p>",

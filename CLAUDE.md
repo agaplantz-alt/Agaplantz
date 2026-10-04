@@ -326,6 +326,38 @@ colour is doing real work: it is the one dark section between the hero and the f
 reads as a feature rather than another row, and it keeps the sand spotlight above and the sage
 explainer below from touching.
 
+### The picture side is five cut-outs, not one photo
+
+The owner rejected the product's own square photo (*"not giving premium energy"*) and sent
+five individual plant shots on white. They were cut out with `rembg` (`isnet-general-use`,
+alpha matting on — the clear nursery cups kept their translucency and the gaps between roots
+and tweezers survived) and uploaded to **Files** as `aga-box-*.png`, trimmed to 1200px:
+
+| Slot | File | What it is |
+| --- | --- | --- |
+| `plant_1` top left | `aga-box-plantlet-green.png` | green plantlet in tweezers |
+| `plant_2` top middle | `aga-box-plantlet-pink.png` | pink variegated plantlet in tweezers |
+| `plant_3` top right | `aga-box-monstera-variegated.png` | variegated Monstera in tweezers |
+| `plant_4` bottom left | `aga-box-alocasia-dark-cup.png` | rooted Alocasia in a clear cup |
+| `plant_5` bottom right | `aga-box-alocasia-pink-cup.png` | rooted pink Alocasia in a clear cup |
+
+The section arranges them **three over two** in a square "stage": lab plantlets on top,
+rooted plants on the floor — the story of what a box contains. Each slot is an
+`image_picker`, so the owner can swap a photo; leave all five empty and it falls back to the
+product's featured image. **The tweezer ends fade out** with a `mask-image` gradient per
+slot, because the originals are hard-cropped where the tweezers leave the frame and a
+floating rectangle edge looked wrong. The arrangement is percentages of the square, so it
+scales; on a phone the stage caps at 420px wide. Each plant floats on a 6.5–9s CSS loop
+(plantlets ±10px with 0.8° of rotation, rooted plants ±4px with none), all under
+`prefers-reduced-motion`. Two earlier compositions were rejected by eye before this one: a
+free scatter read as clutter, with two tweezers crossing. **"Organized" was the brief.**
+
+Slot order is positional — a tall rooted plant dropped into slot 1 gets a tweezer-fade mask
+it does not need. Keep plantlets in 1–3 and rooted plants in 4–5.
+
+Source photos are not in the repo; the cut-outs live only in Files. If they ever need
+redoing, `rembg` is in pip and the model is ~180 MB.
+
 **Inventory is not tracked on this product** (`inventoryItem.tracked: false`), so all four
 variants showing `inventoryQuantity: 0` is harmless — they stay buyable. Do not "fix" it by
 setting stock.
@@ -1124,7 +1156,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/footer-group.json` | footer, all pages |
 | `theme/sections/stage-products.liquid` | variant-aware product row (homepage + /collections) |
 | `theme/sections/spotlight-plant.liquid` | plants shown big, one per slide |
-| `theme/sections/subscription-callout.liquid` | mystery-box band, tiers read from the product |
+| `theme/sections/subscription-callout.liquid` | mystery-box band, five floating cut-outs, tiers read from the product |
 | `theme/sections/batch-discounts.liquid` | standalone discount ladder — **unused**, the ladder lives in the countdown |
 | `catalog-backup/` | pre-deletion product export |
 
