@@ -35,9 +35,13 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of the last session: MAIN was `Updated copy of AgaPlantz 2026 — pre-order paused` = `167227654223`
-(the 29 Sep "paused wording" draft was never published, so its fixes were re-applied on top),
-Horizon **4.1.4**. Verify, don't assume. Note the name: Shopify prefixes **"Updated copy of"**
+As of 4 Oct 2026: MAIN was `AgaPlantz 2026 — subscription page` = `188662284367`, Horizon
+**4.1.4** — the owner now publishes their own drafts too, so MAIN may be a theme they named
+themselves rather than an "Updated copy of" one. It carried every one of our files unchanged
+(`templates/index.json`, `sections/header-group.json`, `spotlight-plant.liquid`,
+`stage-products.liquid`, `batch-discounts.liquid` all matched the repo md5 for md5), so the
+ladder and the announcement slide are live. **Compare md5s against the repo before editing** —
+that one query is the whole merge check. Verify, don't assume. Note the name: Shopify prefixes **"Updated copy of"**
 automatically when the owner publishes a draft, so a theme called that is *our* work that
 they published, not something they hand-wrote.
 
@@ -90,11 +94,14 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
    picked a stage, and the explainer and both CTAs are kept rather than replaced.
 5. `spotlight_plant` — **one plant, shown big**, sand band. A `spotlight-plant` section;
    see below. Sits between the genus tiles and the tissue-culture explainer.
-6. `tissue_culture` — the explainer (numbering above is off by one from here down)
-7. `products_popular` — **the only product row on the homepage**, cream band. A
+6. `subscription_box` — the mystery-box call-out, **moss band**. A `subscription-callout`
+   section; see below. Deliberately directly under the spotlight: a visitor who has just
+   scrolled past two expensive named plants is the one still undecided.
+7. `tissue_culture` — the explainer (numbering above is off by one from here down)
+8. `products_popular` — **the only product row on the homepage**, cream band. A
    `stage-products` section on the automated `popular` collection, sorted BEST_SELLING.
-8. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
-9. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
+9. `why_agaplantz` — 4 icon/text cells, 2×2 on mobile, sage
+10. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
 
 **Disabled, still in `order` so they can come back:** `products_tc` (pre-order),
 `products_sale` (on-sale), `products_rts` (ready-to-ship), `products_acclimated`
@@ -298,6 +305,38 @@ Two slides as of 1 Oct:
 Monstera Bulbasaur outsells both on units (45) but had **one unit left**, so a spotlight
 would have sold it out immediately — check stock before spotlighting a bestseller.
 
+## Monthly Mystery Plant Box (4 Oct 2026)
+
+The owner built the box themselves — product `monthly-mystery-plant-box`
+(`gid://shopify/Product/15404945670223`), template suffix `subscription`, one `Tier` option
+with `$50 / $100 / $150 / $200 Box`, one selling plan ("Deliver every month", no discount),
+and the Shopify Subscriptions app block on `templates/product.subscription.json`. They asked
+for a call-out on the homepage *underneath* the spotlight slider: *"not sure what to buy? Get
+a plant subscription monthly."*
+
+`sections/subscription-callout.liquid` — photo one side, pitch and CTA the other, stacking
+with the photo first on mobile. All copy is a section setting, so the owner edits it in the
+theme editor. **The tier chips are read from the product's own variants**, each linking with
+`?variant=`, so renaming a tier or changing a price in admin moves the homepage with no theme
+edit; an unavailable tier simply is not rendered. Settings: `product`, `eyebrow`, `heading`
+(blank = the product's name), `text`, `show_tiers`, `cta_label`, `note`, `image_position`, and
+four colours — `background_color` (moss `#5C6B4C`), `text_color`, `button_background`,
+`button_text`, defaulting to a **dark moss band with an inverted cream button**. That band
+colour is doing real work: it is the one dark section between the hero and the footer, so it
+reads as a feature rather than another row, and it keeps the sand spotlight above and the sage
+explainer below from touching.
+
+**Inventory is not tracked on this product** (`inventoryItem.tracked: false`), so all four
+variants showing `inventoryQuantity: 0` is harmless — they stay buyable. Do not "fix" it by
+setting stock.
+
+Two things to re-check if the box changes: the small print says *"Manage or cancel it any time
+from your account"*, which holds because the shop runs **new customer accounts** and the
+Subscriptions app gives subscribers a portal — if customer accounts are ever switched off, that
+line stops being true. And the product is published to **5** channels (Online Store, Shop,
+TikTok, Meta AI, Microsoft Copilot) where the plants are on 7; nobody has asked about Google or
+Meta feeds for it.
+
 ## Batch discount ladder (2 Oct 2026)
 
 The owner's scheme: the discount falls as the batch fills, so ordering early is worth
@@ -364,6 +403,14 @@ tier cannot stack on top of the existing compare-at sales.
   and listed first. A declared-but-unordered block is silently ignored — this is why
   three product rows showed title+price with no photo. The Sale badge also lives
   inside this block.
+- **`.section` does not consume `--padding-block-start` / `--padding-block-end`.** Setting
+  them inline on a custom section's wrapper — the pattern every section here uses — computes
+  to `padding: 0` at every width; what looks like section padding on `spotlight-plant` and
+  `stage-products` is just their tall content. On a light band nobody notices; on a dark one
+  the content sits flush against the neighbouring section and reads as a bug.
+  `subscription-callout.liquid` therefore applies the padding itself:
+  `padding-block-start: var(--padding-block-start, 56px)`. Measure the computed padding
+  rather than trusting the setting.
 - **The type scale is fixed rem with no `clamp()`** — `--font-size--h1: 2.625rem` on a
   phone and a desktop alike. Responsive type therefore needs CSS. The hero accepts
   `@theme` blocks, so a `custom-liquid` block carrying a `<style>` works: override the
@@ -1077,6 +1124,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/footer-group.json` | footer, all pages |
 | `theme/sections/stage-products.liquid` | variant-aware product row (homepage + /collections) |
 | `theme/sections/spotlight-plant.liquid` | plants shown big, one per slide |
+| `theme/sections/subscription-callout.liquid` | mystery-box band, tiers read from the product |
 | `theme/sections/batch-discounts.liquid` | standalone discount ladder — **unused**, the ladder lives in the countdown |
 | `catalog-backup/` | pre-deletion product export |
 

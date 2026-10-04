@@ -1845,6 +1845,25 @@
         "slide_devil",
         "slide_cuprea"
       ]
+    },
+    "subscription_box": {
+      "type": "subscription-callout",
+      "settings": {
+        "product": "monthly-mystery-plant-box",
+        "eyebrow": "Not sure what to buy?",
+        "heading": "Let us choose. Every month.",
+        "text": "<p>A rare tropical plant, picked by us and delivered to your door every month. You choose the tier, we choose the plant.</p>",
+        "show_tiers": true,
+        "cta_label": "Start a monthly box",
+        "note": "Manage or cancel it any time from your account.",
+        "image_position": "left",
+        "background_color": "#5c6b4c",
+        "text_color": "#fbf8f2",
+        "button_background": "#fbf8f2",
+        "button_text": "#2f2a22",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
     }
   },
   "order": [
@@ -1853,6 +1872,7 @@
     "custom_liquid_KL8FyB",
     "collections_genus",
     "spotlight_plant",
+    "subscription_box",
     "tissue_culture",
     "products_popular",
     "products_tc",
