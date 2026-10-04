@@ -238,12 +238,12 @@
     animation: agmb-float var(--d, 7s) ease-in-out var(--delay, 0s) infinite alternate;
   }
   /* top row — the tweezers fade out toward the edge they come from, so the crop never shows */
-  .agmb__plant--1 { left: 0;    top: 7%; width: 45%; --d: 7.5s; --delay: -1s;   --mask: linear-gradient(135deg, #000 58%, transparent 90%); --sx: -70px; --sy: -90px;  --px: -10px; --py: -40px; --r: -9deg; }
-  .agmb__plant--2 { left: 45%;  top: 1%; width: 27%; --d: 8.5s; --delay: -4s;   --mask: linear-gradient(160deg, #000 62%, transparent 92%); --sx: 0px;   --sy: -150px; --px: 0px;   --py: -70px; --r: 6deg; }
-  .agmb__plant--3 { right: 0;   top: 0;  width: 29%; --d: 6.5s; --delay: -2.5s; --mask: linear-gradient(205deg, #000 60%, transparent 92%); --sx: 70px;  --sy: -110px; --px: 10px;  --py: -55px; --r: 10deg; }
+  .agmb__plant--1 { left: 0;    top: 7%; width: 45%; --d: 7.5s; --delay: -1s;   --mask: linear-gradient(135deg, #000 58%, transparent 90%); --sx: -60px; --sy: -70px;  --px: -8px;  --py: -30px; --r: -9deg; }
+  .agmb__plant--2 { left: 45%;  top: 1%; width: 27%; --d: 8.5s; --delay: -4s;   --mask: linear-gradient(160deg, #000 62%, transparent 92%); --sx: 0px;   --sy: -100px; --px: 0px;   --py: -45px; --r: 6deg; }
+  .agmb__plant--3 { right: 0;   top: 0;  width: 29%; --d: 6.5s; --delay: -2.5s; --mask: linear-gradient(205deg, #000 60%, transparent 92%); --sx: 60px;  --sy: -85px;  --px: 8px;   --py: -40px; --r: 10deg; }
   /* bottom row — rooted plants, barely moving. No shadows anywhere: the owner asked for none. */
-  .agmb__plant--4 { left: 5%;  bottom: 0; width: 47%; --d: 9s; --delay: -6s; --amp: -4px; --rot: 0deg; --sx: -60px; --sy: 100px; --px: -8px; --py: 25px; --r: -4deg; }
-  .agmb__plant--5 { right: 9%; bottom: 0; width: 30%; --d: 8s; --delay: -3s; --amp: -4px; --rot: 0deg; --sx: 70px;  --sy: 130px; --px: 10px; --py: 40px; --r: 6deg; }
+  .agmb__plant--4 { left: 5%;  bottom: 0; width: 47%; --d: 9s; --delay: -6s; --amp: -4px; --rot: 0deg; --sx: -50px; --sy: 80px;  --px: -6px; --py: 20px; --r: -4deg; }
+  .agmb__plant--5 { right: 9%; bottom: 0; width: 30%; --d: 8s; --delay: -3s; --amp: -4px; --rot: 0deg; --sx: 60px;  --sy: 100px; --px: 8px;  --py: 30px; --r: 6deg; }
   @keyframes agmb-float {
     from { transform: translateY(0) rotate(0); }
     to   { transform: translateY(var(--amp, -10px)) rotate(var(--rot, 0.8deg)); }
