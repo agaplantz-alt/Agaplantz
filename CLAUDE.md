@@ -35,7 +35,9 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of 4 Oct 2026: MAIN was `AgaPlantz 2026 — subscription page` = `188662284367`, Horizon
+As of 6 Oct 2026: MAIN was `AgaPlantz 2026 — mystery box call-out` = `188663136335` — the
+owner published our 4 Oct draft as-is, so the mystery-box band, its cut-outs and the scroll
+motion are live. Before that (4 Oct): MAIN was `AgaPlantz 2026 — subscription page` = `188662284367`, Horizon
 **4.1.4** — the owner now publishes their own drafts too, so MAIN may be a theme they named
 themselves rather than an "Updated copy of" one. It carried every one of our files unchanged
 (`templates/index.json`, `sections/header-group.json`, `spotlight-plant.liquid`,
@@ -421,6 +423,17 @@ discounts down there."* So the one timer still counts to the batch close
 at a tier boundary.** `sections/batch-discounts.liquid` is still in the theme, unused —
 it is a working standalone section if a ladder is ever wanted on another page.
 
+**A tier disappears the day after it ends (6 Oct).** The owner crossed out the expired
+Oct 1–5 card on a screenshot — a discount you can no longer use reads as a loss, not an
+incentive. Each card is wrapped in `{% if day_now <= <last day> %}`, `tier_count` is
+computed alongside `day_now` and written to the `<ol>` as `--tiers`, and the grid takes
+`repeat(var(--tiers), …)` so three cards fill the row instead of leaving a gap. On a
+phone an odd last card spans both columns (`:last-child:nth-child(odd)`). Once only
+"Regular" is left (day 21 on) the whole ladder is skipped — one lonely "full price" card
+with a Now pill is worse than nothing. The expiry script guards its `.aga-batch__tiers`
+lookup for the same reason. So the ladder is 3 cards from 6 Oct, 2 from 16 Oct, gone from
+21 Oct, with no edit needed.
+
 **Which tier is "now" is computed in Liquid, not JavaScript**, so it renders server-side —
 no flash of the wrong tier, and Google sees it:
 
@@ -440,11 +453,30 @@ the `batch_start` — add them to the cut-off checklist.
 **Day 1 = 1 Oct 2026 is an inference, not something the owner stated.** It fits:
 pre-orders resumed 1 Oct, the ladder is 30 days, the cut-off is 31 Oct.
 
-### The discounts themselves did not exist
+### The discounts themselves
 
-Checked at build time: **every automatic discount in the shop is EXPIRED.** The only
-ACTIVE ones are Loox review codes and `WELCOME10`, all code-based. So the ladder as
-published advertises money off that checkout would not give.
+**The 15% tier exists as of 6 Oct** — the owner created it in admin:
+`15% OFF SALE - orders $100+` (`gid://shopify/DiscountAutomaticNode/1531118911567`),
+automatic, 15%, minimum subtotal $100 CAD, `2026-10-06T04:00Z` → `2026-10-16T03:59Z`
+(Oct 6 00:00 → Oct 15 23:59 Toronto, exactly the card), one-time purchases only (the
+mystery box is excluded, correctly), scoped to the PRE-ORDER, READY TO SHIP and
+ACCLIMATED PLANTS collections — mature specimens are outside it.
+
+**Two things about it were flagged, not changed** — it is the owner's discount:
+`combinesWith.orderDiscounts: true`, and every active code in the shop is an ORDER-class
+code that also allows combining (`WELCOME10` 10%, `NEWPLANTLOVE` 10%, nine Loox review
+codes at 10–20%), so a customer can stack a code on top and take 25–35% off. Setting the
+automatic discount's `orderDiscounts` to `false` blocks all of them at once. And
+`shippingDiscounts: false` is harmless — free shipping over $180 is a shipping *rate*, not
+a discount (no active automatic free-shipping discount exists).
+
+**The 10% tier (Oct 16–20) does not exist yet.** The 20% one never did and is now moot.
+Create the 10% one before 16 Oct or the card promises money checkout will not give.
+
+The original finding, kept for the pattern: at build time (2 Oct) **every automatic
+discount in the shop was EXPIRED.** The only ACTIVE ones were Loox review codes and
+`WELCOME10`, all code-based. So the ladder as first published advertised money off that
+checkout would not give.
 
 This is the same class of trap as the "An automatic discount does not change the price on
 the storefront" note under **Running a sale**, but worse — there the price simply did not
