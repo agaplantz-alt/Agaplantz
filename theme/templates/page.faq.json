@@ -1,0 +1,156 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "disabled": true,
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "disabled": true,
+          "settings": {
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "blocks_m3wWbf": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_138208e_PqtLfe": {
+          "type": "ai_gen_block_138208e",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "subtitle": "",
+            "heading_alignment": "left",
+            "heading_size": 32,
+            "subtitle_size": 16,
+            "heading_spacing": 32,
+            "desktop_width_percent": 100,
+            "section_padding": 40,
+            "item_spacing": 12,
+            "item_background_color": "#ffffff",
+            "item_hover_background": "#f5f5f5",
+            "item_border_color": "#e6e6e6",
+            "item_border_width": 1,
+            "item_border_radius": 8,
+            "question_padding": 20,
+            "question_color": "#000000",
+            "question_size": 18,
+            "question_weight": 600,
+            "answer_color": "#000000",
+            "answer_size": 14,
+            "icon_color": "#000000",
+            "icon_size": 24,
+            "heading_color": "#000000",
+            "subtitle_color": "#000000",
+            "faq_1_question": "Do you ship across Canada?",
+            "faq_1_answer": "<p>Yes. We currently ship plants across Canada. All plants are packaged carefully with protective materials to help ensure they arrive safely.</p>",
+            "faq_2_question": "When will my order ship?",
+            "faq_2_answer": "<p>Orders are usually processed within 1–3 business days unless otherwise stated. Shipping times may vary depending on weather conditions, carrier delays, and your location.</p>",
+            "faq_3_question": "Do you ship plants during cold weather?",
+            "faq_3_answer": "<p>Yes. During colder months, insulation and heat packs may be used when necessary to help protect plants during transit. However, extreme weather and shipping delays are outside of our control.</p>",
+            "faq_4_question": "What happens if my plant arrives damaged?",
+            "faq_4_answer": "<p>If your plant arrives dead or severely damaged, contact us within 24 hours of delivery with clear photos of the plant, the packaging, and the shipping label. We will review it and put it right.</p><p>If your plant arrives fine but does not pull through over the following weeks, that is covered by our <a href=\"/pages/30-day-plant-guarantee\">30-Day Plant Guarantee</a> instead — free replacement within 30 days on plants under $200, and at 50% on plants $200 and over.</p><p>Either way, <strong>photograph your plant the day it arrives</strong>. That photo is required for both routes.</p>",
+            "faq_5_question": "Do you accept returns or refunds?",
+            "faq_5_answer": "<p>Because plants are live and perishable, we do not take general returns or change-of-mind refunds.</p><p>What we do instead is replace plants that do not make it. Our <a href=\"/pages/30-day-plant-guarantee\">30-Day Plant Guarantee</a> covers every plant for 30 days from delivery, as long as you photographed it on arrival and followed the <a href=\"/pages/acclimation-guide\">Acclimation Guide</a>. Full details are in our Refund Policy.</p>",
+            "faq_6_question": "Will my plant look exactly like the product photos?",
+            "faq_6_answer": "<p>Each plant is unique. Size, shape, leaf count, and variegation may vary naturally from plant to plant. Product photos are representative examples.</p>",
+            "faq_7_question": "Are your plants rooted?",
+            "faq_7_answer": "<p>Most plants are rooted and acclimated unless otherwise stated in the product description.</p>",
+            "faq_8_question": "What does \"tissue culture acclimated\" mean?",
+            "faq_8_answer": "<p>Tissue culture acclimated plants were originally propagated in sterile lab conditions and then transitioned into regular growing conditions. These plants are carefully acclimated before being sold.</p>",
+            "faq_9_question": "Can shipping stress affect my plant?",
+            "faq_9_answer": "<p>Yes. Some yellowing, leaf damage, or minor stress can happen during shipping, especially with rare tropical plants. Most plants recover after adjusting to their new environment.</p>",
+            "faq_10_question": "What should I do after receiving my plant?",
+            "faq_10_answer": "<p>We recommend unpacking your plant immediately after delivery and allowing it to adjust to your home environment. Avoid direct sunlight or repotting immediately after arrival.</p>",
+            "faq_11_question": "Do you guarantee variegation?",
+            "faq_11_answer": "<p>Variegation is natural and may change over time depending on genetics and growing conditions. Future variegation patterns cannot be guaranteed unless specifically stated.</p>",
+            "faq_12_question": "Are plants pest free?",
+            "faq_12_answer": "<p>All plants are inspected before shipping. However, we still recommend quarantining new plants for a short period after arrival as a precaution.</p>",
+            "faq_13_question": "Do you offer local pickup?",
+            "faq_13_answer": "<p>Yes. Local pickup may be available in Brampton, Ontario depending on availability and scheduling.</p>",
+            "faq_14_question": "Can I cancel my order?",
+            "faq_14_answer": "<p>Orders may only be canceled before shipment. Once an order has shipped, cancellations are no longer possible.</p><p>For pre-orders - Order Cancellation request Is not possible as we have already paid foreign nurseries for your plant</p>",
+            "faq_15_question": "Why buy from AgaPlantz?",
+            "faq_15_answer": "<p>We are passionate about rare tropical plants and carefully handle every order with attention and care. Our goal is to provide healthy, beautiful plants for collectors and plant lovers across Canada.</p>"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_138208e_PqtLfe"
+      ],
+      "name": "FAQ accordion",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "blocks_m3wWbf"
+  ]
+}
