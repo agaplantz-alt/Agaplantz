@@ -35,9 +35,11 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of 6 Oct 2026: MAIN was `AgaPlantz 2026 — mystery box call-out` = `188663136335` — the
-owner published our 4 Oct draft as-is, so the mystery-box band, its cut-outs and the scroll
-motion are live. Before that (4 Oct): MAIN was `AgaPlantz 2026 — subscription page` = `188662284367`, Horizon
+As of 16 Oct 2026: MAIN was `AgaPlantz 2026 — ladder hides past tiers` = `188747120719`,
+published by the owner on 6 Oct, so the self-trimming ladder is live and did its job on the
+16th with no edit. Before that (6 Oct): MAIN was `AgaPlantz 2026 — mystery box call-out` =
+`188663136335` — the owner published our 4 Oct draft as-is, so the mystery-box band, its
+cut-outs and the scroll motion are live. Before that (4 Oct): MAIN was `AgaPlantz 2026 — subscription page` = `188662284367`, Horizon
 **4.1.4** — the owner now publishes their own drafts too, so MAIN may be a theme they named
 themselves rather than an "Updated copy of" one. It carried every one of our files unchanged
 (`templates/index.json`, `sections/header-group.json`, `spotlight-plant.liquid`,
@@ -470,8 +472,24 @@ automatic discount's `orderDiscounts` to `false` blocks all of them at once. And
 `shippingDiscounts: false` is harmless — free shipping over $180 is a shipping *rate*, not
 a discount (no active automatic free-shipping discount exists).
 
-**The 10% tier (Oct 16–20) does not exist yet.** The 20% one never did and is now moot.
-Create the 10% one before 16 Oct or the card promises money checkout will not give.
+**The 10% tier exists as of 16 Oct** — created from here on the owner's say-so
+(*"go create the 10% or change the discount name to 10% now"*): `10% OFF SALE - orders $100+`
+(`gid://shopify/DiscountAutomaticNode/1533887348815`), `2026-10-16T04:00Z` →
+`2026-10-21T03:59Z` (Oct 16 00:00 → Oct 20 23:59 Toronto), a **new** discount rather than
+the 15% one edited, so the 15% keeps its own reporting line. Every other setting mirrors
+the 15% exactly, stacking included — the stacking question above was raised twice and never
+answered, so it was left as the owner set it, not decided for them. The 15% expired on
+schedule at 03:59Z on the 16th; the 20% never existed and is moot.
+
+**Its scope is two collections, not three.** By 16 Oct the 15% listed only PRE-ORDER and
+READY TO SHIP — ACCLIMATED PLANTS had dropped off it, most likely because the owner deleted
+or rebuilt that collection (it has been deleted and recreated before; see **Collections**).
+The 10% mirrors the two that were there. If acclimated plants are meant to be in the
+promotion, that collection has to exist and be added to the discount.
+
+**Verified on the live homepage the same morning:** the ladder rendered `--tiers: 2` (Oct
+16–20 *Now*, Oct 21–31 Regular) and the string `15%` appeared nowhere on the page, so
+"remove the 15% from the website" needed no theme change at all.
 
 The original finding, kept for the pattern: at build time (2 Oct) **every automatic
 discount in the shop was EXPIRED.** The only ACTIVE ones were Loox review codes and
