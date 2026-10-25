@@ -35,7 +35,9 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of 16 Oct 2026: MAIN was `AgaPlantz 2026 — ladder hides past tiers` = `188747120719`,
+As of 25 Oct 2026: MAIN was still `AgaPlantz 2026 — ladder hides past tiers` =
+`188747120719`; the draft waiting for the owner is `AgaPlantz 2026 — product pages: Loox
+only` = `189569040463`. As of 16 Oct: MAIN was `AgaPlantz 2026 — ladder hides past tiers` = `188747120719`,
 published by the owner on 6 Oct, so the self-trimming ladder is live and did its job on the
 16th with no edit. Before that (6 Oct): MAIN was `AgaPlantz 2026 — mystery box call-out` =
 `188663136335` — the owner published our 4 Oct draft as-is, so the mystery-box band, its
@@ -610,26 +612,31 @@ cup or tray in daylight is exactly right; a murky one behind plastic is not. Whe
 skipping one, check the next review in that product's feed — the replacement is
 often another photo of the same kind.
 
-## Reviews on product pages
+## Reviews on product pages — Loox only, since 25 Oct 2026
 
-Every plant page carries the same reviews wall, so a product with no reviews of its
-own is not left with an empty page. `templates/product.json` and
-`templates/product.tissue-culture.json` each get a `store_reviews` section, inserted
-after the two Loox app-block sections.
+**The native "What collectors say about AgaPlantz" wall (`store_reviews`) is gone from the
+product pages.** The owner asked for it on 21 Oct: *"we only gonna keep the one division
+which automatically updates each review"* — the Loox widget. By then they had switched
+Loox from `product_reviews_only` to showing the whole store's reviews ("64 Reviews", every
+plant), so the two walls sat one above the other saying the same thing and ours needed its
+handle list maintained by hand. Removed from both `templates/product.json` and
+`templates/product.tissue-culture.json` (`product.subscription.json` never had it); the
+section file itself is untouched and the homepage no longer used it either, so the block
+is now unreferenced — delete it from admin if a cleanup pass ever happens.
 
-**There are two product templates.** `product.tissue-culture.json` serves most of the
-catalogue. Adding a section to `templates/product.json` alone reaches only a handful
-of plants — check both, and check whether a third has appeared, with
-`files(filenames: ["templates/*"])`.
+**There are three product templates now**: `product.json`, `product.tissue-culture.json`
+(most of the catalogue) and `product.subscription.json` (the mystery box). Check all three
+before assuming a product-page change has landed; a fourth can appear at any time, so run
+`files(filenames: ["templates/product.*"])`.
 
-The section reuses the homepage block with three changes: 6 cards instead of 11, the
-heading names the shop ("What collectors say about AgaPlantz"), and the loop skips
-`product.handle` so a plant's own reviews are not repeated below Loox's widget.
+How it was verified: both templates re-read from the draft matched the local md5s (**two
+of two returned** — the lie to watch for is a file silently dropped, see below), and three
+preview product pages — one per template — rendered with no Liquid error and no trace of
+the wall, while the live page still carried it.
 
-Both Loox app blocks are set to `reviews_to_display: product_reviews_only`, which is
-why they render nothing on an unreviewed plant. That setting is a dropdown on the
-block in the theme editor; switching it is the native alternative to this section, but
-its enum values are not readable from the theme files, so it was not changed by API.
+The repo copies of these two templates were stale before this (the owner had edited them
+in the theme editor); both are now the live file minus the section, header comment
+stripped, so the next edit can start from the repo again.
 
 ## Pre-orders: paused 29 Sep, resumed 1 Oct 2026
 
