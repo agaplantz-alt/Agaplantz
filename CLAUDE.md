@@ -37,7 +37,8 @@ their version as the base to merge onto.
 
 As of 25 Oct 2026: MAIN was still `AgaPlantz 2026 — ladder hides past tiers` =
 `188747120719`; the draft waiting for the owner is `AgaPlantz 2026 — product pages: Loox
-only` = `189569040463`. As of 16 Oct: MAIN was `AgaPlantz 2026 — ladder hides past tiers` = `188747120719`,
+only` = `189569040463` — it carries both the reviews-wall removal and the acclimation
+add-on pause, so one publish does both. As of 16 Oct: MAIN was `AgaPlantz 2026 — ladder hides past tiers` = `188747120719`,
 published by the owner on 6 Oct, so the self-trimming ladder is live and did its job on the
 16th with no edit. Before that (6 Oct): MAIN was `AgaPlantz 2026 — mystery box call-out` =
 `188663136335` — the owner published our 4 Oct draft as-is, so the mystery-box band, its
@@ -637,6 +638,32 @@ the wall, while the live page still carried it.
 The repo copies of these two templates were stale before this (the owner had edited them
 in the theme editor); both are now the live file minus the section, header comment
 stripped, so the next edit can start from the repo again.
+
+## Acclimation Service: paused 24 Oct 2026
+
+The paid add-on `Acclimation Service (Add-On)` (`gid://shopify/Product/8916960084047`,
+handle `acclimation-service`, three price tiers $12 / $18 / $28, type `Service`) was set to
+**DRAFT** by the owner on 24 Oct and is published nowhere. On the 25th they asked for the
+website to match (*"we have currently stopped acclimation service, so please add it on the
+website as well"*).
+
+**The one selling surface was `ai_gen_block_8ec2c32_DTK4mA`** — an "Add acclimation
+service" card, first in `main`'s `block_order` on `templates/product.tissue-culture.json`
+(`product.json` and `product.subscription.json` never had it). Its block file
+`blocks/ai_gen_block_8ec2c32.liquid` links to a `product` setting; **when that product is a
+draft, Liquid resolves the setting to blank and the block falls through to its editor
+placeholder** — a greyed card reading *"Next, select your acclimation service product"* —
+so for a day every tissue-culture page carried that broken card at the top of the buy box.
+Drafting a product does not hide the blocks that point at it. The block is now
+`disabled: true`, settings intact and still in `block_order`, so bringing the service back
+is: set the product ACTIVE, flip the block on. Same recipe as the pre-order pause.
+
+Checked and clean, nothing to change: the "Acclimation dome" card (`ai_gen_block_c6aca6a`)
+talks about the guide and the free kit, not the service; the FAQ, Pre Order page, guarantee
+page, cart, about, contact and all three policies carry no mention; the main menu has no
+link to it. The only other place the string appears is inside Shopify's analytics JSON on
+the pre-order page, which is not copy. Product descriptions were not swept (standing rule),
+but two sampled pages had no mention outside the block.
 
 ## Pre-orders: paused 29 Sep, resumed 1 Oct 2026
 

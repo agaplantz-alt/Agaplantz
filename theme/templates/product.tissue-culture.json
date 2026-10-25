@@ -5,6 +5,7 @@
       "blocks": {
         "ai_gen_block_8ec2c32_DTK4mA": {
           "type": "ai_gen_block_8ec2c32",
+          "disabled": true,
           "name": "Acclimation service",
           "settings": {
             "title": "Add acclimation service",
