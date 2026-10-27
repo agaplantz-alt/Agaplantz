@@ -1882,9 +1882,10 @@
         "view_all_label": "Shop all 49 · ends Sunday",
         "max_products": 8,
         "columns": 4,
-        "background_color": "#E8EDE1",
+        "background_color": "#3B342C",
         "padding-block-start": 56,
-        "padding-block-end": 56
+        "padding-block-end": 56,
+        "halloween_decor": true
       }
     }
   },
