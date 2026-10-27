@@ -4,11 +4,19 @@
   what arrives and how to settle it in, the guarantee, shipping, the small print, and every
   policy link in one place.
 
-  The opening prose comes from the Shopify page body (page.content), so the owner edits it in
+  Built to be skimmed, not read. One thread runs down the left of the page and draws itself
+  as the visitor scrolls; every chapter and step hangs off it with a mark that lights up when
+  the thread reaches it. Headings carry the information, the one-liners under them are
+  optional, and the links grid at the bottom is where the full text lives.
+
+  The opening line comes from the Shopify page body (page.content), so the owner edits it in
   admin on a phone. Everything structured is a block, edited in the theme editor. Blocks are
   rendered in order and consecutive blocks of the same kind are wrapped as one group — steps
   become a numbered list, cards a grid, questions an accordion, links a link grid — so the
   owner can reorder, add or remove any item without touching code.
+
+  Motion is opt-in by JavaScript: without it (or under prefers-reduced-motion) everything is
+  simply visible, the thread is fully drawn and the marks are lit.
 {%- enddoc -%}
 
 {%- liquid
@@ -50,244 +58,355 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
 
 <div
   class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agtc"
+  data-agtc
   style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
 >
   <header class="agtc__hero{% if section.settings.hero_image != blank %} agtc__hero--with-image{% endif %}">
     <div class="agtc__hero-copy">
       {%- if section.settings.eyebrow != blank -%}
-        <p class="agtc__eyebrow">{{ section.settings.eyebrow }}</p>
+        <p class="agtc__eyebrow" style="--i: 0;">{{ section.settings.eyebrow }}</p>
       {%- endif -%}
-      <h1 class="agtc__title">{% if section.settings.heading != blank %}{{ section.settings.heading }}{% else %}{{ page.title }}{% endif %}</h1>
+      <h1 class="agtc__title" style="--i: 1;">{% if section.settings.heading != blank %}{{ section.settings.heading }}{% else %}{{ page.title }}{% endif %}</h1>
       {%- if page.content != blank -%}
-        <div class="agtc__lead rte">{{ page.content }}</div>
+        <div class="agtc__lead rte" style="--i: 2;">{{ page.content }}</div>
       {%- endif -%}
     </div>
     {%- if section.settings.hero_image != blank -%}
       <figure class="agtc__hero-figure">
-        {{ section.settings.hero_image | image_url: width: 900 | image_tag: widths: '300, 450, 600, 900', sizes: '(max-width: 749px) 70vw, 360px', loading: 'eager', alt: '' }}
+        <span class="agtc__hero-rise" style="--i: 1;">
+          {{ section.settings.hero_image | image_url: width: 900 | image_tag: widths: '300, 450, 600, 900', sizes: '(max-width: 749px) 70vw, 360px', loading: 'eager', alt: '' }}
+        </span>
       </figure>
     {%- endif -%}
   </header>
 
-  {%- liquid
-    assign open = ''
-    assign step_n = 0
-  -%}
-  {%- for block in section.blocks -%}
+  <div class="agtc__body">
+    <span class="agtc__spine" aria-hidden="true"></span>
     {%- liquid
-      assign kind = block.type
-      if kind != open
-        case open
-          when 'step'
-            echo '</ol>'
-          when 'card', 'faq', 'link', 'stat', 'tile'
-            echo '</div>'
-        endcase
-        case kind
-          when 'step'
-            echo '<ol class="agtc__steps">'
-            assign step_n = 0
-          when 'card'
-            echo '<div class="agtc__cards">'
-          when 'faq'
-            echo '<div class="agtc__faq">'
-          when 'link'
-            echo '<div class="agtc__links">'
-          when 'stat'
-            echo '<div class="agtc__stats">'
-          when 'tile'
-            echo '<div class="agtc__tiles">'
-        endcase
-        assign open = kind
-      endif
+      assign open = ''
+      assign step_n = 0
+      assign chapter_n = 0
+      assign gi = 0
     -%}
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign kind = block.type
+        if kind != open
+          case open
+            when 'step'
+              echo '</ol>'
+            when 'card', 'faq', 'link', 'stat', 'tile'
+              echo '</div>'
+          endcase
+          case kind
+            when 'step'
+              echo '<ol class="agtc__steps">'
+              assign step_n = 0
+            when 'card'
+              echo '<div class="agtc__cards">'
+            when 'faq'
+              echo '<div class="agtc__faq">'
+            when 'link'
+              echo '<div class="agtc__links">'
+            when 'stat'
+              echo '<div class="agtc__stats">'
+            when 'tile'
+              echo '<div class="agtc__tiles">'
+          endcase
+          assign open = kind
+          assign gi = 0
+        else
+          assign gi = gi | plus: 1
+        endif
+      -%}
 
-    {%- case block.type -%}
-      {%- when 'chapter' -%}
-        <section class="agtc__chapter{% if block.settings.image != blank %} agtc__chapter--with-image agtc__chapter--image-{{ block.settings.image_position }}{% endif %}" {{ block.shopify_attributes }}>
-          <div class="agtc__chapter-copy">
+      {%- case block.type -%}
+        {%- when 'chapter' -%}
+          {%- assign chapter_n = chapter_n | plus: 1 -%}
+          <section class="agtc__chapter" data-reveal {{ block.shopify_attributes }}>
+            <span class="agtc__mark agtc__mark--node" aria-hidden="true"><span class="agtc__node">{{ chapter_n }}</span></span>
             {%- if block.settings.eyebrow != blank -%}<p class="agtc__eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
             {%- if block.settings.heading != blank -%}<h2 class="agtc__h2">{{ block.settings.heading }}</h2>{%- endif -%}
             {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
-          </div>
-          {%- if block.settings.image != blank -%}
-            <figure class="agtc__chapter-figure">
-              {{ block.settings.image | image_url: width: 800 | image_tag: widths: '300, 450, 600, 800', sizes: '(max-width: 749px) 60vw, 300px', loading: 'lazy', alt: '' }}
-            </figure>
-          {%- endif -%}
-        </section>
+          </section>
 
-      {%- when 'step' -%}
-        {%- assign step_n = step_n | plus: 1 -%}
-        {%- assign icon_key = block.settings.icon | append: '|' -%}
-        <li class="agtc__step" {{ block.shopify_attributes }}>
-          <span class="agtc__step-mark">
+        {%- when 'step' -%}
+          {%- assign step_n = step_n | plus: 1 -%}
+          {%- assign icon_key = block.settings.icon | append: '|' -%}
+          <li class="agtc__step" data-reveal style="--i: {{ gi }};" {{ block.shopify_attributes }}>
+            <span class="agtc__mark agtc__step-mark">
+              {%- if block.settings.icon != 'none' and icon_paths contains icon_key -%}
+                {%- assign icon_svg = icon_paths | split: icon_key | last | split: '
+' | first -%}
+                <svg class="agtc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ icon_svg }}</svg>
+                <span class="agtc__step-n agtc__step-n--badge">{{ step_n }}</span>
+              {%- else -%}
+                <span class="agtc__step-n">{{ step_n }}</span>
+              {%- endif -%}
+            </span>
+            <div class="agtc__step-body">
+              {%- if block.settings.title != blank -%}<h3 class="agtc__h3">{{ block.settings.title }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
+            </div>
+          </li>
+
+        {%- when 'stat' -%}
+          <div class="agtc__stat" data-reveal style="--i: {{ gi }};" {{ block.shopify_attributes }}>
+            <span class="agtc__stat-value" data-count="{{ block.settings.value | escape }}">{{ block.settings.value }}</span>
+            <span class="agtc__stat-label">{{ block.settings.label }}</span>
+          </div>
+
+        {%- when 'tile' -%}
+          {%- assign icon_key = block.settings.icon | append: '|' -%}
+          <div class="agtc__tile" data-reveal style="--i: {{ gi }};" {{ block.shopify_attributes }}>
             {%- if block.settings.icon != 'none' and icon_paths contains icon_key -%}
               {%- assign icon_svg = icon_paths | split: icon_key | last | split: '
 ' | first -%}
-              <svg class="agtc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ icon_svg }}</svg>
-              <span class="agtc__step-n agtc__step-n--badge">{{ step_n }}</span>
-            {%- else -%}
-              <span class="agtc__step-n">{{ step_n }}</span>
+              <span class="agtc__tile-icon"><svg class="agtc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ icon_svg }}</svg></span>
             {%- endif -%}
-          </span>
-          <div class="agtc__step-body">
+            <span class="agtc__tile-title">{{ block.settings.title }}</span>
+            {%- if block.settings.text != blank -%}<span class="agtc__tile-text">{{ block.settings.text }}</span>{%- endif -%}
+          </div>
+
+        {%- when 'card' -%}
+          <article class="agtc__card{% if block.settings.featured %} agtc__card--featured{% endif %}" data-reveal style="--i: {{ gi }};" {{ block.shopify_attributes }}>
+            {%- if block.settings.eyebrow != blank -%}<p class="agtc__card-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
             {%- if block.settings.title != blank -%}<h3 class="agtc__h3">{{ block.settings.title }}</h3>{%- endif -%}
             {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
+            {%- if block.settings.link_label != blank and block.settings.link != blank -%}
+              <a class="agtc__cta{% unless block.settings.featured %} agtc__cta--ghost{% endunless %}" href="{{ block.settings.link }}">{{ block.settings.link_label }}</a>
+            {%- endif -%}
+          </article>
+
+        {%- when 'faq' -%}
+          <details class="agtc__q" data-reveal style="--i: {{ gi }};" {{ block.shopify_attributes }}>
+            <summary class="agtc__q-summary">{{ block.settings.question }}<span class="agtc__q-icon" aria-hidden="true"></span></summary>
+            <div class="agtc__text agtc__q-answer rte">{{ block.settings.answer }}</div>
+          </details>
+
+        {%- when 'link' -%}
+          <a class="agtc__link" href="{{ block.settings.link }}" data-reveal style="--i: {{ gi }};" {{ block.shopify_attributes }}>
+            <span class="agtc__link-title">{{ block.settings.title }}</span>
+            {%- if block.settings.text != blank -%}<span class="agtc__link-text">{{ block.settings.text }}</span>{%- endif -%}
+            <span class="agtc__link-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+
+        {%- when 'cta' -%}
+          <div class="agtc__band" data-reveal {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}<h2 class="agtc__h2 agtc__band-title">{{ block.settings.heading }}</h2>{%- endif -%}
+            {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
+            <div class="agtc__band-actions">
+              {%- if block.settings.primary_label != blank -%}<a class="agtc__cta" href="{{ block.settings.primary_link }}">{{ block.settings.primary_label }}</a>{%- endif -%}
+              {%- if block.settings.secondary_label != blank -%}<a class="agtc__cta agtc__cta--ghost" href="{{ block.settings.secondary_link }}">{{ block.settings.secondary_label }}</a>{%- endif -%}
+            </div>
           </div>
-        </li>
-
-      {%- when 'stat' -%}
-        <div class="agtc__stat" {{ block.shopify_attributes }}>
-          <span class="agtc__stat-value">{{ block.settings.value }}</span>
-          <span class="agtc__stat-label">{{ block.settings.label }}</span>
-        </div>
-
-      {%- when 'tile' -%}
-        {%- assign icon_key = block.settings.icon | append: '|' -%}
-        <div class="agtc__tile" {{ block.shopify_attributes }}>
-          {%- if block.settings.icon != 'none' and icon_paths contains icon_key -%}
-            {%- assign icon_svg = icon_paths | split: icon_key | last | split: '
-' | first -%}
-            <span class="agtc__tile-icon"><svg class="agtc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ icon_svg }}</svg></span>
-          {%- endif -%}
-          <span class="agtc__tile-title">{{ block.settings.title }}</span>
-          {%- if block.settings.text != blank -%}<span class="agtc__tile-text">{{ block.settings.text }}</span>{%- endif -%}
-        </div>
-
-      {%- when 'card' -%}
-        <article class="agtc__card{% if block.settings.featured %} agtc__card--featured{% endif %}" {{ block.shopify_attributes }}>
-          {%- if block.settings.eyebrow != blank -%}<p class="agtc__card-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
-          {%- if block.settings.title != blank -%}<h3 class="agtc__h3">{{ block.settings.title }}</h3>{%- endif -%}
-          {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
-          {%- if block.settings.link_label != blank and block.settings.link != blank -%}
-            <a class="agtc__cta{% unless block.settings.featured %} agtc__cta--ghost{% endunless %}" href="{{ block.settings.link }}">{{ block.settings.link_label }}</a>
-          {%- endif -%}
-        </article>
-
-      {%- when 'faq' -%}
-        <details class="agtc__q" {{ block.shopify_attributes }}>
-          <summary class="agtc__q-summary">{{ block.settings.question }}<span class="agtc__q-icon" aria-hidden="true"></span></summary>
-          <div class="agtc__text agtc__q-answer rte">{{ block.settings.answer }}</div>
-        </details>
-
-      {%- when 'link' -%}
-        <a class="agtc__link" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
-          <span class="agtc__link-title">{{ block.settings.title }}</span>
-          {%- if block.settings.text != blank -%}<span class="agtc__link-text">{{ block.settings.text }}</span>{%- endif -%}
-          <span class="agtc__link-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-
-      {%- when 'cta' -%}
-        <div class="agtc__band" {{ block.shopify_attributes }}>
-          {%- if block.settings.heading != blank -%}<h2 class="agtc__h2 agtc__band-title">{{ block.settings.heading }}</h2>{%- endif -%}
-          {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
-          <div class="agtc__band-actions">
-            {%- if block.settings.primary_label != blank -%}<a class="agtc__cta" href="{{ block.settings.primary_link }}">{{ block.settings.primary_label }}</a>{%- endif -%}
-            {%- if block.settings.secondary_label != blank -%}<a class="agtc__cta agtc__cta--ghost" href="{{ block.settings.secondary_link }}">{{ block.settings.secondary_label }}</a>{%- endif -%}
-          </div>
-        </div>
-    {%- endcase -%}
-  {%- endfor -%}
-  {%- liquid
-    case open
-      when 'step'
-        echo '</ol>'
-      when 'card', 'faq', 'link', 'stat', 'tile'
-        echo '</div>'
-    endcase
-  -%}
+      {%- endcase -%}
+    {%- endfor -%}
+    {%- liquid
+      case open
+        when 'step'
+          echo '</ol>'
+        when 'card', 'faq', 'link', 'stat', 'tile'
+          echo '</div>'
+      endcase
+    -%}
+  </div>
 </div>
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-agtc]');
+    if (!root || root.hasAttribute('data-agtc-ready')) return;
+    root.setAttribute('data-agtc-ready', '');
+    var marks = root.querySelectorAll('.agtc__mark');
+    var reveals = root.querySelectorAll('[data-reveal]');
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window);
+    if (still) {
+      for (var s = 0; s < marks.length; s++) marks[s].classList.add('is-lit');
+      return;
+    }
+    root.classList.add('agtc--js');
+
+    /* reveal once, when an element enters the lower part of the viewport */
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+        countUp(e.target.querySelector('[data-count]'));
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    for (var r = 0; r < reveals.length; r++) io.observe(reveals[r]);
+
+    /* big numbers count up from zero: "30 days" -> 0..30 days, "$14.99" -> $0.00..$14.99 */
+    function countUp(el) {
+      if (!el) return;
+      var m = el.getAttribute('data-count').match(/^([^0-9]*)([0-9][0-9,]*(?:\.[0-9]+)?)(.*)$/);
+      if (!m) return;
+      var end = parseFloat(m[2].replace(/,/g, '')), dec = (m[2].split('.')[1] || '').length, t0 = null, dur = 1100;
+      function tick(t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / dur); k = 1 - Math.pow(1 - k, 3);
+        el.textContent = m[1] + (end * k).toFixed(dec) + m[3];
+        if (k < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    /* the thread: --p is how far down the body the reading line has reached; marks above it are lit */
+    var body = root.querySelector('.agtc__body');
+    var figure = root.querySelector('.agtc__hero-figure');
+    var queued = false;
+    function frame() {
+      queued = false;
+      var line = window.innerHeight * 0.62;
+      var b = body.getBoundingClientRect();
+      var p = (line - b.top) / b.height;
+      body.style.setProperty('--p', (p < 0 ? 0 : p > 1 ? 1 : p).toFixed(4));
+      for (var i = 0; i < marks.length; i++) {
+        var mr = marks[i].getBoundingClientRect();
+        marks[i].classList.toggle('is-lit', mr.top + mr.height / 2 < line);
+      }
+      if (figure) {
+        var top = root.getBoundingClientRect().top;
+        figure.style.setProperty('--y', (top < 0 ? -top * 0.1 : 0).toFixed(1) + 'px');
+      }
+    }
+    function request() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    request();
+  })();
+</script>
 
 {% stylesheet %}
   .agtc {
     padding-block-start: var(--padding-block-start, 56px);
     padding-block-end: var(--padding-block-end, 72px);
+    --agtc-g: 72px;  /* gutter the thread lives in */
+    --agtc-x: 24px;  /* where the thread runs, from the left edge */
+    --agtc-m: 48px;  /* step mark size */
+    --agtc-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
   /* Horizon places section children in its centre grid track; width: 100% + min-width: 0 keeps
-     a grid child (the card rows) from sizing to its max-content and overflowing a phone. */
+     a grid child from sizing to its max-content and overflowing a phone. */
   .agtc > * { width: 100%; max-width: 760px; min-width: 0; margin-inline: auto; box-sizing: border-box; }
 
+  /* ---- hero ---- */
   .agtc__eyebrow {
     margin: 0 0 12px; color: #B4693C;
     font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
   }
   .agtc__title {
     margin: 0; font-family: var(--font-accent--family); font-weight: 400;
-    font-size: clamp(32px, 5.5vw, 48px); line-height: 1.1; text-wrap: balance;
+    font-size: clamp(34px, 5.5vw, 50px); line-height: 1.08; text-wrap: balance;
   }
-  .agtc__lead { margin-block-start: 22px; font-size: 17px; line-height: 1.65; max-width: 60ch; }
+  .agtc__lead { margin-block-start: 20px; font-size: 17px; line-height: 1.6; max-width: 46ch; color: var(--color-foreground-muted, #56503F); }
   .agtc__lead > :first-child { margin-block-start: 0; }
+  .agtc__lead > :last-child { margin-block-end: 0; }
   .agtc__hero { padding-block-end: 8px; }
   .agtc__hero--with-image { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(24px, 4vw, 48px); align-items: center; }
-  .agtc__hero-figure { margin: 0; }
+  .agtc__hero-figure { margin: 0; transform: translateY(var(--y, 0)); will-change: transform; }
+  .agtc__hero-rise { display: block; }
   .agtc__hero-figure img { display: block; width: 100%; height: auto; animation: agtc-float 8s ease-in-out infinite alternate; }
   @keyframes agtc-float { from { transform: translateY(0) rotate(0); } to { transform: translateY(-10px) rotate(0.8deg); } }
-  @media (prefers-reduced-motion: reduce) { .agtc__hero-figure img { animation: none; } }
+  .agtc--js .agtc__hero-copy > *, .agtc--js .agtc__hero-rise {
+    animation: agtc-rise 0.9s var(--agtc-ease) both; animation-delay: calc(var(--i, 0) * 130ms);
+  }
+  @keyframes agtc-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 
-  /* chapter with a photo beside it */
-  .agtc__chapter--with-image { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: clamp(20px, 4vw, 40px); align-items: center; }
-  .agtc__chapter--image-left { grid-template-columns: 240px minmax(0, 1fr); }
-  .agtc__chapter--image-left .agtc__chapter-figure { order: -1; }
-  .agtc__chapter-figure { margin: 0; }
-  .agtc__chapter-figure img { display: block; width: 100%; height: auto; }
+  /* ---- the thread ---- */
+  .agtc__body { position: relative; padding-inline-start: var(--agtc-g); padding-block-start: clamp(40px, 6vw, 64px); --p: 1; }
+  .agtc__spine {
+    position: absolute; top: calc(clamp(40px, 6vw, 64px) + 14px); bottom: 0; left: calc(var(--agtc-x) - 1px);
+    width: 2px; background: #DED3C2; pointer-events: none;
+  }
+  .agtc__spine::after {
+    content: ""; position: absolute; left: 0; top: 0; width: 100%;
+    height: calc(var(--p) * 100%); background: #5C6B4C; transition: height 0.25s linear;
+  }
+  .agtc__mark { position: relative; }
+  .agtc__mark::after {
+    content: ""; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid #5C6B4C; opacity: 0; pointer-events: none;
+  }
+  .agtc--js .agtc__mark.is-lit::after { animation: agtc-pulse 0.8s ease-out; }
+  @keyframes agtc-pulse { from { opacity: 0.6; transform: scale(1); } to { opacity: 0; transform: scale(1.9); } }
 
-  /* icon */
-  .agtc__icon { display: block; width: 22px; height: 22px; }
+  /* ---- reveals ---- */
+  .agtc--js [data-reveal] {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity 0.8s var(--agtc-ease), transform 0.8s var(--agtc-ease);
+    transition-delay: min(calc(var(--i, 0) * 80ms), 480ms);
+  }
+  .agtc--js [data-reveal].is-in { opacity: 1; transform: none; }
 
-  .agtc__chapter { margin-block-start: clamp(44px, 7vw, 72px); }
+  /* ---- chapters: a numbered node on the thread ---- */
+  .agtc__chapter { position: relative; margin-block-start: clamp(48px, 8vw, 80px); }
+  .agtc__spine + .agtc__chapter { margin-block-start: 0; }
+  .agtc__chapter .agtc__eyebrow { line-height: 28px; margin: 0 0 6px; }
+  .agtc__mark--node { position: absolute; top: 0; left: calc(var(--agtc-x) - var(--agtc-g)); width: 28px; height: 28px; transform: translateX(-50%); display: block; }
+  .agtc__node {
+    display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; box-sizing: border-box;
+    border-radius: 50%; background: #FBF8F2; border: 2px solid #DED3C2; color: #56503F;
+    font-family: var(--font-accent--family); font-size: 13px; line-height: 1;
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+  }
+  .agtc__mark.is-lit .agtc__node { background: #5C6B4C; border-color: #5C6B4C; color: #FBF8F2; }
+
   .agtc__h2 {
     margin: 0; font-family: var(--font-accent--family); font-weight: 400;
-    font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2; text-wrap: balance;
+    font-size: clamp(26px, 3.8vw, 34px); line-height: 1.18; text-wrap: balance;
   }
   .agtc__h3 { margin: 0; font-family: var(--font-accent--family); font-weight: 400; font-size: 21px; line-height: 1.25; }
-  .agtc__text { margin-block-start: 12px; font-size: 15px; line-height: 1.65; color: var(--color-foreground-muted, #56503F); }
+  .agtc__text { margin-block-start: 10px; font-size: 15px; line-height: 1.6; color: var(--color-foreground-muted, #56503F); max-width: 52ch; }
   .agtc__text > :first-child { margin-block-start: 0; }
   .agtc__text > :last-child { margin-block-end: 0; }
   .agtc__text ul { padding-inline-start: 1.2em; }
   .agtc__text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-  .agtc__chapter + .agtc__steps,
-  .agtc__chapter + .agtc__cards,
-  .agtc__chapter + .agtc__faq,
-  .agtc__chapter + .agtc__links { margin-block-start: 28px; }
+  .agtc__chapter + .agtc__steps, .agtc__chapter + .agtc__cards, .agtc__chapter + .agtc__faq,
+  .agtc__chapter + .agtc__links, .agtc__chapter + .agtc__stats, .agtc__chapter + .agtc__tiles { margin-block-start: 26px; }
 
-  /* steps — a vertical timeline: a clay line runs behind the marks */
-  .agtc__steps { margin-block: 0; margin-inline: auto; padding: 0; list-style: none; display: grid; gap: 0; }
-  .agtc__step { position: relative; display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: start; padding-block-end: 26px; }
-  .agtc__step::before { content: ""; position: absolute; left: 23px; top: 48px; bottom: 0; width: 2px; background: #DED3C2; }
-  .agtc__step:last-child::before { display: none; }
+  /* ---- steps: marks sit on the thread itself ---- */
+  .agtc__steps { margin: 0; padding: 0; list-style: none; }
+  .agtc__step {
+    display: grid; grid-template-columns: var(--agtc-m) 1fr; column-gap: calc(var(--agtc-g) - var(--agtc-m));
+    margin-inline-start: calc(-1 * var(--agtc-g)); align-items: start; padding-block-end: 24px;
+  }
   .agtc__step:last-child { padding-block-end: 0; }
   .agtc__step-mark {
-    position: relative; display: inline-flex; align-items: center; justify-content: center;
-    width: 48px; height: 48px; border-radius: 50%; background: #5C6B4C; color: #FBF8F2;
+    display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box;
+    width: var(--agtc-m); height: var(--agtc-m); border-radius: 50%;
+    background: #FBF8F2; border: 2px solid #DED3C2; color: #5C6B4C;
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
   }
+  .agtc__step-mark.is-lit { background: #5C6B4C; border-color: #5C6B4C; color: #FBF8F2; }
+  .agtc__icon { display: block; width: 22px; height: 22px; }
   .agtc__step-n { font-family: var(--font-accent--family); font-size: 18px; line-height: 1; }
   .agtc__step-n--badge {
-    position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; border-radius: 50%;
+    position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; border-radius: 50%;
     display: inline-flex; align-items: center; justify-content: center;
     background: #B4693C; color: #FBF8F2; font-family: var(--font-body--family); font-size: 11px; font-weight: 600;
   }
   .agtc__step-body { padding-block-start: 10px; }
-  .agtc__step .agtc__text { margin-block-start: 6px; }
+  .agtc__step .agtc__text { margin-block-start: 4px; }
 
-  /* stats — big numbers */
-  .agtc__stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 12px; }
-  .agtc__stat { padding: 20px 16px; border-radius: 4px; background: #F2EBDE; text-align: center; }
-  .agtc__stat-value { display: block; font-family: var(--font-accent--family); font-size: clamp(26px, 3.6vw, 34px); line-height: 1.05; }
+  /* ---- stats: big numbers that count up ---- */
+  .agtc__stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 12px; }
+  .agtc__stat { padding: 22px 14px; border-radius: 4px; background: #F2EBDE; text-align: center; }
+  .agtc__stat-value { display: block; font-family: var(--font-accent--family); font-size: clamp(28px, 3.8vw, 36px); line-height: 1.05; font-variant-numeric: tabular-nums; }
   .agtc__stat-label { display: block; margin-block-start: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-foreground-muted, #56503F); }
 
-  /* tiles — icon, title, one line */
-  .agtc__tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 10px; }
-  .agtc__tile { padding: 18px 14px; border: 1px solid #DED3C2; border-radius: 4px; background: #FBF8F2; text-align: center; }
+  /* ---- tiles: icon, title, one line ---- */
+  .agtc__tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(118px, 100%), 1fr)); gap: 10px; }
+  .agtc__tile { padding: 18px 12px; border: 1px solid #DED3C2; border-radius: 4px; background: #FBF8F2; text-align: center; }
+  .agtc--js .agtc__tile[data-reveal] { transform: translateY(18px) scale(0.96); }
+  .agtc--js .agtc__tile[data-reveal].is-in { transform: none; }
   .agtc__tile-icon { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #E8EDE1; color: #5C6B4C; margin-block-end: 10px; }
   .agtc__tile-title { display: block; font-weight: 600; font-size: 14px; line-height: 1.3; }
   .agtc__tile-text { display: block; margin-block-start: 5px; font-size: 12.5px; line-height: 1.45; color: var(--color-foreground-muted, #56503F); }
-  .agtc__chapter + .agtc__stats,
-  .agtc__chapter + .agtc__tiles { margin-block-start: 28px; }
-  .agtc__stats + .agtc__text, .agtc__tiles + .agtc__text { margin-block-start: 20px; }
 
-  /* cards */
-  .agtc__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 14px; }
+  /* ---- cards ---- */
+  .agtc__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 14px; }
   .agtc__card {
     padding: 24px 22px; border: 1px solid #DED3C2; border-radius: 4px; background: #FBF8F2;
     display: flex; flex-direction: column; gap: 10px;
@@ -298,7 +417,7 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
   .agtc__card-eyebrow { margin: 0; font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B4693C; }
   .agtc__card .agtc__cta { align-self: flex-start; margin-block-start: 6px; }
 
-  /* faq */
+  /* ---- faq ---- */
   .agtc__faq { border-top: 1px solid #DED3C2; }
   .agtc__q { border-bottom: 1px solid #DED3C2; }
   .agtc__q-summary {
@@ -315,7 +434,7 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
   .agtc__q[open] .agtc__q-icon::after { transform: translate(-50%, -50%) rotate(0); }
   .agtc__q-answer { margin: 0; padding-block-end: 18px; }
 
-  /* links */
+  /* ---- links ---- */
   .agtc__links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 10px; }
   .agtc__link {
     position: relative; display: block; padding: 16px 44px 16px 16px; border: 1px solid #DED3C2;
@@ -327,12 +446,12 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
   .agtc__link-text { display: block; margin-block-start: 4px; font-size: 13px; color: var(--color-foreground-muted, #56503F); }
   .agtc__link-arrow { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #5C6B4C; }
 
-  /* cta band + buttons */
+  /* ---- cta band: spans the full column and caps the thread ---- */
   .agtc__band {
-    margin-block-start: clamp(44px, 7vw, 72px); padding: clamp(28px, 5vw, 44px);
-    border-radius: 4px; background: #F2EBDE; text-align: center;
+    position: relative; margin-block-start: clamp(48px, 8vw, 80px); margin-inline-start: calc(-1 * var(--agtc-g));
+    padding: clamp(28px, 5vw, 44px); border-radius: 4px; background: #F2EBDE; text-align: center;
   }
-  .agtc__band .agtc__text { max-width: 48ch; margin-inline: auto; }
+  .agtc__band .agtc__text { max-width: 44ch; margin-inline: auto; }
   .agtc__band-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-block-start: 22px; }
   .agtc__cta {
     display: inline-block; padding: 14px 28px; border-radius: 2px; background: #5C6B4C; color: #FBF8F2;
@@ -346,21 +465,23 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
   .agtc__card--featured .agtc__cta:hover { background: #F2EBDE; border-color: #F2EBDE; color: #2F2A22; }
 
   @media screen and (max-width: 749px) {
+    .agtc { --agtc-g: 56px; --agtc-x: 20px; --agtc-m: 40px; }
     .agtc__hero--with-image { grid-template-columns: 1fr; }
-    .agtc__hero-figure { order: -1; width: 64%; max-width: 260px; margin-inline: auto; }
-    .agtc__chapter--with-image, .agtc__chapter--image-left { grid-template-columns: 1fr; }
-    .agtc__chapter-figure { width: 56%; max-width: 220px; margin-inline: auto; order: -1; }
+    .agtc__hero-figure { order: -1; width: 60%; max-width: 240px; margin-inline: auto; }
     .agtc__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .agtc__tile:last-child:nth-child(odd) { grid-column: span 2; }
     .agtc__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @media screen and (max-width: 560px) {
-    .agtc__step { grid-template-columns: 40px 1fr; gap: 14px; }
-    .agtc__step::before { left: 19px; top: 40px; }
-    .agtc__step-mark { width: 40px; height: 40px; }
     .agtc__step-n { font-size: 16px; }
     .agtc__icon { width: 19px; height: 19px; }
+    .agtc__h3 { font-size: 19px; }
+  }
+  @media screen and (max-width: 560px) {
     .agtc__band-actions .agtc__cta { width: 100%; text-align: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .agtc__hero-figure img, .agtc__hero-copy > *, .agtc__hero-rise, .agtc__mark::after { animation: none; }
+    .agtc__hero-figure { transform: none; }
+    .agtc__spine::after, .agtc__node, .agtc__step-mark { transition: none; }
   }
 {% endstylesheet %}
 
@@ -373,8 +494,8 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Tissue culture, explained" },
     { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title." },
-    { "type": "paragraph", "content": "The opening paragraphs come from the page's own content in Shopify admin (Online Store → Pages). Everything below is a block." },
-    { "type": "image_picker", "id": "hero_image", "label": "Hero picture", "info": "A cut-out plant on a transparent background works best." },
+    { "type": "paragraph", "content": "The opening line comes from the page's own content in Shopify admin (Online Store → Pages). Everything below is a block. The page is built to be skimmed: keep each text to one or two short sentences." },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero picture", "info": "A cut-out plant on a transparent background works best. Leave empty for a text-only hero." },
     { "type": "header", "content": "Section layout" },
     { "type": "color", "id": "background_color", "label": "Background", "placeholder": "Default" },
     { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 },
@@ -387,9 +508,7 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
       "settings": [
         { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
         { "type": "text", "id": "heading", "label": "Heading", "default": "Chapter heading" },
-        { "type": "richtext", "id": "text", "label": "Text" },
-        { "type": "image_picker", "id": "image", "label": "Picture beside the text" },
-        { "type": "select", "id": "image_position", "label": "Picture position", "options": [ { "value": "right", "label": "Right" }, { "value": "left", "label": "Left" } ], "default": "right" }
+        { "type": "richtext", "id": "text", "label": "One line under it" }
       ]
     },
     {
@@ -398,14 +517,14 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
       "settings": [
         { "type": "select", "id": "icon", "label": "Icon", "options": [{"value":"none","label":"None"},{"value":"cells","label":"Cells"},{"value":"flask","label":"Flask"},{"value":"lab","label":"Lab vessel"},{"value":"multiply","label":"Multiply"},{"value":"box","label":"Box"},{"value":"order","label":"Order"},{"value":"calendar","label":"Calendar"},{"value":"plane","label":"Plane"},{"value":"truck","label":"Truck"},{"value":"home","label":"Home"},{"value":"camera","label":"Camera"},{"value":"dome","label":"Dome"},{"value":"lid","label":"Lid ajar"},{"value":"droplet","label":"No water"},{"value":"sun","label":"No direct sun"},{"value":"pot","label":"Pot"},{"value":"snowflake","label":"Snowflake"},{"value":"map","label":"Map pin"},{"value":"shield","label":"Shield"},{"value":"leaf","label":"Leaf"},{"value":"clock","label":"Clock"},{"value":"tag","label":"Tag"}], "default": "none" },
         { "type": "text", "id": "title", "label": "Title", "default": "Step" },
-        { "type": "richtext", "id": "text", "label": "Text" }
+        { "type": "richtext", "id": "text", "label": "One line" }
       ]
     },
     {
       "type": "stat",
       "name": "Big number",
       "settings": [
-        { "type": "text", "id": "value", "label": "Number", "default": "30 days" },
+        { "type": "text", "id": "value", "label": "Number", "default": "30 days", "info": "Counts up from zero as it scrolls into view." },
         { "type": "text", "id": "label", "label": "Label", "default": "Covered" }
       ]
     },

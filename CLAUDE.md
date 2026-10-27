@@ -657,7 +657,7 @@ consecutive blocks of one kind wrapped as a group:
 
 | Block | Renders as | Used for |
 | --- | --- | --- |
-| `chapter` | eyebrow + h2 + richtext | the eight section headings |
+| `chapter` | numbered node on the thread + eyebrow + h2 + one line | the eight section headings |
 | `step` | numbered circle + title + text; a run becomes an `<ol>` | how TC is made (4), the pre-order journey (5) |
 | `card` | bordered card, `featured` fills it moss | pre-order / ready to ship / mature; guide + free kit; guarantee |
 | `faq` | native `<details>` accordion | the honest small print (7) |
@@ -671,18 +671,34 @@ The grouping is done in Liquid by watching the block type change (`open` tracks 
 run and closes it before a different kind starts), so the owner can reorder or add items
 freely and the markup stays valid.
 
-**Visuals (same day).** The owner saw the first preview and said it was *"just a read"* —
-*"we are not using any graphics that helps customer to stay engaged."* So: the section's
-`hero_image` picker puts a cut-out beside the title (the green plantlet, floating on the
-same 8s loop as the mystery-box band); a `chapter` can carry an `image` left or right (pink
-plantlet on "How it's made", variegated Monstera on "What arrives", rooted Alocasia on the
-guarantee — all four are the mystery-box PNGs already in Files); every `step` has an `icon`
-pick from a 22-icon inline SVG set (keyed by name inside `icon_paths`, no asset upload) and
-the steps now run down a clay timeline line with the number as a small terracotta badge on
-the icon; `stat` and `tile` blocks carry the numbers and the process. No new images were
-uploaded.
+**Visuals, first pass (same day).** The owner saw the first preview and said it was *"just a
+read"*, so every `step` got an `icon` from a 22-icon inline SVG set (keyed by name inside
+`icon_paths`, no asset upload), `stat` and `tile` blocks carry the numbers and the process, and
+three mystery-box cut-outs were placed beside chapters.
 
-**Shopify caps a section at 50 blocks**, and the visual pass hit 52. Two were folded away:
+**Built to be skimmed, not read (second pass, same day).** The owner called those chapter
+pictures *"plant picture for no reason"* and asked instead for motion that connects everything
+as you scroll, with copy short enough that nobody has to read it all. So: the chapter images are
+gone (the `chapter` block has no `image` setting any more), every block's text is one or two
+short sentences, the Shopify page body is a single sentence, and the page is **one thread**. A
+2px clay line runs down the left of the body (`.agtc__spine`; gutter `--agtc-g` is 72px on
+desktop, 56px on a phone) and fills moss as the reading line, 62% down the viewport, passes —
+a 30-line script writes `--p` to `.agtc__body` on each frame. Every chapter is a numbered node
+on the thread and every step's icon sits on it; each mark gets `is-lit` (moss, one-shot pulse
+ring) once the line passes it. Everything else is `[data-reveal]`: hidden until an
+`IntersectionObserver` sees it, then rises in, staggered by `--i` within its group. `stat`
+values count up from zero (`data-count`; the number is parsed out of the string, so `$14.99`
+and `30 days` both work). The hero plantlet floats and parallaxes; it is the one picture left
+because it *is* the subject — clear `hero_image` for a text-only hero. The CTA band spans the
+full column and caps the thread. Without JavaScript, or under `prefers-reduced-motion`, nothing
+is hidden, the thread is fully drawn and the marks are lit; the script adds `agtc--js` only when
+it will animate, so a theme-editor re-render (which does not re-run inline scripts) simply shows
+everything. Verified at 390px by scrolling a local render and reading `--p`, the lit-mark count
+and the revealed count back at five positions; desktop checked at a 7000px-tall viewport. Five
+icon tiles fit one desktop row at `minmax(min(118px,100%),1fr)`; 130px wrapped the fifth onto
+its own line.
+
+**Shopify caps a section at 50 blocks**, and the first visual pass hit 52. Two were folded away:
 "Free over $180" became the second line of the Canada-wide tile, and the local-pickup
 question was dropped (it is on the FAQ page, which the links grid points at). 50 blocks as
 shipped — **the page is full**. Adding anything means removing something, or a second

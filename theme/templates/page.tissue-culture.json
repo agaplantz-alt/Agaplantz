@@ -6,26 +6,24 @@
         "ch_made": {
           "type": "chapter",
           "settings": {
-            "eyebrow": "From one plant to many",
-            "heading": "How a tissue-culture plant is made",
-            "text": "<p>Tissue culture is propagation in a laboratory instead of a greenhouse. It is how most of the rare aroids in the world are multiplied today, and it is why they can be sold at a fraction of what a cutting of the same plant once cost.</p>",
-            "image": "shopify://shop_images/aga-box-plantlet-pink.png",
-            "image_position": "right"
+            "eyebrow": "How it’s made",
+            "heading": "From a few cells to a plant",
+            "text": "<p>Propagation in a laboratory instead of a greenhouse. It is how most rare aroids are multiplied today.</p>"
           }
         },
         "st_1": {
           "type": "step",
           "settings": {
-            "title": "A few cells from a parent plant",
-            "text": "<p>A tiny piece of a healthy parent plant is taken and sterilised, so nothing comes with it — no pests, no disease, no soil.</p>",
+            "title": "A few cells",
+            "text": "<p>Taken from a healthy parent and sterilised. No pests, no disease, no soil.</p>",
             "icon": "cells"
           }
         },
         "st_2": {
           "type": "step",
           "settings": {
-            "title": "Grown in a sealed vessel",
-            "text": "<p>It grows on a nutrient gel inside a sealed, sterile container, in constant warmth at close to 100% humidity.</p>",
+            "title": "Sealed and sterile",
+            "text": "<p>Grown on nutrient gel in constant warmth, near 100% humidity.</p>",
             "icon": "flask"
           }
         },
@@ -33,15 +31,15 @@
           "type": "step",
           "settings": {
             "title": "Multiplied, true to type",
-            "text": "<p>In those conditions it multiplies into many small, identical plantlets — each one genetically the same as the parent, which matters for variegated and collector forms.</p>",
+            "text": "<p>Many identical plantlets, each genetically the parent. Variegation included.</p>",
             "icon": "multiply"
           }
         },
         "st_4": {
           "type": "step",
           "settings": {
-            "title": "Rooted, then on its way to us",
-            "text": "<p>The plantlets are rooted in the lab and shipped to us in sealed, labelled containers. They have never seen a greenhouse, a pest or open air — that is exactly why they need a gentle introduction to your home, which we cover below.</p>",
+            "title": "Rooted and shipped to us",
+            "text": "<p>In sealed, labelled containers. They have never seen open air, so they need a gentle start at yours.</p>",
             "icon": "box"
           }
         },
@@ -49,8 +47,8 @@
           "type": "chapter",
           "settings": {
             "eyebrow": "Two ways to buy",
-            "heading": "Pre-order or ready to ship",
-            "text": "<p>Most plants on the site are offered at two stages, and the stage is the option you pick on the product page. Same plant, different point in its journey.</p>"
+            "heading": "Pre-order, or ready to ship",
+            "text": "<p>Same plant, different point in its journey. You pick the stage on the product page.</p>"
           }
         },
         "cd_pre": {
@@ -58,7 +56,7 @@
           "settings": {
             "eyebrow": "Lower price · next batch",
             "title": "Pre-order",
-            "text": "<p>Reserved from our next laboratory batch. Each batch has a cut-off date; after it closes we place the order with the lab, the plants arrive in Canada, are inspected, and ship to you — usually two to three weeks after the cut-off. Your price is locked the moment you order.</p>",
+            "text": "<p>Reserved from the next lab batch. Price locked when you order; ships two to three weeks after the cut-off.</p>",
             "link_label": "Browse pre-orders",
             "link": "shopify://collections/pre-order",
             "featured": true
@@ -69,7 +67,7 @@
           "settings": {
             "eyebrow": "Ships in 1–3 business days",
             "title": "Ready to ship",
-            "text": "<p>Already here, rooted and acclimated by us. These have been through the settling-in period and are the quickest way to a plant on your shelf.</p>",
+            "text": "<p>Already here, rooted and acclimated by us. The quickest way to a plant on your shelf.</p>",
             "link_label": "Shop ready to ship",
             "link": "shopify://collections/ready-to-ship-tissue-culture",
             "featured": false
@@ -80,7 +78,7 @@
           "settings": {
             "eyebrow": "One-off plants",
             "title": "Mature specimens",
-            "text": "<p>A small number of established, larger plants — grown on well past the plantlet stage. Each listing is a single plant, photographed as it is.</p>",
+            "text": "<p>Established, larger plants. Each listing is one plant, photographed as it is.</p>",
             "link_label": "See mature plants",
             "link": "shopify://collections/mature-specimens",
             "featured": false
@@ -91,14 +89,14 @@
           "settings": {
             "eyebrow": "Pre-orders, start to finish",
             "heading": "Your pre-order journey",
-            "text": "<p>Pre-ordering early gets the best batch pricing and a place at the front of the queue — plants are allocated in the order pre-orders are placed. Here is what happens after you order.</p>"
+            "text": "<p>Early orders get the best batch price and the front of the queue.</p>"
           }
         },
         "jn_1": {
           "type": "step",
           "settings": {
             "title": "Order placed",
-            "text": "<p>Your pre-order is confirmed and your price is held until the plant ships, whatever the next batch costs.</p>",
+            "text": "<p>Your price is held until the plant ships.</p>",
             "icon": "order"
           }
         },
@@ -106,31 +104,31 @@
           "type": "step",
           "settings": {
             "title": "Cut-off date",
-            "text": "<p>The batch closes on its cut-off date and we place the order with our laboratory partners. Orders after the cut-off go into the next batch.</p>",
+            "text": "<p>The batch closes and we order from the lab. Later orders join the next batch.</p>",
             "icon": "calendar"
           }
         },
         "jn_3": {
           "type": "step",
           "settings": {
-            "title": "Lab confirmation",
-            "text": "<p>The lab confirms availability. If a variety can’t be supplied, we contact you within about two business days of the cut-off and you choose a full refund or a different plant of equal value.</p>",
+            "title": "Lab confirms",
+            "text": "<p>If a variety can’t be supplied, you choose a full refund or a swap of equal value.</p>",
             "icon": "lab"
           }
         },
         "jn_4": {
           "type": "step",
           "settings": {
-            "title": "Arrival in Canada and inspection",
-            "text": "<p>The plants land, clear inspection and are checked by us before anything is packed.</p>",
+            "title": "Arrival and inspection",
+            "text": "<p>Plants land in Canada and are checked by us before packing.</p>",
             "icon": "plane"
           }
         },
         "jn_5": {
           "type": "step",
           "settings": {
-            "title": "Delivered to your door",
-            "text": "<p>Shipped with tracking, early in the week so nothing sits in a depot over a weekend. Typically two to three weeks after the cut-off.</p>",
+            "title": "Delivered to you",
+            "text": "<p>Tracked, early in the week. About two to three weeks after the cut-off.</p>",
             "icon": "home"
           }
         },
@@ -139,9 +137,7 @@
           "settings": {
             "eyebrow": "The first month",
             "heading": "What arrives, and how to settle it in",
-            "text": "<p>A tissue-culture plantlet arrives small, in the sealed container it left the lab in, with roots but no soil. It has lived its whole life at near 100% humidity, so the first few weeks are about bringing it gently down to the humidity of a normal room. That process is called acclimation, and it is the one thing that decides how a plantlet does.</p><p><strong>Photograph it the day it arrives</strong>, then follow the five stages below. The full step-by-step guide and the free starter kit are underneath.</p>",
-            "image": "shopify://shop_images/aga-box-monstera-variegated.png",
-            "image_position": "left"
+            "text": "<p>A small plantlet with roots but no soil, used to 100% humidity. Easing it down to room air is called acclimation, and it is everything.</p>"
           }
         },
         "cd_guide": {
@@ -149,7 +145,7 @@
           "settings": {
             "eyebrow": "Step by step",
             "title": "The Acclimation Guide",
-            "text": "<p>What you need, which growing medium suits which genus, and ten steps from unboxing to a potted plant in normal room humidity.</p>",
+            "text": "<p>Ten steps from unboxing to a potted plant.</p>",
             "link_label": "Read the guide",
             "link": "shopify://pages/acclimation-guide",
             "featured": true
@@ -159,8 +155,8 @@
           "type": "card",
           "settings": {
             "eyebrow": "Free with any order",
-            "title": "Tissue-culture starter kit",
-            "text": "<p>Everything the guide asks for, added to your cart at no charge. If you already have a dome, cups and medium, you don’t need it.</p>",
+            "title": "Starter kit",
+            "text": "<p>Everything the guide asks for, added to your cart at no charge.</p>",
             "link_label": "Add the free kit",
             "link": "shopify://products/tissue-culture-starter-kit",
             "featured": false
@@ -171,9 +167,7 @@
           "settings": {
             "eyebrow": "Our side of the deal",
             "heading": "Every plant is covered for 30 days",
-            "text": "<p>Young plants carry risk, and we think it should sit with us. If a plant you bought doesn’t pull through within 30 days of delivery, we replace it — free on plants under $200, and at 50% of what you paid on plants $200 and over. You cover a flat $14.99 replacement shipping. One condition we can’t waive: a photo of the plant the day it arrives, before you unpack it.</p><p>If a plant arrives dead or badly damaged, that is a different, better route: contact us within 24 hours of delivery and it can end in a full refund.</p>",
-            "image": "shopify://shop_images/aga-box-alocasia-dark-cup.png",
-            "image_position": "right"
+            "text": "<p>If a plant doesn’t pull through within 30 days of delivery, we replace it. One condition: a photo the day it arrives.</p>"
           }
         },
         "cd_guar": {
@@ -181,7 +175,7 @@
           "settings": {
             "eyebrow": "Full terms",
             "title": "30-Day Plant Guarantee",
-            "text": "<p>What’s covered, what isn’t, how to claim, and the questions people actually ask.</p>",
+            "text": "<p>What’s covered and how to claim. Dead on arrival within 24 hours is a separate, better route: a full refund.</p>",
             "link_label": "How the guarantee works",
             "link": "shopify://pages/30-day-plant-guarantee",
             "featured": false
@@ -192,7 +186,7 @@
           "settings": {
             "eyebrow": "Canada-wide",
             "heading": "Shipping, simply",
-            "text": "<p>We ship within Canada only, with tracking emailed the moment a parcel leaves. We don’t ship to P.O. boxes, and in extreme weather we may hold a parcel back a few days — a plant that arrives late beats one that arrives frozen.</p>"
+            "text": "<p>Tracked, Canada only, no P.O. boxes. In extreme weather we hold a parcel rather than freeze it.</p>"
           }
         },
         "ch_know": {
@@ -200,49 +194,49 @@
           "settings": {
             "eyebrow": "Good to know",
             "heading": "The honest small print",
-            "text": "<p>A few things that are true of every live plant, and of tissue culture in particular.</p>"
+            "text": "<p>True of every live plant. Tap a question.</p>"
           }
         },
         "fq_look": {
           "type": "faq",
           "settings": {
             "question": "Will my plant look like the photo?",
-            "answer": "<p>Each plant is its own plant. Size, leaf count and variegation vary naturally, and product photos are representative examples. Plantlets arrive small — that is the point of the price.</p>"
+            "answer": "<p>Each plant is its own plant. Size, leaf count and variegation vary, photos are examples, and plantlets arrive small.</p>"
           }
         },
         "fq_var": {
           "type": "faq",
           "settings": {
             "question": "Is variegation guaranteed?",
-            "answer": "<p>Tissue culture keeps the genetics of the parent, but variegation is a living pattern that changes with growing conditions and over time. Future patterns can’t be guaranteed unless a listing says so.</p>"
+            "answer": "<p>Tissue culture keeps the parent’s genetics, but variegation shifts with conditions and time. Not guaranteed unless a listing says so.</p>"
           }
         },
         "fq_stress": {
           "type": "faq",
           "settings": {
             "question": "A leaf is yellow or bent after shipping. Is something wrong?",
-            "answer": "<p>Usually not. Some yellowing, a bent leaf or a little melt on older leaves is normal shipping and acclimation stress, as long as new growth keeps coming. Photograph it on arrival anyway — that photo is what protects you.</p>"
+            "answer": "<p>Usually not. A little yellowing or a bent leaf is normal shipping stress while new growth keeps coming. Photograph it on arrival anyway.</p>"
           }
         },
         "fq_pests": {
           "type": "faq",
           "settings": {
             "question": "Are the plants pest-free?",
-            "answer": "<p>Tissue culture is sterile by nature and we inspect every plant before it ships. We still recommend a short quarantine from your other plants, as you would with any new arrival.</p>"
+            "answer": "<p>Tissue culture is sterile and we inspect every plant. A short quarantine from your other plants is still wise.</p>"
           }
         },
         "fq_cancel": {
           "type": "faq",
           "settings": {
             "question": "Can I cancel a pre-order?",
-            "answer": "<p>No. Once a batch closes we have already paid the laboratory for your plant, so pre-orders can’t be cancelled. Orders of ready-to-ship plants can be cancelled any time before they ship.</p>"
+            "answer": "<p>Pre-orders, no: the lab has already been paid for your plant. Ready-to-ship orders, yes, any time before they ship.</p>"
           }
         },
         "fq_who": {
           "type": "faq",
           "settings": {
             "question": "Who is AgaPlantz?",
-            "answer": "<p>A small Canadian plant shop in Brampton, Ontario, built out of a personal collection of rare aroids. We specialise in Philodendron, Alocasia, Monstera, Anthurium and Begonia, most of it grown from tissue culture and acclimated here before it reaches you.</p>"
+            "answer": "<p>A small Canadian shop in Brampton, Ontario, grown out of a personal collection of rare aroids. Most of it is tissue culture, acclimated here first.</p>"
           }
         },
         "ch_links": {
@@ -250,7 +244,7 @@
           "settings": {
             "eyebrow": "Everything in one place",
             "heading": "Policies and guides",
-            "text": "<p>The full text of everything on this page, for when you want the detail.</p>"
+            "text": "<p>The full text, for when you want the detail.</p>"
           }
         },
         "ln_pre": {
@@ -321,7 +315,7 @@
           "type": "cta",
           "settings": {
             "heading": "Ready to start?",
-            "text": "<p>Pick a stage that suits you. Either way, your plant is covered for 30 days and the guide walks you through the rest.</p>",
+            "text": "<p>Pick a stage. Either way, 30 days covered and the guide walks you through the rest.</p>",
             "primary_label": "Shop ready to ship",
             "primary_link": "shopify://collections/ready-to-ship-tissue-culture",
             "secondary_label": "Browse pre-orders",
@@ -333,7 +327,7 @@
           "settings": {
             "icon": "camera",
             "title": "Day 1: photograph it",
-            "text": "As it comes out of the box. One phone snap."
+            "text": "Straight out of the box."
           }
         },
         "tl_a2": {
