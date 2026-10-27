@@ -760,13 +760,20 @@ assume the window scrolls.**
 ## Halloween sale theme (27 Oct 2026) — temporary, gone when the next theme is published
 
 A separate draft, **`AgaPlantz 2026 — Halloween sale` = `189700112463`**, duplicated from MAIN
-`189569040463` on 27 Oct and carrying **only** the Halloween changes. The owner publishes it
-now. Today's page work (TC page, Pre Order page, Safari fix) is deliberately **not** on it —
-that stays on draft `189688381519`, which the owner said they will publish **after 1 Nov**.
-Because that draft was copied from MAIN *before* Halloween, publishing it is also the
-take-down: *"I want just Halloween to be gone."* No separate revert step is needed as long as
-that is the next theme published. If anything else gets published in between, check it for
-the slide and the section.
+`189569040463` on 27 Oct and carrying **only** the Halloween changes. **The owner published it
+the same evening (it became MAIN in place — same id, role flipped).** Today's page work (TC
+page, Pre Order page, Safari fix) was deliberately left off it, on draft `189688381519` —
+and the owner immediately noticed the pages were "missing" and wanted them live too. So a
+third theme, **`AgaPlantz 2026 — Halloween + tissue culture pages` = `189701881935`**, is the
+Halloween MAIN plus `tc-guide.liquid`, `tc-learn-more.liquid`, both page templates and the
+`tc_learn_more` strip inserted after `collections_genus` (`merged/index.json` in the repo is
+that homepage: Halloween section *and* the strip). The owner publishes that one.
+
+**Take-down after 1 Nov:** draft `189688381519` (copied from MAIN *before* Halloween, with
+the pages) is still the clean post-Halloween theme — publishing it removes the slide and the
+section in one step: *"I want just Halloween to be gone."* The badge expires on its own
+either way. Anything the owner edits in the theme editor between now and then lives only on
+the Halloween theme and would need carrying across; compare md5s first, as always.
 
 **Scope was cut on the owner's say-so the same evening.** A first pass followed the handoff
 doc fully (Halloween hero with the Devil Monster photo, two buttons, a row directly under the
@@ -1435,6 +1442,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/templates/page.tissue-culture.json` | the page's blocks — all its structured copy |
 | `theme/templates/page.pre-order.json` | the Pre Order page, same section, 40 blocks |
 | `halloween/` | the Halloween sale theme files (temporary, see that section) |
+| `merged/index.json` | homepage of the Halloween + pages theme: live Halloween file plus the `tc_learn_more` strip |
 | `catalog-backup/` | pre-deletion product export |
 
 Branch: `claude/shopify-theme-creation-ra78zf`. The local template is kept in sync
