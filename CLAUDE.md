@@ -757,6 +757,46 @@ blocked: before the fix `--p` stayed at 0.0048 after scrolling `.page-wrapper`; 
 0.46 and 0.98 with 9 then 13 lit marks. **Any scroll-linked effect in this theme must not
 assume the window scrolls.**
 
+## Halloween sale theme (27 Oct 2026) — temporary, revert on 2 Nov
+
+A separate draft, **`AgaPlantz 2026 — Halloween sale` = `189700112463`**, duplicated from MAIN
+`189569040463` on 27 Oct and carrying **only** the Halloween changes. The owner publishes it
+now and reverts on Monday 2 Nov by re-publishing `189569040463` (or whichever theme was MAIN
+before). Today's page work (TC page, Pre Order page, Safari fix) is deliberately **not** on
+it — that stays on draft `189688381519`. **The two drafts do not know about each other**:
+whichever is published second wins outright, so after Halloween the other one needs its
+changes re-applied onto the then-current MAIN, not published as-is.
+
+The brief came from a Claude Docs handoff ("Halloween Sale — Homepage Handoff"): 49
+spooky-named plants in `halloween-spooky-plants` (`gid://shopify/Collection/493327056975`,
+manual sort, in-stock first), 20% automatic discount `Halloween Sale — 20% off Spooky Plants`
+(`gid://shopify/DiscountAutomaticNode/1536364445775`), scheduled Oct 28 04:00Z → Nov 2
+04:59Z, stacks with order codes. **The owner said they would move the discount start to
+today (27 Oct) themselves** — the badge below already assumes that. If the start is not
+moved, the storefront promises 20% that checkout will not give until Wednesday: the same
+trap as the ladder.
+
+Files are kept in **`halloween/`** in the repo, mirroring theme paths, so they never touch
+`theme/`:
+
+| File | Change |
+| --- | --- |
+| `sections/header-group.json` | `announcement_halloween` first in the bar, linked to the collection; `announcement_early` ("Order Early, Pay Less") set `disabled: true` — its ladder ended 20 Oct |
+| `templates/index.json` | hero: Devil Monster photo (`edited-edited_-_2026-08-25T140135.002.png`, a product media file, referenced as `shopify://shop_images/…`), darker overlay `#1f1a14e6`, pumpkin eyebrow `#F0A04B`, "Spooky plants, 20% off", two buttons in a new `hero_actions` group (pumpkin "Shop the spooky sale" → collection, ghost "Lock in this batch's price" → `/collections/pre-order`); new `products_halloween` `stage-products` row directly after the hero ("The Spooky Collection · 20% off until Sunday", 8 cards, `allow_fallback`); Devil Monster spotlight `text` now opens "Extra 20% off at checkout — $192 until Sunday." |
+| `snippets/halloween-sale-badge.liquid` | new. Renders only for products in the collection and only between `2026-10-27T04:00:00Z` and `2026-11-02T04:59:59Z`, so it switches itself off. `context: 'card'` is a dark pill top-left of the photo; `'product'` is a dark bar on the product page |
+| `blocks/acclimation-guarantee.liquid` | one `render` line above the guarantee div (product pages) |
+| `snippets/product-card.liquid` | core Horizon; one `render` line above `{{ children }}` (collection pages) |
+| `sections/stage-products.liquid` | one `render` line after the Sale badge (homepage rows — these use their own cards, not `product-card`) |
+
+Verified on the preview: six of six checksums, no Liquid errors, homepage carries the slide,
+the hero copy, the row and the spotlight line; `/collections/halloween-spooky-plants` renders
+24 card badges; the Devil Monster page carries the product badge and Bambino Pink (outside
+the collection) carries none.
+
+**Take-down on 2 Nov:** republish the pre-Halloween theme. The badge and the discount end on
+their own; the announcement slide, the hero and the row do not — they are only gone if the
+theme is reverted. Then re-apply the TC/Pre Order draft onto the new MAIN.
+
 ## Acclimation Service: paused 24 Oct 2026
 
 The paid add-on `Acclimation Service (Add-On)` (`gid://shopify/Product/8916960084047`,
@@ -1390,6 +1430,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/tc-learn-more.liquid` | homepage strip linking to it |
 | `theme/templates/page.tissue-culture.json` | the page's blocks — all its structured copy |
 | `theme/templates/page.pre-order.json` | the Pre Order page, same section, 40 blocks |
+| `halloween/` | the Halloween sale theme files (temporary, see that section) |
 | `catalog-backup/` | pre-deletion product export |
 
 Branch: `claude/shopify-theme-creation-ra78zf`. The local template is kept in sync

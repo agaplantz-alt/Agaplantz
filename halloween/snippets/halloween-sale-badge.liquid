@@ -1,0 +1,32 @@
+{%- comment -%}
+  Halloween Sale badge, 27 Oct to 1 Nov 2026 (Toronto). Shows only for products in the
+  halloween-spooky-plants collection and only while the sale is live, so it switches
+  itself off after Nov 1 at 11:59 pm ET. Safe to delete after Nov 2.
+  @param product - the product
+  @param context - 'product' (product page) or 'card' (product grid / homepage row)
+{%- endcomment -%}
+{%- liquid
+  assign hs_show = false
+  for c in product.collections
+    if c.handle == 'halloween-spooky-plants'
+      assign hs_show = true
+      break
+    endif
+  endfor
+  assign hs_now = 'now' | date: '%s' | plus: 0
+  assign hs_start = '2026-10-27T04:00:00Z' | date: '%s' | plus: 0
+  assign hs_end = '2026-11-02T04:59:59Z' | date: '%s' | plus: 0
+  if hs_now < hs_start or hs_now > hs_end
+    assign hs_show = false
+  endif
+-%}
+{%- if hs_show -%}
+  {%- if context == 'card' -%}
+    <span class="halloween-badge halloween-badge--card" style="position: absolute; top: 8px; left: 8px; z-index: 3; pointer-events: none; padding: 4px 10px; border-radius: 2px; background-color: #1f1a14; color: #F0A04B; font-family: var(--font-body--family); font-size: 0.75rem; font-weight: 600; line-height: 1.4;">Halloween 20% off</span>
+  {%- else -%}
+    <div class="halloween-badge halloween-badge--product" style="width: 100%; margin-block: 4px; padding: 12px 14px; border-radius: 2px; box-sizing: border-box; background-color: #1f1a14; color: #F2EBDE; font-family: var(--font-body--family); font-size: 0.8125rem; line-height: 1.5;">
+      <strong style="color: #F0A04B; font-weight: 600;">Halloween Sale: 20% off this plant</strong><br>
+      Taken off automatically at checkout. Ends Sunday, Nov 1 at 11:59 pm ET.
+    </div>
+  {%- endif -%}
+{%- endif -%}
