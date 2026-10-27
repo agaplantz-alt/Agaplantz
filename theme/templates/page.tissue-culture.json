@@ -8,35 +8,41 @@
           "settings": {
             "eyebrow": "From one plant to many",
             "heading": "How a tissue-culture plant is made",
-            "text": "<p>Tissue culture is propagation in a laboratory instead of a greenhouse. It is how most of the rare aroids in the world are multiplied today, and it is why they can be sold at a fraction of what a cutting of the same plant once cost.</p>"
+            "text": "<p>Tissue culture is propagation in a laboratory instead of a greenhouse. It is how most of the rare aroids in the world are multiplied today, and it is why they can be sold at a fraction of what a cutting of the same plant once cost.</p>",
+            "image": "shopify://shop_images/aga-box-plantlet-pink.png",
+            "image_position": "right"
           }
         },
         "st_1": {
           "type": "step",
           "settings": {
             "title": "A few cells from a parent plant",
-            "text": "<p>A tiny piece of a healthy parent plant is taken and sterilised, so nothing comes with it — no pests, no disease, no soil.</p>"
+            "text": "<p>A tiny piece of a healthy parent plant is taken and sterilised, so nothing comes with it — no pests, no disease, no soil.</p>",
+            "icon": "cells"
           }
         },
         "st_2": {
           "type": "step",
           "settings": {
             "title": "Grown in a sealed vessel",
-            "text": "<p>It grows on a nutrient gel inside a sealed, sterile container, in constant warmth at close to 100% humidity.</p>"
+            "text": "<p>It grows on a nutrient gel inside a sealed, sterile container, in constant warmth at close to 100% humidity.</p>",
+            "icon": "flask"
           }
         },
         "st_3": {
           "type": "step",
           "settings": {
             "title": "Multiplied, true to type",
-            "text": "<p>In those conditions it multiplies into many small, identical plantlets — each one genetically the same as the parent, which matters for variegated and collector forms.</p>"
+            "text": "<p>In those conditions it multiplies into many small, identical plantlets — each one genetically the same as the parent, which matters for variegated and collector forms.</p>",
+            "icon": "multiply"
           }
         },
         "st_4": {
           "type": "step",
           "settings": {
             "title": "Rooted, then on its way to us",
-            "text": "<p>The plantlets are rooted in the lab and shipped to us in sealed, labelled containers. They have never seen a greenhouse, a pest or open air — that is exactly why they need a gentle introduction to your home, which we cover below.</p>"
+            "text": "<p>The plantlets are rooted in the lab and shipped to us in sealed, labelled containers. They have never seen a greenhouse, a pest or open air — that is exactly why they need a gentle introduction to your home, which we cover below.</p>",
+            "icon": "box"
           }
         },
         "ch_buy": {
@@ -92,35 +98,40 @@
           "type": "step",
           "settings": {
             "title": "Order placed",
-            "text": "<p>Your pre-order is confirmed and your price is held until the plant ships, whatever the next batch costs.</p>"
+            "text": "<p>Your pre-order is confirmed and your price is held until the plant ships, whatever the next batch costs.</p>",
+            "icon": "order"
           }
         },
         "jn_2": {
           "type": "step",
           "settings": {
             "title": "Cut-off date",
-            "text": "<p>The batch closes on its cut-off date and we place the order with our laboratory partners. Orders after the cut-off go into the next batch.</p>"
+            "text": "<p>The batch closes on its cut-off date and we place the order with our laboratory partners. Orders after the cut-off go into the next batch.</p>",
+            "icon": "calendar"
           }
         },
         "jn_3": {
           "type": "step",
           "settings": {
             "title": "Lab confirmation",
-            "text": "<p>The lab confirms availability. If a variety can’t be supplied, we contact you within about two business days of the cut-off and you choose a full refund or a different plant of equal value.</p>"
+            "text": "<p>The lab confirms availability. If a variety can’t be supplied, we contact you within about two business days of the cut-off and you choose a full refund or a different plant of equal value.</p>",
+            "icon": "lab"
           }
         },
         "jn_4": {
           "type": "step",
           "settings": {
             "title": "Arrival in Canada and inspection",
-            "text": "<p>The plants land, clear inspection and are checked by us before anything is packed.</p>"
+            "text": "<p>The plants land, clear inspection and are checked by us before anything is packed.</p>",
+            "icon": "plane"
           }
         },
         "jn_5": {
           "type": "step",
           "settings": {
             "title": "Delivered to your door",
-            "text": "<p>Shipped with tracking, early in the week so nothing sits in a depot over a weekend. Typically two to three weeks after the cut-off.</p>"
+            "text": "<p>Shipped with tracking, early in the week so nothing sits in a depot over a weekend. Typically two to three weeks after the cut-off.</p>",
+            "icon": "home"
           }
         },
         "ch_arrive": {
@@ -128,7 +139,9 @@
           "settings": {
             "eyebrow": "The first month",
             "heading": "What arrives, and how to settle it in",
-            "text": "<p>A tissue-culture plantlet arrives small, in the sealed container it left the lab in, with roots but no soil. It has lived its whole life at near 100% humidity, so the first few weeks are about bringing it gently down to the humidity of a normal room. That process is called acclimation, and it is the one thing that decides how a plantlet does.</p><p>The short version: <strong>photograph it the day it arrives</strong>, plant it in a damp medium inside a clear container with a lid, keep it out of direct sun, don’t water it for about two weeks, leave the lid on for two to three, then open it a little more each day once you see new growth. The full step-by-step guide is below, and every order can add our free tissue-culture starter kit at checkout.</p>"
+            "text": "<p>A tissue-culture plantlet arrives small, in the sealed container it left the lab in, with roots but no soil. It has lived its whole life at near 100% humidity, so the first few weeks are about bringing it gently down to the humidity of a normal room. That process is called acclimation, and it is the one thing that decides how a plantlet does.</p><p><strong>Photograph it the day it arrives</strong>, then follow the five stages below. The full step-by-step guide and the free starter kit are underneath.</p>",
+            "image": "shopify://shop_images/aga-box-monstera-variegated.png",
+            "image_position": "left"
           }
         },
         "cd_guide": {
@@ -158,7 +171,9 @@
           "settings": {
             "eyebrow": "Our side of the deal",
             "heading": "Every plant is covered for 30 days",
-            "text": "<p>Young plants carry risk, and we think it should sit with us. If a plant you bought doesn’t pull through within 30 days of delivery, we replace it — free on plants under $200, and at 50% of what you paid on plants $200 and over. You cover a flat $14.99 replacement shipping. One condition we can’t waive: a photo of the plant the day it arrives, before you unpack it.</p><p>If a plant arrives dead or badly damaged, that is a different, better route: contact us within 24 hours of delivery and it can end in a full refund.</p>"
+            "text": "<p>Young plants carry risk, and we think it should sit with us. If a plant you bought doesn’t pull through within 30 days of delivery, we replace it — free on plants under $200, and at 50% of what you paid on plants $200 and over. You cover a flat $14.99 replacement shipping. One condition we can’t waive: a photo of the plant the day it arrives, before you unpack it.</p><p>If a plant arrives dead or badly damaged, that is a different, better route: contact us within 24 hours of delivery and it can end in a full refund.</p>",
+            "image": "shopify://shop_images/aga-box-alocasia-dark-cup.png",
+            "image_position": "right"
           }
         },
         "cd_guar": {
@@ -177,7 +192,7 @@
           "settings": {
             "eyebrow": "Canada-wide",
             "heading": "Shipping, simply",
-            "text": "<p>We ship within Canada only, early in the week, never over a weekend. Standard shipping is a flat $14.99 and free on orders over $180; express is $25. In the cold months we add insulation and heat packs when the forecast calls for it. Tracking goes to your email the moment a parcel leaves. We don’t ship to P.O. boxes, and we may hold a parcel back a few days in extreme weather — a plant that arrives late beats one that arrives frozen.</p>"
+            "text": "<p>We ship within Canada only, with tracking emailed the moment a parcel leaves. We don’t ship to P.O. boxes, and in extreme weather we may hold a parcel back a few days — a plant that arrives late beats one that arrives frozen.</p>"
           }
         },
         "ch_know": {
@@ -221,13 +236,6 @@
           "settings": {
             "question": "Can I cancel a pre-order?",
             "answer": "<p>No. Once a batch closes we have already paid the laboratory for your plant, so pre-orders can’t be cancelled. Orders of ready-to-ship plants can be cancelled any time before they ship.</p>"
-          }
-        },
-        "fq_pickup": {
-          "type": "faq",
-          "settings": {
-            "question": "Do you offer local pickup?",
-            "answer": "<p>Yes, in Brampton, Ontario, depending on availability and scheduling. Choose it at checkout.</p>"
           }
         },
         "fq_who": {
@@ -319,6 +327,98 @@
             "secondary_label": "Browse pre-orders",
             "secondary_link": "shopify://collections/pre-order"
           }
+        },
+        "tl_a1": {
+          "type": "tile",
+          "settings": {
+            "icon": "camera",
+            "title": "Day 1: photograph it",
+            "text": "As it comes out of the box. One phone snap."
+          }
+        },
+        "tl_a2": {
+          "type": "tile",
+          "settings": {
+            "icon": "dome",
+            "title": "Lid on, bright shade",
+            "text": "Damp medium, clear container, no direct sun."
+          }
+        },
+        "tl_a3": {
+          "type": "tile",
+          "settings": {
+            "icon": "droplet",
+            "title": "No water for 2 weeks",
+            "text": "The medium already holds enough."
+          }
+        },
+        "tl_a4": {
+          "type": "tile",
+          "settings": {
+            "icon": "lid",
+            "title": "Open a little each day",
+            "text": "After 2–3 weeks, once new growth shows."
+          }
+        },
+        "tl_a5": {
+          "type": "tile",
+          "settings": {
+            "icon": "pot",
+            "title": "Pot up when it’s firm",
+            "text": "Chunky aroid mix, a pot only just bigger than the roots."
+          }
+        },
+        "sg_1": {
+          "type": "stat",
+          "settings": {
+            "value": "30 days",
+            "label": "Covered, from delivery"
+          }
+        },
+        "sg_2": {
+          "type": "stat",
+          "settings": {
+            "value": "Free",
+            "label": "Replacement under $200"
+          }
+        },
+        "sg_3": {
+          "type": "stat",
+          "settings": {
+            "value": "50%",
+            "label": "Of what you paid, $200+"
+          }
+        },
+        "sg_4": {
+          "type": "stat",
+          "settings": {
+            "value": "$14.99",
+            "label": "Flat replacement shipping"
+          }
+        },
+        "tl_s1": {
+          "type": "tile",
+          "settings": {
+            "icon": "map",
+            "title": "Canada-wide",
+            "text": "Standard $14.99, free over $180. Express $25."
+          }
+        },
+        "tl_s3": {
+          "type": "tile",
+          "settings": {
+            "icon": "calendar",
+            "title": "Early in the week",
+            "text": "Never over a weekend."
+          }
+        },
+        "tl_s4": {
+          "type": "tile",
+          "settings": {
+            "icon": "snowflake",
+            "title": "Winter-ready",
+            "text": "Insulation and heat packs when the forecast calls for it."
+          }
         }
       },
       "block_order": [
@@ -338,18 +438,29 @@
         "jn_4",
         "jn_5",
         "ch_arrive",
+        "tl_a1",
+        "tl_a2",
+        "tl_a3",
+        "tl_a4",
+        "tl_a5",
         "cd_guide",
         "cd_kit",
         "ch_guar",
+        "sg_1",
+        "sg_2",
+        "sg_3",
+        "sg_4",
         "cd_guar",
         "ch_ship",
+        "tl_s1",
+        "tl_s3",
+        "tl_s4",
         "ch_know",
         "fq_look",
         "fq_var",
         "fq_stress",
         "fq_pests",
         "fq_cancel",
-        "fq_pickup",
         "fq_who",
         "ch_links",
         "ln_pre",
@@ -367,7 +478,8 @@
         "heading": "",
         "background_color": "",
         "padding-block-start": 56,
-        "padding-block-end": 72
+        "padding-block-end": 72,
+        "hero_image": "shopify://shop_images/aga-box-plantlet-green.png"
       }
     }
   },

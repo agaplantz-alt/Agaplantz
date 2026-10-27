@@ -664,9 +664,29 @@ consecutive blocks of one kind wrapped as a group:
 | `link` | link card with an arrow; a run becomes a grid | the eight policy and guide links |
 | `cta` (limit 1) | sand band, two buttons | shop ready to ship / browse pre-orders |
 
+| `stat` | sand tile with a big Lora number and a label; a run becomes a row | the four guarantee numbers |
+| `tile` | icon in a sage circle, title, one line; a run becomes a row | the five acclimation stages, the shipping facts |
+
 The grouping is done in Liquid by watching the block type change (`open` tracks the current
 run and closes it before a different kind starts), so the owner can reorder or add items
-freely and the markup stays valid. 39 blocks as shipped; `max_blocks` is 50.
+freely and the markup stays valid.
+
+**Visuals (same day).** The owner saw the first preview and said it was *"just a read"* —
+*"we are not using any graphics that helps customer to stay engaged."* So: the section's
+`hero_image` picker puts a cut-out beside the title (the green plantlet, floating on the
+same 8s loop as the mystery-box band); a `chapter` can carry an `image` left or right (pink
+plantlet on "How it's made", variegated Monstera on "What arrives", rooted Alocasia on the
+guarantee — all four are the mystery-box PNGs already in Files); every `step` has an `icon`
+pick from a 22-icon inline SVG set (keyed by name inside `icon_paths`, no asset upload) and
+the steps now run down a clay timeline line with the number as a small terracotta badge on
+the icon; `stat` and `tile` blocks carry the numbers and the process. No new images were
+uploaded.
+
+**Shopify caps a section at 50 blocks**, and the visual pass hit 52. Two were folded away:
+"Free over $180" became the second line of the Canada-wide tile, and the local-pickup
+question was dropped (it is on the FAQ page, which the links grid points at). 50 blocks as
+shipped — **the page is full**. Adding anything means removing something, or a second
+section on the template.
 
 **Every fact on it was lifted from pages the owner already published** — FAQ, Pre Order,
 30-Day Plant Guarantee, About, the shipping and refund policies, the Acclimation Guide — so
