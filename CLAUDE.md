@@ -770,7 +770,12 @@ Halloween MAIN plus `tc-guide.liquid`, `tc-learn-more.liquid`, both page templat
 that homepage: Halloween section *and* the strip). The owner publishes that one. **They did, within the hour** — then asked for the
 Pre Order hero photo to go, which made a fourth theme, `AgaPlantz 2026 — Halloween + pages, no
 pre-order photo` = `189702373455` (MAIN minus that one picture). The same template went onto
-the clean draft `189688381519` so the post-Halloween publish carries it too.
+the clean draft `189688381519` so the post-Halloween publish carries it too. The owner then
+published the *clean* draft by mistake ("Now Halloween is gone"), re-published
+`189702373455`, and asked for a better pumpkin — fifth theme, `AgaPlantz 2026 — Halloween,
+drawn pumpkin` = `189703094351`, MAIN plus the new `stage-products.liquid`. **Each ask has
+meant a new duplicate because the owner publishes within minutes and the API cannot write to
+MAIN**; check `roles: [MAIN]` before every upload.
 
 **Take-down after 1 Nov:** draft `189688381519` (copied from MAIN *before* Halloween, with
 the pages) is still the clean post-Halloween theme — publishing it removes the slide and the
