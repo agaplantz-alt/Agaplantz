@@ -726,6 +726,37 @@ one heading, one line, "Learn more →", moss leaf icon), all settings. Sage bet
 genus row and the sand spotlight keeps the bands alternating. It is a single `<a>`, so the
 whole strip is the tap target on a phone.
 
+## Pre Order page: same thread, same day (27 Oct 2026)
+
+*"Let's redesign pre order detail as well."* `/pages/pre-order` (`gid://shopify/Page/115038879823`,
+suffix `pre-order`) was five AI-generated blocks of long paragraphs plus the pricing-policy text
+block. `templates/page.pre-order.json` is now a single `tc-guide` section — the section was
+renamed **"Guide page (thread)"** in its schema because it serves two pages now; the file is
+still `sections/tc-guide.liquid`. 40 blocks: why-early tiles, the cut-off chapter with four
+stats (2–3 weeks · 2 days · 100% refund · Locked), the five-step journey, pricing tiles (locked
+at checkout · re-set each batch · nearly 200 plants cheaper), why-a-lab-batch tiles, five
+questions, three cards (TC page · Acclimation Guide · guarantee), five policy links, CTA to the
+pre-order collection. Every fact came off the old blocks; the only new line is "next batch opens
+15–30 days after a cut-off", which the announcement bar already says. The page body (was empty)
+is one sentence, set with `pageUpdate`. Hero cut-out is the pink plantlet, so the two guide pages
+do not look identical. **The cut-off date now lives in `ch_cutoff.heading`** ("Order by 31
+October") — the six-places table is updated; it is still one place on this page, deliberately
+not repeated in a stat.
+
+**Desktop Safari did not move (same day).** The owner's screenshot: thread filled a few pixels,
+every mark unlit, cards visible. Cause: Horizon does not scroll the window on desktop — `body`
+is `overflow: hidden` and `.page-wrapper` is the scroller — so `window.addEventListener('scroll')`
+never fired, while the `IntersectionObserver` reveals (viewport-relative) kept working. Phones
+scroll the window, which is why it worked there. Fix, three layers in the section script: a
+capture-phase `scroll` listener on `document` (scroll events don't bubble but do capture, so
+this hears any element), a second `IntersectionObserver` on the marks with
+`rootMargin: 0 0 -38%` that lights them as they cross the reading line, and a per-frame
+`getBoundingClientRect().top` check on the body that runs `frame()` only when the body has
+moved. Reproduced in the local harness, which has the same inner scroller when Horizon's JS is
+blocked: before the fix `--p` stayed at 0.0048 after scrolling `.page-wrapper`; after, it read
+0.46 and 0.98 with 9 then 13 lit marks. **Any scroll-linked effect in this theme must not
+assume the window scrolls.**
+
 ## Acclimation Service: paused 24 Oct 2026
 
 The paid add-on `Acclimation Service (Add-On)` (`gid://shopify/Product/8916960084047`,
@@ -830,7 +861,7 @@ Toronto flips to EST at 02:00 on 1 Nov, one day later.
 | --- | --- | --- |
 | `sections/header-group.json` | `announcement_jeGMHt.text` | `Tissue Culture Pre-Orders Close October 31 • …` |
 | `templates/index.json` | `custom_liquid_KL8FyB` → `assign deadline` | `2026-10-31T23:59:59-04:00` |
-| `templates/page.pre-order.json` | `ai_gen_block_41bf156_tpPC39.cutoff_date` | `31 OCT 2026` (`date_label` back to `Cut-off Date:`) |
+| `templates/page.pre-order.json` | `main` → `ch_cutoff.heading` | `Order by 31 October` (a `chapter` heading on the thread section — since 27 Oct; the old `ai_gen_block_41bf156_tpPC39.cutoff_date` block is gone) |
 | `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `31 OCTOBER` |
 | `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | `Order by [31 OCTOBER]…` (hidden block) |
 | `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | `Order by [31 OCTOBER]…` (hidden block) |
@@ -1358,6 +1389,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/tc-guide.liquid` | the "What is tissue culture?" page, six block types |
 | `theme/sections/tc-learn-more.liquid` | homepage strip linking to it |
 | `theme/templates/page.tissue-culture.json` | the page's blocks — all its structured copy |
+| `theme/templates/page.pre-order.json` | the Pre Order page, same section, 40 blocks |
 | `catalog-backup/` | pre-deletion product export |
 
 Branch: `claude/shopify-theme-creation-ra78zf`. The local template is kept in sync

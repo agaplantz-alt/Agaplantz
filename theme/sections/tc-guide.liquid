@@ -273,9 +273,29 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
       }
     }
     function request() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
-    window.addEventListener('scroll', request, { passive: true });
+    /* Scroll events do not bubble, and on desktop the theme may scroll an inner container rather
+       than the window (seen on Safari for Mac), so listen in the capture phase on the document:
+       that hears a scroll from any element. */
+    document.addEventListener('scroll', request, { capture: true, passive: true });
     window.addEventListener('resize', request);
-    request();
+    /* Second line of defence: marks also watch the reading line themselves, so they light up
+       even if no scroll event ever reaches us. */
+    var lineIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.target.classList.toggle('is-lit', e.isIntersecting || e.boundingClientRect.top < 0);
+      });
+      request();
+    }, { rootMargin: '0px 0px -38% 0px', threshold: 0 });
+    for (var k = 0; k < marks.length; k++) lineIo.observe(marks[k]);
+    /* Third: a per-frame position check that needs no event at all. One getBoundingClientRect
+       per frame; it does nothing while the body has not moved. */
+    var lastTop = null;
+    function poll() {
+      var t = body.getBoundingClientRect().top;
+      if (t !== lastTop) { lastTop = t; frame(); }
+      requestAnimationFrame(poll);
+    }
+    requestAnimationFrame(poll);
   })();
 </script>
 
@@ -487,7 +507,7 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
 
 {% schema %}
 {
-  "name": "Tissue culture guide",
+  "name": "Guide page (thread)",
   "tag": "section",
   "disabled_on": { "groups": ["header", "footer"] },
   "max_blocks": 50,
@@ -580,6 +600,6 @@ sun|<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4
       ]
     }
   ],
-  "presets": [{ "name": "Tissue culture guide", "category": "Pages" }]
+  "presets": [{ "name": "Guide page (thread)", "category": "Pages" }]
 }
 {% endschema %}
