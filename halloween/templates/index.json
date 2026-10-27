@@ -14,7 +14,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Halloween weekend only · Until Sunday Nov 1</p>",
+            "text": "<p>Rare aroids · Acclimated in Canada</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -25,7 +25,7 @@
             "letter_spacing": "normal",
             "case": "uppercase",
             "wrap": "pretty",
-            "text_color": "#F0A04B",
+            "text_color": "#ffffff",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -40,7 +40,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h1>Spooky plants, 20% off</h1>",
+            "text": "<h1>Rare & healthy houseplants</h1>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -66,7 +66,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Devil Monster, ghosts, skeletons and black-leaf beauties. 49 rare aroids, 20% off automatically at checkout.</p>",
+            "text": "<p>Collector-grade Philodendron, Alocasia, Monstera and Anthurium — rooted, acclimated and shipped Canada-wide.</p>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
@@ -88,86 +88,24 @@
           },
           "blocks": {}
         },
-        "hero_actions": {
-          "type": "group",
+        "hero_cta": {
+          "type": "button",
+          "name": "t:names.button",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "flex-start",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 10,
-            "width": "fit",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
+            "label": "Shop",
+            "link": "shopify://collections",
             "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "style_class": "button-custom",
+            "custom_button_background": "#fbf8f2",
+            "custom_button_text": "#2f2a22",
+            "custom_button_border": "rgba(0,0,0,0)",
+            "link_text_color": "",
+            "width": "custom",
+            "custom_width": 13,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
           },
-          "blocks": {
-            "hero_cta": {
-              "type": "button",
-              "name": "t:names.button",
-              "settings": {
-                "label": "Shop the spooky sale",
-                "link": "shopify://collections/halloween-spooky-plants",
-                "open_in_new_tab": false,
-                "style_class": "button-custom",
-                "custom_button_background": "#F0A04B",
-                "custom_button_text": "#1f1a14",
-                "custom_button_border": "rgba(0,0,0,0)",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 13,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            },
-            "hero_cta2": {
-              "type": "button",
-              "settings": {
-                "label": "Lock in this batch's price",
-                "link": "shopify://collections/pre-order",
-                "open_in_new_tab": false,
-                "style_class": "button-custom",
-                "custom_button_background": "rgba(0,0,0,0)",
-                "custom_button_text": "#fbf8f2",
-                "custom_button_border": "#fbf8f2",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 13,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              }
-            }
-          },
-          "block_order": [
-            "hero_cta",
-            "hero_cta2"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
@@ -175,12 +113,12 @@
         "hero_eyebrow",
         "hero_heading",
         "hero_sub",
-        "hero_actions"
+        "hero_cta"
       ],
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/edited-edited_-_2026-08-25T140135.002.png",
+        "image_1": "shopify://shop_images/agaplantz-hero-2026-v2.jpg",
         "media_type_2": "image",
         "stack_media_on_mobile": true,
         "custom_mobile_media": false,
@@ -201,7 +139,7 @@
         "section_height_custom": 100,
         "background_color": "rgba(0,0,0,0)",
         "toggle_overlay": true,
-        "overlay_color": "#1f1a14e6",
+        "overlay_color": "#2f2a22d9",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": true,
@@ -1888,7 +1826,7 @@
             "product": "monstera-devil-monster-premium-variegated-pre-order",
             "eyebrow": "Collector favourite",
             "heading": "",
-            "text": "<p>Extra 20% off at checkout — $192 until Sunday. Deep green leaves split with cream, and a variegation pattern no two plants share.</p>",
+            "text": "<p>The one collectors keep coming back for — deep green leaves split with cream, and a variegation pattern no two plants share. On sale while this batch is open.</p>",
             "cta_label": "Shop this plant"
           }
         },
@@ -1936,15 +1874,15 @@
       "type": "stage-products",
       "settings": {
         "collection": "halloween-spooky-plants",
-        "heading": "The Spooky Collection",
+        "heading": "Halloween: spooky plants, 20% off until Sunday",
         "stage_match": "",
         "sale_only": false,
         "allow_fallback": true,
         "show_view_all": true,
-        "view_all_label": "View all 49 plants",
+        "view_all_label": "Shop all 49",
         "max_products": 8,
         "columns": 4,
-        "background_color": "",
+        "background_color": "#1f1a14",
         "padding-block-start": 56,
         "padding-block-end": 56
       }
@@ -1952,9 +1890,9 @@
   },
   "order": [
     "hero_main",
-    "products_halloween",
     "marquee_trust",
     "custom_liquid_KL8FyB",
+    "products_halloween",
     "collections_genus",
     "spotlight_plant",
     "subscription_box",

@@ -757,15 +757,22 @@ blocked: before the fix `--p` stayed at 0.0048 after scrolling `.page-wrapper`; 
 0.46 and 0.98 with 9 then 13 lit marks. **Any scroll-linked effect in this theme must not
 assume the window scrolls.**
 
-## Halloween sale theme (27 Oct 2026) — temporary, revert on 2 Nov
+## Halloween sale theme (27 Oct 2026) — temporary, gone when the next theme is published
 
 A separate draft, **`AgaPlantz 2026 — Halloween sale` = `189700112463`**, duplicated from MAIN
 `189569040463` on 27 Oct and carrying **only** the Halloween changes. The owner publishes it
-now and reverts on Monday 2 Nov by re-publishing `189569040463` (or whichever theme was MAIN
-before). Today's page work (TC page, Pre Order page, Safari fix) is deliberately **not** on
-it — that stays on draft `189688381519`. **The two drafts do not know about each other**:
-whichever is published second wins outright, so after Halloween the other one needs its
-changes re-applied onto the then-current MAIN, not published as-is.
+now. Today's page work (TC page, Pre Order page, Safari fix) is deliberately **not** on it —
+that stays on draft `189688381519`, which the owner said they will publish **after 1 Nov**.
+Because that draft was copied from MAIN *before* Halloween, publishing it is also the
+take-down: *"I want just Halloween to be gone."* No separate revert step is needed as long as
+that is the next theme published. If anything else gets published in between, check it for
+the slide and the section.
+
+**Scope was cut on the owner's say-so the same evening.** A first pass followed the handoff
+doc fully (Halloween hero with the Devil Monster photo, two buttons, a row directly under the
+hero, a line on the Devil Monster spotlight). The owner: *"Do not change the home page, only
+put a section down it."* So the hero, spotlight and every other homepage section are
+byte-for-byte the live ones, and the homepage differs from live in **one** added section.
 
 The brief came from a Claude Docs handoff ("Halloween Sale — Homepage Handoff"): 49
 spooky-named plants in `halloween-spooky-plants` (`gid://shopify/Collection/493327056975`,
@@ -781,21 +788,18 @@ Files are kept in **`halloween/`** in the repo, mirroring theme paths, so they n
 
 | File | Change |
 | --- | --- |
-| `sections/header-group.json` | `announcement_halloween` first in the bar, linked to the collection; `announcement_early` ("Order Early, Pay Less") set `disabled: true` — its ladder ended 20 Oct |
-| `templates/index.json` | hero: Devil Monster photo (`edited-edited_-_2026-08-25T140135.002.png`, a product media file, referenced as `shopify://shop_images/…`), darker overlay `#1f1a14e6`, pumpkin eyebrow `#F0A04B`, "Spooky plants, 20% off", two buttons in a new `hero_actions` group (pumpkin "Shop the spooky sale" → collection, ghost "Lock in this batch's price" → `/collections/pre-order`); new `products_halloween` `stage-products` row directly after the hero ("The Spooky Collection · 20% off until Sunday", 8 cards, `allow_fallback`); Devil Monster spotlight `text` now opens "Extra 20% off at checkout — $192 until Sunday." |
+| `sections/header-group.json` | `announcement_halloween` first in the bar, linked to the collection; `announcement_early` ("Order Early, Pay Less") set `disabled: true` — its ladder ended 20 Oct, so it was promising a discount that no longer exists |
+| `templates/index.json` | the live file plus one section: `products_halloween`, a `stage-products` row on the collection, **after `custom_liquid_KL8FyB`** (the countdown) and before the genus tiles. Background `#1f1a14` (near-black; `contrast-override` turns the text cream), heading "Halloween: spooky plants, 20% off until Sunday", "Shop all 49", 8 cards, `allow_fallback` |
 | `snippets/halloween-sale-badge.liquid` | new. Renders only for products in the collection and only between `2026-10-27T04:00:00Z` and `2026-11-02T04:59:59Z`, so it switches itself off. `context: 'card'` is a dark pill top-left of the photo; `'product'` is a dark bar on the product page |
 | `blocks/acclimation-guarantee.liquid` | one `render` line above the guarantee div (product pages) |
 | `snippets/product-card.liquid` | core Horizon; one `render` line above `{{ children }}` (collection pages) |
 | `sections/stage-products.liquid` | one `render` line after the Sale badge (homepage rows — these use their own cards, not `product-card`) |
 
-Verified on the preview: six of six checksums, no Liquid errors, homepage carries the slide,
-the hero copy, the row and the spotlight line; `/collections/halloween-spooky-plants` renders
-24 card badges; the Devil Monster page carries the product badge and Bambino Pink (outside
-the collection) carries none.
-
-**Take-down on 2 Nov:** republish the pre-Halloween theme. The badge and the discount end on
-their own; the announcement slide, the hero and the row do not — they are only gone if the
-theme is reverted. Then re-apply the TC/Pre Order draft onto the new MAIN.
+Verified on the preview: six of six checksums, no Liquid errors, the hero is the live one,
+the homepage carries the slide and the section; `/collections/halloween-spooky-plants`
+renders 24 card badges; the Devil Monster page carries the product badge and Bambino Pink
+(outside the collection) carries none. Two sale plants have no photo at all (Alocasia Aranea,
+Philodendron Black Billietiae) and show the placeholder.
 
 ## Acclimation Service: paused 24 Oct 2026
 
