@@ -140,7 +140,7 @@
         "announcement_halloween": {
           "type": "_announcement",
           "settings": {
-            "text": "Halloween Sale — 20% Off Spooky Plants • Ends Sunday Nov 1 • Shop Now",
+            "text": "Halloween Sale — Extra 20% Off Spooky Plants • Ends Sunday Nov 1 • Shop Now",
             "link": "/collections/halloween-spooky-plants",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",

@@ -789,7 +789,7 @@ Files are kept in **`halloween/`** in the repo, mirroring theme paths, so they n
 | File | Change |
 | --- | --- |
 | `sections/header-group.json` | `announcement_halloween` first in the bar, linked to the collection; `announcement_early` ("Order Early, Pay Less") set `disabled: true` — its ladder ended 20 Oct, so it was promising a discount that no longer exists |
-| `templates/index.json` | the live file plus one section: `products_halloween`, a `stage-products` row on the collection, **after `custom_liquid_KL8FyB`** (the countdown) and before the genus tiles. Background `#1f1a14` (near-black; `contrast-override` turns the text cream), heading "Spooky plants, 20% off", link "Shop all 49 · ends Sunday", 8 cards, `allow_fallback` |
+| `templates/index.json` | the live file plus one section: `products_halloween`, a `stage-products` row on the collection, **after `custom_liquid_KL8FyB`** (the countdown) and before the genus tiles. Background `#1f1a14` (near-black; `contrast-override` turns the text cream), heading "Spooky plants, extra 20% off" (the owner: some plants already carry a compare-at, so plain "20% off" read as the sale they already had — every Halloween string says **extra**), link "Shop all 49 · ends Sunday", 8 cards, `allow_fallback` |
 | `snippets/halloween-sale-badge.liquid` | new. Renders only for products in the collection and only between `2026-10-27T04:00:00Z` and `2026-11-02T04:59:59Z`, so it switches itself off. `context: 'card'` is a dark pill top-left of the photo; `'product'` is a dark bar on the product page |
 | `blocks/acclimation-guarantee.liquid` | one `render` line above the guarantee div (product pages) |
 | `snippets/product-card.liquid` | core Horizon; one `render` line above `{{ children }}` (collection pages) |

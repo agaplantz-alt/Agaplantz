@@ -1874,7 +1874,7 @@
       "type": "stage-products",
       "settings": {
         "collection": "halloween-spooky-plants",
-        "heading": "Spooky plants, 20% off",
+        "heading": "Spooky plants, extra 20% off",
         "stage_match": "",
         "sale_only": false,
         "allow_fallback": true,
