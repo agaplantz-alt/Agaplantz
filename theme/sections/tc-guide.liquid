@@ -137,7 +137,9 @@
     padding-block-start: var(--padding-block-start, 56px);
     padding-block-end: var(--padding-block-end, 72px);
   }
-  .agtc > * { max-width: 760px; margin-inline: auto; }
+  /* Horizon places section children in its centre grid track; width: 100% + min-width: 0 keeps
+     a grid child (the card rows) from sizing to its max-content and overflowing a phone. */
+  .agtc > * { width: 100%; max-width: 760px; min-width: 0; margin-inline: auto; box-sizing: border-box; }
 
   .agtc__eyebrow {
     margin: 0 0 12px; color: #B4693C;
@@ -178,7 +180,7 @@
   .agtc__step .agtc__text { margin-block-start: 6px; }
 
   /* cards */
-  .agtc__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .agtc__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 14px; }
   .agtc__card {
     padding: 24px 22px; border: 1px solid #DED3C2; border-radius: 4px; background: #FBF8F2;
     display: flex; flex-direction: column; gap: 10px;
@@ -207,7 +209,7 @@
   .agtc__q-answer { margin: 0; padding-block-end: 18px; }
 
   /* links */
-  .agtc__links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .agtc__links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 10px; }
   .agtc__link {
     position: relative; display: block; padding: 16px 44px 16px 16px; border: 1px solid #DED3C2;
     border-radius: 4px; text-decoration: none; color: inherit; background: #FBF8F2;
