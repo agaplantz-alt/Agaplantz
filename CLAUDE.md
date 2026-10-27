@@ -35,10 +35,10 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-As of 25 Oct 2026: MAIN was still `AgaPlantz 2026 — ladder hides past tiers` =
-`188747120719`; the draft waiting for the owner is `AgaPlantz 2026 — product pages: Loox
-only` = `189569040463` — it carries both the reviews-wall removal and the acclimation
-add-on pause, so one publish does both. As of 16 Oct: MAIN was `AgaPlantz 2026 — ladder hides past tiers` = `188747120719`,
+As of 27 Oct 2026: MAIN was `AgaPlantz 2026 — product pages: Loox only` = `189569040463`
+(the owner published the 25 Oct draft, so the reviews-wall removal and the acclimation-add-on
+pause are live); the draft waiting for them is `AgaPlantz 2026 — what is tissue culture
+page` = `189688381519`. As of 16 Oct: MAIN was `AgaPlantz 2026 — ladder hides past tiers` = `188747120719`,
 published by the owner on 6 Oct, so the self-trimming ladder is live and did its job on the
 16th with no edit. Before that (6 Oct): MAIN was `AgaPlantz 2026 — mystery box call-out` =
 `188663136335` — the owner published our 4 Oct draft as-is, so the mystery-box band, its
@@ -95,6 +95,8 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
 4. `collections_genus` — Philodendron / Alocasia / Monstera / Anthurium / **Begonia**
    tiles. `max_collections` was `4` and silently drops the fifth handle — it is now 5,
    and `columns` went 4 → 5 so the row stays one line instead of 4 plus an orphan.
+4b. `tc_learn_more` — slim sage strip, "What is a tissue culture plant? → Learn more",
+   linking to `/pages/tissue-culture`. See the education-page section below.
 5. `tissue_culture` — explainer; intro on top, two cards side-by-side (also on mobile),
    then `tc_guarantee`, a full-width strip carrying the 30-Day Plant Guarantee. It sits
    *below* the two stage cards deliberately: the reassurance lands after the customer has
@@ -638,6 +640,55 @@ the wall, while the live page still carried it.
 The repo copies of these two templates were stale before this (the owner had edited them
 in the theme editor); both are now the live file minus the section, header comment
 stripped, so the next edit can start from the repo again.
+
+## "What is tissue culture?" — the education page (27 Oct 2026)
+
+The owner circled the gap between the genus tiles and the plant spotlight and asked for a
+*"what is tissue culture, learn more"* entry there, leading to *"a page where we are
+explaining TC from start to end, from policy links to anything that will educate people
+about our business and TC."*
+
+**The page** is `/pages/tissue-culture` (`gid://shopify/Page/167359774799`, title "What is
+tissue culture?", template suffix `tissue-culture`), rendered by `sections/tc-guide.liquid`
+through `templates/page.tissue-culture.json`. The split is deliberate: the **opening prose is
+the Shopify page body**, so the owner edits it in admin on a phone, and **everything
+structured is a block** in the theme editor — six block types, rendered in order, with
+consecutive blocks of one kind wrapped as a group:
+
+| Block | Renders as | Used for |
+| --- | --- | --- |
+| `chapter` | eyebrow + h2 + richtext | the eight section headings |
+| `step` | numbered circle + title + text; a run becomes an `<ol>` | how TC is made (4), the pre-order journey (5) |
+| `card` | bordered card, `featured` fills it moss | pre-order / ready to ship / mature; guide + free kit; guarantee |
+| `faq` | native `<details>` accordion | the honest small print (7) |
+| `link` | link card with an arrow; a run becomes a grid | the eight policy and guide links |
+| `cta` (limit 1) | sand band, two buttons | shop ready to ship / browse pre-orders |
+
+The grouping is done in Liquid by watching the block type change (`open` tracks the current
+run and closes it before a different kind starts), so the owner can reorder or add items
+freely and the markup stays valid. 39 blocks as shipped; `max_blocks` is 50.
+
+**Every fact on it was lifted from pages the owner already published** — FAQ, Pre Order,
+30-Day Plant Guarantee, About, the shipping and refund policies, the Acclimation Guide — so
+nothing new was asserted about the business. Two places were deliberately vague where the
+site contradicts itself: dispatch days ("early in the week, never over a weekend" — the
+shipping policy says Mon–Wed, the product-page card says Mon–Thu) and the kit's name (the
+product `tissue-culture-starter-kit` is titled "Tissue Culture Substrate"; the page calls it
+the starter kit, as the product card does). The TC process steps are general horticulture,
+phrased around "our laboratory partners" as the Pre Order page does — never "our lab".
+
+**The page went live the moment it was created** (`pageCreate`, published) — it is not in
+any menu, and until the draft theme is published the live theme has no
+`page.tissue-culture.json`, so it falls back to `page.json` and shows only the prose. That
+is a readable page, not a broken one, which is why the body carries real copy rather than a
+placeholder. Not added to the main menu: `menuUpdate` is live-immediate and the owner was
+not asked yet.
+
+**The homepage entry** is `sections/tc-learn-more.liquid` as `tc_learn_more` in
+`templates/index.json`, directly after `collections_genus` — a slim sage strip (eyebrow,
+one heading, one line, "Learn more →", moss leaf icon), all settings. Sage between the cream
+genus row and the sand spotlight keeps the bands alternating. It is a single `<a>`, so the
+whole strip is the tap target on a phone.
 
 ## Acclimation Service: paused 24 Oct 2026
 
@@ -1268,6 +1319,9 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/spotlight-plant.liquid` | plants shown big, one per slide |
 | `theme/sections/subscription-callout.liquid` | mystery-box band, five floating cut-outs, tiers read from the product |
 | `theme/sections/batch-discounts.liquid` | standalone discount ladder — **unused**, the ladder lives in the countdown |
+| `theme/sections/tc-guide.liquid` | the "What is tissue culture?" page, six block types |
+| `theme/sections/tc-learn-more.liquid` | homepage strip linking to it |
+| `theme/templates/page.tissue-culture.json` | the page's blocks — all its structured copy |
 | `catalog-backup/` | pre-deletion product export |
 
 Branch: `claude/shopify-theme-creation-ra78zf`. The local template is kept in sync

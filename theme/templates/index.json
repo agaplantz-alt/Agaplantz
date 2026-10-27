@@ -473,6 +473,19 @@
         "padding-block-end": 48
       }
     },
+    "tc_learn_more": {
+      "type": "tc-learn-more",
+      "settings": {
+        "eyebrow": "New here?",
+        "heading": "What is a tissue culture plant?",
+        "text": "How our plants are grown, shipped and guaranteed — from the lab to your windowsill.",
+        "link_label": "Learn more",
+        "link": "shopify://pages/tissue-culture",
+        "background_color": "#e8ede1",
+        "padding-block-start": 28,
+        "padding-block-end": 28
+      }
+    },
     "tissue_culture": {
       "type": "section",
       "blocks": {
@@ -1876,6 +1889,7 @@
     "marquee_trust",
     "custom_liquid_KL8FyB",
     "collections_genus",
+    "tc_learn_more",
     "spotlight_plant",
     "subscription_box",
     "tissue_culture",

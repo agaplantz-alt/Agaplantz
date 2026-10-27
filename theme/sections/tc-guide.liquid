@@ -1,0 +1,324 @@
+{%- doc -%}
+  AgaPlantz — "What is tissue culture?" The one page that explains the business end to end:
+  what tissue culture is, how a plantlet is made, the two ways to buy, the pre-order journey,
+  what arrives and how to settle it in, the guarantee, shipping, the small print, and every
+  policy link in one place.
+
+  The opening prose comes from the Shopify page body (page.content), so the owner edits it in
+  admin on a phone. Everything structured is a block, edited in the theme editor. Blocks are
+  rendered in order and consecutive blocks of the same kind are wrapped as one group — steps
+  become a numbered list, cards a grid, questions an accordion, links a link grid — so the
+  owner can reorder, add or remove any item without touching code.
+{%- enddoc -%}
+
+{%- liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+-%}
+
+<div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
+
+<div
+  class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agtc"
+  style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
+>
+  <header class="agtc__hero">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="agtc__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h1 class="agtc__title">{% if section.settings.heading != blank %}{{ section.settings.heading }}{% else %}{{ page.title }}{% endif %}</h1>
+    {%- if page.content != blank -%}
+      <div class="agtc__lead rte">{{ page.content }}</div>
+    {%- endif -%}
+  </header>
+
+  {%- liquid
+    assign open = ''
+    assign step_n = 0
+  -%}
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign kind = block.type
+      if kind != open
+        case open
+          when 'step'
+            echo '</ol>'
+          when 'card'
+            echo '</div>'
+          when 'faq'
+            echo '</div>'
+          when 'link'
+            echo '</div>'
+        endcase
+        case kind
+          when 'step'
+            echo '<ol class="agtc__steps">'
+            assign step_n = 0
+          when 'card'
+            echo '<div class="agtc__cards">'
+          when 'faq'
+            echo '<div class="agtc__faq">'
+          when 'link'
+            echo '<div class="agtc__links">'
+        endcase
+        assign open = kind
+      endif
+    -%}
+
+    {%- case block.type -%}
+      {%- when 'chapter' -%}
+        <section class="agtc__chapter" {{ block.shopify_attributes }}>
+          {%- if block.settings.eyebrow != blank -%}<p class="agtc__eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+          {%- if block.settings.heading != blank -%}<h2 class="agtc__h2">{{ block.settings.heading }}</h2>{%- endif -%}
+          {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
+        </section>
+
+      {%- when 'step' -%}
+        {%- assign step_n = step_n | plus: 1 -%}
+        <li class="agtc__step" {{ block.shopify_attributes }}>
+          <span class="agtc__step-n">{{ step_n }}</span>
+          <div>
+            {%- if block.settings.title != blank -%}<h3 class="agtc__h3">{{ block.settings.title }}</h3>{%- endif -%}
+            {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
+          </div>
+        </li>
+
+      {%- when 'card' -%}
+        <article class="agtc__card{% if block.settings.featured %} agtc__card--featured{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.eyebrow != blank -%}<p class="agtc__card-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+          {%- if block.settings.title != blank -%}<h3 class="agtc__h3">{{ block.settings.title }}</h3>{%- endif -%}
+          {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
+          {%- if block.settings.link_label != blank and block.settings.link != blank -%}
+            <a class="agtc__cta{% unless block.settings.featured %} agtc__cta--ghost{% endunless %}" href="{{ block.settings.link }}">{{ block.settings.link_label }}</a>
+          {%- endif -%}
+        </article>
+
+      {%- when 'faq' -%}
+        <details class="agtc__q" {{ block.shopify_attributes }}>
+          <summary class="agtc__q-summary">{{ block.settings.question }}<span class="agtc__q-icon" aria-hidden="true"></span></summary>
+          <div class="agtc__text agtc__q-answer rte">{{ block.settings.answer }}</div>
+        </details>
+
+      {%- when 'link' -%}
+        <a class="agtc__link" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          <span class="agtc__link-title">{{ block.settings.title }}</span>
+          {%- if block.settings.text != blank -%}<span class="agtc__link-text">{{ block.settings.text }}</span>{%- endif -%}
+          <span class="agtc__link-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+      {%- when 'cta' -%}
+        <div class="agtc__band" {{ block.shopify_attributes }}>
+          {%- if block.settings.heading != blank -%}<h2 class="agtc__h2 agtc__band-title">{{ block.settings.heading }}</h2>{%- endif -%}
+          {%- if block.settings.text != blank -%}<div class="agtc__text rte">{{ block.settings.text }}</div>{%- endif -%}
+          <div class="agtc__band-actions">
+            {%- if block.settings.primary_label != blank -%}<a class="agtc__cta" href="{{ block.settings.primary_link }}">{{ block.settings.primary_label }}</a>{%- endif -%}
+            {%- if block.settings.secondary_label != blank -%}<a class="agtc__cta agtc__cta--ghost" href="{{ block.settings.secondary_link }}">{{ block.settings.secondary_label }}</a>{%- endif -%}
+          </div>
+        </div>
+    {%- endcase -%}
+  {%- endfor -%}
+  {%- liquid
+    case open
+      when 'step'
+        echo '</ol>'
+      when 'card'
+        echo '</div>'
+      when 'faq'
+        echo '</div>'
+      when 'link'
+        echo '</div>'
+    endcase
+  -%}
+</div>
+
+{% stylesheet %}
+  .agtc {
+    padding-block-start: var(--padding-block-start, 56px);
+    padding-block-end: var(--padding-block-end, 72px);
+  }
+  .agtc > * { max-width: 760px; margin-inline: auto; }
+
+  .agtc__eyebrow {
+    margin: 0 0 12px; color: #B4693C;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .agtc__title {
+    margin: 0; font-family: var(--font-accent--family); font-weight: 400;
+    font-size: clamp(32px, 5.5vw, 48px); line-height: 1.1; text-wrap: balance;
+  }
+  .agtc__lead { margin-block-start: 22px; font-size: 17px; line-height: 1.65; max-width: 60ch; }
+  .agtc__lead > :first-child { margin-block-start: 0; }
+  .agtc__hero { padding-block-end: 8px; }
+
+  .agtc__chapter { margin-block-start: clamp(44px, 7vw, 72px); }
+  .agtc__h2 {
+    margin: 0; font-family: var(--font-accent--family); font-weight: 400;
+    font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2; text-wrap: balance;
+  }
+  .agtc__h3 { margin: 0; font-family: var(--font-accent--family); font-weight: 400; font-size: 21px; line-height: 1.25; }
+  .agtc__text { margin-block-start: 12px; font-size: 15px; line-height: 1.65; color: var(--color-foreground-muted, #56503F); }
+  .agtc__text > :first-child { margin-block-start: 0; }
+  .agtc__text > :last-child { margin-block-end: 0; }
+  .agtc__text ul { padding-inline-start: 1.2em; }
+  .agtc__text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  .agtc__chapter + .agtc__steps,
+  .agtc__chapter + .agtc__cards,
+  .agtc__chapter + .agtc__faq,
+  .agtc__chapter + .agtc__links { margin-block-start: 28px; }
+
+  /* steps */
+  .agtc__steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 22px; }
+  .agtc__step { display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: start; }
+  .agtc__step-n {
+    display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+    border-radius: 50%; background: #5C6B4C; color: #FBF8F2;
+    font-family: var(--font-accent--family); font-size: 18px;
+  }
+  .agtc__step .agtc__text { margin-block-start: 6px; }
+
+  /* cards */
+  .agtc__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .agtc__card {
+    padding: 24px 22px; border: 1px solid #DED3C2; border-radius: 4px; background: #FBF8F2;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .agtc__card--featured { background: #5C6B4C; border-color: #5C6B4C; color: #FBF8F2; }
+  .agtc__card--featured .agtc__text, .agtc__card--featured .agtc__card-eyebrow { color: rgb(251 248 242 / 0.85); }
+  .agtc__card .agtc__text { margin-block-start: 0; flex: 1; }
+  .agtc__card-eyebrow { margin: 0; font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B4693C; }
+  .agtc__card .agtc__cta { align-self: flex-start; margin-block-start: 6px; }
+
+  /* faq */
+  .agtc__faq { border-top: 1px solid #DED3C2; }
+  .agtc__q { border-bottom: 1px solid #DED3C2; }
+  .agtc__q-summary {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: 16px 0; cursor: pointer; list-style: none; font-size: 16px; font-weight: 500;
+  }
+  .agtc__q-summary::-webkit-details-marker { display: none; }
+  .agtc__q-icon { position: relative; flex: 0 0 18px; height: 18px; }
+  .agtc__q-icon::before, .agtc__q-icon::after {
+    content: ""; position: absolute; inset: 50% auto auto 50%; background: currentColor;
+    width: 14px; height: 1.5px; transform: translate(-50%, -50%); transition: transform 0.2s ease;
+  }
+  .agtc__q-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .agtc__q[open] .agtc__q-icon::after { transform: translate(-50%, -50%) rotate(0); }
+  .agtc__q-answer { margin: 0; padding-block-end: 18px; }
+
+  /* links */
+  .agtc__links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .agtc__link {
+    position: relative; display: block; padding: 16px 44px 16px 16px; border: 1px solid #DED3C2;
+    border-radius: 4px; text-decoration: none; color: inherit; background: #FBF8F2;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .agtc__link:hover, .agtc__link:focus { border-color: #5C6B4C; background: #F2EBDE; }
+  .agtc__link-title { display: block; font-weight: 600; font-size: 15px; }
+  .agtc__link-text { display: block; margin-block-start: 4px; font-size: 13px; color: var(--color-foreground-muted, #56503F); }
+  .agtc__link-arrow { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #5C6B4C; }
+
+  /* cta band + buttons */
+  .agtc__band {
+    margin-block-start: clamp(44px, 7vw, 72px); padding: clamp(28px, 5vw, 44px);
+    border-radius: 4px; background: #F2EBDE; text-align: center;
+  }
+  .agtc__band .agtc__text { max-width: 48ch; margin-inline: auto; }
+  .agtc__band-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-block-start: 22px; }
+  .agtc__cta {
+    display: inline-block; padding: 14px 28px; border-radius: 2px; background: #5C6B4C; color: #FBF8F2;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+    border: 1px solid #5C6B4C; transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .agtc__cta:hover, .agtc__cta:focus { background: #4A573D; border-color: #4A573D; color: #FBF8F2; }
+  .agtc__cta--ghost { background: transparent; color: inherit; border-color: currentColor; }
+  .agtc__cta--ghost:hover, .agtc__cta--ghost:focus { background: #5C6B4C; border-color: #5C6B4C; color: #FBF8F2; }
+  .agtc__card--featured .agtc__cta { background: #FBF8F2; border-color: #FBF8F2; color: #2F2A22; }
+  .agtc__card--featured .agtc__cta:hover { background: #F2EBDE; border-color: #F2EBDE; color: #2F2A22; }
+
+  @media screen and (max-width: 560px) {
+    .agtc__step { grid-template-columns: 36px 1fr; gap: 14px; }
+    .agtc__step-n { width: 36px; height: 36px; font-size: 16px; }
+    .agtc__band-actions .agtc__cta { width: 100%; text-align: center; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tissue culture guide",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "max_blocks": 50,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Tissue culture, explained" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title." },
+    { "type": "paragraph", "content": "The opening paragraphs come from the page's own content in Shopify admin (Online Store → Pages). Everything below is a block." },
+    { "type": "header", "content": "Section layout" },
+    { "type": "color", "id": "background_color", "label": "Background", "placeholder": "Default" },
+    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "Chapter heading",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Chapter heading" },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Numbered step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Step" },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    },
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Card" },
+        { "type": "richtext", "id": "text", "label": "Text" },
+        { "type": "text", "id": "link_label", "label": "Button label" },
+        { "type": "url", "id": "link", "label": "Button link" },
+        { "type": "checkbox", "id": "featured", "label": "Fill in moss", "default": false }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "Link card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Link" },
+        { "type": "text", "id": "text", "label": "One line" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "Call to action band",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Ready to start?" },
+        { "type": "richtext", "id": "text", "label": "Text" },
+        { "type": "text", "id": "primary_label", "label": "Primary button" },
+        { "type": "url", "id": "primary_link", "label": "Primary link" },
+        { "type": "text", "id": "secondary_label", "label": "Secondary button" },
+        { "type": "url", "id": "secondary_link", "label": "Secondary link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Tissue culture guide", "category": "Pages" }]
+}
+{% endschema %}

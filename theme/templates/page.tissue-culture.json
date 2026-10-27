@@ -1,0 +1,377 @@
+{
+  "sections": {
+    "main": {
+      "type": "tc-guide",
+      "blocks": {
+        "ch_made": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "From one plant to many",
+            "heading": "How a tissue-culture plant is made",
+            "text": "<p>Tissue culture is propagation in a laboratory instead of a greenhouse. It is how most of the rare aroids in the world are multiplied today, and it is why they can be sold at a fraction of what a cutting of the same plant once cost.</p>"
+          }
+        },
+        "st_1": {
+          "type": "step",
+          "settings": {
+            "title": "A few cells from a parent plant",
+            "text": "<p>A tiny piece of a healthy parent plant is taken and sterilised, so nothing comes with it — no pests, no disease, no soil.</p>"
+          }
+        },
+        "st_2": {
+          "type": "step",
+          "settings": {
+            "title": "Grown in a sealed vessel",
+            "text": "<p>It grows on a nutrient gel inside a sealed, sterile container, in constant warmth at close to 100% humidity.</p>"
+          }
+        },
+        "st_3": {
+          "type": "step",
+          "settings": {
+            "title": "Multiplied, true to type",
+            "text": "<p>In those conditions it multiplies into many small, identical plantlets — each one genetically the same as the parent, which matters for variegated and collector forms.</p>"
+          }
+        },
+        "st_4": {
+          "type": "step",
+          "settings": {
+            "title": "Rooted, then on its way to us",
+            "text": "<p>The plantlets are rooted in the lab and shipped to us in sealed, labelled containers. They have never seen a greenhouse, a pest or open air — that is exactly why they need a gentle introduction to your home, which we cover below.</p>"
+          }
+        },
+        "ch_buy": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Two ways to buy",
+            "heading": "Pre-order or ready to ship",
+            "text": "<p>Most plants on the site are offered at two stages, and the stage is the option you pick on the product page. Same plant, different point in its journey.</p>"
+          }
+        },
+        "cd_pre": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Lower price · next batch",
+            "title": "Pre-order",
+            "text": "<p>Reserved from our next laboratory batch. Each batch has a cut-off date; after it closes we place the order with the lab, the plants arrive in Canada, are inspected, and ship to you — usually two to three weeks after the cut-off. Your price is locked the moment you order.</p>",
+            "link_label": "Browse pre-orders",
+            "link": "shopify://collections/pre-order",
+            "featured": true
+          }
+        },
+        "cd_rts": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Ships in 1–3 business days",
+            "title": "Ready to ship",
+            "text": "<p>Already here, rooted and acclimated by us. These have been through the settling-in period and are the quickest way to a plant on your shelf.</p>",
+            "link_label": "Shop ready to ship",
+            "link": "shopify://collections/ready-to-ship-tissue-culture",
+            "featured": false
+          }
+        },
+        "cd_mature": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "One-off plants",
+            "title": "Mature specimens",
+            "text": "<p>A small number of established, larger plants — grown on well past the plantlet stage. Each listing is a single plant, photographed as it is.</p>",
+            "link_label": "See mature plants",
+            "link": "shopify://collections/mature-specimens",
+            "featured": false
+          }
+        },
+        "ch_journey": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Pre-orders, start to finish",
+            "heading": "Your pre-order journey",
+            "text": "<p>Pre-ordering early gets the best batch pricing and a place at the front of the queue — plants are allocated in the order pre-orders are placed. Here is what happens after you order.</p>"
+          }
+        },
+        "jn_1": {
+          "type": "step",
+          "settings": {
+            "title": "Order placed",
+            "text": "<p>Your pre-order is confirmed and your price is held until the plant ships, whatever the next batch costs.</p>"
+          }
+        },
+        "jn_2": {
+          "type": "step",
+          "settings": {
+            "title": "Cut-off date",
+            "text": "<p>The batch closes on its cut-off date and we place the order with our laboratory partners. Orders after the cut-off go into the next batch.</p>"
+          }
+        },
+        "jn_3": {
+          "type": "step",
+          "settings": {
+            "title": "Lab confirmation",
+            "text": "<p>The lab confirms availability. If a variety can’t be supplied, we contact you within about two business days of the cut-off and you choose a full refund or a different plant of equal value.</p>"
+          }
+        },
+        "jn_4": {
+          "type": "step",
+          "settings": {
+            "title": "Arrival in Canada and inspection",
+            "text": "<p>The plants land, clear inspection and are checked by us before anything is packed.</p>"
+          }
+        },
+        "jn_5": {
+          "type": "step",
+          "settings": {
+            "title": "Delivered to your door",
+            "text": "<p>Shipped with tracking, early in the week so nothing sits in a depot over a weekend. Typically two to three weeks after the cut-off.</p>"
+          }
+        },
+        "ch_arrive": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "The first month",
+            "heading": "What arrives, and how to settle it in",
+            "text": "<p>A tissue-culture plantlet arrives small, in the sealed container it left the lab in, with roots but no soil. It has lived its whole life at near 100% humidity, so the first few weeks are about bringing it gently down to the humidity of a normal room. That process is called acclimation, and it is the one thing that decides how a plantlet does.</p><p>The short version: <strong>photograph it the day it arrives</strong>, plant it in a damp medium inside a clear container with a lid, keep it out of direct sun, don’t water it for about two weeks, leave the lid on for two to three, then open it a little more each day once you see new growth. The full step-by-step guide is below, and every order can add our free tissue-culture starter kit at checkout.</p>"
+          }
+        },
+        "cd_guide": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Step by step",
+            "title": "The Acclimation Guide",
+            "text": "<p>What you need, which growing medium suits which genus, and ten steps from unboxing to a potted plant in normal room humidity.</p>",
+            "link_label": "Read the guide",
+            "link": "shopify://pages/acclimation-guide",
+            "featured": true
+          }
+        },
+        "cd_kit": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Free with any order",
+            "title": "Tissue-culture starter kit",
+            "text": "<p>Everything the guide asks for, added to your cart at no charge. If you already have a dome, cups and medium, you don’t need it.</p>",
+            "link_label": "Add the free kit",
+            "link": "shopify://products/tissue-culture-starter-kit",
+            "featured": false
+          }
+        },
+        "ch_guar": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Our side of the deal",
+            "heading": "Every plant is covered for 30 days",
+            "text": "<p>Young plants carry risk, and we think it should sit with us. If a plant you bought doesn’t pull through within 30 days of delivery, we replace it — free on plants under $200, and at 50% of what you paid on plants $200 and over. You cover a flat $14.99 replacement shipping. One condition we can’t waive: a photo of the plant the day it arrives, before you unpack it.</p><p>If a plant arrives dead or badly damaged, that is a different, better route: contact us within 24 hours of delivery and it can end in a full refund.</p>"
+          }
+        },
+        "cd_guar": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Full terms",
+            "title": "30-Day Plant Guarantee",
+            "text": "<p>What’s covered, what isn’t, how to claim, and the questions people actually ask.</p>",
+            "link_label": "How the guarantee works",
+            "link": "shopify://pages/30-day-plant-guarantee",
+            "featured": false
+          }
+        },
+        "ch_ship": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Canada-wide",
+            "heading": "Shipping, simply",
+            "text": "<p>We ship within Canada only, early in the week, never over a weekend. Standard shipping is a flat $14.99 and free on orders over $180; express is $25. In the cold months we add insulation and heat packs when the forecast calls for it. Tracking goes to your email the moment a parcel leaves. We don’t ship to P.O. boxes, and we may hold a parcel back a few days in extreme weather — a plant that arrives late beats one that arrives frozen.</p>"
+          }
+        },
+        "ch_know": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Good to know",
+            "heading": "The honest small print",
+            "text": "<p>A few things that are true of every live plant, and of tissue culture in particular.</p>"
+          }
+        },
+        "fq_look": {
+          "type": "faq",
+          "settings": {
+            "question": "Will my plant look like the photo?",
+            "answer": "<p>Each plant is its own plant. Size, leaf count and variegation vary naturally, and product photos are representative examples. Plantlets arrive small — that is the point of the price.</p>"
+          }
+        },
+        "fq_var": {
+          "type": "faq",
+          "settings": {
+            "question": "Is variegation guaranteed?",
+            "answer": "<p>Tissue culture keeps the genetics of the parent, but variegation is a living pattern that changes with growing conditions and over time. Future patterns can’t be guaranteed unless a listing says so.</p>"
+          }
+        },
+        "fq_stress": {
+          "type": "faq",
+          "settings": {
+            "question": "A leaf is yellow or bent after shipping. Is something wrong?",
+            "answer": "<p>Usually not. Some yellowing, a bent leaf or a little melt on older leaves is normal shipping and acclimation stress, as long as new growth keeps coming. Photograph it on arrival anyway — that photo is what protects you.</p>"
+          }
+        },
+        "fq_pests": {
+          "type": "faq",
+          "settings": {
+            "question": "Are the plants pest-free?",
+            "answer": "<p>Tissue culture is sterile by nature and we inspect every plant before it ships. We still recommend a short quarantine from your other plants, as you would with any new arrival.</p>"
+          }
+        },
+        "fq_cancel": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I cancel a pre-order?",
+            "answer": "<p>No. Once a batch closes we have already paid the laboratory for your plant, so pre-orders can’t be cancelled. Orders of ready-to-ship plants can be cancelled any time before they ship.</p>"
+          }
+        },
+        "fq_pickup": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer local pickup?",
+            "answer": "<p>Yes, in Brampton, Ontario, depending on availability and scheduling. Choose it at checkout.</p>"
+          }
+        },
+        "fq_who": {
+          "type": "faq",
+          "settings": {
+            "question": "Who is AgaPlantz?",
+            "answer": "<p>A small Canadian plant shop in Brampton, Ontario, built out of a personal collection of rare aroids. We specialise in Philodendron, Alocasia, Monstera, Anthurium and Begonia, most of it grown from tissue culture and acclimated here before it reaches you.</p>"
+          }
+        },
+        "ch_links": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Everything in one place",
+            "heading": "Policies and guides",
+            "text": "<p>The full text of everything on this page, for when you want the detail.</p>"
+          }
+        },
+        "ln_pre": {
+          "type": "link",
+          "settings": {
+            "title": "Pre-order details",
+            "text": "Cut-off dates, pricing, the batch timeline",
+            "link": "shopify://pages/pre-order"
+          }
+        },
+        "ln_guide": {
+          "type": "link",
+          "settings": {
+            "title": "Acclimation Guide",
+            "text": "Ten steps from unboxing to potting",
+            "link": "shopify://pages/acclimation-guide"
+          }
+        },
+        "ln_guar": {
+          "type": "link",
+          "settings": {
+            "title": "30-Day Plant Guarantee",
+            "text": "What we replace, and how to claim",
+            "link": "shopify://pages/30-day-plant-guarantee"
+          }
+        },
+        "ln_faq": {
+          "type": "link",
+          "settings": {
+            "title": "FAQ",
+            "text": "The questions we get most",
+            "link": "shopify://pages/faq"
+          }
+        },
+        "ln_ship": {
+          "type": "link",
+          "settings": {
+            "title": "Shipping policy",
+            "text": "Rates, carriers, timing, weather holds",
+            "link": "/policies/shipping-policy"
+          }
+        },
+        "ln_refund": {
+          "type": "link",
+          "settings": {
+            "title": "Refund policy",
+            "text": "Returns, dead on arrival, replacements",
+            "link": "/policies/refund-policy"
+          }
+        },
+        "ln_terms": {
+          "type": "link",
+          "settings": {
+            "title": "Terms of service",
+            "text": "The agreement behind every order",
+            "link": "/policies/terms-of-service"
+          }
+        },
+        "ln_contact": {
+          "type": "link",
+          "settings": {
+            "title": "Contact us",
+            "text": "Ask before you order — we’d rather talk it through",
+            "link": "shopify://pages/contact"
+          }
+        },
+        "cta": {
+          "type": "cta",
+          "settings": {
+            "heading": "Ready to start?",
+            "text": "<p>Pick a stage that suits you. Either way, your plant is covered for 30 days and the guide walks you through the rest.</p>",
+            "primary_label": "Shop ready to ship",
+            "primary_link": "shopify://collections/ready-to-ship-tissue-culture",
+            "secondary_label": "Browse pre-orders",
+            "secondary_link": "shopify://collections/pre-order"
+          }
+        }
+      },
+      "block_order": [
+        "ch_made",
+        "st_1",
+        "st_2",
+        "st_3",
+        "st_4",
+        "ch_buy",
+        "cd_pre",
+        "cd_rts",
+        "cd_mature",
+        "ch_journey",
+        "jn_1",
+        "jn_2",
+        "jn_3",
+        "jn_4",
+        "jn_5",
+        "ch_arrive",
+        "cd_guide",
+        "cd_kit",
+        "ch_guar",
+        "cd_guar",
+        "ch_ship",
+        "ch_know",
+        "fq_look",
+        "fq_var",
+        "fq_stress",
+        "fq_pests",
+        "fq_cancel",
+        "fq_pickup",
+        "fq_who",
+        "ch_links",
+        "ln_pre",
+        "ln_guide",
+        "ln_guar",
+        "ln_faq",
+        "ln_ship",
+        "ln_refund",
+        "ln_terms",
+        "ln_contact",
+        "cta"
+      ],
+      "settings": {
+        "eyebrow": "Tissue culture, explained",
+        "heading": "",
+        "background_color": "",
+        "padding-block-start": 56,
+        "padding-block-end": 72
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
