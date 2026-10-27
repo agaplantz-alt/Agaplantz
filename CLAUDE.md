@@ -738,8 +738,8 @@ at checkout · re-set each batch · nearly 200 plants cheaper), why-a-lab-batch 
 questions, three cards (TC page · Acclimation Guide · guarantee), five policy links, CTA to the
 pre-order collection. Every fact came off the old blocks; the only new line is "next batch opens
 15–30 days after a cut-off", which the announcement bar already says. The page body (was empty)
-is one sentence, set with `pageUpdate`. Hero cut-out is the pink plantlet, so the two guide pages
-do not look identical. **The cut-off date now lives in `ch_cutoff.heading`** ("Order by 31
+is one sentence, set with `pageUpdate`. **No hero picture** — it was the pink plantlet, the owner saw it live and said *"just remove
+it"*, so `hero_image` is blank (the TC page keeps its green plantlet; nobody objected to that one). **The cut-off date now lives in `ch_cutoff.heading`** ("Order by 31
 October") — the six-places table is updated; it is still one place on this page, deliberately
 not repeated in a stat.
 
@@ -767,7 +767,10 @@ and the owner immediately noticed the pages were "missing" and wanted them live 
 third theme, **`AgaPlantz 2026 — Halloween + tissue culture pages` = `189701881935`**, is the
 Halloween MAIN plus `tc-guide.liquid`, `tc-learn-more.liquid`, both page templates and the
 `tc_learn_more` strip inserted after `collections_genus` (`merged/index.json` in the repo is
-that homepage: Halloween section *and* the strip). The owner publishes that one.
+that homepage: Halloween section *and* the strip). The owner publishes that one. **They did, within the hour** — then asked for the
+Pre Order hero photo to go, which made a fourth theme, `AgaPlantz 2026 — Halloween + pages, no
+pre-order photo` = `189702373455` (MAIN minus that one picture). The same template went onto
+the clean draft `189688381519` so the post-Halloween publish carries it too.
 
 **Take-down after 1 Nov:** draft `189688381519` (copied from MAIN *before* Halloween, with
 the pages) is still the clean post-Halloween theme — publishing it removes the slide and the
