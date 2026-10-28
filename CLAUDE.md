@@ -773,7 +773,10 @@ pre-order photo` = `189702373455` (MAIN minus that one picture). The same templa
 the clean draft `189688381519` so the post-Halloween publish carries it too. The owner then
 published the *clean* draft by mistake ("Now Halloween is gone"), re-published
 `189702373455`, and asked for a better pumpkin — fifth theme, `AgaPlantz 2026 — Halloween,
-drawn pumpkin` = `189703094351`, MAIN plus the new `stage-products.liquid`. **Each ask has
+drawn pumpkin` = `189703094351`, MAIN plus the new `stage-products.liquid`. Then, on 28 Oct, the
+cancellation FAQ rewrite made a sixth, `AgaPlantz 2026 — Halloween, 48-hour cancellation FAQ`
+= `189743595599` (MAIN plus the three page templates); the same three went onto the clean
+draft `189688381519`. **Each ask has
 meant a new duplicate because the owner publishes within minutes and the API cannot write to
 MAIN**; check `roles: [MAIN]` before every upload.
 
@@ -841,6 +844,33 @@ page, cart, about, contact and all three policies carry no mention; the main men
 link to it. The only other place the string appears is inside Shopify's analytics JSON on
 the pre-order page, which is not copy. Product descriptions were not swept (standing rule),
 but two sampled pages had no mention outside the block.
+
+## Cancellations: a 48-hour window since 28 Oct 2026
+
+The owner rewrote the cancellation rules (*"I have updated a cancellation policy"*): both the
+**Refund policy** ("Order Cancellations" / "Pre-Order Cancellations") and a new
+**`SUBSCRIPTION_POLICY` titled "Cancellations"** (`/policies/subscription-policy`) now say
+ready-to-ship orders can be cancelled **within 48 hours of ordering, as long as they haven't
+shipped**, and **pre-orders within 48 hours of ordering** — after that the order has gone to
+the partner lab. Mixed orders: each item follows its own rule. Email `info@agaplantz.com`
+(or +1 647 621-3033) with the order number; approved cancellations are refunded in full in
+5–10 business days. Subscriptions: cancel any time, at least 48 hours before the next billing
+date. **Before this the site said pre-orders could never be cancelled**, in three places, all
+rewritten to the 48-hour rule: `page.faq.json` → `faq_14_answer` ("Can I cancel my order?"),
+`page.pre-order.json` → `fq_cancel`, `page.tissue-culture.json` → `fq_cancel`. The TC page's
+"If a plant doesn't pull through" and the Pre Order page's "Lab confirms" step are about
+*availability*, not cancellation, and were left alone.
+
+**Two things the owner has to fix by hand** (policies are read-only from here): the Refund
+policy's cancellation section ends with a stray author's note — *"I used 48 hours from
+checkout for 'two days' so it's clear-cut, rather than 2 business days. For a mixed order…"* —
+that reads as the shop talking to itself; the first sentence should go (the second is the
+mixed-order rule and belongs). And Terms of Service §3 still says AgaPlantz *"may be unable
+to accommodate cancellation requests after an order is accepted"* — not wrong, but vaguer
+than the 48-hour rule; worth a one-line pointer to the Refund policy.
+
+The FAQ template is editor-written JSON, so it was re-written from the live body with the
+header stripped and verified semantically: the only key that moved is `faq_14_answer`.
 
 ## Pre-orders: paused 29 Sep, resumed 1 Oct 2026
 
