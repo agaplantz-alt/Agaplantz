@@ -1,0 +1,385 @@
+{
+  "sections": {
+    "main": {
+      "type": "tc-guide",
+      "blocks": {
+        "ch_why": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Why order early",
+            "heading": "Early orders pay less and ship first",
+            "text": "<p>Each batch opens at its best price and climbs as it fills. Plants are allocated in the order pre-orders arrive.</p>"
+          }
+        },
+        "tl_w1": {
+          "type": "tile",
+          "settings": {
+            "icon": "tag",
+            "title": "Best price",
+            "text": "The discount drops as the batch fills."
+          }
+        },
+        "tl_w2": {
+          "type": "tile",
+          "settings": {
+            "icon": "order",
+            "title": "First in line",
+            "text": "Allocated in the order placed."
+          }
+        },
+        "tl_w3": {
+          "type": "tile",
+          "settings": {
+            "icon": "leaf",
+            "title": "Limited plants",
+            "text": "Rare varieties run out. Early orders get this batch."
+          }
+        },
+        "ch_cutoff": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "This batch",
+            "heading": "Order by 31 October",
+            "text": "<p>Orders before the cut-off join this batch. Anything after it moves to the next window, no action needed.</p>"
+          }
+        },
+        "sg_1": {
+          "type": "stat",
+          "settings": {
+            "value": "2–3 weeks",
+            "label": "Delivery after cut-off"
+          }
+        },
+        "sg_2": {
+          "type": "stat",
+          "settings": {
+            "value": "2 days",
+            "label": "To confirm availability"
+          }
+        },
+        "sg_3": {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "label": "Refund if the lab can’t supply"
+          }
+        },
+        "sg_4": {
+          "type": "stat",
+          "settings": {
+            "value": "Locked",
+            "label": "Your price, from checkout"
+          }
+        },
+        "ch_journey": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Start to finish",
+            "heading": "Your pre-order journey",
+            "text": "<p>What happens after you tap Buy.</p>"
+          }
+        },
+        "jn_1": {
+          "type": "step",
+          "settings": {
+            "icon": "order",
+            "title": "Order placed",
+            "text": "<p>Your pre-order is confirmed and your price is held.</p>"
+          }
+        },
+        "jn_2": {
+          "type": "step",
+          "settings": {
+            "icon": "calendar",
+            "title": "Cut-off date",
+            "text": "<p>The batch closes. We place the order with our laboratory partners.</p>"
+          }
+        },
+        "jn_3": {
+          "type": "step",
+          "settings": {
+            "icon": "lab",
+            "title": "Lab confirms",
+            "text": "<p>If a variety can’t be supplied, we email or call within about two business days: full refund, or another plant of equal value.</p>"
+          }
+        },
+        "jn_4": {
+          "type": "step",
+          "settings": {
+            "icon": "plane",
+            "title": "Arrival in Canada",
+            "text": "<p>Plants land, clear inspection and are checked by us before packing.</p>"
+          }
+        },
+        "jn_5": {
+          "type": "step",
+          "settings": {
+            "icon": "home",
+            "title": "Delivered to your door",
+            "text": "<p>Tracked, early in the week. About two to three weeks after the cut-off.</p>"
+          }
+        },
+        "ch_price": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "How pricing works",
+            "heading": "Your price is locked at checkout",
+            "text": "<p>Held until your plant ships, whatever the next batch costs.</p>"
+          }
+        },
+        "tl_p1": {
+          "type": "tile",
+          "settings": {
+            "icon": "shield",
+            "title": "Locked at checkout",
+            "text": "What you pay today is what you pay."
+          }
+        },
+        "tl_p2": {
+          "type": "tile",
+          "settings": {
+            "icon": "calendar",
+            "title": "Re-set each batch",
+            "text": "Priced fresh on demand and what the lab can supply."
+          }
+        },
+        "tl_p3": {
+          "type": "tile",
+          "settings": {
+            "icon": "tag",
+            "title": "Nearly 200 plants cheaper",
+            "text": "Our lab costs fell. We passed it on."
+          }
+        },
+        "ch_process": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Why a lab batch",
+            "heading": "Fresh from the laboratory, not a stockroom",
+            "text": "<p>We order what you reserve, so nothing sits in storage.</p>"
+          }
+        },
+        "tl_r1": {
+          "type": "tile",
+          "settings": {
+            "icon": "lab",
+            "title": "Direct from the lab",
+            "text": "Trusted laboratories and professional growers."
+          }
+        },
+        "tl_r2": {
+          "type": "tile",
+          "settings": {
+            "icon": "multiply",
+            "title": "Fresher, stronger",
+            "text": "Freshly prepared plants grow on better."
+          }
+        },
+        "tl_r3": {
+          "type": "tile",
+          "settings": {
+            "icon": "box",
+            "title": "Less handling",
+            "text": "No storage time, no extra moves."
+          }
+        },
+        "ch_know": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Good to know",
+            "heading": "The honest small print",
+            "text": "<p>Tap a question.</p>"
+          }
+        },
+        "fq_guar": {
+          "type": "faq",
+          "settings": {
+            "question": "Is a pre-order guaranteed?",
+            "answer": "<p>It is a reservation. Availability is final only when the lab confirms after the cut-off, so keep an eye on your email and phone.</p>"
+          }
+        },
+        "fq_unav": {
+          "type": "faq",
+          "settings": {
+            "question": "What if my plant is unavailable?",
+            "answer": "<p>We contact you within about two business days of the cut-off. You choose a full refund, another plant of equal value, or pay the difference for a different one.</p>"
+          }
+        },
+        "fq_cancel": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I cancel a pre-order?",
+            "answer": "<p>Within 48 hours of ordering, yes: email info@agaplantz.com with your order number. After that the order has gone to the lab and can’t be cancelled. Ready-to-ship orders can be cancelled within 48 hours too, as long as they haven’t shipped.</p>"
+          }
+        },
+        "fq_next": {
+          "type": "faq",
+          "settings": {
+            "question": "When does the next batch open?",
+            "answer": "<p>Usually 15 to 30 days after a cut-off. Orders placed after a cut-off join the next batch automatically.</p>"
+          }
+        },
+        "fq_what": {
+          "type": "faq",
+          "settings": {
+            "question": "What arrives?",
+            "answer": "<p>A tissue-culture plantlet in the sealed container it left the lab in, with roots but no soil. The free starter kit and the Acclimation Guide take it from there.</p>"
+          }
+        },
+        "ch_next": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Before you order",
+            "heading": "Three things worth a minute",
+            "text": "<p>Everything a pre-order relies on, in one place each.</p>"
+          }
+        },
+        "cd_tc": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Start here",
+            "title": "What is tissue culture?",
+            "text": "<p>How the plant is made, what arrives and how to settle it in.</p>",
+            "link_label": "Read the guide",
+            "link": "shopify://pages/tissue-culture",
+            "featured": true
+          }
+        },
+        "cd_guide": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "The first month",
+            "title": "Acclimation Guide",
+            "text": "<p>Ten steps from unboxing to a potted plant.</p>",
+            "link_label": "Open the guide",
+            "link": "shopify://pages/acclimation-guide",
+            "featured": false
+          }
+        },
+        "cd_guar": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Our side of the deal",
+            "title": "30-Day Plant Guarantee",
+            "text": "<p>Every plant covered for 30 days from delivery.</p>",
+            "link_label": "How it works",
+            "link": "shopify://pages/30-day-plant-guarantee",
+            "featured": false
+          }
+        },
+        "ch_links": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Policies",
+            "heading": "The full text",
+            "text": "<p>For when you want the detail.</p>"
+          }
+        },
+        "ln_faq": {
+          "type": "link",
+          "settings": {
+            "title": "FAQ",
+            "text": "The questions we get most",
+            "link": "shopify://pages/faq"
+          }
+        },
+        "ln_ship": {
+          "type": "link",
+          "settings": {
+            "title": "Shipping policy",
+            "text": "Rates, carriers, timing, weather holds",
+            "link": "/policies/shipping-policy"
+          }
+        },
+        "ln_refund": {
+          "type": "link",
+          "settings": {
+            "title": "Refund policy",
+            "text": "Returns, dead on arrival, replacements",
+            "link": "/policies/refund-policy"
+          }
+        },
+        "ln_terms": {
+          "type": "link",
+          "settings": {
+            "title": "Terms of service",
+            "text": "The agreement behind every order",
+            "link": "/policies/terms-of-service"
+          }
+        },
+        "ln_contact": {
+          "type": "link",
+          "settings": {
+            "title": "Contact us",
+            "text": "Ask before you order — we’d rather talk it through",
+            "link": "shopify://pages/contact"
+          }
+        },
+        "cta": {
+          "type": "cta",
+          "settings": {
+            "heading": "Ready to reserve?",
+            "text": "<p>Order before the cut-off and your plant comes with this batch, at today’s price.</p>",
+            "primary_label": "Browse pre-orders",
+            "primary_link": "shopify://collections/pre-order",
+            "secondary_label": "Shop ready to ship",
+            "secondary_link": "shopify://collections/ready-to-ship-tissue-culture"
+          }
+        }
+      },
+      "block_order": [
+        "ch_why",
+        "tl_w1",
+        "tl_w2",
+        "tl_w3",
+        "ch_cutoff",
+        "sg_1",
+        "sg_2",
+        "sg_3",
+        "sg_4",
+        "ch_journey",
+        "jn_1",
+        "jn_2",
+        "jn_3",
+        "jn_4",
+        "jn_5",
+        "ch_price",
+        "tl_p1",
+        "tl_p2",
+        "tl_p3",
+        "ch_process",
+        "tl_r1",
+        "tl_r2",
+        "tl_r3",
+        "ch_know",
+        "fq_guar",
+        "fq_unav",
+        "fq_cancel",
+        "fq_next",
+        "fq_what",
+        "ch_next",
+        "cd_tc",
+        "cd_guide",
+        "cd_guar",
+        "ch_links",
+        "ln_faq",
+        "ln_ship",
+        "ln_refund",
+        "ln_terms",
+        "ln_contact",
+        "cta"
+      ],
+      "settings": {
+        "eyebrow": "Pre-orders, explained",
+        "heading": "",
+        "hero_image": "",
+        "background_color": "",
+        "padding-block-start": 56,
+        "padding-block-end": 72
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

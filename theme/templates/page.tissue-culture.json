@@ -1,0 +1,483 @@
+{
+  "sections": {
+    "main": {
+      "type": "tc-guide",
+      "blocks": {
+        "ch_made": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "How it’s made",
+            "heading": "From a few cells to a plant",
+            "text": "<p>Propagation in a laboratory instead of a greenhouse. It is how most rare aroids are multiplied today.</p>"
+          }
+        },
+        "st_1": {
+          "type": "step",
+          "settings": {
+            "title": "A few cells",
+            "text": "<p>Taken from a healthy parent and sterilised. No pests, no disease, no soil.</p>",
+            "icon": "cells"
+          }
+        },
+        "st_2": {
+          "type": "step",
+          "settings": {
+            "title": "Sealed and sterile",
+            "text": "<p>Grown on nutrient gel in constant warmth, near 100% humidity.</p>",
+            "icon": "flask"
+          }
+        },
+        "st_3": {
+          "type": "step",
+          "settings": {
+            "title": "Multiplied, true to type",
+            "text": "<p>Many identical plantlets, each genetically the parent. Variegation included.</p>",
+            "icon": "multiply"
+          }
+        },
+        "st_4": {
+          "type": "step",
+          "settings": {
+            "title": "Rooted and shipped to us",
+            "text": "<p>In sealed, labelled containers. They have never seen open air, so they need a gentle start at yours.</p>",
+            "icon": "box"
+          }
+        },
+        "ch_buy": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Two ways to buy",
+            "heading": "Pre-order, or ready to ship",
+            "text": "<p>Same plant, different point in its journey. You pick the stage on the product page.</p>"
+          }
+        },
+        "cd_pre": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Lower price · next batch",
+            "title": "Pre-order",
+            "text": "<p>Reserved from the next lab batch. Price locked when you order; ships two to three weeks after the cut-off.</p>",
+            "link_label": "Browse pre-orders",
+            "link": "shopify://collections/pre-order",
+            "featured": true
+          }
+        },
+        "cd_rts": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Ships in 1–3 business days",
+            "title": "Ready to ship",
+            "text": "<p>Already here, rooted and acclimated by us. The quickest way to a plant on your shelf.</p>",
+            "link_label": "Shop ready to ship",
+            "link": "shopify://collections/ready-to-ship-tissue-culture",
+            "featured": false
+          }
+        },
+        "cd_mature": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "One-off plants",
+            "title": "Mature specimens",
+            "text": "<p>Established, larger plants. Each listing is one plant, photographed as it is.</p>",
+            "link_label": "See mature plants",
+            "link": "shopify://collections/mature-specimens",
+            "featured": false
+          }
+        },
+        "ch_journey": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Pre-orders, start to finish",
+            "heading": "Your pre-order journey",
+            "text": "<p>Early orders get the best batch price and the front of the queue.</p>"
+          }
+        },
+        "jn_1": {
+          "type": "step",
+          "settings": {
+            "title": "Order placed",
+            "text": "<p>Your price is held until the plant ships.</p>",
+            "icon": "order"
+          }
+        },
+        "jn_2": {
+          "type": "step",
+          "settings": {
+            "title": "Cut-off date",
+            "text": "<p>The batch closes and we order from the lab. Later orders join the next batch.</p>",
+            "icon": "calendar"
+          }
+        },
+        "jn_3": {
+          "type": "step",
+          "settings": {
+            "title": "Lab confirms",
+            "text": "<p>If a variety can’t be supplied, you choose a full refund or a swap of equal value.</p>",
+            "icon": "lab"
+          }
+        },
+        "jn_4": {
+          "type": "step",
+          "settings": {
+            "title": "Arrival and inspection",
+            "text": "<p>Plants land in Canada and are checked by us before packing.</p>",
+            "icon": "plane"
+          }
+        },
+        "jn_5": {
+          "type": "step",
+          "settings": {
+            "title": "Delivered to you",
+            "text": "<p>Tracked, early in the week. About two to three weeks after the cut-off.</p>",
+            "icon": "home"
+          }
+        },
+        "ch_arrive": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "The first month",
+            "heading": "What arrives, and how to settle it in",
+            "text": "<p>A small plantlet with roots but no soil, used to 100% humidity. Easing it down to room air is called acclimation, and it is everything.</p>"
+          }
+        },
+        "cd_guide": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Step by step",
+            "title": "The Acclimation Guide",
+            "text": "<p>Ten steps from unboxing to a potted plant.</p>",
+            "link_label": "Read the guide",
+            "link": "shopify://pages/acclimation-guide",
+            "featured": true
+          }
+        },
+        "cd_kit": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Free with any order",
+            "title": "Starter kit",
+            "text": "<p>Everything the guide asks for, added to your cart at no charge.</p>",
+            "link_label": "Add the free kit",
+            "link": "shopify://products/tissue-culture-starter-kit",
+            "featured": false
+          }
+        },
+        "ch_guar": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Our side of the deal",
+            "heading": "Every plant is covered for 30 days",
+            "text": "<p>If a plant doesn’t pull through within 30 days of delivery, we replace it. One condition: a photo the day it arrives.</p>"
+          }
+        },
+        "cd_guar": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Full terms",
+            "title": "30-Day Plant Guarantee",
+            "text": "<p>What’s covered and how to claim. Dead on arrival within 24 hours is a separate, better route: a full refund.</p>",
+            "link_label": "How the guarantee works",
+            "link": "shopify://pages/30-day-plant-guarantee",
+            "featured": false
+          }
+        },
+        "ch_ship": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Canada-wide",
+            "heading": "Shipping, simply",
+            "text": "<p>Tracked, Canada only, no P.O. boxes. In extreme weather we hold a parcel rather than freeze it.</p>"
+          }
+        },
+        "ch_know": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Good to know",
+            "heading": "The honest small print",
+            "text": "<p>True of every live plant. Tap a question.</p>"
+          }
+        },
+        "fq_look": {
+          "type": "faq",
+          "settings": {
+            "question": "Will my plant look like the photo?",
+            "answer": "<p>Each plant is its own plant. Size, leaf count and variegation vary, photos are examples, and plantlets arrive small.</p>"
+          }
+        },
+        "fq_var": {
+          "type": "faq",
+          "settings": {
+            "question": "Is variegation guaranteed?",
+            "answer": "<p>Tissue culture keeps the parent’s genetics, but variegation shifts with conditions and time. Not guaranteed unless a listing says so.</p>"
+          }
+        },
+        "fq_stress": {
+          "type": "faq",
+          "settings": {
+            "question": "A leaf is yellow or bent after shipping. Is something wrong?",
+            "answer": "<p>Usually not. A little yellowing or a bent leaf is normal shipping stress while new growth keeps coming. Photograph it on arrival anyway.</p>"
+          }
+        },
+        "fq_pests": {
+          "type": "faq",
+          "settings": {
+            "question": "Are the plants pest-free?",
+            "answer": "<p>Tissue culture is sterile and we inspect every plant. A short quarantine from your other plants is still wise.</p>"
+          }
+        },
+        "fq_cancel": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I cancel a pre-order?",
+            "answer": "<p>Within 48 hours of ordering, yes: email info@agaplantz.com with your order number. After that the lab has your order and it can’t be cancelled. Ready-to-ship orders: within 48 hours, as long as they haven’t shipped.</p>"
+          }
+        },
+        "fq_who": {
+          "type": "faq",
+          "settings": {
+            "question": "Who is AgaPlantz?",
+            "answer": "<p>A small Canadian shop in Brampton, Ontario, grown out of a personal collection of rare aroids. Most of it is tissue culture, acclimated here first.</p>"
+          }
+        },
+        "ch_links": {
+          "type": "chapter",
+          "settings": {
+            "eyebrow": "Everything in one place",
+            "heading": "Policies and guides",
+            "text": "<p>The full text, for when you want the detail.</p>"
+          }
+        },
+        "ln_pre": {
+          "type": "link",
+          "settings": {
+            "title": "Pre-order details",
+            "text": "Cut-off dates, pricing, the batch timeline",
+            "link": "shopify://pages/pre-order"
+          }
+        },
+        "ln_guide": {
+          "type": "link",
+          "settings": {
+            "title": "Acclimation Guide",
+            "text": "Ten steps from unboxing to potting",
+            "link": "shopify://pages/acclimation-guide"
+          }
+        },
+        "ln_guar": {
+          "type": "link",
+          "settings": {
+            "title": "30-Day Plant Guarantee",
+            "text": "What we replace, and how to claim",
+            "link": "shopify://pages/30-day-plant-guarantee"
+          }
+        },
+        "ln_faq": {
+          "type": "link",
+          "settings": {
+            "title": "FAQ",
+            "text": "The questions we get most",
+            "link": "shopify://pages/faq"
+          }
+        },
+        "ln_ship": {
+          "type": "link",
+          "settings": {
+            "title": "Shipping policy",
+            "text": "Rates, carriers, timing, weather holds",
+            "link": "/policies/shipping-policy"
+          }
+        },
+        "ln_refund": {
+          "type": "link",
+          "settings": {
+            "title": "Refund policy",
+            "text": "Returns, dead on arrival, replacements",
+            "link": "/policies/refund-policy"
+          }
+        },
+        "ln_terms": {
+          "type": "link",
+          "settings": {
+            "title": "Terms of service",
+            "text": "The agreement behind every order",
+            "link": "/policies/terms-of-service"
+          }
+        },
+        "ln_contact": {
+          "type": "link",
+          "settings": {
+            "title": "Contact us",
+            "text": "Ask before you order — we’d rather talk it through",
+            "link": "shopify://pages/contact"
+          }
+        },
+        "cta": {
+          "type": "cta",
+          "settings": {
+            "heading": "Ready to start?",
+            "text": "<p>Pick a stage. Either way, 30 days covered and the guide walks you through the rest.</p>",
+            "primary_label": "Shop ready to ship",
+            "primary_link": "shopify://collections/ready-to-ship-tissue-culture",
+            "secondary_label": "Browse pre-orders",
+            "secondary_link": "shopify://collections/pre-order"
+          }
+        },
+        "tl_a1": {
+          "type": "tile",
+          "settings": {
+            "icon": "camera",
+            "title": "Day 1: photograph it",
+            "text": "Straight out of the box."
+          }
+        },
+        "tl_a2": {
+          "type": "tile",
+          "settings": {
+            "icon": "dome",
+            "title": "Lid on, bright shade",
+            "text": "Damp medium, clear container, no direct sun."
+          }
+        },
+        "tl_a3": {
+          "type": "tile",
+          "settings": {
+            "icon": "droplet",
+            "title": "No water for 2 weeks",
+            "text": "The medium already holds enough."
+          }
+        },
+        "tl_a4": {
+          "type": "tile",
+          "settings": {
+            "icon": "lid",
+            "title": "Open a little each day",
+            "text": "After 2–3 weeks, once new growth shows."
+          }
+        },
+        "tl_a5": {
+          "type": "tile",
+          "settings": {
+            "icon": "pot",
+            "title": "Pot up when it’s firm",
+            "text": "Chunky aroid mix, a pot only just bigger than the roots."
+          }
+        },
+        "sg_1": {
+          "type": "stat",
+          "settings": {
+            "value": "30 days",
+            "label": "Covered, from delivery"
+          }
+        },
+        "sg_2": {
+          "type": "stat",
+          "settings": {
+            "value": "Free",
+            "label": "Replacement under $200"
+          }
+        },
+        "sg_3": {
+          "type": "stat",
+          "settings": {
+            "value": "50%",
+            "label": "Of what you paid, $200+"
+          }
+        },
+        "sg_4": {
+          "type": "stat",
+          "settings": {
+            "value": "$14.99",
+            "label": "Flat replacement shipping"
+          }
+        },
+        "tl_s1": {
+          "type": "tile",
+          "settings": {
+            "icon": "map",
+            "title": "Canada-wide",
+            "text": "Standard $14.99, free over $180. Express $25."
+          }
+        },
+        "tl_s3": {
+          "type": "tile",
+          "settings": {
+            "icon": "calendar",
+            "title": "Early in the week",
+            "text": "Never over a weekend."
+          }
+        },
+        "tl_s4": {
+          "type": "tile",
+          "settings": {
+            "icon": "snowflake",
+            "title": "Winter-ready",
+            "text": "Insulation and heat packs when the forecast calls for it."
+          }
+        }
+      },
+      "block_order": [
+        "ch_made",
+        "st_1",
+        "st_2",
+        "st_3",
+        "st_4",
+        "ch_buy",
+        "cd_pre",
+        "cd_rts",
+        "cd_mature",
+        "ch_journey",
+        "jn_1",
+        "jn_2",
+        "jn_3",
+        "jn_4",
+        "jn_5",
+        "ch_arrive",
+        "tl_a1",
+        "tl_a2",
+        "tl_a3",
+        "tl_a4",
+        "tl_a5",
+        "cd_guide",
+        "cd_kit",
+        "ch_guar",
+        "sg_1",
+        "sg_2",
+        "sg_3",
+        "sg_4",
+        "cd_guar",
+        "ch_ship",
+        "tl_s1",
+        "tl_s3",
+        "tl_s4",
+        "ch_know",
+        "fq_look",
+        "fq_var",
+        "fq_stress",
+        "fq_pests",
+        "fq_cancel",
+        "fq_who",
+        "ch_links",
+        "ln_pre",
+        "ln_guide",
+        "ln_guar",
+        "ln_faq",
+        "ln_ship",
+        "ln_refund",
+        "ln_terms",
+        "ln_contact",
+        "cta"
+      ],
+      "settings": {
+        "eyebrow": "Tissue culture, explained",
+        "heading": "",
+        "background_color": "",
+        "padding-block-start": 56,
+        "padding-block-end": 72,
+        "hero_image": "shopify://shop_images/aga-box-plantlet-green.png"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

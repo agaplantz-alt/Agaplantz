@@ -1,0 +1,274 @@
+{%- doc -%}
+  AgaPlantz — the batch discount ladder. The discount falls as the batch runs on, so this
+  shows all the tiers at once with today's one marked, and says how long is left before it
+  drops. Ordering early is worth money, and this is what makes that visible.
+
+  The current tier is worked out in Liquid from `start_date`, so it renders server-side —
+  no flash of the wrong tier, and Google sees it. `start_date` must carry the Toronto
+  offset (e.g. 2026-10-01T00:00:00-04:00) or the day boundary drifts by four hours and the
+  badge disagrees with checkout for part of the evening. See CLAUDE.md, "Batch discount
+  ladder".
+{%- enddoc -%}
+
+{%- liquid
+  assign tiers = section.blocks | where: 'type', 'tier'
+
+  assign start_s = section.settings.start_date | date: '%s' | plus: 0
+  assign now_s = 'now' | date: '%s' | plus: 0
+  assign elapsed = now_s | minus: start_s
+  assign day_index = elapsed | divided_by: 86400 | floor | plus: 1
+
+  assign last_day = 0
+  for t in tiers
+    if t.settings.day_to > last_day
+      assign last_day = t.settings.day_to
+    endif
+  endfor
+
+  assign current_percent = -1
+  assign current_to = 0
+  assign next_percent = -1
+  assign found = false
+  for t in tiers
+    if found == false and day_index >= t.settings.day_from and day_index <= t.settings.day_to
+      assign current_percent = t.settings.percent
+      assign current_to = t.settings.day_to
+      assign found = true
+      assign idx = forloop.index0 | plus: 1
+    endif
+  endfor
+  if found
+    for t in tiers
+      if forloop.index0 == idx
+        assign next_percent = t.settings.percent
+      endif
+    endfor
+  endif
+  assign days_left = current_to | minus: day_index | plus: 1
+
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+-%}
+
+<div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
+
+{%- if tiers.size > 0 -%}
+  <div
+    class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agld"
+    style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
+  >
+    <div class="agld__head">
+      <h2 class="agld__title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.intro != blank -%}
+        <div class="agld__intro">{{ section.settings.intro }}</div>
+      {%- endif -%}
+
+      {%- if found and day_index >= 1 -%}
+        <p class="agld__now">
+          {%- if current_percent > 0 -%}
+            <strong>Right now: {{ current_percent }}% off orders {{ section.settings.minimum }}+.</strong>
+            {%- if next_percent > 0 %}
+              {% if days_left == 1 %}Last day at {{ current_percent }}% — it drops to {{ next_percent }}% tomorrow.{% else %}{{ days_left }} days left at {{ current_percent }}%, then it drops to {{ next_percent }}%.{% endif %}
+            {%- elsif next_percent == 0 %}
+              {% if days_left == 1 %}Last day of the discount — back to regular price tomorrow.{% else %}{{ days_left }} days left before prices go back to regular.{% endif %}
+            {%- endif -%}
+          {%- else -%}
+            <strong>The early-order discount for this batch has finished.</strong> Plants are at regular price until the next batch opens.
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <ol class="agld__steps">
+      {%- for t in tiers -%}
+        {%- liquid
+          assign state = 'ahead'
+          if day_index > t.settings.day_to
+            assign state = 'past'
+          endif
+          if day_index >= t.settings.day_from and day_index <= t.settings.day_to
+            assign state = 'on'
+          endif
+        -%}
+        <li class="agld__step agld__step--{{ state }}" {{ t.shopify_attributes }}>
+          {%- if state == 'on' -%}<span class="agld__flag">You are here</span>{%- endif -%}
+          <span class="agld__days">
+            {%- if t.settings.day_from == t.settings.day_to -%}
+              Day {{ t.settings.day_from }}
+            {%- else -%}
+              Days {{ t.settings.day_from }}&ndash;{{ t.settings.day_to }}
+            {%- endif -%}
+          </span>
+          <span class="agld__pct">
+            {%- if t.settings.percent > 0 -%}{{ t.settings.percent }}%{%- else -%}&mdash;{%- endif -%}
+          </span>
+          <span class="agld__what">
+            {%- if t.settings.label != blank -%}
+              {{ t.settings.label }}
+            {%- elsif t.settings.percent > 0 -%}
+              off orders {{ section.settings.minimum }}+
+            {%- else -%}
+              Regular price
+            {%- endif -%}
+          </span>
+        </li>
+      {%- endfor -%}
+    </ol>
+
+    {%- if section.settings.footnote != blank -%}
+      <div class="agld__foot">{{ section.settings.footnote }}</div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .agld__head { max-width: 760px; }
+  .agld__title {
+    margin: 0;
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: clamp(24px, 3.4vw, 32px);
+    line-height: 1.2;
+  }
+  .agld__intro {
+    margin-block-start: 12px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-foreground-muted, #56503F);
+  }
+  .agld__intro > :first-child { margin-block-start: 0; }
+  .agld__intro > :last-child { margin-block-end: 0; }
+  .agld__now {
+    margin: 18px 0 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .agld__now strong { color: #B4693C; }
+
+  .agld__steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: clamp(26px, 4vw, 38px) 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+  .agld__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px 18px 18px;
+    border: 1px solid rgb(47 42 34 / 0.14);
+    border-radius: 2px;
+    background: rgb(251 248 242 / 0.6);
+  }
+  .agld__step--on {
+    border-color: #5C6B4C;
+    border-width: 2px;
+    padding: 19px 17px 17px;
+    background: #FBF8F2;
+  }
+  .agld__step--past { opacity: 0.45; }
+
+  .agld__flag {
+    position: absolute;
+    inset-block-start: -10px;
+    inset-inline-start: 16px;
+    padding: 3px 9px;
+    border-radius: 2px;
+    background: #5C6B4C;
+    color: #FBF8F2;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .agld__days {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-foreground-muted, #56503F);
+  }
+  .agld__pct {
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: clamp(30px, 4.4vw, 42px);
+    line-height: 1;
+  }
+  .agld__step--on .agld__pct { color: #B4693C; }
+  .agld__what {
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--color-foreground-muted, #56503F);
+  }
+
+  .agld__foot {
+    margin-block-start: 20px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-foreground-muted, #56503F);
+  }
+  .agld__foot > :first-child { margin-block-start: 0; }
+  .agld__foot > :last-child { margin-block-end: 0; }
+
+  @media screen and (max-width: 749px) {
+    .agld__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .agld__step { padding: 18px 14px 14px; }
+    .agld__flag { inset-inline-start: 12px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Batch discount ladder",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Tier",
+      "settings": [
+        { "type": "number", "id": "day_from", "label": "From day", "default": 1 },
+        { "type": "number", "id": "day_to", "label": "To day", "default": 5 },
+        { "type": "number", "id": "percent", "label": "Percent off", "info": "Use 0 for the regular-price tier.", "default": 20 },
+        { "type": "text", "id": "label", "label": "Label", "info": "Leave blank for the automatic wording." }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Order early, pay less" },
+    { "type": "richtext", "id": "intro", "label": "Intro" },
+    {
+      "type": "text",
+      "id": "start_date",
+      "label": "Day 1 of the batch",
+      "info": "Include the Toronto offset, e.g. 2026-10-01T00:00:00-04:00 (use -05:00 after 1 November).",
+      "default": "2026-10-01T00:00:00-04:00"
+    },
+    { "type": "text", "id": "minimum", "label": "Minimum order", "default": "$100" },
+    { "type": "richtext", "id": "footnote", "label": "Footnote" },
+    { "type": "header", "content": "Section layout" },
+    { "type": "color", "id": "background_color", "label": "Background", "placeholder": "Default" },
+    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "presets": [
+    {
+      "name": "Batch discount ladder",
+      "category": "Promotions",
+      "blocks": [
+        { "type": "tier", "settings": { "day_from": 1, "day_to": 5, "percent": 20 } },
+        { "type": "tier", "settings": { "day_from": 6, "day_to": 15, "percent": 15 } },
+        { "type": "tier", "settings": { "day_from": 16, "day_to": 20, "percent": 10 } },
+        { "type": "tier", "settings": { "day_from": 21, "day_to": 30, "percent": 0 } }
+      ]
+    }
+  ]
+}
+{% endschema %}
