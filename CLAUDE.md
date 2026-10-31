@@ -819,6 +819,33 @@ renders 24 card badges; the Devil Monster page carries the product badge and Bam
 (outside the collection) carries none. Two sale plants have no photo at all (Alocasia Aranea,
 Philodendron Black Billietiae) and show the placeholder.
 
+## The 3D glass logo (31 Oct 2026)
+
+The owner designed a glass/3D version of the logo on a Claude Design canvas ("AgaPlantz Liquid
+Logo", `https://claude.ai/artifact/NVZAQr4PEAJq9WTtFNu9Yy`: wordmark on white, wordmark on
+dark, leaf icon) and said *"update logos"*. The artboards are SVG (Poppins 600 wordmark + two
+leaf paths with blur-mask shading), so they were rendered with headless Chromium — Poppins
+fetched from Google Fonts first, since the renders must not depend on a network call — trimmed
+to the opaque bounding box with 4–6% padding, and uploaded to **Files** with `fileCreate`:
+
+| File | What | Used for |
+| --- | --- | --- |
+| `agaplantz-logo-3d.png` (2310×1083, transparent) | wordmark + leaves | **theme setting `logo`** |
+| `agaplantz-favicon-3d.png` (1024², white rounded tile, radius 224) | leaf icon | **theme setting `favicon`** |
+| `agaplantz-leaf-3d.png` (777×825, transparent) | leaves only | spare — profile pictures, badges |
+| `agaplantz-logo-3d-dark.jpg` (2400×1200) | wordmark on dark green | spare — dark backgrounds, social |
+
+Copies live in **`brand/`** in the repo. `config/settings_data.json`: `logo` and `favicon`
+repointed, `logo_height` 38 → **48** and `logo_height_mobile` 31 → **40**, because the new mark
+is squarer than the old PNG (about 2.1:1 against the old 2.6:1) and read too small at 38px. The
+header renders it 102×48. Theme **`AgaPlantz 2026 — Halloween, 3D logo` = `189874307151`**
+(duplicated from MAIN `189703094351`); the same settings file went onto the clean post-Halloween
+draft `189688381519`. Note **Shopify re-serialises `config/settings_data.json` on upload**, so
+its `checksumMd5` does *not* match the local md5 even for a file we wrote — verify this one by
+re-reading the keys (or the preview's `<img>` for the logo), not by checksum. The old header logo
+`067AE3BF-9F4E-45C4-BC71-F9D0E5F961F1.png` and favicon `edited-edited_60_…png` are still in
+Files, untouched, so reverting is two settings.
+
 ## Acclimation Service: paused 24 Oct 2026
 
 The paid add-on `Acclimation Service (Add-On)` (`gid://shopify/Product/8916960084047`,
@@ -1479,6 +1506,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/tc-learn-more.liquid` | homepage strip linking to it |
 | `theme/templates/page.tissue-culture.json` | the page's blocks — all its structured copy |
 | `theme/templates/page.pre-order.json` | the Pre Order page, same section, 40 blocks |
+| `brand/` | the 3D logo renders uploaded to Files (header logo, favicon, leaf, dark) |
 | `halloween/` | the Halloween sale theme files (temporary, see that section) |
 | `merged/index.json` | homepage of the Halloween + pages theme: live Halloween file plus the `tc_learn_more` strip |
 | `catalog-backup/` | pre-deletion product export |
