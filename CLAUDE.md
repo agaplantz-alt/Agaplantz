@@ -1342,9 +1342,20 @@ The file says the same things twice: once in the "What You'll Need" list and aga
 the numbered steps, plus a third time in the `{% doc %} @prompt` comment at the top. Change
 all three or the page contradicts itself.
 
-Growing medium as of 7 Sep: sphagnum moss for **Monstera and Anthurium**; 50/50 Fluval
-Stratum and perlite for Philodendron, Alocasia and other aroids. "Ready-to-use" was dropped
-from the Betadine line — it now just reads "Diluted Betadine solution".
+Growing medium as of 31 Oct: **the "magic mix" for Monstera and Anthurium — 80% long-fiber
+sphagnum moss, 10% perlite, 10% Fluval Stratum** (the owner: *"it will provide best mineral
+for plants it's our magic mix"*); still 50/50 Fluval Stratum and perlite for Philodendron,
+Alocasia and other aroids. The owner said "for monstera"; the mix was applied to the existing
+"For Monstera and Anthurium" subsection, since Anthurium shares it — split the subsection if
+Anthurium should stay on plain moss. Changed in all four places (both "What You'll Need"
+lists, both copies of Step 2); the Step 10 transplant mix ("a small amount of sphagnum moss")
+is a different recipe and was left alone, as were the product-page kit cards ("Perlite and
+stratum mix or sphagnum moss"), which are still true. Theme **`AgaPlantz 2026 — Halloween,
+magic mix guide` = `189881450575`** (from MAIN `189875224655`); the same block went onto the
+clean draft `189688381519`. Before this, as of 7 Sep: plain sphagnum moss for Monstera and
+Anthurium. "Ready-to-use" was dropped from the Betadine line — it now just reads "Diluted
+Betadine solution". Note the duplicate reports `schema_version: 4.2.0`, not 4.1.4 — Horizon
+has been upgraded under the Halloween chain at some point; nothing on this page was affected.
 
 Rebuilding the file by hand is error-prone. Verify it by reverse-applying the intended
 edits with `sed` and checking the result's md5 against the file you fetched — if it matches,
