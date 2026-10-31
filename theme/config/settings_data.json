@@ -1,9 +1,9 @@
 {
   "current": {
-    "logo": "shopify://shop_images/067AE3BF-9F4E-45C4-BC71-F9D0E5F961F1.png",
-    "logo_height": 42,
-    "logo_height_mobile": 31,
-    "favicon": "shopify://shop_images/edited-edited_60_a82f74d0-3a49-4b3c-bab2-a27c2164d5de.png",
+    "logo": "shopify://shop_images/agaplantz-logo-3d.png",
+    "logo_height": 48,
+    "logo_height_mobile": 40,
+    "favicon": "shopify://shop_images/agaplantz-favicon-3d.png",
     "page_text_color": "{{ settings.color_palette.foreground }}",
     "type_body_font": "work_sans_n4",
     "type_subheading_font": "work_sans_n5",
