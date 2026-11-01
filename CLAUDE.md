@@ -780,7 +780,8 @@ draft `189688381519`. **Each ask has
 meant a new duplicate because the owner publishes within minutes and the API cannot write to
 MAIN**; check `roles: [MAIN]` before every upload.
 
-**Take-down after 1 Nov:** draft `189688381519` (copied from MAIN *before* Halloween, with
+**Take-down after 1 Nov:** done on 1 Nov, see **20% off everything** below — the owner
+publishes `189688381519`. Draft `189688381519` (copied from MAIN *before* Halloween, with
 the pages) is still the clean post-Halloween theme — publishing it removes the slide and the
 section in one step: *"I want just Halloween to be gone."* The badge expires on its own
 either way. The `announcement_halloween` slide says "Ends Sunday Nov 1" and has no expiry —
@@ -819,6 +820,55 @@ the homepage carries the slide and the section; `/collections/halloween-spooky-p
 renders 24 card badges; the Devil Monster page carries the product badge and Bambino Pink
 (outside the collection) carries none. Two sale plants have no photo at all (Alocasia Aranea,
 Philodendron Black Billietiae) and show the placeholder.
+
+## 20% off everything, 1–5 Nov 2026 — and the Halloween take-down
+
+The owner, 1 Nov morning: *"The prices has changed. Please look at the prices of the plant
+and change as required on homepage. And let's issue a 20% discount on all plants. Today and
+remove the Halloween one. The discount will be 20% until November 5."*
+
+**Prices.** They had repriced the catalogue at 01:24 Toronto that morning — 467 active
+variants touched in one pass, mostly the pre-order TC variants, and only 20 of those still
+carry a compare-at (45 active variants shop-wide now have a compare-at above price, so the
+`Save X%` badges and the `on-sale` collection have mostly emptied). **Nothing on the
+homepage hardcodes a price**: the spotlight, the stage-product rows and the mystery-box tiers
+all read live variants, so the page followed the repricing by itself. The one price *claim*
+on the homepage, the "Nearly 200 Plants Now Cheaper" announcement slide (and the same tile on
+the Pre Order page), was re-measured against `catalog-backup/products-full.jsonl` the way the
+Batch pricing notice describes: **192 cheaper (median −31%), 268 unchanged, 43 higher** across
+503 matched active variants (the first 1000 of 1083 variants; the last page is Begonias and
+ready-to-ship stock with no baseline). Still true, left alone. Devil Monster's spotlight line
+"On sale while this batch is open" also still holds — its $306 compare-at survived.
+`bulkOperationRunQuery` runs but the connector withholds the download URL, so the variants
+were paged with `productVariants(first: 250)` instead (five pages).
+
+**The discount.** `20% Off All Plants — Nov 1 to 5` (`gid://shopify/DiscountAutomaticNode/
+1537379106895`), automatic, 20% off all items, `2026-11-01T04:00Z` → `2026-11-06T04:59:59Z`
+(Nov 1 00:00 → Nov 5 23:59 Toronto, EST), one-time purchases only so the mystery-box
+subscription is excluded, `combinesWith` order **false** / product **false** / shipping
+**true** — the Labour Day settings, so `WELCOME10` and the Loox codes cannot stack on top
+(the owner's own Halloween discount *did* allow stacking; flagged, not decided for them). The
+Halloween discount `1536364445775` was **deactivated** at 15:55Z the same morning (it would
+have run to Nov 2 05:00Z) — *"remove the Halloween one"*.
+
+**The theme.** The clean post-Halloween draft `189688381519` is the take-down theme, as
+planned: a full file-list comparison against the Halloween MAIN (`189887840335`, the 30 Nov
+theme the owner published within the hour) showed the two differ in exactly the six Halloween
+files plus **one template the owner had created in the editor on the live line on 31 Oct,
+`templates/product.accessory.json`** (used by `self-watering-pot-humidity-dome`, product type
+Pots, four pack-size variants — a Horizon product-information template with the Subscriptions
+app block and two Loox sections). It was carried onto the clean draft — `themeFilesCopy` is
+refused when the *source* is the live theme, so it was re-typed into the repo with the editor
+header stripped and uploaded; the product page renders on the preview with no Liquid error.
+The sale slide `announcement_sale` ("20% Off All Plants — Applied Automatically at Checkout •
+Ends Thursday, November 5", link `/collections/all`) is **first** in the clean draft's bar,
+cloned from `announcement_labour_day`; it has no expiry, so **disable it on 6 Nov** — the
+same trap as every slide before it. Publishing `189688381519` removes the Halloween slide,
+row, badge and pumpkin in one step and carries everything else (pages, logo, favicon,
+magic-mix guide, 30 Nov cut-off, 48-hour cancellation answers). Verified on the preview: sale
+slide present, zero matches for "Halloween" or "Spooky", deadline `2026-11-30T23:59:59-05:00`,
+no Liquid errors. The storefront rate-limits preview fetches (HTTP 429 after ~15 in a few
+minutes) — space them out.
 
 ## The 3D glass logo (31 Oct 2026)
 
@@ -1541,6 +1591,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/tc-learn-more.liquid` | homepage strip linking to it |
 | `theme/templates/page.tissue-culture.json` | the page's blocks — all its structured copy |
 | `theme/templates/page.pre-order.json` | the Pre Order page, same section, 40 blocks |
+| `theme/templates/product.accessory.json` | owner-made template for the self-watering pot (editor header stripped) |
 | `brand/` | the 3D logo renders uploaded to Files (header logo, favicon, leaf, dark) |
 | `halloween/` | the Halloween sale theme files (temporary, see that section) |
 | `merged/index.json` | homepage of the Halloween + pages theme: live Halloween file plus the `tc_learn_more` strip |

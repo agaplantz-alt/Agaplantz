@@ -136,9 +136,24 @@
           },
           "blocks": {},
           "disabled": true
+        },
+        "announcement_sale": {
+          "type": "_announcement",
+          "settings": {
+            "text": "20% Off All Plants — Applied Automatically at Checkout • Ends Thursday, November 5",
+            "link": "/collections/all",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
         }
       },
       "block_order": [
+        "announcement_sale",
         "announcement_early",
         "announcement_guarantee",
         "announcement_labour_day",
