@@ -150,10 +150,42 @@
             "text_color": ""
           },
           "blocks": {}
+        },
+        "announcement_sale15": {
+          "type": "_announcement",
+          "settings": {
+            "text": "15% Off All Plants — Applied Automatically at Checkout • November 6 to 26",
+            "link": "/collections/all",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {},
+          "disabled": true
+        },
+        "announcement_bf": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Black Friday — Ready-to-Ship 40% Off • Acclimated 30% Off • Pre-Orders Up to 20% Off • Free Mystery Plant With $150+ Pre-Orders • Ends November 30",
+            "link": "/collections/all",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {},
+          "disabled": true
         }
       },
       "block_order": [
         "announcement_sale",
+        "announcement_sale15",
+        "announcement_bf",
         "announcement_early",
         "announcement_guarantee",
         "announcement_labour_day",

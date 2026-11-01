@@ -870,6 +870,65 @@ slide present, zero matches for "Halloween" or "Spooky", deadline `2026-11-30T23
 no Liquid errors. The storefront rate-limits preview fetches (HTTP 429 after ~15 in a few
 minutes) — space them out.
 
+## November 2026 promo calendar (set 1 Nov) — four discounts, one theme, nothing to flip but slides
+
+The owner pasted a table the same morning: **Nov 1–5** 20% off all plants, stacks with codes ·
+**Nov 6 – Nov 26 7:59 pm** 15% off all plants, stacks with codes · **Nov 26 8 pm – Nov 30
+11:59 pm, Black Friday** ready-to-ship 40%, acclimated 30%, pre-orders under $150 20%,
+pre-orders $150+ 10%, free mystery ready-to-ship plant on a $150+ pre-order, no code stacking
+(shipping only) · **Nov 30 midnight** batch closes. "All plants (pre-order, RTS, acclimated)"
+was taken literally: the three stage collections, so mature specimens, the pot accessory and
+the mystery box are outside every tier (ask before widening). All times Toronto, EST.
+
+| # | Discount | Window (UTC) | Scope | Stacks |
+| --- | --- | --- | --- | --- |
+| `1537379106895` | 20% Off All Plants — Nov 1 to 5 | 11-01 04:00 → 11-06 04:59:59 | collections `pre-order` + `ready-to-ship-tissue-culture` + `acclimated-plants` | order codes **yes** (changed from the Labour Day setting on the owner's say-so) |
+| `1537384513615` | 15% Off All Plants — Nov 6 to 26 | 11-06 05:00 → 11-27 00:59:59 | same three collections | order codes yes |
+| `1537385168975` | BF — Ready-to-Ship 40% | 11-27 01:00 → 12-01 04:59:59 | **73 variants** | other BF tiers only |
+| `1537385201743` | BF — Acclimated 30% | same | **15 variants** | same |
+| `1537385234511` | BF — Pre-Orders $150+ 10% | same | **81 variants** | same |
+| `1537386053711` `…184783` `…217551` `…414159` `…446927` | BF — Pre-Orders Under $150 20% (1–5 of 5) | same | **492 variants in five discounts** | same |
+| `1537386152015` | BF — Free Mystery Ready-to-Ship Plant With $150+ Pre-Order (BXGY) | same | buys ≥ $150 from collection `pre-order`; gets 1 × product below at 100% off, one per order | same |
+
+**Why Black Friday is variant lists, not collections.** Stage is a variant and the collections
+hold products: Devil Monster sits in both `pre-order` and `ready-to-ship-tissue-culture`, so
+collection-scoped 40% and 20% discounts that combine would both land on its pre-order line
+(52% off), and ones that don't combine would let only one discount apply to the whole order,
+so a mixed cart loses a tier. `productVariantsToAdd` targets the variant itself; the four
+buckets (`Ready to Ship` / `Acclimated` / `Pre-Order` < $150 / ≥ $150 in the variant title and
+price) are disjoint, so they are all `productDiscounts: true` and combine with each other, and
+every active code in the shop is ORDER-class (checked: 40 of 40), so `orderDiscounts: false`
+is what makes "no code stacking" hold. **Shopify caps a discount at 100 hand-picked variants**
+("You've selected 250 variants, but the limit is 100") — hence five discounts for the 492
+cheap pre-orders. Lists were built from the 1 Nov prices with RTS and acclimated limited to
+in-stock variants; they are in `catalog-backup/black-friday-2026-variant-lists.json` with the
+discount ids. **Rebuild them on 26 Nov** (a pre-order repriced across $150, or a ready-to-ship
+restock, is in the wrong tier or no tier until then): `productVariants(first: 250)` paged five
+times, bucket, then `discountAutomaticBasicUpdate` with `productVariantsToAdd/Remove`.
+`bulkOperationRunQuery` runs but the connector withholds the download URL.
+
+**The free plant is the one soft spot.** A BXGY "buys" list has the same 100 cap, so it uses
+the `pre-order` *collection* — product-level — which means $150 of ready-to-ship variants of
+pre-order products also earns the gift. Flagged to the owner, not fixed; RTS stock is 73 units
+across 61 products. The gift is a new product, **`mystery-ready-to-ship-plant`**
+(`gid://shopify/Product/15506497208399`, $39, type Mystery, **DRAFT**, no photo) — Shopify
+BXGY does not add the gift to the cart, the customer adds it and checkout zeroes it, so **the
+owner must set it ACTIVE (and give it a photo) before 8 pm on 26 Nov** or nobody can claim it.
+Whether the $150 is judged before or after the 20%/10% line discounts was not verified — test
+a cart on the 26th. The pre-order page body / tc-guide do not mention the gift.
+
+**Theme.** All on the clean draft `189688381519`, which is now also the take-down theme (see
+the 20% section above). Announcement bar, in order: `announcement_sale` (20%, live),
+`announcement_sale15` (**disabled — enable 6 Nov, disable the 20% one**), `announcement_bf`
+(**disabled — enable 26 Nov 8 pm, disable the 15% one**), then the old slides. Slides take no
+Liquid, so those flips are by hand in the theme editor. The **countdown eyebrow, by contrast,
+switches itself**: `custom_liquid_KL8FyB` compares `now_s` against three EST boundaries
+(`2026-11-05T23:59:59-05:00`, `2026-11-26T19:59:59-05:00`, `2026-11-30T23:59:59-05:00`) and
+prints "20% off every plant until Thursday 5 November" → "15% off every plant until 26
+November" → "Black Friday: up to 40% off until the batch closes" → "New batch now open".
+Server-side, no JavaScript, verified on the preview for the first branch. Same change is **not**
+on the Halloween line (`merged/index.json`) — that line is finished.
+
 ## The 3D glass logo (31 Oct 2026)
 
 The owner designed a glass/3D version of the logo on a Claude Design canvas ("AgaPlantz Liquid
@@ -1595,7 +1654,7 @@ Only the files that differ from stock Horizon are tracked:
 | `brand/` | the 3D logo renders uploaded to Files (header logo, favicon, leaf, dark) |
 | `halloween/` | the Halloween sale theme files (temporary, see that section) |
 | `merged/index.json` | homepage of the Halloween + pages theme: live Halloween file plus the `tc_learn_more` strip |
-| `catalog-backup/` | pre-deletion product export |
+| `catalog-backup/` | pre-deletion product export; `black-friday-2026-variant-lists.json` — the BF discount ids and variant lists |
 
 Branch: `claude/shopify-theme-creation-ra78zf`. The local template is kept in sync
 with whatever is live — pull the MAIN theme's file down after every publish so the
