@@ -395,7 +395,7 @@
           "settings": {
             "icon": "map",
             "title": "Canada-wide",
-            "text": "Standard $14.99, free over $180. Express $25."
+            "text": "Flat rate by province, from $14.99. Free standard shipping from $200 in Ontario."
           }
         },
         "tl_s3": {
@@ -403,7 +403,7 @@
           "settings": {
             "icon": "calendar",
             "title": "Early in the week",
-            "text": "Never over a weekend."
+            "text": "Monday to Wednesday only, never over a weekend."
           }
         },
         "tl_s4": {

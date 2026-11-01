@@ -111,8 +111,8 @@
         "announcement_HUGfag": {
           "type": "_announcement",
           "settings": {
-            "text": "Free shipping on orders over $180",
-            "link": "",
+            "text": "Free Standard Shipping From $200 in Ontario • Flat Province Rates Shown at Checkout",
+            "link": "/policies/shipping-policy",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
             "weight": "100",
@@ -154,7 +154,7 @@
         "announcement_sale15": {
           "type": "_announcement",
           "settings": {
-            "text": "15% Off All Plants — Orders $100+ • Applied Automatically at Checkout • November 6 to 26",
+            "text": "15% Off All Plants — Orders $100+ • Applied Automatically at Checkout • November 6 to 15",
             "link": "/collections/all",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
@@ -180,11 +180,27 @@
           },
           "blocks": {},
           "disabled": true
+        },
+        "announcement_sale10": {
+          "type": "_announcement",
+          "settings": {
+            "text": "10% Off All Plants — Orders $100+ • Applied Automatically at Checkout • November 16 to 26",
+            "link": "/collections/all",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {},
+          "disabled": true
         }
       },
       "block_order": [
         "announcement_sale",
         "announcement_sale15",
+        "announcement_sale10",
         "announcement_bf",
         "announcement_early",
         "announcement_guarantee",

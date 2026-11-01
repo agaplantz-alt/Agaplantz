@@ -13,7 +13,7 @@
             "preorder_button_link": "shopify://pages/pre-order",
             "show_ready_to_ship_section": true,
             "ready_to_ship_heading": "Ready to ship",
-            "ready_to_ship_text": "This follows our Monday–Thursday dispatch schedule. Orders containing pre-order items will be shipped together once the pre-order items are ready.\nIf you would like your ready-to-ship items to arrive before the pre-order item, please select the “Arrives Before Pre-Order” shipping option at checkout.",
+            "ready_to_ship_text": "This follows our Monday–Wednesday dispatch schedule. Orders containing pre-order items will be shipped together once the pre-order items are ready.\nIf you would like your ready-to-ship items to arrive before the pre-order item, please select the “Arrives Before Pre-Order” shipping option at checkout.",
             "text_alignment": "center",
             "desktop_width_percent": 100,
             "padding": 20,
