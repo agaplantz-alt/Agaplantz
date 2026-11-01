@@ -84,10 +84,10 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
    block: a terracotta eyebrow ("Pre-orders are open again"), headline "This batch
    closes in", four Lora digits, the repricing line, a moss CTA. **The eyebrow is a
    hand-written string** — it has no logic behind it. It has said "3 more days
-   added to this batch" and now says "Pre-orders are open again", so re-read it whenever
+   added to this batch", "Pre-orders are open again" and now "New batch now open", so re-read it whenever
    the deadline moves or it will state something that is no longer true. It hides itself
    once the timer expires. The deadline is a hardcoded ISO string carrying the Toronto offset
-   (`assign deadline = '2026-10-31T23:59:59-04:00'`) — one of the six places the cut-off
+   (`assign deadline = '2026-11-30T23:59:59-05:00'`) — one of the six places the cut-off
    date lives, and the only one that also needs the *time*. Classes are `aga-batch__*`;
    when the timer hits zero the JS rewrites the headline, the line and the CTA in place
    and hides the digits **and the discount ladder**, so an expired batch never reads as a
@@ -783,7 +783,8 @@ MAIN**; check `roles: [MAIN]` before every upload.
 **Take-down after 1 Nov:** draft `189688381519` (copied from MAIN *before* Halloween, with
 the pages) is still the clean post-Halloween theme — publishing it removes the slide and the
 section in one step: *"I want just Halloween to be gone."* The badge expires on its own
-either way. Anything the owner edits in the theme editor between now and then lives only on
+either way. The `announcement_halloween` slide says "Ends Sunday Nov 1" and has no expiry —
+stale from 2 Nov until the clean draft is published. Anything the owner edits in the theme editor between now and then lives only on
 the Halloween theme and would need carrying across; compare md5s first, as always.
 
 **Scope was cut on the owner's say-so the same evening.** A first pass followed the handoff
@@ -970,19 +971,34 @@ customers never see them and renaming them would break links and SEO.
 ## The batch cut-off date lives in six places
 
 When the pre-order cut-off changes, all of these need updating — they are separate
-hand-entered strings, not one setting. The current batch closes **31 Oct 2026, 23:59
-Toronto**. The owner gave the date only, not a time; end of day was assumed, unlike the
-28 Sep batch where they said 11:30 pm explicitly. 31 Oct is still **EDT (`-04:00`)** —
-Toronto flips to EST at 02:00 on 1 Nov, one day later.
+hand-entered strings, not one setting. The current batch closes **30 Nov 2026, 23:59
+Toronto** (`-05:00`, EST). The owner's whole message was *"new batch date is 30 nov"* —
+date only, end of day assumed, as for the 31 Oct batch. Set on 1 Nov 2026, about ten
+minutes after the October batch had closed (the countdown had already flipped to "This
+batch has closed"), as theme **`AgaPlantz 2026 — Halloween, batch closes 30 Nov` =
+`189887840335`** (from MAIN `189881450575`, the magic-mix theme the owner had published
+within the hour) plus the same four files on the clean draft `189688381519`. The countdown
+eyebrow now reads "New batch now open". **The discount ladder stays hidden**: `batch_start`
+is still `2026-10-01`, so `day_now` is past 20 and the whole `<ol>` is skipped — verified
+on both previews. No November discounts exist, so this is correct; if the owner wants a
+November ladder it needs new tier dates, a new `batch_start`, *and* the automatic discounts.
+**Found while doing this: the 28 Oct cancellation rewrite was never live.** The Halloween
+line was duplicated from the drawn-pumpkin theme, not from `189743595599`, so MAIN's
+`page.faq.json`, `page.pre-order.json` and `page.tissue-culture.json` still said pre-orders
+could never be cancelled. The three repo templates went onto `189887840335` as well (MAIN's
+copies differed from the repo only in those two answers — checked by eye on all three
+bodies). The clean draft already had them. Also `announcement_early` ("Order Early, Pay
+Less") was still enabled on the clean draft's bar — it had been disabled on the Halloween
+line on 27 Oct — so it is now disabled there too.
 
 | File | Field | Now says |
 | --- | --- | --- |
-| `sections/header-group.json` | `announcement_jeGMHt.text` | `Tissue Culture Pre-Orders Close October 31 • …` |
-| `templates/index.json` | `custom_liquid_KL8FyB` → `assign deadline` | `2026-10-31T23:59:59-04:00` |
-| `templates/page.pre-order.json` | `main` → `ch_cutoff.heading` | `Order by 31 October` (a `chapter` heading on the thread section — since 27 Oct; the old `ai_gen_block_41bf156_tpPC39.cutoff_date` block is gone) |
-| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `31 OCTOBER` |
-| `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | `Order by [31 OCTOBER]…` (hidden block) |
-| `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | `Order by [31 OCTOBER]…` (hidden block) |
+| `sections/header-group.json` | `announcement_jeGMHt.text` | `Tissue Culture Pre-Orders Close November 30 • …` |
+| `templates/index.json` | `custom_liquid_KL8FyB` → `assign deadline` | `2026-11-30T23:59:59-05:00` |
+| `templates/page.pre-order.json` | `main` → `ch_cutoff.heading` | `Order by 30 November` (a `chapter` heading on the thread section — since 27 Oct; the old `ai_gen_block_41bf156_tpPC39.cutoff_date` block is gone) |
+| `templates/product.tissue-culture.json` | `ai_gen_block_c6aca6a_HjQ7Ph.preorder_date` | `30 NOVEMBER` |
+| `templates/product.tissue-culture.json` | `ai_gen_block_675aea4_RGqfCa.preorder_text` | `Order by [30 NOVEMBER]…` (hidden block) |
+| `templates/product.tissue-culture.json` | `ai_gen_block_44763e7_iKDBHj.preorder_text` | `Order by [30 NOVEMBER]…` (hidden block) |
 
 Two of the six are visible: the Pre Order Details page card and the product-page card.
 The other four sit on disabled blocks and are changed anyway, because the owner reads
