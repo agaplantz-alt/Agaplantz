@@ -878,8 +878,12 @@ The owner pasted a table the same morning: **Nov 1–5** 20% off all plants, sta
 pre-orders $150+ 10%, free mystery ready-to-ship plant on a $150+ pre-order, no code stacking
 (shipping only) · **Nov 30 midnight** batch closes. "All plants (pre-order, RTS, acclimated)"
 was first taken literally (the three stage collections); the owner then widened the 20% to every
-plant — see the row. The 15% was widened the same way so the ladder card can say "Every plant". All times
-Toronto, EST.
+plant — see the row. The 15% was widened the same way so the ladder card can say "all plants". All times
+Toronto, EST. **Both the 20% and the 15% need a $100 subtotal** — the owner added that
+after seeing the cards (*"and order above 100 only will get the discounts"*), the same
+`DiscountMinimumSubtotal` the October ladder used; the Black Friday tiers carry no minimum
+(the free plant has its own $150 rule) — nobody asked for one there. The cards and the two
+slides say "Orders $100+".
 
 | # | Discount | Window (UTC) | Scope | Stacks |
 | --- | --- | --- | --- | --- |
@@ -932,15 +936,14 @@ here"* — they wanted the **ladder cards** back under the digits, so the eyebro
 "New batch now open" and the ladder was rebuilt for November. **It is clock-gated, not
 day-counted**: `batch_start`/`day_now` are gone; each card compares `now_s` with an EST
 boundary (`sale20_end`, `sale15_end`, `bf_start`, `bf_end`). Cards: **Nov 1–5 · 20% off ·
-Every plant** (Now until the 5th, then gone), **Nov 6–26 · 15% off · Every plant** (Now from
+Orders $100+** (Now until the 5th, then gone), **Nov 6–26 · 15% off · Orders $100+** (Now from
 the 6th, gone after 7:59 pm on the 26th), and **Nov 26–30 · Black Friday · Up to 40% off ·
 Ready to ship 40% · Acclimated 30% · Pre-orders 10–20%**, which **does not render before 8 pm
 on the 26th** — the owner wanted Black Friday unannounced. `tier_count` drives `--tiers` as
 before; the `<ol>` is skipped at zero. A lone card is allowed now (the old "one lonely
 Regular card" rule is gone, because a lone *live* card is an offer), and the grid's
 `max-width` became `max(300px, …)` so the single Black Friday card has room for its line.
-Verified on the preview on 1 Nov: `--tiers: 2`, one `is-now`, no Liquid error. **"Every plant"
-on the cards is literally true** because both the 20% and the 15% are `allItems` discounts.
+Verified on the preview on 1 Nov: `--tiers: 2`, one `is-now`, no Liquid error. Both the 20% and the 15% are `allItems` discounts with a $100 minimum, which is what the cards say.
 Same change is **not** on the Halloween line (`merged/index.json`) — that line is finished.
 
 ## The 3D glass logo (31 Oct 2026)

@@ -140,7 +140,7 @@
         "announcement_sale": {
           "type": "_announcement",
           "settings": {
-            "text": "20% Off All Plants — Applied Automatically at Checkout • Ends Thursday, November 5",
+            "text": "20% Off All Plants — Orders $100+ • Applied Automatically at Checkout • Ends Thursday, November 5",
             "link": "/collections/all",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
@@ -154,7 +154,7 @@
         "announcement_sale15": {
           "type": "_announcement",
           "settings": {
-            "text": "15% Off All Plants — Applied Automatically at Checkout • November 6 to 26",
+            "text": "15% Off All Plants — Orders $100+ • Applied Automatically at Checkout • November 6 to 26",
             "link": "/collections/all",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
