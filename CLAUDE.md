@@ -35,7 +35,20 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 1 Nov 2026 16:47Z: MAIN is `AgaPlantz 2026 — what is tissue culture page` =
+**As of 1 Nov 2026 22:30Z: MAIN is `Updated copy of AgaPlantz 2026 — what is tissue…` =
+`189909401679`**, created by Shopify at 16:48:43Z — 68 seconds after `189688381519` became MAIN —
+when the owner published again. **That copy re-seeded three JSON templates**: `page.pre-order.json`
+and `page.tissue-culture.json` came back as a bare `main-page` template (identical checksums, two
+blocks, the thread gone — both pages showed only their one-line body for six hours) and
+`list-collections.json` got `collection_list_Wfgh3m` back at the top. Everything else
+(index, header, product templates, FAQ, settings) was byte-different but semantically identical —
+copies re-serialise JSON, so **compare parsed JSON, not checksums, after any publish**, and render
+the TC page, the Pre Order page and `/collections` every time. The fix plus the 20/15/10 ladder and
+the shipping copy is draft **`AgaPlantz 2026 — November ladder 20/15/10 (from live)` =
+`189923491919`**, duplicated from `189909401679`; `189923459151` is a dead duplicate of the
+superseded theme, made a minute too early — ignore it (deleting is the owner's call).
+
+**Before that, 16:47Z: MAIN was `AgaPlantz 2026 — what is tissue culture page` =
 `189688381519`** — the long-lived "clean post-Halloween draft" the owner finally published,
 carrying the November promo ladder, the 30 Nov cut-off, the 3D logo and favicon, the magic-mix
 guide and the 48-hour cancellation answers. The Halloween line (`189887840335` and its
@@ -883,7 +896,9 @@ minutes) — space them out.
 ## November 2026 promo calendar (set 1 Nov) — four discounts, one theme, nothing to flip but slides
 
 The owner pasted a table the same morning: **Nov 1–5** 20% off all plants, stacks with codes ·
-**Nov 6 – Nov 26 7:59 pm** 15% off all plants, stacks with codes · **Nov 26 8 pm – Nov 30
+**Nov 6 – Nov 26 7:59 pm** 15% off all plants, stacks with codes — **revised that evening to
+Nov 6–15 at 15% and Nov 16 – Nov 26 7:59 pm at 10%** (*"from 1 to 5 20%, then 5 to 10 15%,
+then 5 to 15 15%, then 15 to 26 10%"* — read as 6–15 / 16–26, the October shape) · **Nov 26 8 pm – Nov 30
 11:59 pm, Black Friday** ready-to-ship 40%, acclimated 30%, pre-orders under $150 20%,
 pre-orders $150+ 10%, free mystery ready-to-ship plant on a $150+ pre-order, no code stacking
 (shipping only) · **Nov 30 midnight** batch closes. "All plants (pre-order, RTS, acclimated)"
@@ -898,7 +913,8 @@ slides say "Orders $100+".
 | # | Discount | Window (UTC) | Scope | Stacks |
 | --- | --- | --- | --- | --- |
 | `1537379106895` | 20% Off All Plants — Nov 1 to 5 | 11-01 04:00 → 11-06 04:59:59 | **all items** (one-time purchases) — it was scoped to the three stage collections for an hour, then the owner: *"Just make a one discount. We are giving 20% discount from 1 to 5 on each plant… on each genus, like acclimated or tissue culture or whatever, pre-order"*, so every stage and the mature specimens are in; the pot accessory rides along, the mystery box is out by being a subscription | order codes **yes** (changed from the Labour Day setting on the owner's say-so) |
-| `1537384513615` | 15% Off All Plants — Nov 6 to 26 | 11-06 05:00 → 11-27 00:59:59 | **all items** (widened to match the 20% and the "Every plant" card) | order codes yes |
+| `1537384513615` | 15% Off All Plants — Nov 6 to 15 | 11-06 05:00 → 11-16 04:59:59 | **all items**, $100 min | order codes yes |
+| `1537439006799` | 10% Off All Plants — Nov 16 to 26 | 11-16 05:00 → 11-27 00:59:59 | **all items**, $100 min | order codes yes |
 | `1537385168975` | BF — Ready-to-Ship 40% | 11-27 01:00 → 12-01 04:59:59 | **73 variants** | other BF tiers only |
 | `1537385201743` | BF — Acclimated 30% | same | **15 variants** | same |
 | `1537385234511` | BF — Pre-Orders $150+ 10% | same | **81 variants** | same |
@@ -935,8 +951,9 @@ a cart on the 26th. The pre-order page body / tc-guide do not mention the gift.
 **Theme.** All on the clean draft `189688381519`, which is now also the take-down theme (see
 the 20% section above). Announcement bar (the slides duplicate the ladder; keep them anyway, the bar is on every
 page and the ladder only on the homepage), in order: `announcement_sale` (20%, live),
-`announcement_sale15` (**disabled — enable 6 Nov, disable the 20% one**), `announcement_bf`
-(**disabled — enable 26 Nov 8 pm, disable the 15% one**), then the old slides. Slides take no
+`announcement_sale15` (**disabled — enable 6 Nov, disable the 20% one**), `announcement_sale10`
+(**disabled — enable 16 Nov, disable the 15% one**), `announcement_bf` (**disabled — enable
+26 Nov 8 pm, disable the 10% one**), then the old slides. Slides take no
 Liquid, so those flips are by hand in the theme editor. The **countdown eyebrow, by contrast,
 switches itself**: `custom_liquid_KL8FyB` compares `now_s` against three EST boundaries
 (`2026-11-05T23:59:59-05:00`, `2026-11-26T19:59:59-05:00`, `2026-11-30T23:59:59-05:00`) and
@@ -946,8 +963,9 @@ here"* — they wanted the **ladder cards** back under the digits, so the eyebro
 "New batch now open" and the ladder was rebuilt for November. **It is clock-gated, not
 day-counted**: `batch_start`/`day_now` are gone; each card compares `now_s` with an EST
 boundary (`sale20_end`, `sale15_end`, `bf_start`, `bf_end`). Cards: **Nov 1–5 · 20% off ·
-Orders $100+** (Now until the 5th, then gone), **Nov 6–26 · 15% off · Orders $100+** (Now from
-the 6th, gone after 7:59 pm on the 26th), and **Nov 26–30 · Black Friday · Up to 40% off ·
+Orders $100+** (Now until the 5th, then gone), **Nov 6–15 · 15% off · Orders $100+** (Now from
+the 6th, gone after the 15th), **Nov 16–26 · 10% off · Orders $100+** (Now from the 16th, gone
+after 7:59 pm on the 26th), and **Nov 26–30 · Black Friday · Up to 40% off ·
 Ready to ship 40% · Acclimated 30% · Pre-orders 10–20%**, which **does not render before 8 pm
 on the 26th** — the owner wanted Black Friday unannounced. `tier_count` drives `--tiers` as
 before; the `<ol>` is skipped at zero. A lone card is allowed now (the old "one lonely
@@ -955,6 +973,29 @@ Regular card" rule is gone, because a lone *live* card is an offer), and the gri
 `max-width` became `max(300px, …)` so the single Black Friday card has room for its line.
 Verified on the preview on 1 Nov: `--tiers: 2`, one `is-now`, no Liquid error. Both the 20% and the 15% are `allItems` discounts with a $100 minimum, which is what the cards say.
 Same change is **not** on the Halloween line (`merged/index.json`) — that line is finished.
+
+## Shipping is province-based since 1 Nov 2026
+
+The owner rewrote the **Shipping policy** (22:30Z) and the delivery profile to match: flat rates
+by province, **free standard shipping from $200 in Ontario, $225 Quebec, $250 Prairies and
+Atlantic, $275 BC, none in the territories**; express $35–$59.99 and "Arrives Before Pre-Order"
+$30–$59.99 by zone; **dispatch Monday–Wednesday only**, handling 1–3 business days, transit 1–5,
+2–8 door to door; live-arrival coverage only when transit is ≤ 5 business days (so a far address
+needs express); no P.O. boxes; free pickup in Brampton; replacement shipping still a flat $14.99.
+*"You don't have to update the shipping policy. You just have to update like the FAQs and stuff
+like that. And announcement bar."* So the theme copy was brought in line, nothing else:
+
+| Where | Was | Now |
+| --- | --- | --- |
+| `header-group.json` → `announcement_HUGfag` | "Free shipping on orders over $180" | "Free Standard Shipping From $200 in Ontario • Flat Province Rates Shown at Checkout", linked to `/policies/shipping-policy` |
+| `page.tissue-culture.json` → `tl_s1` | "Standard $14.99, free over $180. Express $25." | "Flat rate by province, from $14.99. Free standard shipping from $200 in Ontario." |
+| `page.tissue-culture.json` → `tl_s3` | "Never over a weekend." | "Monday to Wednesday only, never over a weekend." |
+| `page.faq.json` → `faq_1_answer`, `faq_2_answer` | one line each | the province thresholds, no P.O. boxes, pickup; Mon–Wed dispatch, 1–3 handling, 1–5 transit, the 5-business-day coverage rule, link to the policy |
+| `product.tissue-culture.json` (4 strings), `product.json` (1) | "Monday–Thursday" | "Monday–Wednesday" — the product-page card had disagreed with the policy since September |
+
+Not touched: the guarantee's $14.99 replacement shipping (still true), the Pre Order page
+("early in the week"), the homepage marquee ("Canada-wide shipping"), the winter heat-pack lines.
+The `$180` string now appears nowhere in `theme/`.
 
 ## The 3D glass logo (31 Oct 2026)
 
