@@ -1352,7 +1352,13 @@ lists, both copies of Step 2); the Step 10 transplant mix ("a small amount of sp
 is a different recipe and was left alone, as were the product-page kit cards ("Perlite and
 stratum mix or sphagnum moss"), which are still true. Theme **`AgaPlantz 2026 — Halloween,
 magic mix guide` = `189881450575`** (from MAIN `189875224655`); the same block went onto the
-clean draft `189688381519`. Before this, as of 7 Sep: plain sphagnum moss for Monstera and
+clean draft `189688381519`. **The moisture rule flipped the same night (1 Nov):** the old
+text said squeeze the moss until "only a drop or two" comes out; the owner corrected it —
+*"moss should be saturated with water nicely not dry, when squeezed it should drip water,
+make sure you don't squeeze much so it loses its water"*. Step 2 now says soak until
+saturated, keep it wet not just damp, water should drip when a handful is squeezed, and don't
+wring it dry. Both drafts were overwritten in place (same theme ids). The other-aroids mix
+still says "damp but never waterlogged" — the owner did not mention it. Before this, as of 7 Sep: plain sphagnum moss for Monstera and
 Anthurium. "Ready-to-use" was dropped from the Betadine line — it now just reads "Diluted
 Betadine solution". Note the duplicate reports `schema_version: 4.2.0`, not 4.1.4 — Horizon
 has been upgraded under the Halloween chain at some point; nothing on this page was affected.
