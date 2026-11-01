@@ -35,6 +35,16 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
+**As of 1 Nov 2026 16:47Z: MAIN is `AgaPlantz 2026 — what is tissue culture page` =
+`189688381519`** — the long-lived "clean post-Halloween draft" the owner finally published,
+carrying the November promo ladder, the 30 Nov cut-off, the 3D logo and favicon, the magic-mix
+guide and the 48-hour cancellation answers. The Halloween line (`189887840335` and its
+ancestors) is retired. **It is MAIN now, so the API can no longer write to it** — the next change
+starts with a fresh `themeDuplicate` of it. Post-publish check the same hour: all ten key pages
+rendered with no Liquid error, `templates/list-collections.json` kept its three curated sections
+(no re-seeded `main-collection-list` this time), the homepage section order was intact and the
+`/collections/halloween-spooky-plants` page shows no badge.
+
 As of 27 Oct 2026: MAIN was `AgaPlantz 2026 — product pages: Loox only` = `189569040463`
 (the owner published the 25 Oct draft, so the reviews-wall removal and the acclimation-add-on
 pause are live); the draft waiting for them is `AgaPlantz 2026 — what is tissue culture
