@@ -878,13 +878,13 @@ The owner pasted a table the same morning: **Nov 1–5** 20% off all plants, sta
 pre-orders $150+ 10%, free mystery ready-to-ship plant on a $150+ pre-order, no code stacking
 (shipping only) · **Nov 30 midnight** batch closes. "All plants (pre-order, RTS, acclimated)"
 was first taken literally (the three stage collections); the owner then widened the 20% to every
-plant — see the row. The 15% still uses the three collections (mature specimens outside) until
-told otherwise. All times Toronto, EST.
+plant — see the row. The 15% was widened the same way so the ladder card can say "Every plant". All times
+Toronto, EST.
 
 | # | Discount | Window (UTC) | Scope | Stacks |
 | --- | --- | --- | --- | --- |
 | `1537379106895` | 20% Off All Plants — Nov 1 to 5 | 11-01 04:00 → 11-06 04:59:59 | **all items** (one-time purchases) — it was scoped to the three stage collections for an hour, then the owner: *"Just make a one discount. We are giving 20% discount from 1 to 5 on each plant… on each genus, like acclimated or tissue culture or whatever, pre-order"*, so every stage and the mature specimens are in; the pot accessory rides along, the mystery box is out by being a subscription | order codes **yes** (changed from the Labour Day setting on the owner's say-so) |
-| `1537384513615` | 15% Off All Plants — Nov 6 to 26 | 11-06 05:00 → 11-27 00:59:59 | same three collections | order codes yes |
+| `1537384513615` | 15% Off All Plants — Nov 6 to 26 | 11-06 05:00 → 11-27 00:59:59 | **all items** (widened to match the 20% and the "Every plant" card) | order codes yes |
 | `1537385168975` | BF — Ready-to-Ship 40% | 11-27 01:00 → 12-01 04:59:59 | **73 variants** | other BF tiers only |
 | `1537385201743` | BF — Acclimated 30% | same | **15 variants** | same |
 | `1537385234511` | BF — Pre-Orders $150+ 10% | same | **81 variants** | same |
@@ -919,16 +919,29 @@ Whether the $150 is judged before or after the 20%/10% line discounts was not ve
 a cart on the 26th. The pre-order page body / tc-guide do not mention the gift.
 
 **Theme.** All on the clean draft `189688381519`, which is now also the take-down theme (see
-the 20% section above). Announcement bar, in order: `announcement_sale` (20%, live),
+the 20% section above). Announcement bar (the slides duplicate the ladder; keep them anyway, the bar is on every
+page and the ladder only on the homepage), in order: `announcement_sale` (20%, live),
 `announcement_sale15` (**disabled — enable 6 Nov, disable the 20% one**), `announcement_bf`
 (**disabled — enable 26 Nov 8 pm, disable the 15% one**), then the old slides. Slides take no
 Liquid, so those flips are by hand in the theme editor. The **countdown eyebrow, by contrast,
 switches itself**: `custom_liquid_KL8FyB` compares `now_s` against three EST boundaries
 (`2026-11-05T23:59:59-05:00`, `2026-11-26T19:59:59-05:00`, `2026-11-30T23:59:59-05:00`) and
-prints "20% off every plant until Thursday 5 November" → "15% off every plant until 26
-November" → "Black Friday: up to 40% off until the batch closes" → "New batch now open".
-Server-side, no JavaScript, verified on the preview for the first branch. Same change is **not**
-on the Halloween line (`merged/index.json`) — that line is finished.
+printed the current offer — for about an hour. Then the owner, looking at the countdown
+on their phone: *"last time we advertised our discounts here, so we need to do that again
+here"* — they wanted the **ladder cards** back under the digits, so the eyebrow went back to
+"New batch now open" and the ladder was rebuilt for November. **It is clock-gated, not
+day-counted**: `batch_start`/`day_now` are gone; each card compares `now_s` with an EST
+boundary (`sale20_end`, `sale15_end`, `bf_start`, `bf_end`). Cards: **Nov 1–5 · 20% off ·
+Every plant** (Now until the 5th, then gone), **Nov 6–26 · 15% off · Every plant** (Now from
+the 6th, gone after 7:59 pm on the 26th), and **Nov 26–30 · Black Friday · Up to 40% off ·
+Ready to ship 40% · Acclimated 30% · Pre-orders 10–20%**, which **does not render before 8 pm
+on the 26th** — the owner wanted Black Friday unannounced. `tier_count` drives `--tiers` as
+before; the `<ol>` is skipped at zero. A lone card is allowed now (the old "one lonely
+Regular card" rule is gone, because a lone *live* card is an offer), and the grid's
+`max-width` became `max(300px, …)` so the single Black Friday card has room for its line.
+Verified on the preview on 1 Nov: `--tiers: 2`, one `is-now`, no Liquid error. **"Every plant"
+on the cards is literally true** because both the 20% and the 15% are `allItems` discounts.
+Same change is **not** on the Halloween line (`merged/index.json`) — that line is finished.
 
 ## The 3D glass logo (31 Oct 2026)
 
