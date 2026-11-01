@@ -877,12 +877,13 @@ The owner pasted a table the same morning: **Nov 1–5** 20% off all plants, sta
 11:59 pm, Black Friday** ready-to-ship 40%, acclimated 30%, pre-orders under $150 20%,
 pre-orders $150+ 10%, free mystery ready-to-ship plant on a $150+ pre-order, no code stacking
 (shipping only) · **Nov 30 midnight** batch closes. "All plants (pre-order, RTS, acclimated)"
-was taken literally: the three stage collections, so mature specimens, the pot accessory and
-the mystery box are outside every tier (ask before widening). All times Toronto, EST.
+was first taken literally (the three stage collections); the owner then widened the 20% to every
+plant — see the row. The 15% still uses the three collections (mature specimens outside) until
+told otherwise. All times Toronto, EST.
 
 | # | Discount | Window (UTC) | Scope | Stacks |
 | --- | --- | --- | --- | --- |
-| `1537379106895` | 20% Off All Plants — Nov 1 to 5 | 11-01 04:00 → 11-06 04:59:59 | collections `pre-order` + `ready-to-ship-tissue-culture` + `acclimated-plants` | order codes **yes** (changed from the Labour Day setting on the owner's say-so) |
+| `1537379106895` | 20% Off All Plants — Nov 1 to 5 | 11-01 04:00 → 11-06 04:59:59 | **all items** (one-time purchases) — it was scoped to the three stage collections for an hour, then the owner: *"Just make a one discount. We are giving 20% discount from 1 to 5 on each plant… on each genus, like acclimated or tissue culture or whatever, pre-order"*, so every stage and the mature specimens are in; the pot accessory rides along, the mystery box is out by being a subscription | order codes **yes** (changed from the Labour Day setting on the owner's say-so) |
 | `1537384513615` | 15% Off All Plants — Nov 6 to 26 | 11-06 05:00 → 11-27 00:59:59 | same three collections | order codes yes |
 | `1537385168975` | BF — Ready-to-Ship 40% | 11-27 01:00 → 12-01 04:59:59 | **73 variants** | other BF tiers only |
 | `1537385201743` | BF — Acclimated 30% | same | **15 variants** | same |
