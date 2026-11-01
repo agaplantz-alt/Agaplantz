@@ -39,7 +39,7 @@
           "type": "chapter",
           "settings": {
             "eyebrow": "This batch",
-            "heading": "Order by 31 October",
+            "heading": "Order by 30 November",
             "text": "<p>Orders before the cut-off join this batch. Anything after it moves to the next window, no action needed.</p>"
           }
         },

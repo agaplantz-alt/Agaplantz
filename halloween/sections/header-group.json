@@ -68,7 +68,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "Tissue Culture Pre-Orders Close October 31 • Next Batch Opens In Approximately 15-30 Days",
+            "text": "Tissue Culture Pre-Orders Close November 30 • Next Batch Opens In Approximately 15-30 Days",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
