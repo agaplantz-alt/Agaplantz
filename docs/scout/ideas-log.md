@@ -10,6 +10,79 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-02 (scheduled run, 08:40 Toronto)
+
+Second run today. It covers angles the earlier run did not. Evidence was thin: almost every source is a seller listing,
+so treat the prices as snapshots, not trends.
+
+### Product ideas
+
+**1. Variegated Alocasia plantlets.**
+- What: variegated Alocasia such as 'Heart Balloon Variegated', 'Ninja Aurea' and 'Jacklyn Mystic Variegated'. The
+  store's Alocasias today are Cuprea Red Secret and Bambino Pink.
+- Why now: variegated Alocasia is being actively bred and patented. A new marbled cultivar, 'ELSTCIRCU' from a Dutch
+  program, had its US plant patent published on 2026-08-04, so more variegated lines are coming.
+  ([patent record](https://eureka.patsnap.com/patent/USPP37565P3))
+- Price signal: one US lab lists TC plantlets at $79.99 USD for Heart Balloon Variegated and $29.99 for Ninja Aurea.
+  ([Heart Balloon](https://orangelakenursery.com/products/alocasia-heart-ballon-varigated-tissue-culture),
+  [Ninja Aurea](https://orangelakenursery.com/products/alocasia-ninja-aurea-tissue-culture))
+  Collector demand for these specific cultivars was not confirmed (unverified).
+- Difficulty: medium. Same lab and acclimation path as your current Alocasias.
+- First step: ask your lab which variegated Alocasias it has in its next batch and the price per 100.
+
+**2. A low-cost "first rare plant" tier.**
+- What: common but attractive Alocasia plantlets sold cheaply as an entry point and a stocking stuffer, alongside the
+  collector plants.
+- Why now: Canadian holiday budgets are shrinking (see the corporate gifts idea above), and some Alocasia TC is very
+  cheap: $7.99 USD for Venusta and $5.99 for 'Loco' at one US lab.
+  ([Venusta](https://orangelakenursery.com/products/alocasia-venusta-tissue-culture-single),
+  [Loco](https://orangelakenursery.com/products/alocasia-loco-tissue-culture-single))
+- Price signal: the wide gap between cheap TC and grown-plant prices suggests room for margin, but your Canadian cost
+  after shipping and phyto was not checked (unverified).
+- Difficulty: easy, if your lab already grows them.
+- First step: pick two cheap, hardy species and test them as a $20 to $30 CAD ready-to-ship option.
+
+**3. Rare species Begonias.**
+- What: collector Begonias such as B. amphioxus and B. melanobullata. The store lists Begonia as a genus, but none
+  showed on the homepage this morning.
+- Why now: sellers describe these as small-batch "collector releases", and GrowTropicals says tissue culture is now
+  making rare species available at scale.
+  ([GrowTropicals](https://growtropicals.com/collections/rare-and-unusual?page=34),
+  [Cultivo Carnivores](https://www.cultivocarnivores.com/products/begonia-amphioxus))
+- Price signal: B. amphioxus shows at $9.99 USD in a 2.5-inch pot on a Walmart listing; B. melanobullata at $45.60.
+  These are single listings (unverified as a trend).
+  ([Walmart](https://www.walmart.com/c/kp/begonia-maculum),
+  [melanobullata listing](https://blog.onparticipe.fr/products/rare-begonia-melanobullata-exact-plant/15434386))
+- Difficulty: medium. Many species Begonias need high humidity, which pairs with the cabinet kit idea above.
+- First step: check whether your lab offers species Begonias at all.
+
+### Business ideas
+
+**1. Wholesale tissue-culture plantlets to Canadian plant shops.**
+- What: sell acclimated plantlets in bulk to independent plant shops across Canada.
+- Why now: no Canadian wholesale supplier of rare aroid TC turned up. The suppliers that did, such as Rare Root Labs
+  and Silver Krome Gardens, are in the US, which means shops face border paperwork you already handle.
+  ([Rare Root Labs reviews](https://au.trustpilot.com/review/rarerootlabs.com),
+  [Greenhouse Canada buyers guide](https://www.greenhousecanada.com/company/agriforest-bio-technologies-ltd-2222/))
+  The supply gap itself is unverified: the search may simply have missed Canadian sellers.
+- Price signal: one US wholesale listing on Faire shows $119 per Caramel Marble plantlet against a $150 MSRP
+  (from the earlier run). No Canadian wholesale prices found (unverified).
+- Difficulty: medium. It needs a wholesale price list and minimum order.
+- First step: call or message three GTA plant shops and ask where they buy rare aroids today and what they pay.
+
+**2. Amazon.ca, check before acting.**
+- What: list accessories, and maybe plants, on Amazon.ca.
+- Why now: Amazon restricts live plants to approved categories and removes listings that break the rules, and its US
+  marketplace has removed plants sold by non-US sellers. No Amazon.ca-specific rules were found.
+  ([Amazon restricted-category summary](https://www.goatconsulting.com/amazon-policy/amazon-plant-and-seed-products-restricted-category-policy),
+  [Better Seed](https://www.betterseed.org/amazon-to-remove-listings-for-seeds-for-planting-by-non-u-s-residents/))
+- Price signal: none (unverified).
+- Difficulty: easy for accessories such as the cabinet kit, hard for live plants.
+- First step: start with non-living accessories only. Check Amazon.ca Seller Central's plant policy before listing
+  any plant.
+
+---
+
 ## 2026-11-02
 
 **Market backdrop.** Seller blogs agree that collectors are moving away from mass-produced "rare" plants toward
