@@ -10,6 +10,76 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-03
+
+Evidence was thin again: seller listings and blogs, no hard sales data. Skipped as already covered: Black Friday,
+because the store already runs the November 20/15/10 ladder to 30 November.
+
+### Product ideas
+
+**1. Newer Monstera TC cultivars: 'Green Snow' and 'Electrolyte'.**
+- What: two Thai tissue-culture Monsteras not on the store yet. The store carries Devil Monster, Bulbasaur,
+  White Monster and Creme Brulee.
+- Why now: they are listed by a Thai TC seller on a US marketplace, and one blog says slow-growing variegated tissue
+  keeps demand ahead of supply. ([Green Snow](https://reach.dog/shop/thai-exotic-greenery/products/monstera-green-snow-tissue-culture),
+  [Electrolyte](https://reach.dog/shop/thai-exotic-greenery/products/monstera-electrolyte-tissue-culture),
+  [TropicFlow](https://tropicflow.com/blogs/plant-care-article-how-to/the-9-most-striking-variegations-in-monstera-plants))
+- Price signal: Green Snow TC at $40 USD. Electrolyte TC on sale at $150, down from $400, which suggests its price is
+  falling. Collector demand for either was not confirmed (unverified).
+- Difficulty: medium. Variegation from TC can revert or fade, so each batch needs checking before sale.
+  ([Mint listing warning](https://reach.dog/shop/nice-plants-good-pots/products/monstera-deliciosa-mint))
+- First step: ask your Thai lab for both on the next batch list, with a variegation guarantee.
+
+**2. Semi-hydro (LECA) starter kit.**
+- What: clay balls, a self-watering pot, nutrients and a short guide, sold with or without a plantlet. Different
+  from the humidity cabinet kit logged on 2026-11-02, which is about air, not roots.
+- Why now: grower guides published this year say aroids adapt well to LECA and that it stops fungus gnats almost
+  at once. Wikipedia notes semi-hydro is mostly a collector habit. Some guides are sceptical about the hype.
+  ([GrowTropicals](https://growtropicals.com/blogs/houseplant-tips-tricks/is-leca-and-semi-hydro-better-than-soil),
+  [The Plant Network](https://theplantnetwork.pages.dev/blog/semi-hydroponics-leca-guide),
+  [Wikipedia](https://en.wikipedia.org/wiki/Expanded_clay_aggregate),
+  [Bloom and Grow](https://bloomandgrowradio.com/semihydro/))
+- Price signal: LECA is sold wholesale by Lost in the Forrest and on Faire; prices did not show
+  (unverified). ([Lost in the Forrest wholesale](https://wholesale.lostintheforrestco.com/product/leca),
+  [Faire](https://www.faire.com/product/p_ndwcsbcf26))
+- Difficulty: easy. No live plants needed, so it ships safely in winter.
+- First step: get a Canadian wholesale quote for LECA and nutrient solution and price a kit.
+
+**3. Monstera 'Mint' tissue culture.**
+- What: Monstera deliciosa with mint-green variegation, which a 2026 guide named as the year's Monstera trend
+  (logged in the market backdrop on 2026-11-02, not as an idea).
+- Why now: it is now sold as grower's-choice plants and as TC, so supply exists.
+  ([Mint listing](https://reach.dog/shop/nice-plants-good-pots/products/monstera-deliciosa-mint),
+  [Gardener's Yards](https://gardenersyards.com/rare-variegated-aroids-2026/))
+- Price signal: one grower's-choice plant at $70 USD. TC price not shown (unverified).
+- Difficulty: medium, with the same reversion risk as idea 1.
+- First step: price Mint TC from your lab and compare with Creme Brulee, which is already on the store.
+
+### Business ideas
+
+**1. A GTA plant-sitting and repotting service.**
+- What: paid visits to water, repot, treat pests and check rare plants while owners travel, starting in Brampton and
+  nearby.
+- Why now: Airtasker shows many individual 2026 plant-sitting jobs priced from about $30 to $400 USD, and US
+  services sell quarterly care visits. A collector leaving for winter holidays is the target buyer.
+  ([Airtasker](https://www.airtasker.com/us/services/plant-sitting/), [Rewild DC](https://www.rewilddc.com/pages/services-1),
+  [Pot Sitter](https://sites.google.com/view/potsitterllc/plant-care-services))
+  Canadian demand was not checked (unverified).
+- Difficulty: medium. It needs time, travel and insurance, but no stock.
+- First step: post a "holiday plant sitting" offer to your existing customers in the GTA and see who replies.
+
+**2. Sell the monthly box as a holiday gift subscription.**
+- What: a prepaid 3- or 6-month gift version of the existing monthly box, with a printable gift card.
+- Why now: The Sill sells an easy-care plant subscription at $55 USD a month, and a 2026 roundup ranks plant boxes as
+  a gift category. That gives a public price benchmark for your box.
+  ([The Sill subscriptions](https://https-www_thesill_com.proxy.bugsmash.io/collections/our-subscriptions),
+  [My Subscription Addiction](https://www.mysubscriptionaddiction.com/post/572048))
+- Price signal: $55 USD a month at The Sill; your box's margin was not checked (unverified).
+- Difficulty: easy. The box already exists.
+- First step: add a "Give as a gift" prepaid option to the monthly box before 27 November.
+
+---
+
 ## 2026-11-02 (scheduled run, 08:40 Toronto)
 
 Second run today. It covers angles the earlier run did not. Evidence was thin: almost every source is a seller listing,
