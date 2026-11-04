@@ -697,9 +697,11 @@ payments and supplier confirmations. *"It should not look like it stayed out of 
 shop"*; a small (?) opens a pop-up explaining what the chance is and how the last batch went.
 
 `blocks/availability-chance.liquid`, a theme block inside `main` → `product-details` on both
-product templates: `availability_top` (layout `inline`) right after `divider_VJhene`, before
-the variant picker; `availability_bottom` (layout `card`, four-bar meter, last-batch line)
-right after `buy_buttons_eYQEYi`. **It follows the selected variant** — it reads
+product templates. It was first placed twice (under the price and under the buy buttons);
+the owner then said *"we only want to make at one spot… above description"*, so it is
+**one block, `availability_bottom` (layout `card`, four-bar meter, last-batch line), right
+after `acclimation_guarantee` and before `text_aEtTtq`, the description.** The `inline`
+layout still exists in the schema if a one-liner is ever wanted under the price. **It follows the selected variant** — it reads
 `selected_or_first_available_variant` and lives in `product-information`, which Horizon
 re-renders on variant change: a `Pre-Order` variant shows the chance (verified on the preview),
 an in-stock other stage shows "In stock, ready to ship" (verified with `?variant=` on the

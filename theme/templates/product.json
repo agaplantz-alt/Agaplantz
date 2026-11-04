@@ -205,33 +205,6 @@
               },
               "blocks": {}
             },
-            "availability_top": {
-              "type": "availability-chance",
-              "settings": {
-                "layout": "inline",
-                "label": "Availability chance",
-                "label_confirmed": "Confirmed for this batch",
-                "label_high": "High",
-                "label_medium": "Medium",
-                "label_low": "Low",
-                "label_na": "Not available this batch",
-                "show_stock_line": true,
-                "label_stock": "Availability",
-                "stock_text": "In stock, ready to ship",
-                "help_title": "What is an availability chance?",
-                "help_text": "Pre-orders are grown to order by our partner laboratory. After the cut-off we place the batch and the lab confirms what it can supply. A plant that comes back unavailable is refunded in full. The chance is our honest estimate from how this plant has done in recent batches.",
-                "last_label": "Last batch:",
-                "last_available": "available, every order shipped.",
-                "last_partial": "partly available, some orders were refunded.",
-                "last_na": "not available at the lab, orders were refunded.",
-                "last_none": "not part of the last batch.",
-                "updated_label": "Updated",
-                "help_link_text": "How pre-orders work",
-                "help_link_url": "/pages/pre-order",
-                "padding_top": 0,
-                "padding_bottom": 4
-              }
-            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -328,6 +301,22 @@
               },
               "block_order": []
             },
+            "acclimation_guarantee": {
+              "type": "acclimation-guarantee",
+              "name": "30-Day Plant Guarantee",
+              "settings": {
+                "threshold": 200,
+                "shipping_amount": "$14.99",
+                "page_url": "/pages/30-day-plant-guarantee",
+                "heading": "30-Day Plant Guarantee",
+                "under_text": "Free replacement within 30 days if it doesn’t make it — just photograph it when it arrives. You cover shipping ({shipping}).",
+                "over_text": "Replacement at 50% of what you paid, within 30 days — just photograph it when it arrives. You cover shipping ({shipping}).",
+                "link_text": "How it works",
+                "padding-block-start": 8,
+                "padding-block-end": 4
+              },
+              "blocks": {}
+            },
             "availability_bottom": {
               "type": "availability-chance",
               "settings": {
@@ -352,24 +341,8 @@
                 "help_link_text": "How pre-orders work",
                 "help_link_url": "/pages/pre-order",
                 "padding_top": 0,
-                "padding_bottom": 0
+                "padding_bottom": 4
               }
-            },
-            "acclimation_guarantee": {
-              "type": "acclimation-guarantee",
-              "name": "30-Day Plant Guarantee",
-              "settings": {
-                "threshold": 200,
-                "shipping_amount": "$14.99",
-                "page_url": "/pages/30-day-plant-guarantee",
-                "heading": "30-Day Plant Guarantee",
-                "under_text": "Free replacement within 30 days if it doesn’t make it — just photograph it when it arrives. You cover shipping ({shipping}).",
-                "over_text": "Replacement at 50% of what you paid, within 30 days — just photograph it when it arrives. You cover shipping ({shipping}).",
-                "link_text": "How it works",
-                "padding-block-start": 8,
-                "padding-block-end": 4
-              },
-              "blocks": {}
             },
             "text_aEtTtq": {
               "type": "text",
@@ -427,12 +400,11 @@
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
-            "availability_top",
             "variant_picker_R3rGDr",
             "subscriptions_app_block_JX7Tpw",
             "buy_buttons_eYQEYi",
-            "availability_bottom",
             "acclimation_guarantee",
+            "availability_bottom",
             "text_aEtTtq",
             "text_price_lock"
           ]

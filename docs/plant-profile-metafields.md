@@ -100,9 +100,9 @@ care_soil 580331044943 · care_fertilizer 580331077711 (all `gid://shopify/Metaf
 
 ## Availability chance (added 4 Nov 2026, evening) — filled by the batch/supplier session
 
-`blocks/availability-chance.liquid` sits twice in the buy box of both product templates
-(`availability_top`, one line under the price; `availability_bottom`, a card with a four-bar
-meter under the buy buttons). It renders **only for the Tissue Culture (Pre-Order) variant**
+`blocks/availability-chance.liquid` sits once in the buy box of both product templates
+(`availability_bottom`, a card with a four-bar meter, between the guarantee and the
+description). It renders **only for the Tissue Culture (Pre-Order) variant**
 and only when `availability_chance` is set; on an in-stock ready-to-ship / acclimated / mature
 variant it prints "In stock, ready to ship" instead; on a sold-out variant, nothing. The (?)
 opens a pop-up: the general explanation (a block setting) plus this plant's last-batch line,
