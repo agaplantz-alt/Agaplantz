@@ -367,6 +367,33 @@
               },
               "blocks": {}
             },
+            "availability_top": {
+              "type": "availability-chance",
+              "settings": {
+                "layout": "inline",
+                "label": "Availability chance",
+                "label_confirmed": "Confirmed for this batch",
+                "label_high": "High",
+                "label_medium": "Medium",
+                "label_low": "Low",
+                "label_na": "Not available this batch",
+                "show_stock_line": true,
+                "label_stock": "Availability",
+                "stock_text": "In stock, ready to ship",
+                "help_title": "What is an availability chance?",
+                "help_text": "Pre-orders are grown to order by our partner laboratory. After the cut-off we place the batch and the lab confirms what it can supply. A plant that comes back unavailable is refunded in full. The chance is our honest estimate from how this plant has done in recent batches.",
+                "last_label": "Last batch:",
+                "last_available": "available, every order shipped.",
+                "last_partial": "partly available, some orders were refunded.",
+                "last_na": "not available at the lab, orders were refunded.",
+                "last_none": "not part of the last batch.",
+                "updated_label": "Updated",
+                "help_link_text": "How pre-orders work",
+                "help_link_url": "/pages/pre-order",
+                "padding_top": 0,
+                "padding_bottom": 4
+              }
+            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -463,6 +490,33 @@
               },
               "block_order": []
             },
+            "availability_bottom": {
+              "type": "availability-chance",
+              "settings": {
+                "layout": "card",
+                "label": "Availability chance",
+                "label_confirmed": "Confirmed for this batch",
+                "label_high": "High",
+                "label_medium": "Medium",
+                "label_low": "Low",
+                "label_na": "Not available this batch",
+                "show_stock_line": true,
+                "label_stock": "Availability",
+                "stock_text": "In stock, ready to ship",
+                "help_title": "What is an availability chance?",
+                "help_text": "Pre-orders are grown to order by our partner laboratory. After the cut-off we place the batch and the lab confirms what it can supply. A plant that comes back unavailable is refunded in full. The chance is our honest estimate from how this plant has done in recent batches.",
+                "last_label": "Last batch:",
+                "last_available": "available, every order shipped.",
+                "last_partial": "partly available, some orders were refunded.",
+                "last_na": "not available at the lab, orders were refunded.",
+                "last_none": "not part of the last batch.",
+                "updated_label": "Updated",
+                "help_link_text": "How pre-orders work",
+                "help_link_url": "/pages/pre-order",
+                "padding_top": 0,
+                "padding_bottom": 0
+              }
+            },
             "acclimation_guarantee": {
               "type": "acclimation-guarantee",
               "name": "30-Day Plant Guarantee",
@@ -535,9 +589,11 @@
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
+            "availability_top",
             "variant_picker_R3rGDr",
             "subscriptions_app_block_n6PiVQ",
             "buy_buttons_eYQEYi",
+            "availability_bottom",
             "acclimation_guarantee",
             "text_aEtTtq",
             "text_price_lock"

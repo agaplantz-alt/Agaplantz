@@ -687,6 +687,32 @@ band is `x: 0`, full viewport width. The block sits in a `_blocks` section, not 
 `main`, so it does **not** re-render on variant change — the "What you'll receive" tiles are
 per product, not per stage (see the plan file for how the two templates split that).
 
+## Availability chance — the buy-box badge (4 Nov 2026)
+
+The owner, same evening: orders are taken and *"most of the time those plants are not
+available at the lab and we have to refund it… we cannot stop taking orders"*, so a per-plant
+**availability chance** goes in the two places they marked on a screenshot — under the price,
+and under "More payment options" — set by *another* Claude session that runs the batch
+payments and supplier confirmations. *"It should not look like it stayed out of the TikTok
+shop"*; a small (?) opens a pop-up explaining what the chance is and how the last batch went.
+
+`blocks/availability-chance.liquid`, a theme block inside `main` → `product-details` on both
+product templates: `availability_top` (layout `inline`) right after `divider_VJhene`, before
+the variant picker; `availability_bottom` (layout `card`, four-bar meter, last-batch line)
+right after `buy_buttons_eYQEYi`. **It follows the selected variant** — it reads
+`selected_or_first_available_variant` and lives in `product-information`, which Horizon
+re-renders on variant change: a `Pre-Order` variant shows the chance (verified on the preview),
+an in-stock other stage shows "In stock, ready to ship" (verified with `?variant=` on the
+ready-to-ship variant), a sold-out variant shows nothing (Florida Beauty, whose only variant is
+sold out, renders zero blocks). Levels: Confirmed (filled moss pill) · High (moss dot) · Medium
+(amber) · Low (terracotta) · Not available (grey). The (?) is a native `<details>`; the pop-up
+is absolutely positioned under the row and a document-level listener (guarded by
+`window.__agavInit`) closes it on outside click or Escape. **Nothing renders while
+`custom.availability_chance` is blank**, so the catalogue is unchanged until the batch session
+fills it. Four definitions were created; the field table, ids and a suggested rule for setting
+the level are in `docs/plant-profile-metafields.md`. Example values are on Black Velvet Pink.
+Same draft theme `190043619407`.
+
 ## Reviews on product pages — Loox only, since 25 Oct 2026
 
 **The native "What collectors say about AgaPlantz" wall (`store_reviews`) is gone from the
@@ -1770,7 +1796,8 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/templates/product.accessory.json` | owner-made template for the self-watering pot (editor header stripped) |
 | `theme/blocks/plant-profile.liquid` / `theme/snippets/plant-profile-dots.liquid` | product-page About / Care cards, metafield-driven |
 | `theme/templates/product.json` / `product.tissue-culture.json` | product templates (plant profile block, hidden old AI block) |
-| `docs/plant-profile-metafields.md` | the 18 metafield definitions and the fill brief for the other Claude |
+| `theme/blocks/availability-chance.liquid` | buy-box availability chance badge + pop-up, variant-aware |
+| `docs/plant-profile-metafields.md` | the 22 metafield definitions (18 profile + 4 availability) and the fill brief for the other Claude sessions |
 | `brand/` | the 3D logo renders uploaded to Files (header logo, favicon, leaf, dark) |
 | `halloween/` | the Halloween sale theme files (temporary, see that section) |
 | `merged/index.json` | homepage of the Halloween + pages theme: live Halloween file plus the `tc_learn_more` strip |

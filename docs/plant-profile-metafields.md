@@ -97,3 +97,29 @@ rarity 580330717263 · care_level 580330750031 · pet_safe 580330782799 · light
 water_level 580330848335 · humidity_level 580330881103 · care_light 580330913871 ·
 care_water 580330946639 · care_humidity 580330979407 · care_temperature 580331012175 ·
 care_soil 580331044943 · care_fertilizer 580331077711 (all `gid://shopify/MetafieldDefinition/…`).
+
+## Availability chance (added 4 Nov 2026, evening) — filled by the batch/supplier session
+
+`blocks/availability-chance.liquid` sits twice in the buy box of both product templates
+(`availability_top`, one line under the price; `availability_bottom`, a card with a four-bar
+meter under the buy buttons). It renders **only for the Tissue Culture (Pre-Order) variant**
+and only when `availability_chance` is set; on an in-stock ready-to-ship / acclimated / mature
+variant it prints "In stock, ready to ship" instead; on a sold-out variant, nothing. The (?)
+opens a pop-up: the general explanation (a block setting) plus this plant's last-batch line,
+note and date.
+
+| Key | Name | Type | Rule | What to write |
+| --- | --- | --- | --- | --- |
+| `availability_chance` | Availability chance | single_line_text_field | choices: Confirmed · High · Medium · Low · Not available | The verdict. Confirmed = the lab has confirmed it for the open batch (filled moss pill). Not available = we will take the order but expect to refund. Blank hides both blocks. |
+| `last_batch_result` | Last batch result | single_line_text_field | choices: Available · Partially available · Not available · Not ordered | What happened last time. Rendered as a sentence ("Last batch: not available at the lab, orders were refunded."). |
+| `availability_note` | Availability note | single_line_text_field | ≤ 160 | Optional, customer-facing, one line. No supplier names, no costs. |
+| `availability_updated` | Availability updated | date | `YYYY-MM-DD` | When the chance was last reviewed. Shown as "Updated 4 November 2026". |
+
+Definition ids: availability_chance 580365647951 · last_batch_result 580365680719 ·
+availability_note 580365713487 · availability_updated 580365746255.
+
+Suggested rule for the batch session: **Confirmed** once the lab's confirmation sheet lists
+the plant for the open batch; **High** if it shipped in the last two batches; **Medium** if it
+shipped once or was partial; **Low** if the last batch refunded it; **Not available** if the
+lab has said no for this batch. Re-run after every supplier confirmation and set the date.
+Example product: Alocasia Black Velvet Pink Variegated (High / Available / 2026-11-04).
