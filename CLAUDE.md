@@ -706,18 +706,32 @@ question mark is not looking good."* So it is **one block, `availability_bottom`
 stage tap visibly changes it; sage `#E8EDE1` (a `card_bg` setting) with a 4px left bar in the
 level's colour so it no longer blends with the sand guarantee card; and the trigger is an
 info icon plus "How it's decided" (`help_label`), not a circled "?". The `inline`
-layout still exists in the schema if a one-liner is ever wanted under the price. **It follows the selected variant** — it reads
-`selected_or_first_available_variant` and lives in `product-information`, which Horizon
-re-renders on variant change: a `Pre-Order` variant shows the chance (verified on the preview),
-an in-stock other stage shows "In stock, ready to ship" (verified with `?variant=` on the
-ready-to-ship variant), a sold-out variant shows nothing (Florida Beauty, whose only variant is
-sold out, renders zero blocks). Levels: Confirmed (filled moss pill) · High (moss dot) · Medium
+layout still exists in the schema if a one-liner is ever wanted under the price. **It follows the selected variant, and that needed its own
+listener.** The owner: *"when I go from tissue culture pre-order to ready to ship, it does not
+change for me."* **Horizon does not re-render `product-information` on a variant change** —
+`variant-picker` fetches `?variant=…&section_id=…`, parses it, and dispatches a bubbling
+`ProductSelectEvent` (`StandardEvents.productSelect` from the `@shopify/events` import map,
+name `<prefix>product:select`) whose `event.promise` resolves to `{ detail: { html, resource } }`;
+then **each component morphs only its own piece** (`product-price`, `product-form-component`,
+`product-inventory`…). A theme block that merely reads the variant in Liquid stays stale. So
+the block always renders a `[data-agav-host="{{ block.id }}"]` wrapper (empty when there is
+nothing to show) and a `<script type="module">` imports `StandardEvents` and, on
+`productSelect` (capture, on `document`, guarded by `window.__agavInit`), replaces every host
+with its counterpart from `detail.html`. Verified in a real browser by checking the stage
+radios: Pre-Order → "High" card, Ready to Ship → "In stock, ready to ship", Acclimated (sold
+out) → empty, back to Pre-Order → the card again. The `?variant=` URL test used before only
+proved the server render. **The same applies to `blocks/acclimation-guarantee.liquid`** —
+the note under 30-Day Plant Guarantee that Horizon "re-renders the product-information
+section on variant change" is wrong for theme blocks; the guarantee tier on Devil Monster
+very likely does not switch between $150 and $240 on a tap either. Not fixed; flagged to the
+owner. Levels: Confirmed (filled moss pill) · High (moss dot) · Medium
 (amber) · Low (terracotta) · Not available (grey). The (?) is a native `<details>`; the pop-up
 is absolutely positioned under the row and a document-level listener (guarded by
 `window.__agavInit`) closes it on outside click or Escape. **Nothing renders while
 `custom.availability_chance` is blank**, so the catalogue is unchanged until the batch session
 fills it. Four definitions were created; the field table, ids and a suggested rule for setting
-the level are in `docs/plant-profile-metafields.md`. Example values are on Black Velvet Pink.
+the level are in `docs/plant-identity-handoff.md` (the file the owner hands to the batch
+session and then to the A-to-Z identity session). Example values are on Black Velvet Pink.
 Same draft theme `190043619407`.
 
 ## Reviews on product pages — Loox only, since 25 Oct 2026
@@ -1804,7 +1818,8 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/blocks/plant-profile.liquid` / `theme/snippets/plant-profile-dots.liquid` | product-page About / Care cards, metafield-driven |
 | `theme/templates/product.json` / `product.tissue-culture.json` | product templates (plant profile block, hidden old AI block) |
 | `theme/blocks/availability-chance.liquid` | buy-box availability chance badge + pop-up, variant-aware |
-| `docs/plant-profile-metafields.md` | the 22 metafield definitions (18 profile + 4 availability) and the fill brief for the other Claude sessions |
+| `docs/plant-identity-handoff.md` | **the handoff** for the two filling sessions: what the page shows, all 22 fields, per-genus defaults, writing rules, API recipe, A–Z plan, verification |
+| `docs/plant-profile-metafields.md` | earlier, shorter brief (superseded by the handoff; kept for the definition history) |
 | `brand/` | the 3D logo renders uploaded to Files (header logo, favicon, leaf, dark) |
 | `halloween/` | the Halloween sale theme files (temporary, see that section) |
 | `merged/index.json` | homepage of the Halloween + pages theme: live Halloween file plus the `tc_learn_more` strip |

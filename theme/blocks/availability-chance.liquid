@@ -71,11 +71,11 @@
   endcase
 -%}
 
+<div data-agav-host="{{ block.id }}" {{ block.shopify_attributes }}>
 {%- if mode != 'none' -%}
   <div
     class="agav agav--{{ block.settings.layout }} agav--{{ mode }}{% if mode == 'chance' %} is-{{ key }}{% endif %}"
     style="--agav-pt: {{ block.settings.padding_top }}px; --agav-pb: {{ block.settings.padding_bottom }}px; --agav-card: {{ block.settings.card_bg }};"
-    {{ block.shopify_attributes }}
   >
     {%- if mode == 'stock' -%}
       <div class="agav__row">
@@ -142,25 +142,42 @@
       {%- endif -%}
     {%- endif -%}
   </div>
-
-  <script>
-    (function () {
-      if (window.__agavInit) return;
-      window.__agavInit = true;
-      document.addEventListener('click', function (e) {
-        document.querySelectorAll('details.agav__help[open]').forEach(function (d) {
-          if (!d.contains(e.target)) d.removeAttribute('open');
-        });
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key !== 'Escape') return;
-        document.querySelectorAll('details.agav__help[open]').forEach(function (d) { d.removeAttribute('open'); });
-      });
-    })();
-  </script>
 {%- endif -%}
+</div>
+
+<script type="module">
+  import { StandardEvents } from '@shopify/events';
+  if (!window.__agavInit) {
+    window.__agavInit = true;
+    // Horizon refreshes each buy-box piece on its own after a stage tap; this block
+    // listens for the same product-select event and swaps itself from the fetched HTML.
+    document.addEventListener(StandardEvents.productSelect, function (e) {
+      if (!(e.target instanceof Element) || e.target.closest('product-card') || !e.promise) return;
+      e.promise.then(function (r) {
+        var html = r && r.detail && r.detail.html;
+        if (!html) return;
+        document.querySelectorAll('[data-agav-host]').forEach(function (host) {
+          var fresh = html.querySelector('[data-agav-host="' + host.dataset.agavHost + '"]');
+          if (fresh) host.replaceWith(document.importNode(fresh, true));
+        });
+      }).catch(function () {});
+    }, true);
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('details.agav__help[open]').forEach(function (d) {
+        if (!d.contains(e.target)) d.removeAttribute('open');
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      document.querySelectorAll('details.agav__help[open]').forEach(function (d) { d.removeAttribute('open'); });
+    });
+  }
+</script>
 
 {% stylesheet %}
+  [data-agav-host] {
+    width: 100%;
+  }
   .agav {
     --agav-ink: #2F2A22;
     --agav-muted: #56503F;

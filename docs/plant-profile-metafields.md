@@ -1,3 +1,6 @@
+> **Superseded on 4 Nov 2026 by `docs/plant-identity-handoff.md`**, which is the complete brief for
+> both filling sessions. This file is kept for the definition history.
+
 # Plant profile metafields — the fill plan
 
 Created 4 Nov 2026. The product page's "About this plant" / "Care guide" pair is now
