@@ -1,0 +1,683 @@
+{% comment %}
+  Plant profile — the "About this plant" / "Care guide" pair on product pages,
+  rebuilt to read per-plant metafields (namespace `custom`) instead of one set
+  of hardcoded strings shared by every product.
+
+  Metafields read (all on the product):
+    plant_summary, botanical_name, origin, growth_habit, mature_leaf_size,
+    variegation, rarity, care_level, pet_safe,
+    light_level / water_level / humidity_level (1–5, drawn as dots),
+    care_light / care_water / care_humidity / care_temperature / care_soil /
+    care_fertilizer (one line each; blank → the block's fallback text),
+    growth_stage / approximate_size / pot_size / root_condition (what you receive).
+
+  A value of "NA", "N/A" or "-" is treated as blank so it never prints.
+{% endcomment %}
+
+{%- liquid
+  assign p = closest.product
+  assign mf = p.metafields.custom
+
+  assign summary = mf.plant_summary.value | strip
+  assign botanical = mf.botanical_name.value | strip
+  assign origin = mf.origin.value | strip
+  assign habit = mf.growth_habit.value | strip
+  assign leaf = mf.mature_leaf_size.value | strip
+  assign varieg = mf.variegation.value | strip
+  assign rarity = mf.rarity.value | strip
+  assign care_level = mf.care_level.value | strip
+
+  assign stage = mf.growth_stage.value | strip
+  assign size = mf.approximate_size.value | strip
+  assign pot = mf.pot_size.value | strip
+  assign roots = mf.root_condition.value | strip
+
+  assign pot_check = pot | downcase | remove: '/' | remove: '.'
+  if pot_check == 'na' or pot_check == '-' or pot_check == 'none'
+    assign pot = ''
+  endif
+  assign stage_check = stage | downcase | remove: '/'
+  if stage_check == 'na' or stage_check == '-'
+    assign stage = ''
+  endif
+  assign size_check = size | downcase | remove: '/'
+  if size_check == 'na' or size_check == '-'
+    assign size = ''
+  endif
+  assign roots_check = roots | downcase | remove: '/'
+  if roots_check == 'na' or roots_check == '-'
+    assign roots = ''
+  endif
+
+  assign light_txt = mf.care_light.value | strip
+  if light_txt == blank
+    assign light_txt = block.settings.default_light
+  endif
+  assign water_txt = mf.care_water.value | strip
+  if water_txt == blank
+    assign water_txt = block.settings.default_water
+  endif
+  assign humid_txt = mf.care_humidity.value | strip
+  if humid_txt == blank
+    assign humid_txt = block.settings.default_humidity
+  endif
+  assign temp_txt = mf.care_temperature.value | strip
+  if temp_txt == blank
+    assign temp_txt = block.settings.default_temperature
+  endif
+  assign soil_txt = mf.care_soil.value | strip
+  if soil_txt == blank
+    assign soil_txt = block.settings.default_soil
+  endif
+  assign fert_txt = mf.care_fertilizer.value | strip
+  if fert_txt == blank
+    assign fert_txt = block.settings.default_fertilizer
+  endif
+
+  assign light_lvl = mf.light_level.value | plus: 0
+  assign water_lvl = mf.water_level.value | plus: 0
+  assign humid_lvl = mf.humidity_level.value | plus: 0
+
+  assign pet_set = false
+  if mf.pet_safe.value == true or mf.pet_safe.value == false
+    assign pet_set = true
+  endif
+
+  assign genus = p.type | downcase | capitalize
+  assign has_facts = false
+  if origin != blank or habit != blank or leaf != blank or varieg != blank
+    assign has_facts = true
+  endif
+  assign has_receive = false
+  if stage != blank or size != blank or pot != blank or roots != blank
+    assign has_receive = true
+  endif
+  unless block.settings.show_receive
+    assign has_receive = false
+  endunless
+  assign has_pills = false
+  if rarity != blank or care_level != blank or habit != blank or pet_set
+    assign has_pills = true
+  endif
+  assign show_head = false
+  if botanical != blank or has_pills
+    assign show_head = true
+  endif
+  unless block.settings.show_header
+    assign show_head = false
+  endunless
+-%}
+
+<div
+  class="agpp"
+  style="--agpp-card: {{ block.settings.card_bg }}; --agpp-care: {{ block.settings.care_bg }}; --agpp-line: {{ block.settings.line }}; --agpp-ink: {{ block.settings.ink }}; --agpp-muted: {{ block.settings.muted }}; --agpp-accent: {{ block.settings.accent }}; --agpp-warm: {{ block.settings.warm }}; --agpp-pad: {{ block.settings.padding }}px; --agpp-pad-m: {{ block.settings.padding_mobile }}px;"
+  {{ block.shopify_attributes }}
+>
+  {%- if show_head -%}
+    <header class="agpp__head">
+      <div class="agpp__names">
+        {%- if genus != blank -%}<span class="agpp__eyebrow">{{ genus }}</span>{%- endif -%}
+        {%- if botanical != blank -%}<p class="agpp__botanical">{{ botanical }}</p>{%- endif -%}
+      </div>
+      {%- if has_pills -%}
+        <ul class="agpp__pills" aria-label="At a glance">
+          {%- if rarity != blank -%}<li class="agpp__pill agpp__pill--warm">{{ rarity }}</li>{%- endif -%}
+          {%- if care_level != blank -%}<li class="agpp__pill">{{ care_level }} care</li>{%- endif -%}
+          {%- if habit != blank -%}<li class="agpp__pill">{{ habit }}</li>{%- endif -%}
+          {%- if pet_set -%}
+            {%- if mf.pet_safe.value == true -%}
+              <li class="agpp__pill">Pet safe</li>
+            {%- else -%}
+              <li class="agpp__pill agpp__pill--ghost">Not pet safe</li>
+            {%- endif -%}
+          {%- endif -%}
+        </ul>
+      {%- endif -%}
+    </header>
+  {%- endif -%}
+
+  <div class="agpp__grid">
+    <section class="agpp__card agpp__card--about" aria-labelledby="agpp-about-{{ block.id }}">
+      <h3 id="agpp-about-{{ block.id }}" class="agpp__title">{{ block.settings.about_title }}</h3>
+
+      {%- if summary != blank -%}
+        <p class="agpp__summary">{{ summary | escape | newline_to_br }}</p>
+      {%- elsif block.settings.default_summary != blank -%}
+        <p class="agpp__summary">{{ block.settings.default_summary }}</p>
+      {%- endif -%}
+
+      {%- if has_facts -%}
+        <dl class="agpp__facts">
+          {%- if origin != blank -%}<div class="agpp__fact"><dt>Native range</dt><dd>{{ origin }}</dd></div>{%- endif -%}
+          {%- if habit != blank -%}<div class="agpp__fact"><dt>Growth habit</dt><dd>{{ habit }}</dd></div>{%- endif -%}
+          {%- if leaf != blank -%}<div class="agpp__fact"><dt>Mature leaf</dt><dd>{{ leaf }}</dd></div>{%- endif -%}
+          {%- if varieg != blank -%}<div class="agpp__fact"><dt>Variegation</dt><dd>{{ varieg }}</dd></div>{%- endif -%}
+        </dl>
+      {%- endif -%}
+
+      {%- if has_receive -%}
+        <div class="agpp__receive">
+          <p class="agpp__receive-title">{{ block.settings.receive_title }}</p>
+          <ul class="agpp__stats">
+            {%- if stage != blank -%}<li><span>Stage</span><strong>{{ stage }}</strong></li>{%- endif -%}
+            {%- if size != blank -%}<li><span>Size</span><strong>{{ size }}</strong></li>{%- endif -%}
+            {%- if pot != blank -%}<li><span>Pot</span><strong>{{ pot }}</strong></li>{%- endif -%}
+            {%- if roots != blank -%}<li><span>Roots</span><strong>{{ roots }}</strong></li>{%- endif -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- if block.settings.vary_note != blank -%}
+        <p class="agpp__note">{{ block.settings.vary_note }}</p>
+      {%- endif -%}
+    </section>
+
+    <section class="agpp__card agpp__card--care" aria-labelledby="agpp-care-{{ block.id }}">
+      <h3 id="agpp-care-{{ block.id }}" class="agpp__title">{{ block.settings.care_title }}</h3>
+      <ul class="agpp__care">
+        {%- if light_txt != blank -%}
+          <li class="agpp__row">
+            <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></span>
+            <div class="agpp__body">
+              <p class="agpp__label">Light{% if light_lvl > 0 %}{% render 'plant-profile-dots', level: light_lvl, label: 'Light' %}{% endif %}</p>
+              <p class="agpp__text">{{ light_txt }}</p>
+            </div>
+          </li>
+        {%- endif -%}
+        {%- if water_txt != blank -%}
+          <li class="agpp__row">
+            <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z"/></svg></span>
+            <div class="agpp__body">
+              <p class="agpp__label">Water{% if water_lvl > 0 %}{% render 'plant-profile-dots', level: water_lvl, label: 'Water' %}{% endif %}</p>
+              <p class="agpp__text">{{ water_txt }}</p>
+            </div>
+          </li>
+        {%- endif -%}
+        {%- if humid_txt != blank -%}
+          <li class="agpp__row">
+            <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-.6-8A6 6 0 0 1 18 9.5a3.5 3.5 0 0 1-.5 7"/><path d="M9 21l1.5-2.5M13 21l1.5-2.5M17 21l1.5-2.5"/></svg></span>
+            <div class="agpp__body">
+              <p class="agpp__label">Humidity{% if humid_lvl > 0 %}{% render 'plant-profile-dots', level: humid_lvl, label: 'Humidity' %}{% endif %}</p>
+              <p class="agpp__text">{{ humid_txt }}</p>
+            </div>
+          </li>
+        {%- endif -%}
+        {%- if temp_txt != blank -%}
+          <li class="agpp__row">
+            <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0z"/><path d="M12 9v6"/></svg></span>
+            <div class="agpp__body">
+              <p class="agpp__label">Temperature</p>
+              <p class="agpp__text">{{ temp_txt }}</p>
+            </div>
+          </li>
+        {%- endif -%}
+        {%- if soil_txt != blank -%}
+          <li class="agpp__row">
+            <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10h16l-1.5 10h-13z"/><path d="M12 10V6M12 6c-2.5 0-3.5-1.5-3.5-3 2 0 3.5.5 3.5 3zM12 6c2.5 0 3.5-1.5 3.5-3-2 0-3.5.5-3.5 3z"/></svg></span>
+            <div class="agpp__body">
+              <p class="agpp__label">Soil</p>
+              <p class="agpp__text">{{ soil_txt }}</p>
+            </div>
+          </li>
+        {%- endif -%}
+        {%- if fert_txt != blank -%}
+          <li class="agpp__row">
+            <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 20c0-7 4-12 14-13-1 10-6 14-13 14"/><path d="M5 20c3-4 6-7 10-9"/></svg></span>
+            <div class="agpp__body">
+              <p class="agpp__label">Feeding</p>
+              <p class="agpp__text">{{ fert_txt }}</p>
+            </div>
+          </li>
+        {%- endif -%}
+      </ul>
+      {%- if block.settings.care_link_text != blank and block.settings.care_link_url != blank -%}
+        <a class="agpp__more" href="{{ block.settings.care_link_url }}">{{ block.settings.care_link_text }} <span aria-hidden="true">&rarr;</span></a>
+      {%- endif -%}
+    </section>
+  </div>
+</div>
+
+{% stylesheet %}
+  .agpp {
+    width: 100%;
+    font-family: var(--font-body--family);
+    color: var(--agpp-ink);
+    padding-block: var(--agpp-pad);
+  }
+  .agpp__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px 24px;
+    margin-bottom: 20px;
+  }
+  .agpp__eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--agpp-accent);
+    margin-bottom: 4px;
+  }
+  .agpp__botanical {
+    font-family: var(--font-accent--family);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .agpp__pills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .agpp__pill {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    padding: 7px 11px;
+    border: 1px solid var(--agpp-line);
+    border-radius: 2px;
+    background: var(--agpp-card);
+    color: var(--agpp-ink);
+    white-space: nowrap;
+  }
+  .agpp__pill--warm {
+    border-color: var(--agpp-warm);
+    color: var(--agpp-warm);
+  }
+  .agpp__pill--ghost {
+    color: var(--agpp-muted);
+  }
+  .agpp__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+  .agpp__card {
+    border: 1px solid var(--agpp-line);
+    border-radius: 4px;
+    padding: 28px;
+    background: var(--agpp-card);
+  }
+  .agpp__card--care {
+    background: var(--agpp-care);
+  }
+  .agpp__title {
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 0 0 16px;
+  }
+  .agpp__summary {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 20px;
+  }
+  .agpp__facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+    margin: 0 0 20px;
+    padding: 0 0 20px;
+    border-bottom: 1px solid var(--agpp-line);
+  }
+  .agpp__fact dt {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--agpp-muted);
+    margin: 0 0 4px;
+  }
+  .agpp__fact dd {
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0;
+  }
+  .agpp__receive-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--agpp-muted);
+    margin: 0 0 10px;
+  }
+  .agpp__stats {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .agpp__stats li {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 12px;
+    border: 1px solid var(--agpp-line);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.45);
+  }
+  .agpp__stats span {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--agpp-muted);
+  }
+  .agpp__stats strong {
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .agpp__note {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--agpp-muted);
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--agpp-line);
+  }
+  .agpp__care {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .agpp__row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-top: 1px solid var(--agpp-line);
+  }
+  .agpp__row:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .agpp__row:last-child {
+    padding-bottom: 0;
+  }
+  .agpp__icon {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--agpp-accent);
+    color: #fff;
+  }
+  .agpp__icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .agpp__body {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .agpp__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 6px 0 3px;
+  }
+  .agpp__dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .agpp__dots i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--agpp-accent);
+    background: transparent;
+  }
+  .agpp__dots i.on {
+    background: var(--agpp-accent);
+  }
+  .agpp__text {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--agpp-ink);
+  }
+  .agpp__more {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--agpp-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media screen and (max-width: 749px) {
+    .agpp {
+      padding-block: var(--agpp-pad-m);
+    }
+    .agpp__grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .agpp__card {
+      padding: 20px 18px;
+    }
+    .agpp__stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .agpp__stats strong {
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+    .agpp__botanical {
+      font-size: 21px;
+    }
+    .agpp__title {
+      font-size: 20px;
+    }
+    .agpp__head {
+      margin-bottom: 14px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Plant profile",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Reads the product's custom metafields (summary, botanical name, native range, growth habit, mature leaf, variegation, rarity, care level, pet safe, light / water / humidity levels, the six care lines, and what you receive). Blank care lines fall back to the defaults below."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show botanical name and pills",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "About this plant"
+    },
+    {
+      "type": "text",
+      "id": "about_title",
+      "label": "Title",
+      "default": "About this plant"
+    },
+    {
+      "type": "textarea",
+      "id": "default_summary",
+      "label": "Fallback summary",
+      "info": "Used only when the product has no Plant summary metafield.",
+      "default": "A collector aroid grown from tissue culture in our partner laboratory and acclimated by hand before it ships."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_receive",
+      "label": "Show what you receive",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "receive_title",
+      "label": "What you receive title",
+      "default": "What you'll receive"
+    },
+    {
+      "type": "text",
+      "id": "vary_note",
+      "label": "Variation note",
+      "default": "Every plant is its own: size, leaf shape and variegation vary a little from the photos."
+    },
+    {
+      "type": "header",
+      "content": "Care guide"
+    },
+    {
+      "type": "text",
+      "id": "care_title",
+      "label": "Title",
+      "default": "Care guide"
+    },
+    {
+      "type": "text",
+      "id": "default_light",
+      "label": "Light (fallback)",
+      "default": "Bright, indirect light. No direct midday sun."
+    },
+    {
+      "type": "text",
+      "id": "default_water",
+      "label": "Water (fallback)",
+      "default": "Water when the top few centimetres of mix are dry."
+    },
+    {
+      "type": "text",
+      "id": "default_humidity",
+      "label": "Humidity (fallback)",
+      "default": "Happiest at 60% or more."
+    },
+    {
+      "type": "text",
+      "id": "default_temperature",
+      "label": "Temperature (fallback)",
+      "default": "18–27 °C (65–80 °F). Keep away from cold drafts."
+    },
+    {
+      "type": "text",
+      "id": "default_soil",
+      "label": "Soil (fallback)",
+      "default": "Chunky, free-draining aroid mix with perlite and bark."
+    },
+    {
+      "type": "text",
+      "id": "default_fertilizer",
+      "label": "Feeding (fallback)",
+      "default": "Diluted liquid feed monthly through the growing season."
+    },
+    {
+      "type": "text",
+      "id": "care_link_text",
+      "label": "Link text",
+      "default": "Read the acclimation guide"
+    },
+    {
+      "type": "url",
+      "id": "care_link_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "About card",
+      "default": "#F2EBDE"
+    },
+    {
+      "type": "color",
+      "id": "care_bg",
+      "label": "Care card",
+      "default": "#E8EDE1"
+    },
+    {
+      "type": "color",
+      "id": "line",
+      "label": "Borders",
+      "default": "#DED3C2"
+    },
+    {
+      "type": "color",
+      "id": "ink",
+      "label": "Text",
+      "default": "#2F2A22"
+    },
+    {
+      "type": "color",
+      "id": "muted",
+      "label": "Labels",
+      "default": "#56503F"
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Accent (icons, dots)",
+      "default": "#5C6B4C"
+    },
+    {
+      "type": "color",
+      "id": "warm",
+      "label": "Rarity pill",
+      "default": "#B4693C"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "label": "Vertical padding (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plant profile"
+    }
+  ]
+}
+{% endschema %}

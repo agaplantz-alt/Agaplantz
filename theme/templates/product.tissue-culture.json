@@ -602,6 +602,35 @@
           },
           "blocks": {}
         },
+        "plant_profile_main": {
+          "type": "plant-profile",
+          "settings": {
+            "show_header": true,
+            "about_title": "About this plant",
+            "default_summary": "A collector aroid grown from tissue culture in our partner laboratory and acclimated by hand before it ships.",
+            "show_receive": true,
+            "receive_title": "What you'll receive",
+            "vary_note": "Every plant is its own: size, leaf shape and variegation vary a little from the photos.",
+            "care_title": "Care guide",
+            "default_light": "Bright, indirect light. No direct midday sun.",
+            "default_water": "Water when the top few centimetres of mix are dry.",
+            "default_humidity": "Happiest at 60% or more.",
+            "default_temperature": "18–27 °C (65–80 °F). Keep away from cold drafts.",
+            "default_soil": "Chunky, free-draining aroid mix with perlite and bark.",
+            "default_fertilizer": "Diluted liquid feed monthly through the growing season.",
+            "care_link_text": "Read the acclimation guide",
+            "care_link_url": "/pages/acclimation-guide",
+            "card_bg": "#F2EBDE",
+            "care_bg": "#E8EDE1",
+            "line": "#DED3C2",
+            "ink": "#2F2A22",
+            "muted": "#56503F",
+            "accent": "#5C6B4C",
+            "warm": "#B4693C",
+            "padding": 32,
+            "padding_mobile": 20
+          }
+        },
         "ai_gen_block_b7314fa_8XqVwX": {
           "type": "ai_gen_block_b7314fa",
           "settings": {
@@ -650,7 +679,8 @@
             "icon_background": "#e8f3e3",
             "icon_color": "#4a7c3a"
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         },
         "ai_gen_block_4c278db_RDNEHJ": {
           "type": "ai_gen_block_4c278db",
@@ -698,6 +728,7 @@
       },
       "block_order": [
         "ai_gen_block_d0d88e1_RyQrMA",
+        "plant_profile_main",
         "ai_gen_block_b7314fa_8XqVwX",
         "ai_gen_block_4c278db_RDNEHJ"
       ],

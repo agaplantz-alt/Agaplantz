@@ -1,0 +1,11 @@
+{%- comment -%}
+  Five-dot level meter for the plant profile block.
+  Usage: {% render 'plant-profile-dots', level: 3, label: 'Light' %}
+{%- endcomment -%}
+{%- assign lvl = level | plus: 0 -%}
+{%- if lvl > 5 -%}{%- assign lvl = 5 -%}{%- endif -%}
+<span class="agpp__dots" role="img" aria-label="{{ label }} {{ lvl }} of 5">
+  {%- for i in (1..5) -%}
+    <i{% if i <= lvl %} class="on"{% endif %}></i>
+  {%- endfor -%}
+</span>

@@ -35,7 +35,11 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 1 Nov 2026 22:30Z: MAIN is `Updated copy of AgaPlantz 2026 — what is tissue…` =
+**As of 4 Nov 2026: MAIN is `AgaPlantz 2026 — November ladder 20/15/10 (from live)` =
+`189923491919`** — the owner published it; the re-seeded pages are repaired live. The draft waiting
+for them is the plant-profile theme `190043619407` (see that section).
+
+**Before that, 1 Nov 2026 22:30Z: MAIN was `Updated copy of AgaPlantz 2026 — what is tissue…` =
 `189909401679`**, created by Shopify at 16:48:43Z — 68 seconds after `189688381519` became MAIN —
 when the owner published again. **That copy re-seeded three JSON templates**: `page.pre-order.json`
 and `page.tissue-culture.json` came back as a bare `main-page` template (identical checksums, two
@@ -637,6 +641,38 @@ through a fogged prop-box lid, where condensation hides the plant. A plantlet in
 cup or tray in daylight is exactly right; a murky one behind plastic is not. When
 skipping one, check the next review in that product's feed — the replacement is
 often another photo of the same kind.
+
+## Plant profile — the product-page "About this plant" / "Care guide" (4 Nov 2026)
+
+The owner, looking at a product page: *"we need to upgrade this section now … make it more
+premium. And meta fields also need to be upgraded … create those first"* — another Claude
+will fill the values. The old pair was `ai_gen_block_b7314fa_8XqVwX` in the `_blocks` section
+`177813606948323435` on both `product.json` and `product.tissue-culture.json`: an AI block with
+16px radii and off-palette greens, whose About card read four `custom.*` metafields that say
+the same thing on nearly every product (Juvenile / 2–4 inch / NA / Establishing) and whose
+six care lines were **one hardcoded string each, shared by all 600 products** — an Alocasia
+and a Monstera gave identical watering advice.
+
+**Now:** `blocks/plant-profile.liquid` (+ `snippets/plant-profile-dots.liquid`), a theme block
+added as `plant_profile_main` right after the "What this plant can become" block on both
+templates; the old block is `disabled: true`, settings intact, so it can come back. Design
+system, not AI defaults: sand About card, sage Care card, clay borders, 4px radius, Lora titles,
+moss icon discs. Header strip above the cards: genus eyebrow (from `product.type`), botanical
+name in italic Lora, pills (rarity in terracotta, "<level> care", growth habit, pet safe).
+About card: summary, a 2-column facts list (native range / growth habit / mature leaf /
+variegation), "What you'll receive" tiles from the four old fields (`NA`-style values are
+hidden), the variation note. Care card: six rows, with a five-dot meter beside Light, Water
+and Humidity when the 1–5 level is set; each line falls back to a block setting when the
+product's metafield is blank, so nothing breaks before the fill. 18 definitions were created
+with `metafieldDefinitionCreate` (ids and the fill plan in **`docs/plant-profile-metafields.md`**
+— that file is the brief for the Claude doing the values). `custom` pins are at Shopify's cap of
+20, which is why four of the 18 are unpinned. One product is filled as the worked example:
+Alocasia Black Velvet Pink Variegated. Theme **`AgaPlantz 2026 — plant profile (metafields)` =
+`190043619407`** (from MAIN `189923491919`, which the owner published on 1 Nov with the
+November ladder). Verified: all four files match the repo by checksum, both templates render
+with no Liquid error, screenshots at 390 and 1280. The block sits in a `_blocks` section, not in
+`main`, so it does **not** re-render on variant change — the "What you'll receive" tiles are
+per product, not per stage (see the plan file for how the two templates split that).
 
 ## Reviews on product pages — Loox only, since 25 Oct 2026
 
@@ -1719,6 +1755,9 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/templates/page.tissue-culture.json` | the page's blocks — all its structured copy |
 | `theme/templates/page.pre-order.json` | the Pre Order page, same section, 40 blocks |
 | `theme/templates/product.accessory.json` | owner-made template for the self-watering pot (editor header stripped) |
+| `theme/blocks/plant-profile.liquid` / `theme/snippets/plant-profile-dots.liquid` | product-page About / Care cards, metafield-driven |
+| `theme/templates/product.json` / `product.tissue-culture.json` | product templates (plant profile block, hidden old AI block) |
+| `docs/plant-profile-metafields.md` | the 18 metafield definitions and the fill brief for the other Claude |
 | `brand/` | the 3D logo renders uploaded to Files (header logo, favicon, leaf, dark) |
 | `halloween/` | the Halloween sale theme files (temporary, see that section) |
 | `merged/index.json` | homepage of the Halloween + pages theme: live Halloween file plus the `tc_learn_more` strip |
