@@ -42,7 +42,9 @@ variant they describe the stage the template is for: tissue-culture products
 Establishing), default-template products carry the rooted plant (4–6 inch / 2 inch pot /
 Well established). `NA`, `N/A`, `-` and `none` are treated as blank and never print.
 
-`young` / `big_one` (file references) feed the "What this plant can become" block above.
+`young` / `big_one` (file references) are the juvenile and mature photos at the top of the band
+(juvenile falls back to the product's first image; with neither set the photo row is skipped). The
+mature photo, blurred, is also the band's background, so a good `big_one` matters twice.
 
 ## Filling guidance
 

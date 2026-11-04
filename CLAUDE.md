@@ -654,11 +654,23 @@ six care lines were **one hardcoded string each, shared by all 600 products** �
 and a Monstera gave identical watering advice.
 
 **Now:** `blocks/plant-profile.liquid` (+ `snippets/plant-profile-dots.liquid`), a theme block
-added as `plant_profile_main` right after the "What this plant can become" block on both
-templates; the old block is `disabled: true`, settings intact, so it can come back. Design
-system, not AI defaults: sand About card, sage Care card, clay borders, 4px radius, Lora titles,
-moss icon discs. Header strip above the cards: genus eyebrow (from `product.type`), botanical
-name in italic Lora, pills (rarity in terracotta, "<level> care", growth habit, pet safe).
+added as `plant_profile_main` on both templates. **Second pass the same night:** the owner
+wanted the "What This Plant Can Become" block (`ai_gen_block_d0d88e1_RyQrMA`, juvenile →
+mature photos from `custom.young` / `custom.big_one`) *integrated* into it, and a background
+"like the countdown, blurry kind of … expensive". So it is now **one full-bleed band**: the
+host `_blocks` section `177813606948323435` is `section_width: full-width` and the block caps
+its own content at `var(--page-width)` / `var(--page-margin)`; behind everything sits the
+plant's own mature photo (then juvenile, then first image; an `image_picker` override exists)
+at `blur(40px)`, scaled 1.3, at 55% over a sand base with a cream gradient, and the two cards
+are translucent (`#FBF8F2C7` / `#E8EDE1D1`, `alpha: true` colour settings) with
+`backdrop-filter: blur(14px)`, so each product page gets its own colour wash. Top row on
+desktop: photos left (two square tiles, moss arrow disc between, Lora captions), names and
+pills plus "What this plant becomes" + note on the right; on a phone it is names, photos,
+text. Both AI blocks (`d0d88e1` and `b7314fa`) are `disabled: true`, settings intact, so they
+can come back. Design system, not AI defaults: sand About card, sage Care card, clay borders,
+4px radius, Lora titles, moss icon discs. Header: genus eyebrow (from `product.type`),
+botanical name in italic Lora (falls back to the product title), pills (rarity in terracotta,
+"<level> care", growth habit, pet safe).
 About card: summary, a 2-column facts list (native range / growth habit / mature leaf /
 variegation), "What you'll receive" tiles from the four old fields (`NA`-style values are
 hidden), the variation note. Care card: six rows, with a five-dot meter beside Light, Water
@@ -670,7 +682,8 @@ with `metafieldDefinitionCreate` (ids and the fill plan in **`docs/plant-profile
 Alocasia Black Velvet Pink Variegated. Theme **`AgaPlantz 2026 — plant profile (metafields)` =
 `190043619407`** (from MAIN `189923491919`, which the owner published on 1 Nov with the
 November ladder). Verified: all four files match the repo by checksum, both templates render
-with no Liquid error, screenshots at 390 and 1280. The block sits in a `_blocks` section, not in
+with no Liquid error, screenshots at 390 and 1280. Screenshots at 390 and 1280 again after the merge; the
+band is `x: 0`, full viewport width. The block sits in a `_blocks` section, not in
 `main`, so it does **not** re-render on variant change — the "What you'll receive" tiles are
 per product, not per stage (see the plan file for how the two templates split that).
 

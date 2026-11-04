@@ -434,12 +434,23 @@
             "padding_desktop": 60,
             "padding_mobile": 30
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         },
         "plant_profile_main": {
           "type": "plant-profile",
           "settings": {
-            "show_header": true,
+            "eyebrow": "Plant profile",
+            "show_wash": true,
+            "blur": 40,
+            "show_progression": true,
+            "prog_heading": "What this plant becomes",
+            "prog_text": "You'll receive a healthy juvenile plant like the one shown. Leaf shape, size and colour change as it matures; the mature photo is a reference, not the exact plant.",
+            "prog_note": "With steady care it grows into the plant on the right.",
+            "juvenile_label": "Juvenile",
+            "juvenile_text": "What you'll receive",
+            "mature_label": "Mature",
+            "mature_text": "Reference, not the exact plant",
             "about_title": "About this plant",
             "default_summary": "A collector aroid grown from tissue culture in our partner laboratory and acclimated by hand before it ships.",
             "show_receive": true,
@@ -454,15 +465,16 @@
             "default_fertilizer": "Diluted liquid feed monthly through the growing season.",
             "care_link_text": "Read the acclimation guide",
             "care_link_url": "/pages/acclimation-guide",
-            "card_bg": "#F2EBDE",
-            "care_bg": "#E8EDE1",
+            "card_bg": "#FBF8F2C7",
+            "care_bg": "#E8EDE1D1",
             "line": "#DED3C2",
             "ink": "#2F2A22",
             "muted": "#56503F",
             "accent": "#5C6B4C",
             "warm": "#B4693C",
-            "padding": 32,
-            "padding_mobile": 20
+            "padding": 64,
+            "padding_mobile": 36,
+            "wash": "#F2EBDE"
           }
         },
         "ai_gen_block_b7314fa_8XqVwX": {
@@ -575,7 +587,7 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
-        "section_width": "page-width",
+        "section_width": "full-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
