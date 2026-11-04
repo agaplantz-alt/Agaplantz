@@ -10,6 +10,79 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-04
+
+Evidence was thin again: mostly seller listings and SEO blogs. None of today's ideas repeats an earlier one, except
+idea 3, which says what changed.
+
+### Product ideas
+
+**1. Velvet Philodendron hybrids: 'Majestic' and 'Glorious'.**
+- What: two crosses collectors know by name. 'Majestic' is sodiroi x verrucosum and 'Glorious' is gloriosum x
+  melanochrysum. They differ from Caramel Marble, logged on 2026-11-02, which is about variegation; these are about
+  velvet leaves.
+- Why now: one seller's 2026 guide says demand for specimen-grade Philodendron has held steady.
+  ([Soltech](https://soltech.com/en-ca/blogs/blog/the-ultimate-status-symbols-most-expensive-houseplants-in-2026))
+- Price signal: both listed at $49.99 on one shop; stock status not shown (unverified).
+  ([Carnivero](https://www.carnivero.com/collections/philodendron?page=1))
+- Difficulty: medium. They need a lab source that can ship to Canada.
+- First step: ask your lab whether it has either hybrid as TC and at what price per 100.
+
+**2. Philodendron 'Billietiae x Jose Buono' and variegated 'Red Congo'.**
+- What: two TC Philodendrons at the higher end of the range. One is a cross of two collector species; the other is
+  a variegated form of a common, hardy plant.
+- Why now: both are being sold as TC by US labs, and Red Congo variegated is offered wholesale on Faire with a
+  minimum order of 5.
+  ([Billietiae x Jose Buono](https://reach.dog/shop/orange-lake-nursery/products/philodendron-billietiae-x-jose-buono-tissue-culture),
+  [Red Congo variegated TC](https://orangelakenursery.com/products/philodendron-variegated-red-congo-tissue-culture),
+  [Faire](https://www.faire.com/product/p_8t5br9pprd))
+- Price signal: Billietiae x Jose Buono TC at $89.99 USD, marked down from $99.99. Red Congo wholesale price was not
+  captured (unverified).
+- Difficulty: medium.
+- First step: request the Red Congo wholesale price on Faire. A minimum of 5 is a cheap test.
+
+**3. A shelf grow light as a standalone add-on.**
+- What: one slim full-spectrum LED bar, sold alongside plants at checkout. The cabinet kit on 2026-11-02 included a
+  light; this is the light on its own, for buyers without a cabinet.
+- What changed: a Canadian price range and a winter angle turned up today. An Ontario news piece pairs slim LED panels
+  with houseplants to offset short winter days and puts a budget panel at about $80 to $120 CAD. Lee Valley sells
+  full-spectrum lights from $59.50 CAD.
+  ([Georgian Bay News](https://georgianbaynews.com/?p=11476), [Lee Valley](https://www.leevalley.com/en-ca/shop/garden/planting/grow-lights),
+  [Pepiniere](https://www.pepiniere.ca/en/collections/lighting-for-plants))
+- Price signal: retail $59.50 to $120 CAD. Your wholesale cost was not checked (unverified).
+- Difficulty: easy. It is not alive, but buy certified units: one plant blog warns that uncertified grow lights are
+  common on online marketplaces.
+  ([Mossify](https://www.mossify.ca/blogs/meet-the-bloggers/creating-the-perfect-lighting-environment-for-houseplants-with-a-full-spectrum-led-grow-light-tips-and-best-practices))
+- First step: find a Canadian distributor for one certified LED bar and add it as a checkout upsell.
+
+### Business ideas
+
+**1. "Statement plant" add-on for GTA office-plant companies.**
+- What: supply rare, eye-catching plants to the companies that already maintain office plants, instead of competing
+  with them.
+- Why now: the GTA already has established office-plant firms such as Moore Park Plantscapes and Toronto Office
+  Plants. One data aggregator estimates Toronto Office Plants at about 20 staff and $4.1 million in revenue
+  (unverified). That makes them buyers, not a market to enter cold.
+  ([Moore Park on Datanyze](https://www.datanyze.com/companies/moore-park-plantscapes/346870319),
+  [Plantation on Datanyze](https://www.datanyze.com/companies/plantation/532552781))
+- Price signal: no leasing or wholesale rates found (unverified).
+- Difficulty: medium. Offices need tough plants, so start with hardy Philodendron and Monstera, not delicate TC.
+- First step: email Moore Park Plantscapes a short note offering a sample of three statement plants.
+
+**2. A behind-the-scenes YouTube or Shorts channel.**
+- What: short videos of the lab-to-door process: unboxing TC flasks, acclimation, winter packing. Earn from
+  affiliate links and drive store sales.
+- Why now: a backyard nursery owner credits his channel's success to filming himself working in his nursery, not
+  SEO. Guides say ads are only part of creator income, with affiliate links and sponsorships the rest. Earnings
+  figures in these guides are unverified.
+  ([Side Hustle Nation](https://www.sidehustlenation.com/the-backyard-nursery-side-hustle/),
+  [Fluxnote guide](https://fluxnote.io/guides/start-gardening-youtube-channel-2026))
+- Price signal: none reliable (unverified).
+- Difficulty: easy to start, slow to pay off.
+- First step: film one 30-second clip of the next TC batch being unpacked and post it as a Short and a Reel.
+
+---
+
 ## 2026-11-03
 
 Evidence was thin again: seller listings and blogs, no hard sales data. Skipped as already covered: Black Friday,
