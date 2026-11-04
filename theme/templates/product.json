@@ -227,6 +227,35 @@
               },
               "blocks": {}
             },
+            "availability_bottom": {
+              "type": "availability-chance",
+              "settings": {
+                "layout": "card",
+                "label": "Availability chance",
+                "label_confirmed": "Confirmed for this batch",
+                "label_high": "High",
+                "label_medium": "Medium",
+                "label_low": "Low",
+                "label_na": "Not available this batch",
+                "show_stock_line": true,
+                "label_stock": "Availability",
+                "stock_text": "In stock, ready to ship",
+                "help_title": "What is an availability chance?",
+                "help_text": "Pre-orders are grown to order by our partner laboratory. After the cut-off we place the batch and the lab confirms what it can supply. A plant that comes back unavailable is refunded in full. The chance is our honest estimate from how this plant has done in recent batches.",
+                "last_label": "Last batch:",
+                "last_available": "available, every order shipped.",
+                "last_partial": "partly available, some orders were refunded.",
+                "last_na": "not available at the lab, orders were refunded.",
+                "last_none": "not part of the last batch.",
+                "updated_label": "Updated",
+                "help_link_text": "How pre-orders work",
+                "help_link_url": "/pages/pre-order",
+                "padding_top": 4,
+                "padding_bottom": 8,
+                "help_label": "How it's decided",
+                "card_bg": "#E8EDE1"
+              }
+            },
             "subscriptions_app_block_JX7Tpw": {
               "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
               "settings": {
@@ -317,33 +346,6 @@
               },
               "blocks": {}
             },
-            "availability_bottom": {
-              "type": "availability-chance",
-              "settings": {
-                "layout": "card",
-                "label": "Availability chance",
-                "label_confirmed": "Confirmed for this batch",
-                "label_high": "High",
-                "label_medium": "Medium",
-                "label_low": "Low",
-                "label_na": "Not available this batch",
-                "show_stock_line": true,
-                "label_stock": "Availability",
-                "stock_text": "In stock, ready to ship",
-                "help_title": "What is an availability chance?",
-                "help_text": "Pre-orders are grown to order by our partner laboratory. After the cut-off we place the batch and the lab confirms what it can supply. A plant that comes back unavailable is refunded in full. The chance is our honest estimate from how this plant has done in recent batches.",
-                "last_label": "Last batch:",
-                "last_available": "available, every order shipped.",
-                "last_partial": "partly available, some orders were refunded.",
-                "last_na": "not available at the lab, orders were refunded.",
-                "last_none": "not part of the last batch.",
-                "updated_label": "Updated",
-                "help_link_text": "How pre-orders work",
-                "help_link_url": "/pages/pre-order",
-                "padding_top": 0,
-                "padding_bottom": 4
-              }
-            },
             "text_aEtTtq": {
               "type": "text",
               "name": "Product description",
@@ -401,10 +403,10 @@
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "availability_bottom",
             "subscriptions_app_block_JX7Tpw",
             "buy_buttons_eYQEYi",
             "acclimation_guarantee",
-            "availability_bottom",
             "text_aEtTtq",
             "text_price_lock"
           ]

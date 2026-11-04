@@ -74,7 +74,7 @@
 {%- if mode != 'none' -%}
   <div
     class="agav agav--{{ block.settings.layout }} agav--{{ mode }}{% if mode == 'chance' %} is-{{ key }}{% endif %}"
-    style="--agav-pt: {{ block.settings.padding_top }}px; --agav-pb: {{ block.settings.padding_bottom }}px;"
+    style="--agav-pt: {{ block.settings.padding_top }}px; --agav-pb: {{ block.settings.padding_bottom }}px; --agav-card: {{ block.settings.card_bg }};"
     {{ block.shopify_attributes }}
   >
     {%- if mode == 'stock' -%}
@@ -87,7 +87,7 @@
       <div class="agav__head">
         <span class="agav__label">{{ block.settings.label }}</span>
         <details class="agav__help">
-          <summary aria-label="{{ block.settings.help_title | escape }}" title="{{ block.settings.help_title | escape }}">?</summary>
+          <summary title="{{ block.settings.help_title | escape }}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>{{ block.settings.help_label }}</span></summary>
           <div class="agav__pop" role="dialog" aria-label="{{ block.settings.help_title | escape }}">
             <p class="agav__pop-title">{{ block.settings.help_title }}</p>
             {%- if block.settings.help_text != blank -%}
@@ -117,7 +117,7 @@
         <span class="agav__label">{{ block.settings.label }}</span>
         <span class="agav__pill"><i class="agav__dot" aria-hidden="true"></i>{{ chance_label }}</span>
         <details class="agav__help">
-          <summary aria-label="{{ block.settings.help_title | escape }}" title="{{ block.settings.help_title | escape }}">?</summary>
+          <summary title="{{ block.settings.help_title | escape }}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>{{ block.settings.help_label }}</span></summary>
           <div class="agav__pop" role="dialog" aria-label="{{ block.settings.help_title | escape }}">
             <p class="agav__pop-title">{{ block.settings.help_title }}</p>
             {%- if block.settings.help_text != blank -%}
@@ -166,6 +166,7 @@
     --agav-muted: #56503F;
     --agav-line: #DED3C2;
     --agav-sand: #F2EBDE;
+    --agav-sage: #E8EDE1;
     --agav-cream: #FBF8F2;
     --agav-moss: #5C6B4C;
     --agav-amber: #C08A3E;
@@ -183,9 +184,13 @@
   .agav.is-not-available { --agav-tone: var(--agav-grey); }
   .agav--card {
     border: 1px solid var(--agav-line);
+    border-left: 4px solid var(--agav-tone);
     border-radius: 4px;
-    background: var(--agav-sand);
-    padding: 14px 16px;
+    background: var(--agav-card, var(--agav-sage));
+    padding: 14px 16px 14px 18px;
+  }
+  .agav--card.agav--stock {
+    border-left-color: var(--agav-moss);
   }
   .agav__row {
     display: flex;
@@ -261,24 +266,31 @@
   .agav__help summary {
     list-style: none;
     cursor: pointer;
-    width: 22px;
-    height: 22px;
-    display: grid;
-    place-items: center;
-    border: 1px solid var(--agav-line);
-    border-radius: 50%;
-    background: var(--agav-cream);
-    color: var(--agav-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-size: 12px;
-    font-weight: 600;
+    letter-spacing: 0.03em;
     line-height: 1;
+    color: var(--agav-moss);
     user-select: none;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--agav-moss) 45%, transparent);
+    text-underline-offset: 3px;
   }
   .agav__help summary::-webkit-details-marker { display: none; }
+  .agav__help summary svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   .agav__help summary:hover,
   .agav__help[open] summary {
-    border-color: var(--agav-moss);
-    color: var(--agav-moss);
+    text-decoration-color: var(--agav-moss);
   }
   .agav__pop {
     position: absolute;
@@ -298,7 +310,7 @@
     color: var(--agav-ink);
   }
   .agav--card .agav__pop {
-    left: -1px;
+    left: -4px;
     right: -1px;
     top: calc(100% + 8px);
   }
@@ -400,6 +412,12 @@
     },
     {
       "type": "text",
+      "id": "help_label",
+      "label": "Trigger text",
+      "default": "How it's decided"
+    },
+    {
+      "type": "text",
       "id": "help_title",
       "label": "Title",
       "default": "What is an availability chance?"
@@ -418,6 +436,16 @@
     { "type": "text", "id": "updated_label", "label": "Updated label", "default": "Updated" },
     { "type": "text", "id": "help_link_text", "label": "Link text", "default": "How pre-orders work" },
     { "type": "url", "id": "help_link_url", "label": "Link" },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background",
+      "default": "#E8EDE1"
+    },
     {
       "type": "header",
       "content": "Spacing"

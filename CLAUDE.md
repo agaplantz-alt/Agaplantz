@@ -698,9 +698,14 @@ shop"*; a small (?) opens a pop-up explaining what the chance is and how the las
 
 `blocks/availability-chance.liquid`, a theme block inside `main` → `product-details` on both
 product templates. It was first placed twice (under the price and under the buy buttons);
-the owner then said *"we only want to make at one spot… above description"*, so it is
-**one block, `availability_bottom` (layout `card`, four-bar meter, last-batch line), right
-after `acclimation_guarantee` and before `text_aEtTtq`, the description.** The `inline`
+the owner then said *"we only want to make at one spot… above description"*, then, seeing it there,
+*"move this section above, so when person is clicking a different variance, it's changing…
+change the background color, because this one is just mixing up with everything… that
+question mark is not looking good."* So it is **one block, `availability_bottom` (layout
+`card`, four-bar meter, last-batch line), directly after `variant_picker_R3rGDr`**, where a
+stage tap visibly changes it; sage `#E8EDE1` (a `card_bg` setting) with a 4px left bar in the
+level's colour so it no longer blends with the sand guarantee card; and the trigger is an
+info icon plus "How it's decided" (`help_label`), not a circled "?". The `inline`
 layout still exists in the schema if a one-liner is ever wanted under the price. **It follows the selected variant** — it reads
 `selected_or_first_available_variant` and lives in `product-information`, which Horizon
 re-renders on variant change: a `Pre-Order` variant shows the chance (verified on the preview),
