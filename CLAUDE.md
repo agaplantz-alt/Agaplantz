@@ -724,8 +724,21 @@ proved the server render. **The same applies to `blocks/acclimation-guarantee.li
 the note under 30-Day Plant Guarantee that Horizon "re-renders the product-information
 section on variant change" is wrong for theme blocks; the guarantee tier on Devil Monster
 very likely does not switch between $150 and $240 on a tap either. Not fixed; flagged to the
-owner. Levels: Confirmed (filled moss pill) · High (moss dot) · Medium
-(amber) · Low (terracotta) · Not available (grey). The (?) is a native `<details>`; the pop-up
+owner. Levels: High (moss dot, 3 bars) · Medium (amber) · Low (terracotta) · Not available
+(grey); the `Confirmed` choice still exists on the definition but **renders as "High" with a
+full meter** — the owner (5 Nov): *"Don't you think this line gives too much surety that it
+will be confirmed for this batch? We should say like high and it was confirmed last batch"*,
+and *"the November batch has to still go through the lab at the end of this batch close"*, so
+nothing is confirmed while a batch is open. The last-batch line reads `last_batch_result`:
+`Available` → "Last batch: confirmed by the lab and every order shipped.", `Partially
+available` / `Not available` → their lines, **`Not ordered` → no line at all** (a plant that
+was not in the last batch must not read as unavailable). The same evening the batch
+session's first pass was corrected in the data: 117 products carrying `Confirmed` plus the
+note "Confirmed by the lab for the November batch." were set to `High`,
+`availability_updated` `2026-11-05`, note deleted (`metafieldsSet` ×2 per product and
+`metafieldsDelete`, 30 products per call; `metafieldsDelete`'s `userErrors` is a plain
+`UserError` with no `code` field). Notes must never be forward-looking — the rule is in the
+handoff. The (?) is a native `<details>`; the pop-up
 is absolutely positioned under the row and a document-level listener (guarded by
 `window.__agavInit`) closes it on outside click or Escape. **Nothing renders while
 `custom.availability_chance` is blank**, so the catalogue is unchanged until the batch session

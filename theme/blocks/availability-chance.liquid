@@ -66,9 +66,11 @@
       assign last_line = block.settings.last_partial
     when 'Not available'
       assign last_line = block.settings.last_na
-    when 'Not ordered'
-      assign last_line = block.settings.last_none
   endcase
+  comment
+    'Not ordered' deliberately prints nothing: "not part of the last batch" read as
+    "was not available" to the owner, so a plant with no history gets no line.
+  endcomment
 -%}
 
 <div data-agav-host="{{ block.id }}" {{ block.shopify_attributes }}>
@@ -243,15 +245,6 @@
     background: var(--agav-tone);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--agav-tone) 22%, transparent);
   }
-  .agav.is-confirmed .agav__pill {
-    background: var(--agav-moss);
-    border-color: var(--agav-moss);
-    color: var(--agav-cream);
-  }
-  .agav.is-confirmed .agav__dot {
-    background: var(--agav-cream);
-    box-shadow: 0 0 0 3px rgba(251, 248, 242, 0.25);
-  }
   .agav__pill--stock .agav__dot {
     background: var(--agav-moss);
     box-shadow: 0 0 0 3px rgba(92, 107, 76, 0.22);
@@ -406,7 +399,7 @@
       "type": "header",
       "content": "Chance wording"
     },
-    { "type": "text", "id": "label_confirmed", "label": "Confirmed", "default": "Confirmed for this batch" },
+    { "type": "text", "id": "label_confirmed", "label": "Confirmed (shown as)", "info": "Confirmed is the lab's word, not a promise to the customer; it renders as High with four bars.", "default": "High" },
     { "type": "text", "id": "label_high", "label": "High", "default": "High" },
     { "type": "text", "id": "label_medium", "label": "Medium", "default": "Medium" },
     { "type": "text", "id": "label_low", "label": "Low", "default": "Low" },
@@ -446,10 +439,9 @@
       "default": "Pre-orders are grown to order by our partner laboratory. After the cut-off we place the batch and the lab confirms what it can supply. A plant that comes back unavailable is refunded in full. The chance is our honest estimate from how this plant has done in recent batches."
     },
     { "type": "text", "id": "last_label", "label": "Last batch label", "default": "Last batch:" },
-    { "type": "text", "id": "last_available", "label": "Last batch: available", "default": "available, every order shipped." },
+    { "type": "text", "id": "last_available", "label": "Last batch: available", "default": "confirmed by the lab and every order shipped." },
     { "type": "text", "id": "last_partial", "label": "Last batch: partially available", "default": "partly available, some orders were refunded." },
     { "type": "text", "id": "last_na", "label": "Last batch: not available", "default": "not available at the lab, orders were refunded." },
-    { "type": "text", "id": "last_none", "label": "Last batch: not ordered", "default": "not part of the last batch." },
     { "type": "text", "id": "updated_label", "label": "Updated label", "default": "Updated" },
     { "type": "text", "id": "help_link_text", "label": "Link text", "default": "How pre-orders work" },
     { "type": "url", "id": "help_link_url", "label": "Link" },

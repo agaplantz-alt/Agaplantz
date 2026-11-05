@@ -54,7 +54,7 @@ for the pre-order stage only; an in-stock other stage shows "In stock, ready to 
 | On the page | Field |
 | --- | --- |
 | Pill + four-bar meter + coloured edge | `availability_chance` |
-| "Last batch: …" line and the same line in the pop-up | `last_batch_result` |
+| "Last batch: …" line and the same line in the pop-up (**no line at all for `Not ordered`** — a plant that was not in the last batch must not read as unavailable) | `last_batch_result` |
 | Extra line in the pop-up | `availability_note` |
 | "Updated 4 November 2026" in the pop-up | `availability_updated` |
 
@@ -90,15 +90,25 @@ reject any other spelling or case.
 
 | Key | Type | Rule | Write |
 | --- | --- | --- | --- |
-| `availability_chance` | `single_line_text_field` | choices: `Confirmed` `High` `Medium` `Low` `Not available` | The verdict for the **open** batch. Blank = card hidden. |
-| `last_batch_result` | `single_line_text_field` | choices: `Available` `Partially available` `Not available` `Not ordered` | What happened in the most recent closed batch. |
-| `availability_note` | `single_line_text_field` | ≤ 160 | Optional, customer-facing. No supplier names, no costs, no internal codes. |
+| `availability_chance` | `single_line_text_field` | choices: `Confirmed` `High` `Medium` `Low` `Not available` | The verdict for the **open** batch. Blank = card hidden. **`High` is the ceiling while a batch is open** — nothing is confirmed until the batch closes and goes to the lab. `Confirmed` is reserved for a lab confirmation *after* close, and the theme renders it with the same "High" label and a full meter, never the word "Confirmed". |
+| `last_batch_result` | `single_line_text_field` | choices: `Available` `Partially available` `Not available` `Not ordered` | What happened in the most recent closed batch. `Available` renders "Last batch: confirmed by the lab and every order shipped." `Not ordered` renders nothing. |
+| `availability_note` | `single_line_text_field` | ≤ 160 | Optional, customer-facing. No supplier names, no costs, no internal codes. **Never forward-looking**: no "confirmed for the November batch", no promise about the open batch. Past tense about the last batch only, or leave it blank. |
 | `availability_updated` | `date` | `YYYY-MM-DD` | The day the chance was last reviewed. |
 
-Suggested rule for the chance: **Confirmed** = the lab's confirmation sheet lists it for the
-open batch · **High** = shipped in the last two batches · **Medium** = shipped once, or
-partial · **Low** = the last batch refunded it · **Not available** = the lab has said no for
-this batch. Set `availability_updated` on every write. Re-run after each supplier message.
+Suggested rule for the chance: **High** = shipped in the last batch (or the last two) ·
+**Medium** = shipped once, or partial, or never ordered before · **Low** = the last batch
+refunded it · **Not available** = the lab has said no for this batch · **Confirmed** = only
+once the batch has *closed* and the lab's confirmation sheet lists it; before close the
+answer is at most High, because the owner is clear that *"the November batch has to still go
+through the lab at the end of this batch close."* Set `availability_updated` on every write.
+Re-run after each supplier message.
+
+**Correction made 5 Nov 2026.** The first Session A pass (3 Nov) had set 117 active products
+to `Confirmed` with the note "Confirmed by the lab for the November batch." The owner read
+that as promising more than is true for an open batch, so all 117 were set to `High`,
+`availability_updated` = `2026-11-05`, and the note was deleted; `last_batch_result` was
+left as written (`Available` on those plants, which is the fact the card now states as
+"Last batch: confirmed by the lab and every order shipped."). Do not re-create that note.
 
 ### Already filled, read by the theme, leave alone unless wrong
 
@@ -190,9 +200,10 @@ first and match the tone.
 
 1. From the batch payment / confirmation sheet, list every pre-order product by handle and
    the lab's answer.
-2. Map to `availability_chance` with the rule in §2; set `last_batch_result` from the
-   previous closed batch; write a one-line `availability_note` only when it helps the
-   customer ("Confirmed by the lab for the November batch").
+2. Map to `availability_chance` with the rule in §2 — **`High` at most while the batch is
+   open**; set `last_batch_result` from the previous closed batch (`Not ordered` if the plant
+   was not in it); leave `availability_note` blank unless there is something true to say about
+   the *last* batch. Never write a note that promises anything about the open batch.
 3. `availability_updated` = today, on every product you touch, including unchanged ones.
 4. Products the lab has never been asked for: leave `availability_chance` blank (the card
    stays hidden) rather than guessing.
