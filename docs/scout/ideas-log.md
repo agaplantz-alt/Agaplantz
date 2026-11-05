@@ -10,6 +10,77 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-05
+
+Evidence was thin again: seller listings, fee guides and forum posts, no hard sales data.
+
+### Product ideas
+
+**1. Low-cost crystallinum x regale Anthuriums.**
+- What: silver-veined Anthurium crosses sold cheaply as TC. This differs from the velvet 'King of Spades' crosses
+  logged on 2026-11-02; these are crystallinum and regale, the classic white-veined look.
+- Why now: one US lab lists a crystallinum x regale TC at $9.99 USD and regale alone at $12.99, the cheapest
+  Anthurium TC seen in this log. Trend demand was not confirmed (unverified).
+  ([Regale x crystallinum](https://orangelakenursery.com/products/anthurium-regale-x-crystallium-tissue-culture),
+  [Regale](https://orangelakenursery.com/products/anthurium-regale-tissue-culture))
+- Price signal: grown crystallinum plants list at $25 USD at Ecuagenera and $42 at Carnivero, so the plantlet-to-plant
+  spread is wide. ([Ecuagenera](https://ecuagenera.com/collections/anthurium?page=11),
+  [Carnivero](https://www.carnivero.com/products/anthurium-crystallinum))
+- Difficulty: easy to medium. Crystallinum types are among the easier Anthuriums to grow on.
+- First step: ask your lab for crystallinum x regale on the next batch and price per 100.
+
+**2. Red crystallinum crosses at the premium end.**
+- What: newer Anthurium crosses with red-flushed new leaves, such as 'SKG Silver x Red Crystallinum',
+  'Tezula Red Crystallinum' and 'Michelle Red Crystallinum'.
+- Why now: one US lab carries several of these as TC, which suggests labs are producing them in volume.
+  ([SKG Silver x Red](https://orangelakenursery.com/products/anthurium-skg-silver-x-red-crystallinum-tissue-culture),
+  [Tezula Red](https://orangelakenursery.com/collections/anthurium/products/anthurium-tezula-red-crystallinum-tissue-culture))
+- Price signal: SKG Silver x Red TC at $19.99 USD. Other prices did not show (unverified).
+- Difficulty: medium.
+- First step: price one red cross from your lab and list it next to the cheaper crystallinum x regale as a
+  "good, better" pair.
+
+**3. A house-brand aroid substrate.**
+- What: AgaPlantz's own bagged aroid mix, the one you already pot plantlets in, sold in small bags.
+- Why now: hobbyist forums report sphagnum moss as hard to find and rising in price, though these reports are
+  undated and anecdotal (unverified). Retail sphagnum still sells in volume at about $5 to $8 USD per unit, so
+  there is a market for the inputs.
+  ([FlytrapCare forum](https://www.flytrapcare.com/phpBB3/post386003.html),
+  [ASInsight](https://www.asinsight.com/report/US/spagnum-moss))
+- Price signal: none for a branded mix (unverified).
+- Difficulty: easy. Not alive, so it ships in winter.
+- First step: price your current mix per litre and decide whether a 2-litre bag clears a margin at checkout.
+
+### Business ideas
+
+**1. A drop-off plant clinic.**
+- What: customers bring a sick plant to you for pest treatment, repotting or rescue, paying per treatment. This
+  differs from the plant-sitting idea logged on 2026-11-03, which visits the customer's home.
+- Why now: US plant shops run these with clear menus. One charges $5 to $25 for a first pest treatment and $60 an hour
+  for longer care; another started a "plant hospital" in February 2026.
+  ([Urban Sprouts pricing](https://urbansproutsstore.com/pages/clinic-pricing-guide),
+  [Urban Sprouts process](https://urbansproutsstore.com/pages/clinic-process),
+  [9&10 News](https://www.9and10news.com/2026/02/11/northern-michigan-woman-starts-unique-plant-hospital))
+- Price signal: US$5 to $60 per treatment or hour from those shops. No revenue figures found (unverified).
+- Difficulty: medium. Sick plants bring pests, so they must be kept far from your stock, and the clinic shops
+  require a first treatment before admission for the same reason.
+- First step: decide whether you have a separate room. If not, skip this idea.
+
+**2. An Etsy shop as a second channel.**
+- What: list accessories and a few plants on Etsy to reach buyers who don't know agaplantz.com.
+- Why now: Canadian sellers can list in CAD to avoid the 2.5% conversion fee, and sellers under $10,000 can opt out
+  of Offsite Ads. Fees are roughly 6.5% per sale plus 3% + CAD $0.25 processing, plus a regulatory fee that guides
+  give as either 0.50% or 1.15% for Canada (unverified).
+  ([Marmalead](https://blog.marmalead.com/etsy-fees-explained/),
+  [Insight Agent Canada guide](https://www.insightagent.app/guides/sell-on-etsy-canada),
+  [Crosslist](https://crosslist.com/blog/etsy-review))
+- Price signal: about 10% of each sale in fees, by these guides.
+- Difficulty: easy for accessories. For live plants, check whether Etsy allows them from Canadian sellers and the
+  Canadian Food Inspection Agency rules first.
+- First step: list one accessory, such as a substrate bag or heat pack, and watch views for two weeks.
+
+---
+
 ## 2026-11-04
 
 Evidence was thin again: mostly seller listings and SEO blogs. None of today's ideas repeats an earlier one, except
