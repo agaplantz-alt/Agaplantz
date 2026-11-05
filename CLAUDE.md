@@ -738,7 +738,15 @@ note "Confirmed by the lab for the November batch." were set to `High`,
 `availability_updated` `2026-11-05`, note deleted (`metafieldsSet` ×2 per product and
 `metafieldsDelete`, 30 products per call; `metafieldsDelete`'s `userErrors` is a plain
 `UserError` with no `code` field). Notes must never be forward-looking — the rule is in the
-handoff. The (?) is a native `<details>`; the pop-up
+handoff.
+
+**Removed from the page an hour later (5 Nov).** The owner, seeing the card on the preview: *"I
+would say just remove this section. It's making things ugly."* So `availability_bottom` is
+`disabled: true` on both `product.json` and `product.tissue-culture.json` — settings intact,
+still in `block_order`, the block file and the four metafield definitions untouched, and the
+batch session keeps filling the values. Bringing it back is one flag. The owner was not shown
+a variant without the last-batch line first; if it ever returns, try the `inline` layout
+(one line under the price, no card) before the card. The (?) is a native `<details>`; the pop-up
 is absolutely positioned under the row and a document-level listener (guarded by
 `window.__agavInit`) closes it on outside click or Escape. **Nothing renders while
 `custom.availability_chance` is blank**, so the catalogue is unchanged until the batch session

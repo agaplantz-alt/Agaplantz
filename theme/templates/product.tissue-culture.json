@@ -415,7 +415,8 @@
                 "padding_bottom": 8,
                 "help_label": "How it's decided",
                 "card_bg": "#E8EDE1"
-              }
+              },
+              "disabled": true
             },
             "subscriptions_app_block_n6PiVQ": {
               "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
