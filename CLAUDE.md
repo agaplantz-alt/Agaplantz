@@ -35,7 +35,24 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 5 Nov 2026: MAIN is `Updated copy of AgaPlantz 2026 — plant profile …` =
+**As of 5 Nov 2026, 20:21Z: MAIN is `AgaPlantz 2026 — guide pages repaired (from live)` =
+`190146576463`** — the owner published the repair draft and it became MAIN **in place** (same
+id, no "Updated copy of"), so nothing was re-seeded this time. Full sweep the same hour: all 31
+repo-tracked files compared (Liquid by checksum, JSON parsed), 23 live pages rendered with no
+Liquid error, all 15 FAQ questions, both guide pages' 8 chapters, `/collections` curated, the
+cart showing the guarantee line and the heat-pack offer. **One real loss, found in the sweep and
+not yet fixed: the `Save X%` badge is gone.** Since the 1 Nov publish, `snippets/price.liquid`,
+`snippets/cart-summary.liquid`, `sections/main-collection.liquid` and
+`sections/product-list.liquid` on every theme in the line are **stock Horizon** (newer, with
+`<bdi>` wrappers) — our patches were overwritten. The price one is the visible loss: Devil Monster
+shows its struck-through compare-at but no badge. The in-stock-first sorts are no-ops now
+(collections exclude sold-out plants). The cart guarantee line survived because another session
+rebuilt `snippets/acclimation-guarantee-badge.liquid` as a wrapper around
+`snippets/acclimation-guarantee-badge-core.liquid` that also renders `tc-kit-addon` and
+`heat-pack-addon`, and the cart renders it from somewhere other than `cart-summary.liquid`.
+**The repo copies of those five files are stale** — pull the live ones before editing any of them.
+
+**Earlier on 5 Nov: MAIN was `Updated copy of AgaPlantz 2026 — plant profile …` =
 `190114758735`**, created by Shopify at 06:15:49Z when the owner published the plant-profile
 draft `190043619407`. **It re-seeded exactly the same three templates as on 1 Nov**:
 `page.pre-order.json` and `page.tissue-culture.json` came back as the bare 823-byte `main-page`
