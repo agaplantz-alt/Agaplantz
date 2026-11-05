@@ -35,7 +35,22 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 4 Nov 2026: MAIN is `AgaPlantz 2026 — November ladder 20/15/10 (from live)` =
+**As of 5 Nov 2026: MAIN is `Updated copy of AgaPlantz 2026 — plant profile …` =
+`190114758735`**, created by Shopify at 06:15:49Z when the owner published the plant-profile
+draft `190043619407`. **It re-seeded exactly the same three templates as on 1 Nov**:
+`page.pre-order.json` and `page.tissue-culture.json` came back as the bare 823-byte `main-page`
+template (identical checksums) and `list-collections.json` got `collection_list_Wfgh3m` back at
+the top. The owner noticed from their phone ("what happened to the pre-order page?") about
+14 hours later. Everything else (index, header, all four product templates, FAQ, guarantee,
+default page) parsed identical to the repo. Repair draft: **`AgaPlantz 2026 — guide pages
+repaired (from live)` = `190146576463`**, MAIN plus the three repo templates (3 of 3 written,
+checksums match); verified on the preview: both guide pages render their 8 chapters, `Order by
+30 November` is on the Pre Order page, `/collections` starts with Shop by plant, no Liquid
+errors. **So this is not a one-off: when publishing produces an "Updated copy of" theme, these
+three templates are reset every time.** After every publish, check those three files on the
+new MAIN first.
+
+**Before that, 4 Nov 2026: MAIN was `AgaPlantz 2026 — November ladder 20/15/10 (from live)` =
 `189923491919`** — the owner published it; the re-seeded pages are repaired live. The draft waiting
 for them is the plant-profile theme `190043619407` (see that section).
 
