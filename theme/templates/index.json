@@ -1892,7 +1892,8 @@
             "collection": "crochet-flowers",
             "title": "Flowers",
             "text": "Roses, lilies and tulips in decorated pots.",
-            "link": "/collections/crochet-flowers"
+            "link": "/collections/crochet-flowers",
+            "glyph": "flower"
           }
         },
         "tile_bags": {
@@ -1901,7 +1902,8 @@
             "collection": "crochet-bags",
             "title": "Bags",
             "text": "Shell bags, daisy granny bags and totes.",
-            "link": "/collections/crochet-bags"
+            "link": "/collections/crochet-bags",
+            "glyph": "bag"
           }
         },
         "tile_gifts": {
@@ -1910,7 +1912,8 @@
             "collection": "crochet-gifts-under-25",
             "title": "Gifts under $25",
             "text": "Keychains, bag charms and flower hangings.",
-            "link": "/collections/crochet-gifts-under-25"
+            "link": "/collections/crochet-gifts-under-25",
+            "glyph": "gift"
           }
         }
       },
@@ -1937,7 +1940,8 @@
         "note": "Every piece is hand-crocheted by our artisan partner. Crochet is not included in plant discounts.",
         "background_color": "#F2EBDE",
         "padding-block-start": 64,
-        "padding-block-end": 64
+        "padding-block-end": 64,
+        "show_yarn": true
       }
     }
   },

@@ -61,6 +61,7 @@
   <div class="agcr__head">
     <div class="agcr__copy">
       {%- if section.settings.eyebrow != blank -%}<p class="agcr__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.show_yarn -%}<span class="agcr__yarn" role="img" aria-label="Crochet"></span>{%- endif -%}
       <h2 class="agcr__heading">{{ section.settings.heading }}</h2>
       {%- if section.settings.text != blank -%}<p class="agcr__text">{{ section.settings.text }}</p>{%- endif -%}
     </div>
@@ -97,7 +98,18 @@
               {{ t_image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 33vw, 96px', widths: '200, 400, 600', alt: t_title }}
             {%- else -%}
               <span class="agcr__tile-glyph" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+                {%- case block.settings.glyph -%}
+                  {%- when 'flower' -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><g id="agcr-g-{{ block.id }}"><path d="M24 19c-2-8 1-14 6-13s3 9-2 13M24 19c-8-3-13 0-12 5s9 3 13-1M24 19c-3 7-1 13 4 13s6-7 2-11M24 19c8-2 13 2 11 7s-9 3-11 0"/><circle cx="24" cy="20" r="3.4"/><path d="M24 26v14M24 32c-4 0-7 2-8 6M24 34c4-1 7 1 9 5"/></g></defs><use href="#agcr-g-{{ block.id }}" class="agcr__y-out"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-in"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-twist"/></svg>
+                  {%- when 'bag' -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><g id="agcr-g-{{ block.id }}"><path d="M16 19c0-8 3-11 8-11s8 3 8 11"/><path d="M11 19h26l-2 20H13z"/><path d="M15 25h18M14.5 31h19M14 37h20"/></g></defs><use href="#agcr-g-{{ block.id }}" class="agcr__y-out"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-in"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-twist"/></svg>
+                  {%- when 'gift' -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><g id="agcr-g-{{ block.id }}"><path d="M10 22h28v17H10z"/><path d="M8 15h32v7H8z"/><path d="M24 15v24"/><path d="M24 15c-6 0-9-2-9-5s4-4 6-1 3 6 3 6zM24 15c6 0 9-2 9-5s-4-4-6-1-3 6-3 6z"/></g></defs><use href="#agcr-g-{{ block.id }}" class="agcr__y-out"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-in"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-twist"/></svg>
+                  {%- when 'charm' -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><g id="agcr-g-{{ block.id }}"><circle cx="24" cy="9" r="3.5"/><path d="M24 12.5v6"/><path d="M24 18.5c-7 0-11 4-11 9s4 9 11 9 11-4 11-9-4-9-11-9z"/><path d="M19 27c1-2 3-2 5-1 2-1 4-1 5 1M20 32c2 1 6 1 8 0"/></g></defs><use href="#agcr-g-{{ block.id }}" class="agcr__y-out"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-in"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-twist"/></svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><g id="agcr-g-{{ block.id }}"><circle cx="22" cy="25" r="14"/><path d="M9.5 20c8-2.5 17-2 25 2.5M8.8 29c8.5-4.6 18-5 27.5-.6M14.5 13c4.4 6.6 6.2 16 5 26.6M35 28c3.5 3 6 7 7.5 12.5"/></g></defs><use href="#agcr-g-{{ block.id }}" class="agcr__y-out"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-in"/><use href="#agcr-g-{{ block.id }}" class="agcr__y-twist"/></svg>
+                {%- endcase -%}
               </span>
             {%- endif -%}
           </span>
@@ -237,10 +249,22 @@
     background: #E8EDE1;
   }
   .agcr__tile-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .agcr__tile-glyph {
-    display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #5C6B4C;
+  .agcr__yarn {
+    display: block;
+    width: 4.29em;
+    height: 1em;
+    margin: 0 0 10px;
+    font-size: 2.6rem;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4701 1096'><defs><pattern id='y' patternUnits='userSpaceOnUse' width='151' height='151' patternTransform='rotate(40)'><rect width='151' height='151' fill='%23E8A3BE'/><rect width='76' height='151' fill='%23CF6F96'/></pattern></defs><circle cx='302' cy='737' r='227' fill='url(%23y)' stroke='%23B8577D' stroke-width='43'/><path d='M87 669q227 -113 431 11M98 823q227 -113 408 0M234 522q125 227 45 431' fill='none' stroke='%23B8577D' stroke-width='34' stroke-linecap='round'/><path d='M427 544C507 312 716 123 948 189' fill='none' stroke='%23CF6F96' stroke-width='64' stroke-linecap='round'/><path transform='translate(586 1016)' d='M64 -348Q64 -495 120 -609Q175 -723 270 -786Q365 -848 481 -848Q589 -848 645 -792Q701 -737 701 -646Q701 -585 680 -548Q658 -511 618 -511Q590 -511 574 -524Q558 -537 558 -562Q558 -571 562 -595Q568 -625 568 -643Q568 -734 471 -734Q405 -734 345 -691Q285 -648 248 -564Q211 -481 211 -366Q211 -246 278 -180Q345 -115 476 -115Q541 -115 608 -132Q674 -148 755 -182Q770 -188 780 -188Q796 -188 804 -176Q812 -164 812 -145Q812 -84 746 -55Q675 -24 598 -10Q522 5 453 5Q334 5 246 -38Q158 -82 111 -162Q64 -242 64 -348Z M736 -163Q736 -293 773 -410Q782 -439 802 -452Q823 -466 860 -466Q880 -466 888 -461Q896 -456 896 -442Q896 -426 881 -370Q871 -330 865 -300Q859 -270 855 -226Q888 -312 929 -366Q970 -420 1010 -443Q1049 -466 1082 -466Q1147 -466 1147 -401Q1147 -388 1138 -338Q1130 -298 1130 -288Q1130 -253 1155 -253Q1183 -253 1227 -297Q1240 -310 1254 -310Q1267 -310 1274 -298Q1282 -287 1282 -268Q1282 -231 1262 -210Q1234 -181 1196 -160Q1159 -140 1117 -140Q1064 -140 1036 -167Q1009 -194 1009 -240Q1009 -255 1012 -270Q1014 -290 1014 -297Q1014 -313 1003 -313Q988 -313 964 -280Q939 -246 915 -191Q891 -136 876 -75Q865 -28 850 -12Q836 5 805 5Q767 5 752 -35Q736 -75 736 -163Z M1726 -261Q1726 -213 1697 -204Q1637 -183 1565 -180Q1546 -96 1490 -46Q1434 5 1363 5Q1303 5 1260 -24Q1218 -53 1196 -101Q1174 -149 1174 -205Q1174 -281 1203 -340Q1232 -400 1283 -434Q1334 -467 1396 -467Q1472 -467 1518 -414Q1565 -362 1573 -285Q1620 -288 1685 -305Q1693 -307 1699 -307Q1712 -307 1719 -294Q1726 -281 1726 -261ZM1458 -202Q1427 -223 1410 -257Q1394 -291 1394 -329Q1394 -345 1397 -361H1392Q1352 -361 1326 -322Q1299 -284 1299 -214Q1299 -159 1320 -130Q1342 -101 1371 -101Q1403 -101 1426 -127Q1450 -153 1458 -202Z M1624 -197Q1624 -278 1656 -339Q1688 -400 1739 -433Q1790 -466 1846 -466Q1901 -466 1932 -434Q1962 -401 1962 -350Q1962 -308 1944 -279Q1925 -250 1895 -250Q1876 -250 1864 -259Q1853 -268 1853 -284Q1853 -291 1855 -300Q1857 -309 1858 -313Q1863 -328 1863 -341Q1863 -354 1856 -361Q1850 -368 1838 -368Q1815 -368 1795 -348Q1775 -327 1763 -292Q1751 -257 1751 -215Q1751 -99 1852 -99Q1893 -99 1940 -126Q1988 -154 2034 -209Q2046 -223 2061 -223Q2074 -223 2082 -211Q2089 -199 2089 -178Q2089 -140 2070 -116Q2023 -58 1958 -26Q1892 5 1831 5Q1733 5 1678 -50Q1624 -106 1624 -197Z M2591 -178Q2591 -138 2572 -116Q2526 -63 2478 -29Q2429 5 2367 5Q2316 5 2290 -24Q2264 -54 2264 -110Q2264 -138 2278 -210Q2291 -273 2291 -297Q2291 -313 2280 -313Q2267 -313 2243 -280Q2219 -246 2195 -191Q2171 -136 2156 -75Q2137 5 2062 5Q2032 5 2022 -16Q2013 -38 2013 -94Q2013 -126 2014 -145L2015 -225Q2015 -379 2046 -546Q2078 -713 2140 -826Q2201 -940 2287 -940Q2333 -940 2362 -900Q2390 -861 2390 -798Q2390 -697 2331 -588Q2272 -480 2139 -335Q2136 -283 2136 -228Q2169 -313 2210 -366Q2250 -420 2290 -443Q2329 -466 2362 -466Q2427 -466 2427 -401Q2427 -362 2405 -260Q2386 -173 2386 -145Q2386 -105 2415 -105Q2435 -105 2462 -130Q2490 -154 2536 -209Q2548 -223 2563 -223Q2576 -223 2584 -211Q2591 -199 2591 -178ZM2150 -460Q2212 -533 2252 -619Q2293 -705 2293 -775Q2293 -807 2286 -824Q2279 -841 2266 -841Q2248 -841 2226 -790Q2204 -738 2184 -650Q2163 -563 2150 -460Z M2984 -178Q2984 -138 2965 -116Q2928 -71 2860 -33Q2793 5 2716 5Q2611 5 2553 -52Q2495 -109 2495 -208Q2495 -277 2524 -336Q2553 -396 2604 -431Q2656 -466 2721 -466Q2779 -466 2814 -432Q2849 -397 2849 -338Q2849 -269 2800 -220Q2750 -170 2632 -141Q2657 -95 2727 -95Q2772 -95 2830 -126Q2887 -158 2929 -209Q2941 -223 2956 -223Q2969 -223 2976 -211Q2984 -199 2984 -178ZM2616 -221V-219Q2675 -233 2709 -261Q2743 -289 2743 -326Q2743 -345 2732 -356Q2722 -368 2704 -368Q2667 -368 2642 -325Q2616 -282 2616 -221Z M3377 -178Q3377 -138 3358 -116Q3315 -63 3264 -29Q3213 5 3147 5Q2943 5 2943 -282Q2943 -326 2946 -371H2907Q2877 -371 2866 -382Q2856 -393 2856 -417Q2856 -473 2901 -473H2958Q2975 -583 3010 -674Q3045 -765 3094 -819Q3144 -873 3201 -873Q3243 -873 3267 -836Q3291 -799 3291 -743Q3291 -588 3161 -473H3273Q3289 -473 3296 -466Q3303 -459 3303 -440Q3303 -371 3190 -371H3068Q3066 -321 3066 -293Q3066 -189 3090 -147Q3115 -105 3168 -105Q3211 -105 3244 -131Q3277 -157 3322 -209Q3334 -223 3349 -223Q3362 -223 3370 -211Q3377 -199 3377 -178ZM3078 -488Q3137 -539 3166 -602Q3196 -666 3196 -718Q3196 -777 3174 -777Q3159 -777 3140 -740Q3122 -702 3106 -636Q3089 -569 3078 -488Z' fill='url(%23y)' stroke='%23B8577D' stroke-width='43' stroke-linejoin='round'/><path d='M3913 605c199 132 298 -284 451 -57s119 265 199 151' fill='none' stroke='%23CF6F96' stroke-width='64' stroke-linecap='round'/></svg>") no-repeat left center / contain;
   }
-  .agcr__tile-glyph svg { width: 40px; height: 40px; }
+  .agcr__tile-glyph {
+    display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+    background: #F6E7EE;
+  }
+  .agcr__tile-glyph svg { width: 58px; height: 58px; overflow: visible; }
+  .agcr__y-out { stroke: #B8577D; stroke-width: 4.6; }
+  .agcr__y-in { stroke: #E8A3BE; stroke-width: 2.4; }
+  .agcr__y-twist { stroke: #CF6F96; stroke-width: 2.4; stroke-dasharray: 2.2 2.6; }
   .agcr__tile-copy {
     position: relative;
     display: block;
@@ -301,7 +325,8 @@
     .agcr__tiles, .agcr__tiles--2, .agcr__tiles--4 { grid-template-columns: minmax(0, 1fr); }
     .agcr__tile { grid-template-rows: none; grid-template-columns: 96px 1fr; }
     .agcr__tile-media { aspect-ratio: 1 / 1; height: 100%; }
-    .agcr__tile-glyph svg { width: 28px; height: 28px; }
+    .agcr__tile-glyph svg { width: 40px; height: 40px; }
+    .agcr__yarn { font-size: 2rem; }
     .agcr__tile-copy { padding: 12px 40px 12px 14px; }
     .agcr__tile-title { font-size: 17px; }
     .agcr__gift { grid-template-columns: auto 1fr; gap: 14px; padding: 16px; }
@@ -316,6 +341,7 @@
   "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "New at AgaPlantz" },
+    { "type": "checkbox", "id": "show_yarn", "label": "Show the pink yarn \"Crochet\" above the heading", "default": true },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Flowers that never wilt" },
     { "type": "text", "id": "text", "label": "One line", "default": "Hand-crocheted flowers, bags and charms. No water, no light, no wilting." },
     { "type": "collection", "id": "collection", "label": "Collection for the product row" },
@@ -345,6 +371,9 @@
         { "type": "collection", "id": "collection", "label": "Collection" },
         { "type": "text", "id": "title", "label": "Title", "info": "Leave blank to use the collection's name." },
         { "type": "text", "id": "text", "label": "One line" },
+        { "type": "select", "id": "glyph", "label": "Icon when there is no image", "options": [
+          { "value": "yarn", "label": "Ball of yarn" }, { "value": "flower", "label": "Flower" }, { "value": "bag", "label": "Bag" },
+          { "value": "charm", "label": "Charm" }, { "value": "gift", "label": "Gift" } ], "default": "yarn" },
         { "type": "image_picker", "id": "image", "label": "Image", "info": "Leave blank to use the collection image." },
         { "type": "url", "id": "link", "label": "Link", "info": "Leave blank to use the collection." }
       ]

@@ -858,6 +858,15 @@ Draft theme **`AgaPlantz 2026 — crochet line` = `190192943183`** (from MAIN `1
   own wrapper is hidden by id (`[id$="__crochet_menu_style"]`; in a section group the DOM id is
   `shopify-section-sections--<group>__<key>`, not `shopify-section-<key>`). Verified in a
   browser at 390 and 1280.
+- **Homepage band in the same pink (same evening).** The owner, on the band's screenshot:
+  *"Change it now"* — so `crochet-feature.liquid` now shows the same yarn "Crochet" wordmark
+  above the heading (`show_yarn` setting, the SVG data URI repeated in the section's
+  stylesheet) and each tile's fallback icon is a pink crochet drawing instead of the grey
+  sun: a `glyph` select per tile (yarn / flower / bag / charm / gift), drawn once in `<defs>`
+  and `<use>`d three times — dark outer stroke, light inner stroke, dashed mid stroke — so
+  the line reads as twisted yarn; the icon panel is blush `#F6E7EE`. Tiles still prefer a real
+  image when one is set. The owner also asked *"do you have product reviews as well"* — yes,
+  `product.crochet.json` keeps both Loox blocks.
 - Also on this draft: the announcement bar flipped for 6 Nov (`announcement_sale` disabled,
   `announcement_sale15` enabled) — the 20% slide was still live a day after the discount ended.
 
