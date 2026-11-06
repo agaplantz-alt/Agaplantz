@@ -149,7 +149,8 @@
             "case": "none",
             "text_color": ""
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         },
         "announcement_sale15": {
           "type": "_announcement",
@@ -163,8 +164,7 @@
             "case": "none",
             "text_color": ""
           },
-          "blocks": {},
-          "disabled": true
+          "blocks": {}
         },
         "announcement_bf": {
           "type": "_announcement",
@@ -289,7 +289,7 @@
           "type": "_header-menu",
           "static": true,
           "settings": {
-            "menu": "main-menu",
+            "menu": "main-menu-crochet",
             "background_color": "{{ settings.color_palette.background }}",
             "text_color": "",
             "type_font_primary_size": "0.875rem",

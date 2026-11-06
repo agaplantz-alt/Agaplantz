@@ -787,6 +787,60 @@ the level are in `docs/plant-identity-handoff.md` (the file the owner hands to t
 session and then to the A-to-Z identity session). Example values are on Black Velvet Pink.
 Same draft theme `190043619407`.
 
+## Crochet line (6 Nov 2026) — storefront only, nothing live yet
+
+A second product session created 15 **DRAFT** crochet products (type `Crochet`, option
+`Colour`, no photos yet, $12.99–$79.99) and six **unpublished** automatic collections:
+`crochet` (all, tag `Crochet`), `crochet-flowers`, `crochet-bags`, `crochet-charms-keychains`,
+`crochet-hangings-wreaths`, `crochet-gifts-under-25` (tag `Under 25`). Rules from the brief:
+everything stays under the AgaPlantz name; say *"hand-crocheted by our artisan partner"*, never
+"handmade by us" or "made in Canada"; **crochet is excluded from every discount**, so no sale
+badges, no "% off" copy, never in the ON SALE row; products and collections stay unpublished
+until Agam says the line is live; **crochet must not sync to Etsy** (DPL Etsy Integration app,
+not the theme).
+
+Draft theme **`AgaPlantz 2026 — crochet line` = `190192943183`** (from MAIN `190146576463`):
+
+- **Menu.** `menuUpdate` is live-immediate and the collections 404 until published, so the live
+  `main-menu` was **not** touched. A copy, **`main-menu-crochet`** (`gid://shopify/Menu/275458555983`,
+  made with `menuCreate`), is the live menu plus a **Crochet** item after Accessories with the
+  five sub-links (Flowers / Bags / Charms & Keychains / Hangings & Wreaths / Gifts Under $25).
+  `sections/header-group.json` → `header-menu.menu` points at it on the draft, so publishing the
+  theme switches the menu. **Anything Agam adds to `main-menu` in the meantime has to be copied
+  to `main-menu-crochet` by hand.**
+- **Homepage.** `sections/crochet-feature.liquid` as `crochet_feature` in `templates/index.json`,
+  after `why_agaplantz` (sage) and before the Loox carousel — sand band. Eyebrow / heading
+  "Flowers that never wilt" / one line / moss "Shop crochet" button; a product row from `crochet`
+  (first available variant, **no compare-at, no badge**, hidden by itself while the collection is
+  empty); up to four `tile` blocks (collection, title, line, image with fallback to the
+  collection image, then a sage glyph — the crochet collections have **no images yet**, so the
+  glyph shows); a moss "Gifts under $25" strip; and a note "Every piece is hand-crocheted by our
+  artisan partner. Crochet is not included in plant discounts." All links are set explicitly in
+  the template (`cta_url`, `gift_url`, each tile's `link`) because an unpublished collection
+  resolves to blank in Liquid and the button and strip vanished on the first preview.
+- **Product template `product.crochet`** (`templates/product.crochet.json`), from `product.json`
+  minus the pre-order/ready-to-ship card (`ai_gen_block_910fa12`), the guarantee block, the
+  price-lock note, the disabled availability card and the whole plant-profile `_blocks` section;
+  plus a centred trust line under the price ("Hand-crocheted · Never needs water · Ships from
+  Brampton", a `text` block) and a **"Complete the gift"** `stage-products` row on
+  `crochet-gifts-under-25` (blank `stage_match`, `allow_fallback`) before "You may also like".
+  Gallery, Colour picker, price, quantity, buy buttons, description and both Loox sections kept.
+  The heat-pack and substrate offers are cart-only (rendered from the guarantee snippet in cart
+  context), so nothing else was needed. **The product session assigns the suffix `crochet`** to
+  the 15 products. Verified with `?view=crochet` on the self-watering pot: no guarantee, no
+  price lock, no plant profile, trust line and gift row present, no Liquid error. Shopify
+  re-serialises this template on upload (13.5 KB stored vs 22.6 KB sent) — compare parsed JSON,
+  not checksums.
+- **Not done / cannot be done yet:** the six collection pages **404 on the preview** until the
+  collections are published (check them at 390px then; the standard `collection.json` is used,
+  filters today are Availability + Price + sort — a Colour filter is a Search & Discovery app
+  setting, not theme work); search for "crochet"/"rose"/"bag" only works once the products are
+  active; **all 15 crochet products already sit in `popular`** (its rules admit anything in
+  stock that is not a Service), so they will join the homepage "Popular right now" row the day
+  they go active unless a `TYPE != Crochet` condition is added — Agam's call, not made.
+- Also on this draft: the announcement bar flipped for 6 Nov (`announcement_sale` disabled,
+  `announcement_sale15` enabled) — the 20% slide was still live a day after the discount ended.
+
 ## Reviews on product pages — Loox only, since 25 Oct 2026
 
 **The native "What collectors say about AgaPlantz" wall (`store_reviews`) is gone from the
