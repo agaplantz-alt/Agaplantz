@@ -10,6 +10,76 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-06
+
+Evidence was thin again: seller listings, seller policies and vendor blogs, no hard sales data.
+
+### Product ideas
+
+**1. Syngonium 'Albo' variegated plantlets.**
+- What: white-variegated Syngonium, a genus the store does not carry yet. It is a cheaper, faster-growing
+  variegated plant than the Monstera range.
+- Why now: several US labs list it as TC, and grown plants sell for $25 to $35 USD, with one tracked listing rising
+  from $25 to $28. Trend demand was not confirmed (unverified).
+  ([Orange Lake Albo TC](https://orangelakenursery.com/products/syngonium-albo-tissue-culture-single),
+  [eBay 3-inch Albo](https://www.ebay.com/itm/267121310588),
+  [Bark & Vine on Reach](https://reach.dog/shop/bark-vine/products/syngonium-albo))
+- Price signal: TC from $12.99 to $29.99 USD at one lab, against $25 to $35 for a grown plant.
+- Difficulty: easy to medium. Syngonium is hardy and grows fast.
+- First step: ask your lab whether it offers Syngonium Albo and at what price per 100.
+
+**2. Syngonium 'Mojito' 5-pack.**
+- What: a speckled Syngonium sold as a 5-plantlet pack, an easy bundle for new collectors.
+- Why now: one US lab sells Mojito TC as a 5-pack for $15.99 USD and it is currently backordered, which hints at
+  demand (unverified). A certified Hawaii nursery also listed Mojito and variegated Mojito in its March 2026 stock.
+  ([Orange Lake Mojito](https://orangelakenursery.com/products/syngonium-mojito-tissue-culture),
+  [Hawaii nursery list](https://dab.hawaii.gov/pi/files/2026/03/BRN-0529-Rare-Leaf-3-9-26.pdf))
+- Price signal: $15.99 USD for 5 at one lab; Mojito cuttings around $7.99 on one marketplace.
+- Difficulty: easy.
+- First step: price a Mojito 5-pack from your lab and test it as a "starter 5" product.
+
+**3. Dormant Amorphophallus tubers.**
+- What: collector aroid tubers sold while dormant. A dormant tuber has no leaves to freeze, so it ships far more
+  safely in a Canadian winter than a leafy plantlet.
+- Why now: specialist sellers stock many species, and one notes the genus has over 200 species, many rare in
+  cultivation. The winter-shipping advantage is an inference, not a sourced claim (unverified).
+  ([Rare Palm Seeds](https://www.rarepalmseeds.com/aroids),
+  [Adventurous Plants](https://adventurousplants.co.uk/product-category/aroids/amorphophallus/),
+  [Jungle Leaves](https://www.jungle-leaves.de/en/collections/amorphophallus-knollen))
+- Price signal: one seller lists Amorphophallus krausei from about $29.93 USD and A. ranchanensis from $45.38, the
+  latter out of stock.
+- Difficulty: medium. Importing tubers needs a Canadian Food Inspection Agency check first, and forums warn that
+  misnamed tubers are common.
+  ([IAS Aroid-L forum](https://www.aroid.org/aroidl-archive/showthread.php?id=3246))
+- First step: check CFIA import rules for Amorphophallus tubers before contacting any seller.
+
+### Business ideas
+
+**1. A paid express-courier shipping option for winter.**
+- What: offer UPS, FedEx or Purolator express at checkout alongside standard shipping, for buyers who want a faster,
+  safer winter delivery.
+- Why now: a Calgary plant seller says Canada Post strikes and labour disputes made it unreliable and added UPS and
+  FedEx. Another Canadian nursery limits its live-arrival guarantee to express courier options only.
+  ([Jungle Jewel Exotics](https://junglejewelexotics.com/winter-shipping),
+  [Floral Acres](https://floralacres.ca/policies/shipping-policy))
+  The store already has a heat-pack add-on and a 30-day guarantee; this adds carrier choice, not a new guarantee.
+- Price signal: courier rates were not checked (unverified).
+- Difficulty: easy to medium. It is a Shopify shipping setting plus a courier account.
+- First step: get one Purolator or UPS express quote from Brampton to Vancouver for your usual box size.
+
+**2. A points loyalty program for repeat collectors.**
+- What: customers earn points on every order and spend them on plants or free shipping.
+- Why now: a loyalty app vendor reports that across 227 Shopify stores, the median repeat-purchase rate rose from
+  15.1% to 19.0% after adding a program. That is a vendor's own number (unverified). A European plant shop runs one at
+  1 point per euro.
+  ([Growave](https://www.growave.io/blog/how-to-set-up-a-loyalty-program-on-your-shopify-store),
+  [Foliage Factory](https://foliage-factory.com/pages/foliage-points))
+- Price signal: app pricing not checked (unverified).
+- Difficulty: easy. It is a Shopify app.
+- First step: compare free tiers of Smile.io and Growave, and make points auto-join so customers don't have to sign up.
+
+---
+
 ## 2026-11-05
 
 Evidence was thin again: seller listings, fee guides and forum posts, no hard sales data.
