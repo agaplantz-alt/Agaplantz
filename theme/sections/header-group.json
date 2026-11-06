@@ -303,7 +303,7 @@
             "navigation_bar": false,
             "background_color_navigation_bar": "{{ settings.color_palette.background }}",
             "text_color_navigation_bar": "",
-            "drawer_accordion": false,
+            "drawer_accordion": true,
             "drawer_accordion_expand_first": false,
             "drawer_dividers": false
           },
@@ -478,9 +478,20 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "crochet_menu_style": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\n#shopify-section-crochet_menu_style,[id$=\"__crochet_menu_style\"]{display:none}\na[href=\"/collections/crochet\"]>.menu-list__link-title,a[href=\"/collections/crochet\"]>.menu-drawer__menu-item-text,#HeaderDrawer-crochet>.menu-drawer__menu-item-text,a[href=\"/collections/crochet\"]>.menu-drawer__menu-item-text{position:relative;display:inline-block;padding-inline-start:1.3em;padding-block-end:.3em;color:#B4693C;background:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='6' viewBox='0 0 8 6'><ellipse cx='4' cy='3' rx='4.8' ry='2' fill='none' stroke='%23B4693C' stroke-width='1.15'/></svg>\") repeat-x left bottom/8px 6px}\na[href=\"/collections/crochet\"]>.menu-list__link-title::before,a[href=\"/collections/crochet\"]>.menu-drawer__menu-item-text::before,#HeaderDrawer-crochet>.menu-drawer__menu-item-text::before{content:\"\";position:absolute;inset-inline-start:0;inset-block-start:50%;width:1.05em;height:1.05em;transform:translateY(-62%);background:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B4693C' stroke-width='1.7' stroke-linecap='round'><circle cx='10.5' cy='12' r='7.6'/><path d='M3.6 9.4c4-1.3 8.6-1 13.4 1.3'/><path d='M3.2 14.3c4.5-2.5 9.5-2.7 14.5-.3'/><path d='M6.4 5.6c2.3 3.4 3.2 8.4 2.6 14'/><path d='M17.6 13.6c1.9 1.6 3.2 3.8 3.9 6.6'/></svg>\") no-repeat center/contain}\n</style>",
+        "background_color": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
+    "crochet_menu_style",
     "header_announcements_ELa3gw",
     "header_announcements_9jGBFp",
     "header_section",

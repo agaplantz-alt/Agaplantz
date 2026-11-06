@@ -838,6 +838,18 @@ Draft theme **`AgaPlantz 2026 — crochet line` = `190192943183`** (from MAIN `1
   active; **all 15 crochet products already sit in `popular`** (its rules admit anything in
   stock that is not a Service), so they will join the homepage "Popular right now" row the day
   they go active unless a `TYPE != Crochet` condition is added — Agam's call, not made.
+- **Drawer accordion + yarn-styled Crochet item (same evening).** The owner, seeing the drawer:
+  *"make a crochet with a crochet string so it looks different and eye-catching… a drop-down
+  menu will be great, because right now it's like automatically opening."* So `header-menu`
+  has `drawer_accordion: true` (every parent collapses to a +/− row; Plants collections too),
+  and a **`custom-liquid` section `crochet_menu_style` sits first in `header-group.json`**
+  carrying only a `<style>`: the Crochet label (desktop `.menu-list__link-title`, drawer
+  `#HeaderDrawer-crochet > .menu-drawer__menu-item-text`, both matched by the `/collections/crochet`
+  href) turns terracotta, gets a yarn-ball SVG before it and a chain-stitch SVG underline, all
+  inline data URIs — no asset upload, survives Horizon upgrades because it is JSON. The section's
+  own wrapper is hidden by id (`[id$="__crochet_menu_style"]`; in a section group the DOM id is
+  `shopify-section-sections--<group>__<key>`, not `shopify-section-<key>`). Verified in a
+  browser at 390 and 1280.
 - Also on this draft: the announcement bar flipped for 6 Nov (`announcement_sale` disabled,
   `announcement_sale15` enabled) — the 20% slide was still live a day after the discount ended.
 
