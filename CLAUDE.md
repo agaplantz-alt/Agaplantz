@@ -867,6 +867,20 @@ Draft theme **`AgaPlantz 2026 — crochet line` = `190192943183`** (from MAIN `1
   the line reads as twisted yarn; the icon panel is blush `#F6E7EE`. Tiles still prefer a real
   image when one is set. The owner also asked *"do you have product reviews as well"* — yes,
   `product.crochet.json` keeps both Loox blocks.
+- **Products and collections went live on 6 Nov 21:00Z, on the owner's say-so** (*"publish all
+  the products, so we see like what's going on and how things are looking"*): all 15 products
+  set ACTIVE with `templateSuffix: crochet` (`productUpdate`, aliased ×15) and published to the
+  **Online Store only** (`publishablePublish`, publication `164313432143`; not Shop / TikTok /
+  Meta / Google / Microsoft), and the six crochet collections published to the Online Store the
+  same way. By then the product session had attached photos to most products (Daisy Granny Bag
+  still had none). **What this exposes on the live site while the theme is still a draft:** the
+  product and collection URLs work for anyone who has them, store search will find them once
+  indexed, and they are eligible for the `popular` collection (none in the live "Popular right
+  now" row yet — BEST_SELLING puts unsold items last). The live menu, homepage and
+  `/collections` page do not link them. **Etsy still has to be excluded in the DPL app** before
+  this is announced. Verified on the preview after publishing: band shows the product row,
+  `/collections/crochet` renders the cards with Filter + Price/Availability, the Rose Pot
+  product page uses `product.crochet` (trust line, Colour buttons, gift row, no guarantee).
 - Also on this draft: the announcement bar flipped for 6 Nov (`announcement_sale` disabled,
   `announcement_sale15` enabled) — the 20% slide was still live a day after the discount ended.
 
