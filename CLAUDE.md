@@ -867,6 +867,11 @@ Draft theme **`AgaPlantz 2026 — crochet line` = `190192943183`** (from MAIN `1
   the line reads as twisted yarn; the icon panel is blush `#F6E7EE`. Tiles still prefer a real
   image when one is set. The owner also asked *"do you have product reviews as well"* — yes,
   `product.crochet.json` keeps both Loox blocks.
+- **Band trimmed on the owner's marks (6 Nov, later):** the moss "Gifts under $25" strip is
+  off (`show_gift: false`, the setting and markup stay), the tiles are the new `tile_size:
+  compact` mode (one 52px row each: icon, title, arrow, no line) and the band background is
+  light pink `#FBEEF3` — *"make them small and change the background into a light pink color
+  so it looks pretty."* `regular` tile mode still exists in the editor.
 - **Products and collections went live on 6 Nov 21:00Z, on the owner's say-so** (*"publish all
   the products, so we see like what's going on and how things are looking"*): all 15 products
   set ACTIVE with `templateSuffix: crochet` (`productUpdate`, aliased ×15) and published to the

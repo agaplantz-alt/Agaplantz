@@ -67,7 +67,7 @@
 <div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
 
 <div
-  class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agcr"
+  class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agcr{% if section.settings.tile_size == 'compact' %} agcr--compact{% endif %}"
   style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px; --agcr-cols: {{ section.settings.columns }};"
 >
   <div class="agcr__head">
@@ -321,6 +321,21 @@
     color: #56503F;
   }
 
+  /* compact tiles: one slim row each, icon + title + arrow, no line */
+  .agcr--compact .agcr__tiles { gap: 10px; }
+  .agcr--compact .agcr__tile {
+    grid-template-rows: none;
+    grid-template-columns: 52px 1fr;
+    align-items: center;
+    background: rgb(255 255 255 / 0.55);
+  }
+  .agcr--compact .agcr__tile-media { aspect-ratio: 1 / 1; height: 52px; }
+  .agcr--compact .agcr__tile-glyph svg { width: 32px; height: 32px; }
+  .agcr--compact .agcr__tile-copy { padding: 10px 40px 10px 14px; }
+  .agcr--compact .agcr__tile-title { font-size: 17px; }
+  .agcr--compact .agcr__tile-text { display: none; }
+  .agcr--compact .agcr__tile-arrow { font-size: 16px; }
+
   @media screen and (max-width: 749px) {
     .agcr__head { flex-direction: column; align-items: flex-start; gap: 16px; }
     .agcr__cta { width: 100%; justify-content: center; }
@@ -341,6 +356,9 @@
     .agcr__yarn { font-size: 2rem; }
     .agcr__tile-copy { padding: 12px 40px 12px 14px; }
     .agcr__tile-title { font-size: 17px; }
+    .agcr--compact .agcr__tile { grid-template-columns: 52px 1fr; }
+    .agcr--compact .agcr__tile-media { height: 52px; }
+    .agcr--compact .agcr__tile-copy { padding: 10px 40px 10px 14px; }
     .agcr__gift { grid-template-columns: auto 1fr; gap: 14px; padding: 16px; }
     .agcr__gift-cta { grid-column: 2; }
   }
@@ -361,6 +379,8 @@
     { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 2, "max": 4, "step": 1, "default": 4 },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop crochet" },
     { "type": "url", "id": "cta_url", "label": "Button link", "info": "Leave blank to use the collection above." },
+    { "type": "select", "id": "tile_size", "label": "Category tiles", "options": [
+      { "value": "regular", "label": "Regular (picture on top)" }, { "value": "compact", "label": "Small (one slim row each)" } ], "default": "compact" },
     { "type": "header", "content": "Gifts strip" },
     { "type": "checkbox", "id": "show_gift", "label": "Show the gifts strip", "default": true },
     { "type": "collection", "id": "gift_collection", "label": "Gifts collection" },

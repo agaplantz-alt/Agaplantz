@@ -1931,17 +1931,18 @@
         "columns": 4,
         "cta_label": "Shop crochet",
         "cta_url": "/collections/crochet",
-        "show_gift": true,
+        "show_gift": false,
         "gift_collection": "crochet-gifts-under-25",
         "gift_url": "/collections/crochet-gifts-under-25",
         "gift_heading": "Gifts under $25",
         "gift_text": "Keychains, bag charms and flower hangings. Easy to post, easy to love.",
         "gift_cta": "See them all",
         "note": "Every piece is hand-crocheted by our artisan partner. Crochet is not included in plant discounts.",
-        "background_color": "#F2EBDE",
+        "background_color": "#FBEEF3",
         "padding-block-start": 64,
         "padding-block-end": 64,
-        "show_yarn": true
+        "show_yarn": true,
+        "tile_size": "compact"
       }
     }
   },
