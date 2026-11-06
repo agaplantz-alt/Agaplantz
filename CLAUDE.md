@@ -843,10 +843,18 @@ Draft theme **`AgaPlantz 2026 — crochet line` = `190192943183`** (from MAIN `1
   menu will be great, because right now it's like automatically opening."* So `header-menu`
   has `drawer_accordion: true` (every parent collapses to a +/− row; Plants collections too),
   and a **`custom-liquid` section `crochet_menu_style` sits first in `header-group.json`**
-  carrying only a `<style>`: the Crochet label (desktop `.menu-list__link-title`, drawer
-  `#HeaderDrawer-crochet > .menu-drawer__menu-item-text`, both matched by the `/collections/crochet`
-  href) turns terracotta, gets a yarn-ball SVG before it and a chain-stitch SVG underline, all
-  inline data URIs — no asset upload, survives Horizon upgrades because it is JSON. The section's
+  carrying only a `<style>`. First pass: the Crochet label turned terracotta with a yarn-ball
+  icon and a chain-stitch underline. The owner: *"Use a pink crochet string. Write that crochet
+  with the pink string, not like under it."* So now the label (desktop `.menu-list__link-title`,
+  drawer `#HeaderDrawer-crochet > .menu-drawer__menu-item-text`, matched by the
+  `/collections/crochet` href) is replaced by a **wordmark**: the word "Crochet" set in Pacifico,
+  converted to a path with fontTools and filled with a diagonal two-pink stripe pattern
+  (`#E8A3BE` / `#CF6F96`, edge `#B8577D`) so it reads as twisted yarn, with a ball of yarn at
+  the start, a thread running into the C and a loose tail after the t. It is one inline SVG
+  data URI (~5 KB) used as the span's background; the text stays in the DOM (transparent,
+  indented away) for screen readers. 1.5em tall in the desktop bar, 1.3em in the drawer. The
+  SVG is also in `brand/crochet-yarn-wordmark.svg`; the generator was fontTools + Pacifico from
+  Google Fonts, not kept. The section's
   own wrapper is hidden by id (`[id$="__crochet_menu_style"]`; in a section group the DOM id is
   `shopify-section-sections--<group>__<key>`, not `shopify-section-<key>`). Verified in a
   browser at 390 and 1280.
