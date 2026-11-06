@@ -38,13 +38,25 @@
           endif
           assign card_image = chosen.image | default: product.featured_image
           assign shown = shown | plus: 1
-          echo '<div class="agcr__card"><a class="agcr__card-link" href="' | append: product.url | append: '" aria-label="' | append: product.title | escape | append: '"><div class="agcr__media">'
+          assign card_title = product.title | escape
+          assign card_price = chosen.price | money
+          echo '<div class="agcr__card"><a class="agcr__card-link" href="'
+          echo product.url
+          echo '" aria-label="'
+          echo card_title
+          echo '"><div class="agcr__media">'
           if card_image
             echo card_image | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 25vw, 60vw', widths: '350, 700, 1050', alt: product.title
           else
-            echo '<span class="agcr__noimage">' | append: product.title | append: '</span>'
+            echo '<span class="agcr__noimage">'
+            echo card_title
+            echo '</span>'
           endif
-          echo '</div><span class="agcr__title">' | append: product.title | append: '</span><span class="agcr__price">' | append: chosen.price | money | append: '</span></a></div>'
+          echo '</div><span class="agcr__title">'
+          echo card_title
+          echo '</span><span class="agcr__price">'
+          echo card_price
+          echo '</span></a></div>'
         endfor
       endpaginate
     endif
