@@ -871,7 +871,14 @@ Draft theme **`AgaPlantz 2026 — crochet line` = `190192943183`** (from MAIN `1
   off (`show_gift: false`, the setting and markup stay), the tiles are the new `tile_size:
   compact` mode (one 52px row each: icon, title, arrow, no line) and the band background is
   light pink `#FBEEF3` — *"make them small and change the background into a light pink color
-  so it looks pretty."* `regular` tile mode still exists in the editor.
+  so it looks pretty."* The owner then circled the compact rows: *"It's not giving what it's
+  need to give."* So the tiles are now **`tile_size: photo`** (the default): three small photo
+  squares side by side, name underneath, no line and no arrow; 3 across at every width (4 tiles
+  go 2×2 on a phone). The photo is the tile's `image` setting, else the collection image, else
+  **the first product photo in that collection** (`for tp in t_coll.products limit: 12`) — the
+  crochet collections still have no images of their own, so today every tile shows a product
+  shot. The pink glyph only appears when a collection has no photographed products at all.
+  `regular` and `compact` tile modes still exist in the editor.
 - **Products and collections went live on 6 Nov 21:00Z, on the owner's say-so** (*"publish all
   the products, so we see like what's going on and how things are looking"*): all 15 products
   set ACTIVE with `templateSuffix: crochet` (`productUpdate`, aliased ×15) and published to the

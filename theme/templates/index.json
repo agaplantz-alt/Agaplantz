@@ -1942,7 +1942,7 @@
         "padding-block-start": 64,
         "padding-block-end": 64,
         "show_yarn": true,
-        "tile_size": "compact"
+        "tile_size": "photo"
       }
     }
   },

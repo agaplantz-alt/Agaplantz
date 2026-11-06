@@ -67,7 +67,7 @@
 <div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
 
 <div
-  class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agcr{% if section.settings.tile_size == 'compact' %} agcr--compact{% endif %}"
+  class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agcr{% if section.settings.tile_size == 'compact' %} agcr--compact{% elsif section.settings.tile_size == 'photo' %} agcr--photo{% endif %}"
   style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px; --agcr-cols: {{ section.settings.columns }};"
 >
   <div class="agcr__head">
@@ -102,6 +102,14 @@
           assign t_image = block.settings.image
           if t_image == blank and t_coll != blank
             assign t_image = t_coll.image
+          endif
+          if t_image == blank and t_coll != blank
+            for tp in t_coll.products limit: 12
+              if tp.featured_image
+                assign t_image = tp.featured_image
+                break
+              endif
+            endfor
           endif
         -%}
         <a class="agcr__tile" href="{{ t_url }}" {{ block.shopify_attributes }}>
@@ -321,6 +329,30 @@
     color: #56503F;
   }
 
+  /* photo tiles: three small squares side by side, name underneath */
+  .agcr--photo .agcr__tiles, .agcr--photo .agcr__tiles--2 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .agcr--photo .agcr__tiles--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .agcr--photo .agcr__tile {
+    grid-template-rows: auto auto;
+    grid-template-columns: none;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+  }
+  .agcr--photo .agcr__tile:hover .agcr__tile-media, .agcr--photo .agcr__tile:focus .agcr__tile-media { border-color: #CF6F96; }
+  .agcr--photo .agcr__tile-media {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border: 1px solid #EBCFDB;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #F6E7EE;
+    transition: border-color 0.2s ease;
+  }
+  .agcr--photo .agcr__tile-copy { padding: 8px 0 0; text-align: center; }
+  .agcr--photo .agcr__tile-title { font-size: 16px; }
+  .agcr--photo .agcr__tile-text, .agcr--photo .agcr__tile-arrow { display: none; }
+
   /* compact tiles: one slim row each, icon + title + arrow, no line */
   .agcr--compact .agcr__tiles { gap: 10px; }
   .agcr--compact .agcr__tile {
@@ -356,6 +388,12 @@
     .agcr__yarn { font-size: 2rem; }
     .agcr__tile-copy { padding: 12px 40px 12px 14px; }
     .agcr__tile-title { font-size: 17px; }
+    .agcr--photo .agcr__tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .agcr--photo .agcr__tiles--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .agcr--photo .agcr__tile { grid-template-columns: none; }
+    .agcr--photo .agcr__tile-media { height: auto; }
+    .agcr--photo .agcr__tile-copy { padding: 8px 0 0; }
+    .agcr--photo .agcr__tile-title { font-size: 15px; }
     .agcr--compact .agcr__tile { grid-template-columns: 52px 1fr; }
     .agcr--compact .agcr__tile-media { height: 52px; }
     .agcr--compact .agcr__tile-copy { padding: 10px 40px 10px 14px; }
@@ -380,7 +418,7 @@
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop crochet" },
     { "type": "url", "id": "cta_url", "label": "Button link", "info": "Leave blank to use the collection above." },
     { "type": "select", "id": "tile_size", "label": "Category tiles", "options": [
-      { "value": "regular", "label": "Regular (picture on top)" }, { "value": "compact", "label": "Small (one slim row each)" } ], "default": "compact" },
+      { "value": "regular", "label": "Regular (picture on top)" }, { "value": "compact", "label": "Small (one slim row each)" }, { "value": "photo", "label": "Small photo squares, side by side" } ], "default": "photo" },
     { "type": "header", "content": "Gifts strip" },
     { "type": "checkbox", "id": "show_gift", "label": "Show the gifts strip", "default": true },
     { "type": "collection", "id": "gift_collection", "label": "Gifts collection" },
