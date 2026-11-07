@@ -10,6 +10,80 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-07
+
+Evidence was thin again: mostly undated retail and wholesale listings, no hard sales data. Today looks at three
+aroid groups not yet in this log.
+
+### Product ideas
+
+**1. Aglaonema 'Pictum Tricolor'.**
+- What: the "camouflage" Aglaonema with green, silver and cream patches. Aglaonema is an aroid the store does not
+  carry yet.
+- Why now: sellers describe it as rare and sought after because it grows slowly. A Canadian nursery sells a 3-inch
+  'White Flame' form at $16.98 CAD, so it is already sold in Canada.
+  ([Floral Acres](https://floralacres.ca/products/aglaonema-3in-pictum-tricolor-white-flame-88068),
+  [Plant Vault care guide](https://plantvault.com/blogs/blog/aglaonema-pictum-tricolor-care-guide-for-this-rare-camouflage-plant))
+- Price signal: a wholesale lot of 25 lists at $337.50 USD, about $13.50 each, against retail asking prices of
+  $35 to $39.99 USD.
+  ([Okanoka wholesale](https://okanoka.com/products/wholesale-25x-aglaonema-pictum-tricolor),
+  [Ed's Plant Shop](https://edsplantshop.com/products/aglaonema-pictum-tricolor))
+  No 2026 price trend was found (unverified).
+- Difficulty: easy to medium. It's a grown plant, not TC, so it needs a supplier that ships to Canada.
+- First step: ask Floral Acres or another Canadian wholesaler whether they sell Pictum Tricolor in bulk.
+
+**2. Variegated Epipremnum pinnatum 'Albo'.**
+- What: a white-variegated climbing aroid, related to pothos, sold as TC plantlets.
+- Why now: it is offered as a TC plantlet on Faire wholesale, so a supply route exists.
+  ([Faire](https://www.faire.com/product/p_ywpe8d988t))
+- Price signal: $47 USD MSRP per plantlet on Faire, with a $150 minimum wholesale order. Demand was not confirmed
+  (unverified).
+- Difficulty: easy. It is a fast, forgiving climber, which suits beginners.
+- First step: request the wholesale price behind the $47 MSRP on Faire.
+
+**3. Rhaphidophora 'decursiva' and TC 'Pearls'.**
+- What: climbing aroids with split or textured leaves, for collectors who like Monstera-style plants on a moss pole.
+- Why now: several shops stock them, and one US lab sells Rhaphidophora 'Pearls' as TC.
+  ([Heyhorti](https://www.heyhorti.com/collections/rare-plants),
+  [Plantvine](https://www.plantvine.com/?p=83925),
+  [Orange Lake Pearls TC](https://orangelakenursery.com/products/rhaphidophora-pearls-tissue-culture.oembed))
+- Price signal: R. decursiva from $24 USD at one shop and $32 to $91 at another. Pearls TC price not shown
+  (unverified).
+- Difficulty: easy to medium. Pairs with moss poles the store could also sell.
+- First step: ask your lab whether it has Rhaphidophora 'Pearls' or decursiva on its list.
+
+### Business ideas
+
+**1. QR-code care cards in every box.**
+- What: a small card with a QR code that opens a care page for that exact plant, plus a link back to the shop.
+  It doesn't need an app.
+- Why now: several plant retailers already do this. Homebase in the UK links plant barcodes to care tips, and one
+  garden-centre supplier calls QR care labels "a second loyalty scheme" that ties customers to the shop. Agrio offers
+  printed cards that route app shopping back to the seller's store.
+  ([Ideal Home on Homebase](https://www.idealhome.co.uk/news/homebase-smartplant-app-225265),
+  [Joy of Plants](https://joyofplants.com/post/whartons/),
+  [Agrio](https://agrio.app/?p=7967))
+- Price signal: a self-made QR code to a Shopify page costs nothing but printing. Vendor pricing not checked (unverified).
+- Difficulty: easy.
+- First step: make one care page for your best seller and print a test card with its QR code.
+
+**2. A booth at a Toronto holiday market.**
+- What: sell ready-to-ship plants and accessories at a December market. This differs from the self-hosted swap or
+  workshop idea on 2026-11-02; here you join an existing event.
+- Why now: several December 2026 markets list vendor details. The Well's Modern Makers Marketplace runs December 18
+  to 20 at $100 a day for a 10x10 booth. A Holiday EcoMarket and the Night Makers Market at Ontario Place list $70 a
+  day. The Toronto Zoo Holiday Marketplace has a 2026 vendor form.
+  ([Modern Makers Marketplace](https://happeningnext.com/event/the-modern-makers-marketplace-eid1ef0l1pq7n5a),
+  [Holiday EcoMarket](https://happeningnext.com/event/holiday-ecomarket-eid1ef0l461aqua),
+  [Night Makers Market](https://happeningnext.com/event/night-makers-market-eid1ef0l0r7qtsr),
+  [Toronto Zoo vendor form](https://www.surveymonkey.com/r/2026tzholidaymarketplace))
+  Whether each still has space is unverified, and some deadlines have passed.
+- Price signal: $70 to $100 a day in booth fees, from these listings.
+- Difficulty: medium. It needs a day or two of staffing, and plants must be kept warm in transit.
+- First step: email The Well's market and the Holiday EcoMarket this week to ask if plant vendors still have space.
+
+---
+
 ## 2026-11-06
 
 Evidence was thin again: seller listings, seller policies and vendor blogs, no hard sales data.
