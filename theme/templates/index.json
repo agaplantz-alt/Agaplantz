@@ -495,7 +495,7 @@
             "tag": "Ships in 1–3 days",
             "featured": false,
             "title": "Ready to ship",
-            "text": "Rooted and acclimated in our greenhouse. At your door within the week.",
+            "text": "Rooted and acclimated in our greenhouse.",
             "collection": "ready-to-ship-tissue-culture",
             "link": "/collections/ready-to-ship-tissue-culture",
             "cta_label": "Shop now"
@@ -526,12 +526,12 @@
         "link_url": "/pages/tissue-culture",
         "show_guarantee": true,
         "guarantee_title": "Every plant is covered for 30 days",
-        "guarantee_text": "If a plant doesn't pull through within 30 days of delivery, we replace it: free on plants under $200, at 50% of what you paid above that. Just photograph it the day it arrives.",
-        "guarantee_label": "How the guarantee works",
+        "guarantee_text": "Free replacement under $200, half price above. Just photograph it the day it arrives.",
+        "guarantee_label": "How it works",
         "guarantee_url": "/pages/30-day-plant-guarantee",
-        "background_color": "#e8ede1",
-        "padding-block-start": 64,
-        "padding-block-end": 64
+        "background_color": "#F2EBDE",
+        "padding-block-start": 48,
+        "padding-block-end": 48
       }
     },
     "products_tc": {
@@ -652,10 +652,15 @@
         "eyebrow": "The AgaPlantz way",
         "heading": "Why collectors choose AgaPlantz",
         "text": "",
-        "show_numbers": true,
-        "background_color": "#e8ede1",
-        "padding-block-start": 56,
-        "padding-block-end": 56
+        "show_numbers": false,
+        "background_color": "#F2EBDE",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "image": "shopify://shop_images/edited-edited20.png",
+        "product": "monstera-white-lava-ghost-pre-order",
+        "image_link": "/products/monstera-white-lava-ghost-pre-order",
+        "image_caption": "Monstera White Lava Ghost",
+        "image_position": "left"
       }
     },
     "178828179731f4290e": {
@@ -870,8 +875,8 @@
     "products_sale",
     "products_rts",
     "products_acclimated",
-    "why_agaplantz",
     "crochet_feature",
+    "why_agaplantz",
     "178828179731f4290e"
   ]
 }

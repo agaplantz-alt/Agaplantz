@@ -1,10 +1,11 @@
 {%- doc -%}
-  AgaPlantz — "New to tissue culture?" on the home page, rebuilt 7 Nov 2026.
-  Head (eyebrow, heading, one line, optional link to the guide page), then one photo-led
-  card per stage block (ready to ship / pre-order), side by side on every screen, then the
-  30-Day Plant Guarantee strip. Every string is a setting. A card's photo is its own image
-  setting, else the collection image, else the first product photo in that collection, so
-  it is never a grey placeholder while the catalogue has pictures.
+  AgaPlantz — "New to tissue culture?" on the home page. Rebuilt 7 Nov 2026, then made
+  smaller and quieter the same night on the owner's note ("smaller … luxurious, but it should
+  not complicate things"). Heading and one line on the left; on the right, one slim row per
+  stage block — a small square photo, a small-caps meta line, a Lora title, one line and an
+  arrow — the whole row is the link. Under the rows, the 30-Day Plant Guarantee as a single
+  hairline-separated line. No buttons, no pills, no boxes. A row's photo is its own image
+  setting, else the collection image, else the first product photo in that collection.
 {%- enddoc -%}
 
 {%- liquid
@@ -23,19 +24,17 @@
   class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agts"
   style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
 >
-  <div class="agts__head">
+  <div class="agts__grid">
     <div class="agts__copy">
       {%- if section.settings.eyebrow != blank -%}<p class="agts__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
       <h2 class="agts__heading">{{ section.settings.heading }}</h2>
       {%- if section.settings.text != blank -%}<p class="agts__text">{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.link_label != blank and section.settings.link_url != blank -%}
+        <a class="agts__link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}<span aria-hidden="true"> &rarr;</span></a>
+      {%- endif -%}
     </div>
-    {%- if section.settings.link_label != blank and section.settings.link_url != blank -%}
-      <a class="agts__link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}<span aria-hidden="true"> &rarr;</span></a>
-    {%- endif -%}
-  </div>
 
-  {%- if section.blocks.size > 0 -%}
-    <div class="agts__cards agts__cards--{{ section.blocks.size }}">
+    <div class="agts__list">
       {%- for block in section.blocks -%}
         {%- liquid
           assign c_coll = block.settings.collection
@@ -56,61 +55,59 @@
             endfor
           endif
         -%}
-        <article class="agts__card{% if block.settings.featured %} agts__card--featured{% endif %}" {{ block.shopify_attributes }}>
-          <a class="agts__media" href="{{ c_url }}" tabindex="-1" aria-hidden="true">
+        <a class="agts__row" href="{{ c_url }}" {{ block.shopify_attributes }}>
+          <span class="agts__media">
             {%- if c_image -%}
-              {{ c_image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 45vw, 50vw', widths: '300, 450, 600, 900', alt: '' }}
-            {%- else -%}
-              <span class="agts__noimage"></span>
+              {{ c_image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '120px', widths: '120, 240, 400', alt: '' }}
             {%- endif -%}
-            {%- if block.settings.tag != blank -%}<span class="agts__tag">{{ block.settings.tag }}</span>{%- endif -%}
-          </a>
-          <div class="agts__body">
-            <h3 class="agts__title">{{ block.settings.title }}</h3>
-            {%- if block.settings.text != blank -%}<p class="agts__line">{{ block.settings.text }}</p>{%- endif -%}
-            {%- if block.settings.cta_label != blank and c_url != blank -%}
-              <a class="agts__cta" href="{{ c_url }}">{{ block.settings.cta_label }}</a>
-            {%- endif -%}
-          </div>
-        </article>
+          </span>
+          <span class="agts__body">
+            {%- if block.settings.tag != blank -%}<span class="agts__meta">{{ block.settings.tag }}</span>{%- endif -%}
+            <span class="agts__title">{{ block.settings.title }}</span>
+            {%- if block.settings.text != blank -%}<span class="agts__line">{{ block.settings.text }}</span>{%- endif -%}
+          </span>
+          <span class="agts__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h13"/><path d="m13 6 6 6-6 6"/></svg>
+          </span>
+          {%- if block.settings.cta_label != blank -%}<span class="visually-hidden">{{ block.settings.cta_label }}</span>{%- endif -%}
+        </a>
       {%- endfor -%}
-    </div>
-  {%- endif -%}
 
-  {%- if section.settings.show_guarantee -%}
-    <aside class="agts__guarantee">
-      <span class="agts__g-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-          <path d="M12 3 5 5.5v5.3c0 4.6 3 8.3 7 9.7 4-1.4 7-5.1 7-9.7V5.5L12 3Z"/>
-          <path d="m9 12 2 2 4-4.5"/>
-        </svg>
-      </span>
-      <div class="agts__g-copy">
-        <p class="agts__g-title">{{ section.settings.guarantee_title }}</p>
-        {%- if section.settings.guarantee_text != blank -%}<p class="agts__g-text">{{ section.settings.guarantee_text }}</p>{%- endif -%}
-      </div>
-      {%- if section.settings.guarantee_label != blank -%}
-        <a class="agts__g-link" href="{{ g_url }}">{{ section.settings.guarantee_label }}<span aria-hidden="true"> &rarr;</span></a>
+      {%- if section.settings.show_guarantee -%}
+        <a class="agts__guarantee" href="{{ g_url }}">
+          <span class="agts__g-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+              <path d="M12 3 5 5.5v5.3c0 4.6 3 8.3 7 9.7 4-1.4 7-5.1 7-9.7V5.5L12 3Z"/>
+              <path d="m9 12 2 2 4-4.5"/>
+            </svg>
+          </span>
+          <span class="agts__g-copy">
+            <span class="agts__g-title">{{ section.settings.guarantee_title }}</span>
+            {%- if section.settings.guarantee_text != blank -%}<span class="agts__g-text">{{ section.settings.guarantee_text }}</span>{%- endif -%}
+          </span>
+          {%- if section.settings.guarantee_label != blank -%}
+            <span class="agts__g-link">{{ section.settings.guarantee_label }}<span aria-hidden="true"> &rarr;</span></span>
+          {%- endif -%}
+        </a>
       {%- endif -%}
-    </aside>
-  {%- endif -%}
+    </div>
+  </div>
 </div>
 
 {% stylesheet %}
   .agts {
-    padding-block-start: var(--padding-block-start, 64px);
-    padding-block-end: var(--padding-block-end, 64px);
+    padding-block-start: var(--padding-block-start, 48px);
+    padding-block-end: var(--padding-block-end, 48px);
   }
-  .agts__head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-    margin-block-end: 28px;
+  .agts__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 48px 64px;
+    align-items: start;
   }
-  .agts__copy { max-width: 56ch; }
+  .agts__copy { max-width: 44ch; }
   .agts__eyebrow {
-    margin: 0 0 8px;
+    margin: 0 0 10px;
     color: #B4693C;
     font-family: var(--font-body--family);
     font-size: 11px;
@@ -122,50 +119,53 @@
     margin: 0;
     font-family: var(--font-accent--family);
     font-weight: 400;
-    font-size: clamp(26px, 3.4vw, 34px);
+    font-size: clamp(26px, 3vw, 32px);
     line-height: 1.15;
     text-wrap: pretty;
   }
   .agts__text {
-    margin: 10px 0 0;
+    margin: 12px 0 0;
     font-family: var(--font-body--family);
     font-size: 15px;
-    line-height: 1.55;
+    line-height: 1.6;
     color: #56503F;
   }
   .agts__link {
-    flex: none;
+    display: inline-block;
+    margin-top: 18px;
     font-family: var(--font-body--family);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
+    letter-spacing: 0.02em;
     color: #5C6B4C;
     text-decoration: none;
     border-bottom: 1px solid #5C6B4C;
     padding-bottom: 2px;
-    white-space: nowrap;
   }
   .agts__link:hover { color: #2F2A22; border-color: #2F2A22; }
 
-  .agts__cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
-  .agts__cards--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .agts__card {
+  .agts__list {
     display: flex;
     flex-direction: column;
-    background: #FBF8F2;
-    border: 1px solid #DED3C2;
-    border-radius: 4px;
-    overflow: hidden;
+    border-top: 1px solid #CFC4B0;
+  }
+  .agts__row {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #CFC4B0;
+    color: inherit;
+    text-decoration: none;
   }
   .agts__media {
-    position: relative;
     display: block;
-    aspect-ratio: 5 / 4;
+    width: 96px;
+    aspect-ratio: 1 / 1;
     background: #F2EBDE;
     overflow: hidden;
+    border-radius: 2px;
   }
   .agts__media img {
     width: 100%;
@@ -174,146 +174,97 @@
     display: block;
     transition: transform .6s ease;
   }
-  .agts__card:hover .agts__media img { transform: scale(1.03); }
-  .agts__noimage { display: block; width: 100%; height: 100%; background: linear-gradient(135deg, #E8EDE1, #DED3C2); }
-  .agts__tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    padding: 5px 9px;
-    background: #FBF8F2;
-    color: #2F2A22;
-    border-radius: 2px;
+  .agts__row:hover .agts__media img { transform: scale(1.04); }
+  .agts__body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .agts__meta {
     font-family: var(--font-body--family);
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    line-height: 1;
-  }
-  .agts__card--featured .agts__tag { background: #5C6B4C; color: #FBF8F2; }
-  .agts__body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 8px;
-    padding: 18px 18px 20px;
+    color: #B4693C;
   }
   .agts__title {
-    margin: 0;
     font-family: var(--font-accent--family);
-    font-weight: 400;
     font-size: 22px;
     line-height: 1.2;
+    color: #2F2A22;
   }
   .agts__line {
-    margin: 0;
     font-family: var(--font-body--family);
     font-size: 14px;
     line-height: 1.5;
     color: #56503F;
-    flex: 1;
   }
-  .agts__cta {
+  .agts__arrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    align-self: flex-start;
-    margin-top: 8px;
-    min-height: 42px;
-    padding: 0 20px;
-    background: #5C6B4C;
-    color: #FBF8F2;
-    border-radius: 2px;
-    font-family: var(--font-body--family);
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    letter-spacing: 0.01em;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #5C6B4C;
+    border-radius: 50%;
+    color: #5C6B4C;
+    transition: background .25s ease, color .25s ease;
   }
-  .agts__cta:hover { background: #4C5A3F; }
+  .agts__row:hover .agts__arrow { background: #5C6B4C; color: #FBF8F2; }
 
   .agts__guarantee {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: 18px;
-    margin-top: 16px;
-    padding: 18px 22px;
-    background: #FBF8F2;
-    border: 1px solid #DED3C2;
-    border-left: 4px solid #5C6B4C;
-    border-radius: 4px;
+    gap: 14px;
+    padding: 16px 0 0;
+    color: inherit;
+    text-decoration: none;
   }
   .agts__g-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #5C6B4C;
     color: #FBF8F2;
   }
+  .agts__g-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
   .agts__g-title {
-    margin: 0;
-    font-family: var(--font-accent--family);
-    font-size: 18px;
-    line-height: 1.25;
-    color: #2F2A22;
-  }
-  .agts__g-text {
-    margin: 4px 0 0;
-    font-family: var(--font-body--family);
-    font-size: 14px;
-    line-height: 1.5;
-    color: #56503F;
-    max-width: 68ch;
-  }
-  .agts__g-link {
-    flex: none;
     font-family: var(--font-body--family);
     font-size: 14px;
     font-weight: 600;
+    color: #2F2A22;
+  }
+  .agts__g-text {
+    font-family: var(--font-body--family);
+    font-size: 13px;
+    line-height: 1.5;
+    color: #56503F;
+  }
+  .agts__g-link {
+    font-family: var(--font-body--family);
+    font-size: 13px;
+    font-weight: 600;
     color: #5C6B4C;
-    text-decoration: none;
     white-space: nowrap;
     border-bottom: 1px solid #5C6B4C;
     padding-bottom: 2px;
   }
-  .agts__g-link:hover { color: #2F2A22; border-color: #2F2A22; }
+  .agts__guarantee:hover .agts__g-link { color: #2F2A22; border-color: #2F2A22; }
 
-  @media screen and (min-width: 750px) {
-    .agts__card {
-      display: grid;
-      grid-template-columns: 44% minmax(0, 1fr);
-    }
-    .agts__media { aspect-ratio: auto; height: 100%; min-height: 260px; }
-    .agts__body { padding: 24px 24px 26px; justify-content: center; }
-    .agts__line { flex: 0 0 auto; }
-    .agts__cards--3 .agts__card { display: flex; flex-direction: column; }
-    .agts__cards--3 .agts__media { aspect-ratio: 5 / 4; height: auto; min-height: 0; }
+  @media screen and (max-width: 989px) {
+    .agts__grid { grid-template-columns: 1fr; gap: 28px; }
+    .agts__copy { max-width: 56ch; }
   }
   @media screen and (max-width: 749px) {
-    .agts__g-icon { align-self: start; }
-    .agts__head { flex-direction: column; align-items: flex-start; gap: 12px; margin-block-end: 22px; }
-    .agts__cards, .agts__cards--3 { gap: 10px; }
-    .agts__cards--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .agts__media { aspect-ratio: 1 / 1; }
-    .agts__tag { top: 8px; left: 8px; font-size: 10px; padding: 4px 7px; }
-    .agts__body { padding: 12px 12px 14px; gap: 6px; }
-    .agts__title { font-size: 17px; }
+    .agts__row { grid-template-columns: 76px minmax(0, 1fr) auto; gap: 14px; padding: 14px 0; }
+    .agts__media { width: 76px; }
+    .agts__title { font-size: 19px; }
     .agts__line { font-size: 13px; }
-    .agts__cta { align-self: stretch; min-height: 40px; font-size: 13px; padding: 0 12px; }
-    .agts__guarantee {
-      grid-template-columns: auto 1fr;
-      gap: 12px 14px;
-      padding: 16px;
-      margin-top: 12px;
-    }
-    .agts__g-icon { width: 38px; height: 38px; }
-    .agts__g-title { font-size: 16px; }
-    .agts__g-text { font-size: 13px; }
+    .agts__arrow { width: 32px; height: 32px; }
+    .agts__guarantee { grid-template-columns: auto minmax(0, 1fr); gap: 10px 12px; padding-top: 14px; }
+    .agts__g-icon { width: 28px; height: 28px; }
+    .agts__g-icon svg { width: 15px; height: 15px; }
     .agts__g-link { grid-column: 2; justify-self: start; }
   }
 {% endstylesheet %}
@@ -329,30 +280,30 @@
     { "type": "textarea", "id": "text", "label": "One or two lines", "default": "Grown from a parent plant in a sterile lab: pest-free, disease-free and true to type. It is how we can offer collector aroids that are otherwise almost impossible to find in Canada." },
     { "type": "text", "id": "link_label", "label": "Guide link label", "default": "Read the full guide" },
     { "type": "url", "id": "link_url", "label": "Guide link" },
-    { "type": "header", "content": "Guarantee strip" },
-    { "type": "checkbox", "id": "show_guarantee", "label": "Show the guarantee strip", "default": true },
+    { "type": "header", "content": "Guarantee line" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show the guarantee line", "default": true },
     { "type": "text", "id": "guarantee_title", "label": "Title", "default": "Every plant is covered for 30 days" },
-    { "type": "textarea", "id": "guarantee_text", "label": "Text", "default": "If a plant doesn't pull through within 30 days of delivery, we replace it: free on plants under $200, at 50% of what you paid above that. Just photograph it the day it arrives." },
-    { "type": "text", "id": "guarantee_label", "label": "Link label", "default": "How the guarantee works" },
+    { "type": "textarea", "id": "guarantee_text", "label": "Text", "default": "Free replacement under $200, half price above. Just photograph it the day it arrives." },
+    { "type": "text", "id": "guarantee_label", "label": "Link label", "default": "How it works" },
     { "type": "url", "id": "guarantee_url", "label": "Link", "info": "Leave blank for the 30-Day Plant Guarantee page." },
     { "type": "header", "content": "Section layout" },
     { "type": "color", "id": "background_color", "label": "Background", "placeholder": "Default" },
-    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 64 },
-    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 64 }
+    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
   ],
   "blocks": [
     {
       "type": "stage",
-      "name": "Stage card",
+      "name": "Stage row",
       "settings": [
-        { "type": "text", "id": "tag", "label": "Small tag on the photo", "default": "Ships in 1–3 days" },
-        { "type": "checkbox", "id": "featured", "label": "Moss tag (instead of cream)", "default": false },
+        { "type": "text", "id": "tag", "label": "Small line above the title", "default": "Ships in 1–3 days" },
+        { "type": "checkbox", "id": "featured", "label": "Featured (no visual effect in the slim layout)", "default": false },
         { "type": "text", "id": "title", "label": "Title", "default": "Ready to ship" },
         { "type": "textarea", "id": "text", "label": "One line", "default": "Rooted and acclimated in our greenhouse." },
         { "type": "collection", "id": "collection", "label": "Collection" },
         { "type": "url", "id": "link", "label": "Link", "info": "Leave blank to use the collection." },
         { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave blank to use the collection image, then the first product photo in it." },
-        { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop now" }
+        { "type": "text", "id": "cta_label", "label": "Link label (for screen readers)", "default": "Shop now" }
       ]
     }
   ],
@@ -362,8 +313,8 @@
       "name": "Tissue culture stages",
       "category": "Collections",
       "blocks": [
-        { "type": "stage", "settings": { "tag": "Ships in 1–3 days", "title": "Ready to ship", "text": "Rooted and acclimated in our greenhouse. At your door within the week.", "cta_label": "Shop now" } },
-        { "type": "stage", "settings": { "tag": "Next lab batch", "featured": true, "title": "Pre-order", "text": "Reserved from our next lab batch, at a lower price.", "cta_label": "Browse" } }
+        { "type": "stage", "settings": { "tag": "Ships in 1–3 days", "title": "Ready to ship", "text": "Rooted and acclimated in our greenhouse.", "cta_label": "Shop now" } },
+        { "type": "stage", "settings": { "tag": "Next lab batch", "title": "Pre-order", "text": "Reserved from our next lab batch, at a lower price.", "cta_label": "Browse" } }
       ]
     }
   ]

@@ -156,20 +156,21 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
    and `columns` went 4 → 5 so the row stays one line instead of 4 plus an orphan.
 4b. `tc_learn_more` — slim sage strip, "What is a tissue culture plant? → Learn more",
    linking to `/pages/tissue-culture`. See the education-page section below.
-5. `tissue_culture` — **rebuilt 7 Nov 2026 as `sections/tc-stages.liquid`** (the owner, on a
-   phone screenshot of the old group/text version: *"We need to rebuild this one. It's not
-   looking good anymore."*). Same key in `order`, same sage band. Head: terracotta eyebrow
-   "Two ways to buy", Lora heading, one line, "Read the full guide →" to `/pages/tissue-culture`.
-   Then one `stage` block per card, **photo-led**: a tag pill on the photo ("Ships in 1–3 days"
-   cream / "Next lab batch" moss via `featured`), Lora title, one line, moss button. Two cards
-   side by side at every width; on desktop each card is horizontal (photo 44% left, copy right),
-   on a phone the photo sits on top, square. The photo is the block's `image`, else the
-   collection image, else **the first product photo in that collection** (`ready-to-ship-tissue-
-   culture` / `pre-order` today both show plantlets in tweezers). Links are explicit URLs in the
-   template. Then the guarantee strip (section settings, `show_guarantee`): cream card with a
-   4px moss left bar, moss shield disc, Lora title, the 30-day copy, "How the guarantee works →".
-   Still *below* the cards deliberately: the reassurance lands after the customer has picked a
-   stage. The old group/text block tree is gone from `index.json` (git history has it).
+5. `tissue_culture` — **rebuilt 7 Nov 2026 as `sections/tc-stages.liquid`**, same key in
+   `order`, now a **sand** band (`#F2EBDE`). Three passes in one night. The owner, on a phone
+   screenshot of the old group/text version: *"We need to rebuild this one. It's not looking
+   good anymore."* Pass one was photo-led cards with moss buttons and a boxed guarantee strip;
+   the owner: *"Every other part of homepage I'm loving it, but this part I'm still not able to
+   love it… smaller or maybe like it should look luxurious, but it should not complicate
+   things."* So now: heading, one line and "Read the full guide →" on the left; on the right one
+   **slim hairline-ruled row per `stage` block** — a 96px square photo (76px on a phone), a
+   terracotta small-caps line (`tag`), a Lora title, one line and a moss outline arrow; the whole
+   row is the link, no buttons, no pills, no boxes. The photo is the block's `image`, else the
+   collection image, else the first product photo in that collection. Under the rows, the
+   30-Day Plant Guarantee as one line (moss shield disc, bold title, short copy, "How it works →",
+   `show_guarantee`). Two columns from 990px, stacked below. Padding 48/48. Then the owner:
+   *"I think the background color is what we need to change"* — sage → sand. The old group/text
+   block tree is gone from `index.json` (git history has it).
 5. `spotlight_plant` — **one plant, shown big**, sand band. A `spotlight-plant` section;
    see below. Sits between the genus tiles and the tissue-culture explainer.
 6. `subscription_box` — the mystery-box call-out, **moss band**. A `subscription-callout`
@@ -178,13 +179,30 @@ Then grep for `Liquid error`, the section IDs, and whatever you changed.
 7. `tissue_culture` — the explainer (numbering above is off by one from here down)
 8. `products_popular` — **the only product row on the homepage**, cream band. A
    `stage-products` section on the automated `popular` collection, sorted BEST_SELLING.
-9. `why_agaplantz` — **rebuilt 7 Nov 2026 as `sections/why-agaplantz.liquid`**, same key,
-   sage. Eyebrow "The AgaPlantz way", Lora heading, then one `reason` block per card: cream
-   card with clay border, a terracotta Lora number top-right (`show_numbers`), a 44px moss disc
-   with an inline-SVG icon (`icon` select: plant / leaf / box / truck / shield / flask /
-   thermometer / pin / star / chat — nothing to upload), Lora title, one line. Four across on
-   desktop, 2×2 on a phone; `max_blocks: 6`. The four reasons and their lines are the old copy,
-   with "local pickup available" now "local pickup in Brampton".
+9. `crochet_feature` — the crochet band, see **Crochet line**. Light pink.
+9b. `why_agaplantz` — **rebuilt 7 Nov 2026 as `sections/why-agaplantz.liquid`**, same key,
+   **moved below the crochet band** on the owner's say-so (*"why people choose … should be
+   below CROKET"*), now a **sand** band with a plant photo. Same three passes as the explainer:
+   numbered cream cards with moss icon discs were rejected as not luxurious; it is now a
+   two-column layout — **a mature plant photo on the left** (4:5, 4px radius, a small cream
+   caption chip bottom-left, the whole photo a link) and on the right a small eyebrow, the Lora
+   heading and **one hairline-ruled row** of `reason` blocks: thin-line moss icon, Lora title,
+   one line, vertical rules between items, 2×2 with rules on a phone (the photo goes on top at
+   16:10, focal point shifted to 62% so the pot stays in frame). No cards, no fills, no numbers
+   (`show_numbers` is kept in the schema but unused). Photo settings: `image` (image_picker),
+   `product` (fallback photo and link), `image_link`, `image_caption`, `image_position`. The
+   owner then pointed at three products — *"we can use these one or more like these"*:
+   Anthurium warocqueanum, **Monstera White Lava Ghost**, Alocasia Nobilis Pink K — and the
+   White Lava Ghost's second photo (`edited-edited20.png`, beige pot in warm light, 2048²) is
+   the one in use, referenced as `shopify://shop_images/edited-edited20.png`, linked to
+   `/products/monstera-white-lava-ghost-pre-order`, caption "Monstera White Lava Ghost". The
+   Gloriosum mature photo (`edited-edited_-_2026-08-25T221144.243.png`, warm beige concrete)
+   was the first pick and is the best alternative; the other mature-specimen shots are on cool
+   grey concrete and fight the sand band. **The two-column grid must live on an inner wrapper
+   (`.agwy__grid`), not on the `.section` element** — Horizon's `.section` is already a grid
+   and placing columns on it stacked the photo and the copy in one column. The four reasons
+   and their lines are the old copy, with "local pickup available" now "local pickup in
+   Brampton". Bands now run: popular (cream) → crochet (pink) → why (sand) → Loox (cream).
 10. Loox `loox-dynamic-carousel` app block — added by the owner in the theme editor
 
 **Disabled, still in `order` so they can come back:** `products_tc` (pre-order),
@@ -1990,8 +2008,8 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/batch-discounts.liquid` | standalone discount ladder — **unused**, the ladder lives in the countdown |
 | `theme/sections/tc-guide.liquid` | the "What is tissue culture?" page, six block types |
 | `theme/sections/tc-learn-more.liquid` | homepage strip linking to it |
-| `theme/sections/tc-stages.liquid` | homepage "New to tissue culture?" — photo-led stage cards + guarantee strip (7 Nov) |
-| `theme/sections/why-agaplantz.liquid` | homepage "Why collectors choose AgaPlantz" — numbered icon cards (7 Nov) |
+| `theme/sections/tc-stages.liquid` | homepage "New to tissue culture?" — slim photo rows + guarantee line (7 Nov) |
+| `theme/sections/why-agaplantz.liquid` | homepage "Why collectors choose AgaPlantz" — plant photo + hairline reasons row (7 Nov) |
 | `theme/templates/page.tissue-culture.json` | the page's blocks — all its structured copy |
 | `theme/templates/page.pre-order.json` | the Pre Order page, same section, 40 blocks |
 | `theme/templates/product.accessory.json` | owner-made template for the self-watering pot (editor header stripped) |
