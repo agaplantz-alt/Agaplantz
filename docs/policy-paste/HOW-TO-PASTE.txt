@@ -1,0 +1,49 @@
+HOW TO PASTE THESE INTO SHOPIFY (phone / Shopify app)
+=====================================================
+
+Use the .html files. Do it exactly the way you did last time - that part
+worked, it was only the characters that came out wrong.
+
+  1-REFUND-POLICY.html      <- do this one first, it is the urgent one
+  2-SHIPPING-POLICY.html
+  3-TERMS-OF-SERVICE.html
+
+WHY IT CAME OUT AS GIBBERISH LAST TIME
+--------------------------------------
+The old files used typographic characters (the long dash, curly quotes) and
+did not tell the browser which character set they were in. Your browser
+guessed wrong, so every long dash became  a-euro-quote  nonsense.
+
+These files now declare their character set AND contain only plain keyboard
+characters. Both problems are fixed independently, so it cannot happen again.
+
+THE STEPS
+---------
+1. Open the .html file. It will display as a normal formatted page - headings
+   in bold, normal paragraphs. That is correct. You should see NO tags and NO
+   strange characters. If you do see strange characters, stop and tell me.
+2. Select all of it and copy.
+3. Shopify app -> Settings -> Policies -> the policy you are replacing.
+4. Select everything already in the box, delete it, and paste.
+5. Check it looks right, then Save.
+
+Nothing invisible gets copied - the files contain only the policy text.
+
+HOW TO TELL IT WORKED
+---------------------
+  Refund policy    "AgaPlantz 30-Day Plant Guarantee" heading
+                   "An arrival photo is required."
+                   "Free shipping on orders over $180"  (it used to say $120,
+                   which contradicted the shipping policy)
+
+  Shipping policy  a "Replacement Shipping" section, flat $14.99
+
+  Terms of service one new sentence in SECTION 3 pointing at the guarantee
+                   page. Everything else is unchanged.
+
+IF YOU WOULD RATHER NOT DO THIS BY HAND
+---------------------------------------
+The Shopify connection here is missing the write_legal_policies permission,
+which is the only reason policy text is manual. Everything else on the store
+was applied directly. If that permission is ever added, all three take me a
+few seconds.

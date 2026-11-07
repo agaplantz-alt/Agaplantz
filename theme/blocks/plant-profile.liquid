@@ -1,0 +1,1018 @@
+{% comment %}
+  Plant profile — one band on the product page that folds together what used to be three
+  AI blocks: "What this plant can become" (juvenile → mature photos), "About this plant"
+  and "Plant care". It reads per-plant metafields (namespace `custom`) instead of one set
+  of hardcoded strings shared by every product, and sits on a blurred wash of the plant's
+  own photo, like the homepage countdown.
+
+  Metafields read (all on the product):
+    young / big_one (images: the juvenile and mature photos),
+    plant_summary, botanical_name, origin, growth_habit, mature_leaf_size, variegation,
+    rarity, care_level, pet_safe,
+    light_level / water_level / humidity_level (1–5, drawn as dots),
+    care_light / care_water / care_humidity / care_temperature / care_soil /
+    care_fertilizer (one line each; blank → the block's fallback text),
+    growth_stage / approximate_size / pot_size / root_condition (what you receive).
+
+  A value of "NA", "N/A", "-" or "none" is treated as blank so it never prints.
+  The host section should be set to full width; the block caps its own content at the
+  page width so the wash runs edge to edge.
+{% endcomment %}
+
+{%- liquid
+  assign p = closest.product
+  assign mf = p.metafields.custom
+
+  assign young = mf.young.value
+  assign big = mf.big_one.value
+  assign bg_img = big
+  if bg_img == blank
+    assign bg_img = young
+  endif
+  if bg_img == blank
+    assign bg_img = p.featured_image
+  endif
+  if block.settings.background_image != blank
+    assign bg_img = block.settings.background_image
+  endif
+  assign juvenile_img = young
+  if juvenile_img == blank
+    assign juvenile_img = p.featured_image
+  endif
+
+  assign show_prog = false
+  if block.settings.show_progression
+    if juvenile_img != blank or big != blank
+      assign show_prog = true
+    endif
+  endif
+
+  assign summary = mf.plant_summary.value | strip
+  assign botanical = mf.botanical_name.value | strip
+  assign origin = mf.origin.value | strip
+  assign habit = mf.growth_habit.value | strip
+  assign leaf = mf.mature_leaf_size.value | strip
+  assign varieg = mf.variegation.value | strip
+  assign rarity = mf.rarity.value | strip
+  assign care_level = mf.care_level.value | strip
+
+  assign stage = mf.growth_stage.value | strip
+  assign size = mf.approximate_size.value | strip
+  assign pot = mf.pot_size.value | strip
+  assign roots = mf.root_condition.value | strip
+
+  assign pot_check = pot | downcase | remove: '/' | remove: '.'
+  if pot_check == 'na' or pot_check == '-' or pot_check == 'none'
+    assign pot = ''
+  endif
+  assign stage_check = stage | downcase | remove: '/'
+  if stage_check == 'na' or stage_check == '-'
+    assign stage = ''
+  endif
+  assign size_check = size | downcase | remove: '/'
+  if size_check == 'na' or size_check == '-'
+    assign size = ''
+  endif
+  assign roots_check = roots | downcase | remove: '/'
+  if roots_check == 'na' or roots_check == '-'
+    assign roots = ''
+  endif
+
+  assign light_txt = mf.care_light.value | strip
+  if light_txt == blank
+    assign light_txt = block.settings.default_light
+  endif
+  assign water_txt = mf.care_water.value | strip
+  if water_txt == blank
+    assign water_txt = block.settings.default_water
+  endif
+  assign humid_txt = mf.care_humidity.value | strip
+  if humid_txt == blank
+    assign humid_txt = block.settings.default_humidity
+  endif
+  assign temp_txt = mf.care_temperature.value | strip
+  if temp_txt == blank
+    assign temp_txt = block.settings.default_temperature
+  endif
+  assign soil_txt = mf.care_soil.value | strip
+  if soil_txt == blank
+    assign soil_txt = block.settings.default_soil
+  endif
+  assign fert_txt = mf.care_fertilizer.value | strip
+  if fert_txt == blank
+    assign fert_txt = block.settings.default_fertilizer
+  endif
+
+  assign light_lvl = mf.light_level.value | plus: 0
+  assign water_lvl = mf.water_level.value | plus: 0
+  assign humid_lvl = mf.humidity_level.value | plus: 0
+
+  assign pet_set = false
+  if mf.pet_safe.value == true or mf.pet_safe.value == false
+    assign pet_set = true
+  endif
+
+  assign genus = p.type | downcase | capitalize
+  assign has_facts = false
+  if origin != blank or habit != blank or leaf != blank or varieg != blank
+    assign has_facts = true
+  endif
+  assign has_receive = false
+  if stage != blank or size != blank or pot != blank or roots != blank
+    assign has_receive = true
+  endif
+  unless block.settings.show_receive
+    assign has_receive = false
+  endunless
+  assign has_pills = false
+  if rarity != blank or care_level != blank or habit != blank or pet_set
+    assign has_pills = true
+  endif
+-%}
+
+<div
+  class="agpp{% if show_prog %} agpp--prog{% endif %}"
+  style="--agpp-card: {{ block.settings.card_bg }}; --agpp-care: {{ block.settings.care_bg }}; --agpp-wash: {{ block.settings.wash }}; --agpp-line: {{ block.settings.line }}; --agpp-ink: {{ block.settings.ink }}; --agpp-muted: {{ block.settings.muted }}; --agpp-accent: {{ block.settings.accent }}; --agpp-warm: {{ block.settings.warm }}; --agpp-pad: {{ block.settings.padding }}px; --agpp-pad-m: {{ block.settings.padding_mobile }}px; --agpp-blur: {{ block.settings.blur }}px;"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.show_wash and bg_img != blank -%}
+    <div class="agpp__bg" aria-hidden="true">
+      <img src="{{ bg_img | image_url: width: 480 }}" alt="" loading="lazy" width="480" height="480">
+    </div>
+  {%- endif -%}
+
+  <div class="agpp__inner">
+    <div class="agpp__top">
+      <header class="agpp__names">
+        <span class="agpp__eyebrow">{% if genus != blank %}{{ genus }} &middot; {% endif %}{{ block.settings.eyebrow }}</span>
+        {%- if botanical != blank -%}
+          <p class="agpp__botanical">{{ botanical }}</p>
+        {%- else -%}
+          <p class="agpp__botanical">{{ p.title }}</p>
+        {%- endif -%}
+        {%- if has_pills -%}
+          <ul class="agpp__pills" aria-label="At a glance">
+            {%- if rarity != blank -%}<li class="agpp__pill agpp__pill--warm">{{ rarity }}</li>{%- endif -%}
+            {%- if care_level != blank -%}<li class="agpp__pill">{{ care_level }} care</li>{%- endif -%}
+            {%- if habit != blank -%}<li class="agpp__pill">{{ habit }}</li>{%- endif -%}
+            {%- if pet_set -%}
+              {%- if mf.pet_safe.value == true -%}
+                <li class="agpp__pill">Pet safe</li>
+              {%- else -%}
+                <li class="agpp__pill agpp__pill--ghost">Not pet safe</li>
+              {%- endif -%}
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+      </header>
+
+      {%- if show_prog -%}
+        <div class="agpp__prog" aria-label="{{ block.settings.prog_heading | escape }}">
+          {%- if juvenile_img != blank -%}
+            <figure class="agpp__ph">
+              <div class="agpp__ph-img">
+                <img
+                  src="{{ juvenile_img | image_url: width: 800 }}"
+                  srcset="{{ juvenile_img | image_url: width: 400 }} 400w, {{ juvenile_img | image_url: width: 800 }} 800w"
+                  sizes="(max-width: 749px) 45vw, 300px"
+                  alt="{{ block.settings.juvenile_label | escape }} {{ p.title | escape }}"
+                  loading="lazy" width="800" height="800"
+                >
+              </div>
+              <figcaption><strong>{{ block.settings.juvenile_label }}</strong><span>{{ block.settings.juvenile_text }}</span></figcaption>
+            </figure>
+          {%- endif -%}
+          {%- if juvenile_img != blank and big != blank -%}
+            <span class="agpp__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+          {%- endif -%}
+          {%- if big != blank -%}
+            <figure class="agpp__ph">
+              <div class="agpp__ph-img">
+                <img
+                  src="{{ big | image_url: width: 800 }}"
+                  srcset="{{ big | image_url: width: 400 }} 400w, {{ big | image_url: width: 800 }} 800w"
+                  sizes="(max-width: 749px) 45vw, 300px"
+                  alt="{{ block.settings.mature_label | escape }} {{ p.title | escape }}"
+                  loading="lazy" width="800" height="800"
+                >
+              </div>
+              <figcaption><strong>{{ block.settings.mature_label }}</strong><span>{{ block.settings.mature_text }}</span></figcaption>
+            </figure>
+          {%- endif -%}
+        </div>
+
+        <div class="agpp__lede">
+          {%- if block.settings.prog_heading != blank -%}
+            <h2 class="agpp__h">{{ block.settings.prog_heading }}</h2>
+          {%- endif -%}
+          {%- if block.settings.prog_text != blank -%}
+            <p class="agpp__p">{{ block.settings.prog_text }}</p>
+          {%- endif -%}
+          {%- if block.settings.prog_note != blank -%}
+            <p class="agpp__info"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20c0-7 4-12 14-13-1 10-6 14-13 14"/><path d="M5 20c3-4 6-7 10-9"/></svg><span>{{ block.settings.prog_note }}</span></p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="agpp__grid">
+      <section class="agpp__card agpp__card--about" aria-labelledby="agpp-about-{{ block.id }}">
+        <h3 id="agpp-about-{{ block.id }}" class="agpp__title">{{ block.settings.about_title }}</h3>
+
+        {%- if summary != blank -%}
+          <p class="agpp__summary">{{ summary | escape | newline_to_br }}</p>
+        {%- elsif block.settings.default_summary != blank -%}
+          <p class="agpp__summary">{{ block.settings.default_summary }}</p>
+        {%- endif -%}
+
+        {%- if has_facts -%}
+          <dl class="agpp__facts">
+            {%- if origin != blank -%}<div class="agpp__fact"><dt>Native range</dt><dd>{{ origin }}</dd></div>{%- endif -%}
+            {%- if habit != blank -%}<div class="agpp__fact"><dt>Growth habit</dt><dd>{{ habit }}</dd></div>{%- endif -%}
+            {%- if leaf != blank -%}<div class="agpp__fact"><dt>Mature leaf</dt><dd>{{ leaf }}</dd></div>{%- endif -%}
+            {%- if varieg != blank -%}<div class="agpp__fact"><dt>Variegation</dt><dd>{{ varieg }}</dd></div>{%- endif -%}
+          </dl>
+        {%- endif -%}
+
+        {%- if has_receive -%}
+          <div class="agpp__receive">
+            <p class="agpp__receive-title">{{ block.settings.receive_title }}</p>
+            <ul class="agpp__stats">
+              {%- if stage != blank -%}<li><span>Stage</span><strong>{{ stage }}</strong></li>{%- endif -%}
+              {%- if size != blank -%}<li><span>Size</span><strong>{{ size }}</strong></li>{%- endif -%}
+              {%- if pot != blank -%}<li><span>Pot</span><strong>{{ pot }}</strong></li>{%- endif -%}
+              {%- if roots != blank -%}<li><span>Roots</span><strong>{{ roots }}</strong></li>{%- endif -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- if block.settings.vary_note != blank -%}
+          <p class="agpp__note">{{ block.settings.vary_note }}</p>
+        {%- endif -%}
+      </section>
+
+      <section class="agpp__card agpp__card--care" aria-labelledby="agpp-care-{{ block.id }}">
+        <h3 id="agpp-care-{{ block.id }}" class="agpp__title">{{ block.settings.care_title }}</h3>
+        <ul class="agpp__care">
+          {%- if light_txt != blank -%}
+            <li class="agpp__row">
+              <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></span>
+              <div class="agpp__body">
+                <p class="agpp__label">Light{% if light_lvl > 0 %}{% render 'plant-profile-dots', level: light_lvl, label: 'Light' %}{% endif %}</p>
+                <p class="agpp__text">{{ light_txt }}</p>
+              </div>
+            </li>
+          {%- endif -%}
+          {%- if water_txt != blank -%}
+            <li class="agpp__row">
+              <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z"/></svg></span>
+              <div class="agpp__body">
+                <p class="agpp__label">Water{% if water_lvl > 0 %}{% render 'plant-profile-dots', level: water_lvl, label: 'Water' %}{% endif %}</p>
+                <p class="agpp__text">{{ water_txt }}</p>
+              </div>
+            </li>
+          {%- endif -%}
+          {%- if humid_txt != blank -%}
+            <li class="agpp__row">
+              <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-.6-8A6 6 0 0 1 18 9.5a3.5 3.5 0 0 1-.5 7"/><path d="M9 21l1.5-2.5M13 21l1.5-2.5M17 21l1.5-2.5"/></svg></span>
+              <div class="agpp__body">
+                <p class="agpp__label">Humidity{% if humid_lvl > 0 %}{% render 'plant-profile-dots', level: humid_lvl, label: 'Humidity' %}{% endif %}</p>
+                <p class="agpp__text">{{ humid_txt }}</p>
+              </div>
+            </li>
+          {%- endif -%}
+          {%- if temp_txt != blank -%}
+            <li class="agpp__row">
+              <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0z"/><path d="M12 9v6"/></svg></span>
+              <div class="agpp__body">
+                <p class="agpp__label">Temperature</p>
+                <p class="agpp__text">{{ temp_txt }}</p>
+              </div>
+            </li>
+          {%- endif -%}
+          {%- if soil_txt != blank -%}
+            <li class="agpp__row">
+              <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10h16l-1.5 10h-13z"/><path d="M12 10V6M12 6c-2.5 0-3.5-1.5-3.5-3 2 0 3.5.5 3.5 3zM12 6c2.5 0 3.5-1.5 3.5-3-2 0-3.5.5-3.5 3z"/></svg></span>
+              <div class="agpp__body">
+                <p class="agpp__label">Soil</p>
+                <p class="agpp__text">{{ soil_txt }}</p>
+              </div>
+            </li>
+          {%- endif -%}
+          {%- if fert_txt != blank -%}
+            <li class="agpp__row">
+              <span class="agpp__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 20c0-7 4-12 14-13-1 10-6 14-13 14"/><path d="M5 20c3-4 6-7 10-9"/></svg></span>
+              <div class="agpp__body">
+                <p class="agpp__label">Feeding</p>
+                <p class="agpp__text">{{ fert_txt }}</p>
+              </div>
+            </li>
+          {%- endif -%}
+        </ul>
+        {%- if block.settings.care_link_text != blank and block.settings.care_link_url != blank -%}
+          <a class="agpp__more" href="{{ block.settings.care_link_url }}">{{ block.settings.care_link_text }} <span aria-hidden="true">&rarr;</span></a>
+        {%- endif -%}
+      </section>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .agpp {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100%;
+    font-family: var(--font-body--family);
+    color: var(--agpp-ink);
+    background: var(--agpp-wash);
+  }
+  .agpp__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .agpp__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(var(--agpp-blur)) saturate(1.1);
+    transform: scale(1.3);
+    opacity: 0.55;
+  }
+  .agpp__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(251, 248, 242, 0.55) 0%, rgba(251, 248, 242, 0.25) 40%, rgba(251, 248, 242, 0.55) 100%);
+  }
+  .agpp__inner {
+    max-width: var(--page-width, 1400px);
+    margin-inline: auto;
+    padding: var(--agpp-pad) var(--page-margin, 20px);
+  }
+  .agpp__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: 'photos names' 'photos lede';
+    align-content: start;
+    column-gap: 40px;
+    row-gap: 16px;
+    margin-bottom: 28px;
+  }
+  .agpp:not(.agpp--prog) .agpp__top {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'names';
+    margin-bottom: 20px;
+  }
+  .agpp__names {
+    grid-area: names;
+    align-self: end;
+  }
+  .agpp__prog {
+    grid-area: photos;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .agpp__lede {
+    grid-area: lede;
+    align-self: start;
+  }
+  .agpp__eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--agpp-warm);
+    margin-bottom: 6px;
+  }
+  .agpp__botanical {
+    font-family: var(--font-accent--family);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .agpp__pills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+  .agpp__pill {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    padding: 7px 11px;
+    border: 1px solid var(--agpp-line);
+    border-radius: 2px;
+    background: rgba(251, 248, 242, 0.7);
+    color: var(--agpp-ink);
+    white-space: nowrap;
+  }
+  .agpp__pill--warm {
+    border-color: var(--agpp-warm);
+    color: var(--agpp-warm);
+  }
+  .agpp__pill--ghost {
+    color: var(--agpp-muted);
+  }
+  .agpp__ph {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+  }
+  .agpp__ph-img {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid var(--agpp-line);
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 18px 40px -24px rgba(47, 42, 34, 0.45);
+  }
+  .agpp__ph-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .agpp__ph figcaption {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .agpp__ph figcaption strong {
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.2;
+  }
+  .agpp__ph figcaption span {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--agpp-muted);
+  }
+  .agpp__arrow {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--agpp-accent);
+    color: #fff;
+    margin-top: -42px;
+  }
+  .agpp__arrow svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .agpp__h {
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 0 0 10px;
+  }
+  .agpp__p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 12px;
+    max-width: 52ch;
+  }
+  .agpp__info {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 8px 12px 8px 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    border: 1px solid var(--agpp-line);
+    border-radius: 2px;
+    background: var(--agpp-care);
+  }
+  .agpp__info svg {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--agpp-accent);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .agpp__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+  .agpp__card {
+    border: 1px solid var(--agpp-line);
+    border-radius: 4px;
+    padding: 28px;
+    background: var(--agpp-card);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  .agpp__card--care {
+    background: var(--agpp-care);
+  }
+  .agpp__title {
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 0 0 16px;
+  }
+  .agpp__summary {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 20px;
+  }
+  .agpp__facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+    margin: 0 0 20px;
+    padding: 0 0 20px;
+    border-bottom: 1px solid var(--agpp-line);
+  }
+  .agpp__fact dt {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--agpp-muted);
+    margin: 0 0 4px;
+  }
+  .agpp__fact dd {
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0;
+  }
+  .agpp__receive-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--agpp-muted);
+    margin: 0 0 10px;
+  }
+  .agpp__stats {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .agpp__stats li {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 12px;
+    border: 1px solid var(--agpp-line);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.45);
+  }
+  .agpp__stats span {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--agpp-muted);
+  }
+  .agpp__stats strong {
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .agpp__note {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--agpp-muted);
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--agpp-line);
+  }
+  .agpp__care {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .agpp__row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-top: 1px solid var(--agpp-line);
+  }
+  .agpp__row:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .agpp__row:last-child {
+    padding-bottom: 0;
+  }
+  .agpp__icon {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--agpp-accent);
+    color: #fff;
+  }
+  .agpp__icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .agpp__body {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .agpp__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 6px 0 3px;
+  }
+  .agpp__dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .agpp__dots i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--agpp-accent);
+    background: transparent;
+  }
+  .agpp__dots i.on {
+    background: var(--agpp-accent);
+  }
+  .agpp__text {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--agpp-ink);
+  }
+  .agpp__more {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--agpp-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .agpp__card {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .agpp__inner {
+      padding: var(--agpp-pad-m) var(--page-margin, 16px);
+    }
+    .agpp__top {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'names' 'photos' 'lede';
+      row-gap: 18px;
+      margin-bottom: 18px;
+    }
+    .agpp__prog {
+      gap: 8px;
+    }
+    .agpp__arrow {
+      flex-basis: 28px;
+      width: 28px;
+      height: 28px;
+      margin-top: -36px;
+    }
+    .agpp__ph figcaption strong {
+      font-size: 15px;
+    }
+    .agpp__ph figcaption span {
+      font-size: 11px;
+    }
+    .agpp__grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .agpp__card {
+      padding: 20px 18px;
+    }
+    .agpp__stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .agpp__stats strong {
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+    .agpp__botanical {
+      font-size: 22px;
+    }
+    .agpp__h {
+      font-size: 21px;
+    }
+    .agpp__title {
+      font-size: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Plant profile",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "One band: juvenile → mature photos, the plant's facts and its care, all read from the product's custom metafields. Set the section to full width so the background runs edge to edge."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Plant profile"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wash",
+      "label": "Blurred photo behind the band",
+      "info": "Uses the plant's mature photo, then its juvenile photo, then its first image.",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Override photo",
+      "info": "Optional. Replaces the plant's own photo for every product."
+    },
+    {
+      "type": "range",
+      "id": "blur",
+      "label": "Blur",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "What this plant becomes"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progression",
+      "label": "Show juvenile and mature photos",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "prog_heading",
+      "label": "Heading",
+      "default": "What this plant becomes"
+    },
+    {
+      "type": "textarea",
+      "id": "prog_text",
+      "label": "Text",
+      "default": "You'll receive a healthy juvenile plant like the one shown. Leaf shape, size and colour change as it matures; the mature photo is a reference, not the exact plant."
+    },
+    {
+      "type": "text",
+      "id": "prog_note",
+      "label": "Note",
+      "default": "With steady care it grows into the plant on the right."
+    },
+    {
+      "type": "text",
+      "id": "juvenile_label",
+      "label": "Juvenile label",
+      "default": "Juvenile"
+    },
+    {
+      "type": "text",
+      "id": "juvenile_text",
+      "label": "Juvenile caption",
+      "default": "What you'll receive"
+    },
+    {
+      "type": "text",
+      "id": "mature_label",
+      "label": "Mature label",
+      "default": "Mature"
+    },
+    {
+      "type": "text",
+      "id": "mature_text",
+      "label": "Mature caption",
+      "default": "Reference, not the exact plant"
+    },
+    {
+      "type": "header",
+      "content": "About this plant"
+    },
+    {
+      "type": "text",
+      "id": "about_title",
+      "label": "Title",
+      "default": "About this plant"
+    },
+    {
+      "type": "textarea",
+      "id": "default_summary",
+      "label": "Fallback summary",
+      "info": "Used only when the product has no Plant summary metafield.",
+      "default": "A collector aroid grown from tissue culture in our partner laboratory and acclimated by hand before it ships."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_receive",
+      "label": "Show what you receive",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "receive_title",
+      "label": "What you receive title",
+      "default": "What you'll receive"
+    },
+    {
+      "type": "text",
+      "id": "vary_note",
+      "label": "Variation note",
+      "default": "Every plant is its own: size, leaf shape and variegation vary a little from the photos."
+    },
+    {
+      "type": "header",
+      "content": "Care guide"
+    },
+    {
+      "type": "text",
+      "id": "care_title",
+      "label": "Title",
+      "default": "Care guide"
+    },
+    {
+      "type": "text",
+      "id": "default_light",
+      "label": "Light (fallback)",
+      "default": "Bright, indirect light. No direct midday sun."
+    },
+    {
+      "type": "text",
+      "id": "default_water",
+      "label": "Water (fallback)",
+      "default": "Water when the top few centimetres of mix are dry."
+    },
+    {
+      "type": "text",
+      "id": "default_humidity",
+      "label": "Humidity (fallback)",
+      "default": "Happiest at 60% or more."
+    },
+    {
+      "type": "text",
+      "id": "default_temperature",
+      "label": "Temperature (fallback)",
+      "default": "18–27 °C (65–80 °F). Keep away from cold drafts."
+    },
+    {
+      "type": "text",
+      "id": "default_soil",
+      "label": "Soil (fallback)",
+      "default": "Chunky, free-draining aroid mix with perlite and bark."
+    },
+    {
+      "type": "text",
+      "id": "default_fertilizer",
+      "label": "Feeding (fallback)",
+      "default": "Diluted liquid feed monthly through the growing season."
+    },
+    {
+      "type": "text",
+      "id": "care_link_text",
+      "label": "Link text",
+      "default": "Read the acclimation guide"
+    },
+    {
+      "type": "url",
+      "id": "care_link_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "wash",
+      "label": "Band colour (under the blur)",
+      "default": "#F2EBDE"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "About card",
+      "alpha": true,
+      "default": "#FBF8F2C7"
+    },
+    {
+      "type": "color",
+      "id": "care_bg",
+      "label": "Care card",
+      "alpha": true,
+      "default": "#E8EDE1D1"
+    },
+    {
+      "type": "color",
+      "id": "line",
+      "label": "Borders",
+      "default": "#DED3C2"
+    },
+    {
+      "type": "color",
+      "id": "ink",
+      "label": "Text",
+      "default": "#2F2A22"
+    },
+    {
+      "type": "color",
+      "id": "muted",
+      "label": "Labels",
+      "default": "#56503F"
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Accent (icons, dots)",
+      "default": "#5C6B4C"
+    },
+    {
+      "type": "color",
+      "id": "warm",
+      "label": "Eyebrow and rarity pill",
+      "default": "#B4693C"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "label": "Vertical padding (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plant profile"
+    }
+  ]
+}
+{% endschema %}

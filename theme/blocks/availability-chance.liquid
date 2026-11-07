@@ -1,0 +1,469 @@
+{% comment %}
+  Availability chance — how likely the partner lab is to supply a pre-order plant in the
+  next batch. Reads product metafields (namespace `custom`):
+    availability_chance   Confirmed · High · Medium · Low · Not available   (blank = nothing renders)
+    last_batch_result     Available · Partially available · Not available · Not ordered
+    availability_note     optional one line for the pop-up
+    availability_updated  date, shown as "Updated …"
+
+  It follows the selected variant: the chance is shown for a Tissue Culture (Pre-Order)
+  variant; for an in-stock ready-to-ship / acclimated / mature variant it prints the
+  stock line instead (optional); for a sold-out one it prints nothing. It lives in the
+  product-information section, which Horizon re-renders on variant change.
+
+  Two layouts: `inline` (one row, for under the price) and `card` (with a four-bar
+  meter and the last-batch line, for under the buy buttons). The (?) opens a native
+  <details> pop-over; a document-level listener closes it on outside click / Escape.
+{% endcomment %}
+
+{%- liquid
+  assign p = closest.product
+  assign v = p.selected_or_first_available_variant
+  assign mf = p.metafields.custom
+  assign chance = mf.availability_chance.value | strip
+  assign last = mf.last_batch_result.value | strip
+  assign note = mf.availability_note.value | strip
+  assign updated = mf.availability_updated.value
+
+  assign is_preorder = false
+  if v.title contains 'Pre-Order' or v.title contains 'Pre-order' or v.title contains 'pre-order'
+    assign is_preorder = true
+  endif
+
+  assign mode = 'none'
+  if is_preorder and chance != blank
+    assign mode = 'chance'
+  elsif is_preorder == false and v.available and block.settings.show_stock_line
+    assign mode = 'stock'
+  endif
+
+  assign key = chance | downcase | replace: ' ', '-'
+  assign bars = 0
+  assign chance_label = chance
+  case key
+    when 'confirmed'
+      assign bars = 4
+      assign chance_label = block.settings.label_confirmed
+    when 'high'
+      assign bars = 3
+      assign chance_label = block.settings.label_high
+    when 'medium'
+      assign bars = 2
+      assign chance_label = block.settings.label_medium
+    when 'low'
+      assign bars = 1
+      assign chance_label = block.settings.label_low
+    when 'not-available'
+      assign bars = 0
+      assign chance_label = block.settings.label_na
+  endcase
+
+  assign last_line = ''
+  case last
+    when 'Available'
+      assign last_line = block.settings.last_available
+    when 'Partially available'
+      assign last_line = block.settings.last_partial
+    when 'Not available'
+      assign last_line = block.settings.last_na
+  endcase
+  comment
+    'Not ordered' deliberately prints nothing: "not part of the last batch" read as
+    "was not available" to the owner, so a plant with no history gets no line.
+  endcomment
+-%}
+
+<div data-agav-host="{{ block.id }}" {{ block.shopify_attributes }}>
+{%- if mode != 'none' -%}
+  <div
+    class="agav agav--{{ block.settings.layout }} agav--{{ mode }}{% if mode == 'chance' %} is-{{ key }}{% endif %}"
+    style="--agav-pt: {{ block.settings.padding_top }}px; --agav-pb: {{ block.settings.padding_bottom }}px; --agav-card: {{ block.settings.card_bg }};"
+  >
+    {%- if mode == 'stock' -%}
+      <div class="agav__row">
+        <span class="agav__label">{{ block.settings.label_stock }}</span>
+        <span class="agav__pill agav__pill--stock"><i class="agav__dot" aria-hidden="true"></i>{{ block.settings.stock_text }}</span>
+      </div>
+    {%- else -%}
+      {%- if block.settings.layout == 'card' -%}
+      <div class="agav__head">
+        <span class="agav__label">{{ block.settings.label }}</span>
+        <details class="agav__help">
+          <summary title="{{ block.settings.help_title | escape }}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>{{ block.settings.help_label }}</span></summary>
+          <div class="agav__pop" role="dialog" aria-label="{{ block.settings.help_title | escape }}">
+            <p class="agav__pop-title">{{ block.settings.help_title }}</p>
+            {%- if block.settings.help_text != blank -%}
+              <p class="agav__pop-text">{{ block.settings.help_text }}</p>
+            {%- endif -%}
+            {%- if last_line != blank or note != blank or updated != blank -%}
+              <div class="agav__pop-plant">
+                {%- if last_line != blank -%}<p><strong>{{ block.settings.last_label }}</strong> {{ last_line }}</p>{%- endif -%}
+                {%- if note != blank -%}<p>{{ note }}</p>{%- endif -%}
+                {%- if updated != blank -%}<p class="agav__pop-date">{{ block.settings.updated_label }} {{ updated | date: '%-d %B %Y' }}</p>{%- endif -%}
+              </div>
+            {%- endif -%}
+            {%- if block.settings.help_link_text != blank and block.settings.help_link_url != blank -%}
+              <a class="agav__pop-link" href="{{ block.settings.help_link_url }}">{{ block.settings.help_link_text }} &rarr;</a>
+            {%- endif -%}
+          </div>
+        </details>
+      </div>
+      <div class="agav__row">
+        <span class="agav__pill"><i class="agav__dot" aria-hidden="true"></i>{{ chance_label }}</span>
+        <span class="agav__meter" role="img" aria-label="{{ bars }} of 4">
+          {%- for i in (1..4) -%}<i{% if i <= bars %} class="on"{% endif %}></i>{%- endfor -%}
+        </span>
+      </div>
+      {%- else -%}
+      <div class="agav__row">
+        <span class="agav__label">{{ block.settings.label }}</span>
+        <span class="agav__pill"><i class="agav__dot" aria-hidden="true"></i>{{ chance_label }}</span>
+        <details class="agav__help">
+          <summary title="{{ block.settings.help_title | escape }}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>{{ block.settings.help_label }}</span></summary>
+          <div class="agav__pop" role="dialog" aria-label="{{ block.settings.help_title | escape }}">
+            <p class="agav__pop-title">{{ block.settings.help_title }}</p>
+            {%- if block.settings.help_text != blank -%}
+              <p class="agav__pop-text">{{ block.settings.help_text }}</p>
+            {%- endif -%}
+            {%- if last_line != blank or note != blank or updated != blank -%}
+              <div class="agav__pop-plant">
+                {%- if last_line != blank -%}<p><strong>{{ block.settings.last_label }}</strong> {{ last_line }}</p>{%- endif -%}
+                {%- if note != blank -%}<p>{{ note }}</p>{%- endif -%}
+                {%- if updated != blank -%}<p class="agav__pop-date">{{ block.settings.updated_label }} {{ updated | date: '%-d %B %Y' }}</p>{%- endif -%}
+              </div>
+            {%- endif -%}
+            {%- if block.settings.help_link_text != blank and block.settings.help_link_url != blank -%}
+              <a class="agav__pop-link" href="{{ block.settings.help_link_url }}">{{ block.settings.help_link_text }} &rarr;</a>
+            {%- endif -%}
+          </div>
+        </details>
+      </div>
+      {%- endif -%}
+      {%- if block.settings.layout == 'card' and last_line != blank -%}
+        <p class="agav__last"><strong>{{ block.settings.last_label }}</strong> {{ last_line }}</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+{%- endif -%}
+</div>
+
+<script type="module">
+  import { StandardEvents } from '@shopify/events';
+  if (!window.__agavInit) {
+    window.__agavInit = true;
+    // Horizon refreshes each buy-box piece on its own after a stage tap; this block
+    // listens for the same product-select event and swaps itself from the fetched HTML.
+    document.addEventListener(StandardEvents.productSelect, function (e) {
+      if (!(e.target instanceof Element) || e.target.closest('product-card') || !e.promise) return;
+      e.promise.then(function (r) {
+        var html = r && r.detail && r.detail.html;
+        if (!html) return;
+        document.querySelectorAll('[data-agav-host]').forEach(function (host) {
+          var fresh = html.querySelector('[data-agav-host="' + host.dataset.agavHost + '"]');
+          if (fresh) host.replaceWith(document.importNode(fresh, true));
+        });
+      }).catch(function () {});
+    }, true);
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('details.agav__help[open]').forEach(function (d) {
+        if (!d.contains(e.target)) d.removeAttribute('open');
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      document.querySelectorAll('details.agav__help[open]').forEach(function (d) { d.removeAttribute('open'); });
+    });
+  }
+</script>
+
+{% stylesheet %}
+  [data-agav-host] {
+    width: 100%;
+  }
+  .agav {
+    --agav-ink: #2F2A22;
+    --agav-muted: #56503F;
+    --agav-line: #DED3C2;
+    --agav-sand: #F2EBDE;
+    --agav-sage: #E8EDE1;
+    --agav-cream: #FBF8F2;
+    --agav-moss: #5C6B4C;
+    --agav-amber: #C08A3E;
+    --agav-terra: #B4693C;
+    --agav-grey: #8A8275;
+    --agav-tone: var(--agav-moss);
+    position: relative;
+    width: 100%;
+    font-family: var(--font-body--family);
+    color: var(--agav-ink);
+    padding-block: var(--agav-pt) var(--agav-pb);
+  }
+  .agav.is-medium { --agav-tone: var(--agav-amber); }
+  .agav.is-low { --agav-tone: var(--agav-terra); }
+  .agav.is-not-available { --agav-tone: var(--agav-grey); }
+  .agav--card {
+    border: 1px solid var(--agav-line);
+    border-left: 4px solid var(--agav-tone);
+    border-radius: 4px;
+    background: var(--agav-card, var(--agav-sage));
+    padding: 14px 16px 14px 18px;
+  }
+  .agav--card.agav--stock {
+    border-left-color: var(--agav-moss);
+  }
+  .agav__row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+  .agav__label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--agav-muted);
+    margin-right: 2px;
+  }
+  .agav__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    padding: 7px 11px 7px 9px;
+    border: 1px solid var(--agav-line);
+    border-radius: 2px;
+    background: var(--agav-cream);
+    color: var(--agav-ink);
+  }
+  .agav__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--agav-tone);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--agav-tone) 22%, transparent);
+  }
+  .agav__pill--stock .agav__dot {
+    background: var(--agav-moss);
+    box-shadow: 0 0 0 3px rgba(92, 107, 76, 0.22);
+  }
+  .agav__meter {
+    display: inline-flex;
+    gap: 3px;
+    margin-left: 2px;
+  }
+  .agav__meter i {
+    width: 14px;
+    height: 6px;
+    border-radius: 1px;
+    background: var(--agav-line);
+  }
+  .agav__meter i.on {
+    background: var(--agav-tone);
+  }
+  .agav__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .agav__help {
+    position: static;
+  }
+  .agav__help summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    color: var(--agav-moss);
+    user-select: none;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--agav-moss) 45%, transparent);
+    text-underline-offset: 3px;
+  }
+  .agav__help summary::-webkit-details-marker { display: none; }
+  .agav__help summary svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .agav__help summary:hover,
+  .agav__help[open] summary {
+    text-decoration-color: var(--agav-moss);
+  }
+  .agav__pop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% - var(--agav-pb) + 8px);
+    z-index: 30;
+    max-width: 380px;
+    margin-left: auto;
+    padding: 16px 18px;
+    border: 1px solid var(--agav-line);
+    border-radius: 4px;
+    background: var(--agav-cream);
+    box-shadow: 0 18px 40px -18px rgba(47, 42, 34, 0.35);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--agav-ink);
+  }
+  .agav--card .agav__pop {
+    left: -4px;
+    right: -1px;
+    top: calc(100% + 8px);
+  }
+  .agav__pop p { margin: 0; }
+  .agav__pop-title {
+    font-family: var(--font-accent--family);
+    font-size: 17px;
+    line-height: 1.25;
+    margin-bottom: 6px !important;
+  }
+  .agav__pop-text {
+    color: var(--agav-muted);
+  }
+  .agav__pop-plant {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--agav-line);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .agav__pop-date {
+    font-size: 12px;
+    color: var(--agav-muted);
+  }
+  .agav__pop-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--agav-moss);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .agav__last {
+    margin: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--agav-muted);
+  }
+  .agav__last strong {
+    color: var(--agav-ink);
+    font-weight: 600;
+  }
+  @media screen and (max-width: 749px) {
+    .agav__pop {
+      max-width: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Availability chance",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Reads the product's Availability chance, Last batch result, Availability note and Availability updated metafields. Shows for the pre-order variant; nothing renders while the chance is blank."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "inline", "label": "One line" },
+        { "value": "card", "label": "Card with meter" }
+      ],
+      "default": "inline"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Availability chance"
+    },
+    {
+      "type": "header",
+      "content": "Chance wording"
+    },
+    { "type": "text", "id": "label_confirmed", "label": "Confirmed (shown as)", "info": "Confirmed is the lab's word, not a promise to the customer; it renders as High with four bars.", "default": "High" },
+    { "type": "text", "id": "label_high", "label": "High", "default": "High" },
+    { "type": "text", "id": "label_medium", "label": "Medium", "default": "Medium" },
+    { "type": "text", "id": "label_low", "label": "Low", "default": "Low" },
+    { "type": "text", "id": "label_na", "label": "Not available", "default": "Not available this batch" },
+    {
+      "type": "header",
+      "content": "In-stock variants"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stock_line",
+      "label": "Show a stock line for ready-to-ship, acclimated and mature variants",
+      "default": true
+    },
+    { "type": "text", "id": "label_stock", "label": "Label", "default": "Availability" },
+    { "type": "text", "id": "stock_text", "label": "Text", "default": "In stock, ready to ship" },
+    {
+      "type": "header",
+      "content": "Pop-up"
+    },
+    {
+      "type": "text",
+      "id": "help_label",
+      "label": "Trigger text",
+      "default": "How it's decided"
+    },
+    {
+      "type": "text",
+      "id": "help_title",
+      "label": "Title",
+      "default": "What is an availability chance?"
+    },
+    {
+      "type": "textarea",
+      "id": "help_text",
+      "label": "Text",
+      "default": "Pre-orders are grown to order by our partner laboratory. After the cut-off we place the batch and the lab confirms what it can supply. A plant that comes back unavailable is refunded in full. The chance is our honest estimate from how this plant has done in recent batches."
+    },
+    { "type": "text", "id": "last_label", "label": "Last batch label", "default": "Last batch:" },
+    { "type": "text", "id": "last_available", "label": "Last batch: available", "default": "confirmed by the lab and every order shipped." },
+    { "type": "text", "id": "last_partial", "label": "Last batch: partially available", "default": "partly available, some orders were refunded." },
+    { "type": "text", "id": "last_na", "label": "Last batch: not available", "default": "not available at the lab, orders were refunded." },
+    { "type": "text", "id": "updated_label", "label": "Updated label", "default": "Updated" },
+    { "type": "text", "id": "help_link_text", "label": "Link text", "default": "How pre-orders work" },
+    { "type": "url", "id": "help_link_url", "label": "Link" },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background",
+      "default": "#E8EDE1"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    { "type": "range", "id": "padding_top", "label": "Top", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 }
+  ],
+  "presets": [
+    { "name": "Availability chance" }
+  ]
+}
+{% endschema %}

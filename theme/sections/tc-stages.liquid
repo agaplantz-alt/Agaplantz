@@ -1,0 +1,322 @@
+{%- doc -%}
+  AgaPlantz — "New to tissue culture?" on the home page. Rebuilt 7 Nov 2026, then made
+  smaller and quieter the same night on the owner's note ("smaller … luxurious, but it should
+  not complicate things"). Heading and one line on the left; on the right, one slim row per
+  stage block — a small square photo, a small-caps meta line, a Lora title, one line and an
+  arrow — the whole row is the link. Under the rows, the 30-Day Plant Guarantee as a single
+  hairline-separated line. No buttons, no pills, no boxes. A row's photo is its own image
+  setting, else the collection image, else the first product photo in that collection.
+{%- enddoc -%}
+
+{%- liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+  assign g_url = section.settings.guarantee_url
+  if g_url == blank
+    assign g_url = '/pages/30-day-plant-guarantee'
+  endif
+-%}
+
+<div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
+
+<div
+  class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agts"
+  style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
+>
+  <div class="agts__grid">
+    <div class="agts__copy">
+      {%- if section.settings.eyebrow != blank -%}<p class="agts__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="agts__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="agts__text">{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.link_label != blank and section.settings.link_url != blank -%}
+        <a class="agts__link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}<span aria-hidden="true"> &rarr;</span></a>
+      {%- endif -%}
+    </div>
+
+    <div class="agts__list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign c_coll = block.settings.collection
+          assign c_url = block.settings.link
+          if c_url == blank and c_coll != blank
+            assign c_url = c_coll.url
+          endif
+          assign c_image = block.settings.image
+          if c_image == blank and c_coll != blank
+            assign c_image = c_coll.image
+          endif
+          if c_image == blank and c_coll != blank
+            for cp in c_coll.products limit: 12
+              if cp.featured_image
+                assign c_image = cp.featured_image
+                break
+              endif
+            endfor
+          endif
+        -%}
+        <a class="agts__row" href="{{ c_url }}" {{ block.shopify_attributes }}>
+          <span class="agts__media">
+            {%- if c_image -%}
+              {{ c_image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '120px', widths: '120, 240, 400', alt: '' }}
+            {%- endif -%}
+          </span>
+          <span class="agts__body">
+            {%- if block.settings.tag != blank -%}<span class="agts__meta">{{ block.settings.tag }}</span>{%- endif -%}
+            <span class="agts__title">{{ block.settings.title }}</span>
+            {%- if block.settings.text != blank -%}<span class="agts__line">{{ block.settings.text }}</span>{%- endif -%}
+          </span>
+          <span class="agts__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h13"/><path d="m13 6 6 6-6 6"/></svg>
+          </span>
+          {%- if block.settings.cta_label != blank -%}<span class="visually-hidden">{{ block.settings.cta_label }}</span>{%- endif -%}
+        </a>
+      {%- endfor -%}
+
+      {%- if section.settings.show_guarantee -%}
+        <a class="agts__guarantee" href="{{ g_url }}">
+          <span class="agts__g-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+              <path d="M12 3 5 5.5v5.3c0 4.6 3 8.3 7 9.7 4-1.4 7-5.1 7-9.7V5.5L12 3Z"/>
+              <path d="m9 12 2 2 4-4.5"/>
+            </svg>
+          </span>
+          <span class="agts__g-copy">
+            <span class="agts__g-title">{{ section.settings.guarantee_title }}</span>
+            {%- if section.settings.guarantee_text != blank -%}<span class="agts__g-text">{{ section.settings.guarantee_text }}</span>{%- endif -%}
+          </span>
+          {%- if section.settings.guarantee_label != blank -%}
+            <span class="agts__g-link">{{ section.settings.guarantee_label }}<span aria-hidden="true"> &rarr;</span></span>
+          {%- endif -%}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .agts {
+    padding-block-start: var(--padding-block-start, 48px);
+    padding-block-end: var(--padding-block-end, 48px);
+  }
+  .agts__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 48px 64px;
+    align-items: start;
+  }
+  .agts__copy { max-width: 44ch; }
+  .agts__eyebrow {
+    margin: 0 0 10px;
+    color: #B4693C;
+    font-family: var(--font-body--family);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .agts__heading {
+    margin: 0;
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: clamp(26px, 3vw, 32px);
+    line-height: 1.15;
+    text-wrap: pretty;
+  }
+  .agts__text {
+    margin: 12px 0 0;
+    font-family: var(--font-body--family);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #56503F;
+  }
+  .agts__link {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: var(--font-body--family);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #5C6B4C;
+    text-decoration: none;
+    border-bottom: 1px solid #5C6B4C;
+    padding-bottom: 2px;
+  }
+  .agts__link:hover { color: #2F2A22; border-color: #2F2A22; }
+
+  .agts__list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #CFC4B0;
+  }
+  .agts__row {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #CFC4B0;
+    color: inherit;
+    text-decoration: none;
+  }
+  .agts__media {
+    display: block;
+    width: 96px;
+    aspect-ratio: 1 / 1;
+    background: #F2EBDE;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .agts__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s ease;
+  }
+  .agts__row:hover .agts__media img { transform: scale(1.04); }
+  .agts__body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .agts__meta {
+    font-family: var(--font-body--family);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #B4693C;
+  }
+  .agts__title {
+    font-family: var(--font-accent--family);
+    font-size: 22px;
+    line-height: 1.2;
+    color: #2F2A22;
+  }
+  .agts__line {
+    font-family: var(--font-body--family);
+    font-size: 14px;
+    line-height: 1.5;
+    color: #56503F;
+  }
+  .agts__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #5C6B4C;
+    border-radius: 50%;
+    color: #5C6B4C;
+    transition: background .25s ease, color .25s ease;
+  }
+  .agts__row:hover .agts__arrow { background: #5C6B4C; color: #FBF8F2; }
+
+  .agts__guarantee {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 0 0;
+    color: inherit;
+    text-decoration: none;
+  }
+  .agts__g-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #5C6B4C;
+    color: #FBF8F2;
+  }
+  .agts__g-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .agts__g-title {
+    font-family: var(--font-body--family);
+    font-size: 14px;
+    font-weight: 600;
+    color: #2F2A22;
+  }
+  .agts__g-text {
+    font-family: var(--font-body--family);
+    font-size: 13px;
+    line-height: 1.5;
+    color: #56503F;
+  }
+  .agts__g-link {
+    font-family: var(--font-body--family);
+    font-size: 13px;
+    font-weight: 600;
+    color: #5C6B4C;
+    white-space: nowrap;
+    border-bottom: 1px solid #5C6B4C;
+    padding-bottom: 2px;
+  }
+  .agts__guarantee:hover .agts__g-link { color: #2F2A22; border-color: #2F2A22; }
+
+  @media screen and (max-width: 989px) {
+    .agts__grid { grid-template-columns: 1fr; gap: 28px; }
+    .agts__copy { max-width: 56ch; }
+  }
+  @media screen and (max-width: 749px) {
+    .agts__row { grid-template-columns: 76px minmax(0, 1fr) auto; gap: 14px; padding: 14px 0; }
+    .agts__media { width: 76px; }
+    .agts__title { font-size: 19px; }
+    .agts__line { font-size: 13px; }
+    .agts__arrow { width: 32px; height: 32px; }
+    .agts__guarantee { grid-template-columns: auto minmax(0, 1fr); gap: 10px 12px; padding-top: 14px; }
+    .agts__g-icon { width: 28px; height: 28px; }
+    .agts__g-icon svg { width: 15px; height: 15px; }
+    .agts__g-link { grid-column: 2; justify-self: start; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tissue culture stages",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Two ways to buy" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "New to tissue culture?" },
+    { "type": "textarea", "id": "text", "label": "One or two lines", "default": "Grown from a parent plant in a sterile lab: pest-free, disease-free and true to type. It is how we can offer collector aroids that are otherwise almost impossible to find in Canada." },
+    { "type": "text", "id": "link_label", "label": "Guide link label", "default": "Read the full guide" },
+    { "type": "url", "id": "link_url", "label": "Guide link" },
+    { "type": "header", "content": "Guarantee line" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Show the guarantee line", "default": true },
+    { "type": "text", "id": "guarantee_title", "label": "Title", "default": "Every plant is covered for 30 days" },
+    { "type": "textarea", "id": "guarantee_text", "label": "Text", "default": "Free replacement under $200, half price above. Just photograph it the day it arrives." },
+    { "type": "text", "id": "guarantee_label", "label": "Link label", "default": "How it works" },
+    { "type": "url", "id": "guarantee_url", "label": "Link", "info": "Leave blank for the 30-Day Plant Guarantee page." },
+    { "type": "header", "content": "Section layout" },
+    { "type": "color", "id": "background_color", "label": "Background", "placeholder": "Default" },
+    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "stage",
+      "name": "Stage row",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Small line above the title", "default": "Ships in 1–3 days" },
+        { "type": "checkbox", "id": "featured", "label": "Featured (no visual effect in the slim layout)", "default": false },
+        { "type": "text", "id": "title", "label": "Title", "default": "Ready to ship" },
+        { "type": "textarea", "id": "text", "label": "One line", "default": "Rooted and acclimated in our greenhouse." },
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "url", "id": "link", "label": "Link", "info": "Leave blank to use the collection." },
+        { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave blank to use the collection image, then the first product photo in it." },
+        { "type": "text", "id": "cta_label", "label": "Link label (for screen readers)", "default": "Shop now" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Tissue culture stages",
+      "category": "Collections",
+      "blocks": [
+        { "type": "stage", "settings": { "tag": "Ships in 1–3 days", "title": "Ready to ship", "text": "Rooted and acclimated in our greenhouse.", "cta_label": "Shop now" } },
+        { "type": "stage", "settings": { "tag": "Next lab batch", "title": "Pre-order", "text": "Reserved from our next lab batch, at a lower price.", "cta_label": "Browse" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

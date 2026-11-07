@@ -1,0 +1,370 @@
+{%- doc -%}
+  AgaPlantz — a product row that renders one VARIANT per product, not the product.
+  Stock Horizon cards read product.featured_media and the first available variant's
+  price, so a listing that carries several plant stages showed the same photo and the
+  same price in every row. This picks the variant that belongs to the row and builds
+  the card from it. See CLAUDE.md, "Stage product rows".
+{%- enddoc -%}
+
+{%- liquid
+  assign coll = section.settings.collection
+  assign max_items = section.settings.max_products
+  assign needles = section.settings.stage_match | split: ','
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+-%}
+
+<div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
+
+<div
+  class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} sp-section{% if section.settings.halloween_decor %} sp-section--hw{% endif %}"
+  style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px; --sp-cols: {{ section.settings.columns }};"
+>
+  {%- if section.settings.halloween_decor -%}
+    {%- comment -%} Halloween decoration: a few bats drifting in the corners and a pumpkin by the
+    heading. Inline SVG, no assets; all of it is aria-hidden and sits behind the content. {%- endcomment -%}
+    <div class="sp-hw" aria-hidden="true">
+      {%- for i in (1..4) -%}
+        <svg class="sp-hw__bat sp-hw__bat--{{ i }}" viewBox="0 0 24 14" fill="currentColor"><path d="M12 5.2C10.6 2.6 8.2 1.3 5.4 1.6c.9 1.4 1 2.9.4 4.4C3.2 6.6 1.3 8.1.3 10.4c1.9-.8 3.8-.6 5.4.7.3-1.2 1.2-2.1 2.4-2.4.6 1 1.4 1.8 2.4 2.3l1.5-1.9 1.5 1.9c1-.5 1.8-1.3 2.4-2.3 1.2.3 2.1 1.2 2.4 2.4 1.6-1.3 3.5-1.5 5.4-.7-1-2.3-2.9-3.8-5.5-4.4-.6-1.5-.5-3 .4-4.4C15.8 1.3 13.4 2.6 12 5.2z"/></svg>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+  <div class="sp-head">
+    {%- comment -%} h3 and button-unstyled are Horizon's own presets, so the heading and
+    link match every other row on the page without restating the type scale here. {%- endcomment -%}
+    {%- liquid
+      assign sp_heading = section.settings.heading
+      if section.settings.halloween_decor and sp_heading contains '20% off'
+        assign sp_heading = sp_heading | replace: '20% off', '<span class="sp-hw__accent">20% off</span>'
+      endif
+    -%}
+    <div class="h3 sp-heading"><h2>{% if section.settings.halloween_decor %}<svg class="sp-hw__pumpkin" viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="pkb-{{ section.id }}" cx="40%" cy="32%" r="72%"><stop offset="0" stop-color="#F8BE6E"/><stop offset=".55" stop-color="#E98D2F"/><stop offset="1" stop-color="#B55E1A"/></radialGradient><radialGradient id="pkm-{{ section.id }}" cx="45%" cy="35%" r="75%"><stop offset="0" stop-color="#EE9A3C"/><stop offset="1" stop-color="#B8601C"/></radialGradient></defs><path d="M33 17c-1.5-4.5-.5-9 3.5-12.5" fill="none" stroke="#56653F" stroke-width="4.2" stroke-linecap="round"/><path d="M37.5 10.5c3.5-2.5 7-1 6.5 2.2-.4 2.6-3.6 3.2-4.3 1-.6-1.8 1.2-3 3-2.2" fill="none" stroke="#8A9A70" stroke-width="1.5" stroke-linecap="round"/><ellipse cx="17.5" cy="39" rx="13.5" ry="19.5" fill="#B8601C"/><ellipse cx="46.5" cy="39" rx="13.5" ry="19.5" fill="#B8601C"/><ellipse cx="24.5" cy="40" rx="12.5" ry="20.5" fill="url(#pkm-{{ section.id }})"/><ellipse cx="39.5" cy="40" rx="12.5" ry="20.5" fill="url(#pkm-{{ section.id }})"/><ellipse cx="32" cy="41" rx="11.5" ry="21.5" fill="url(#pkb-{{ section.id }})"/><path d="M21 22c-3.5 7-3.5 31 0 38M43 22c3.5 7 3.5 31 0 38" fill="none" stroke="#9E4F16" stroke-width="1.3" opacity=".55" stroke-linecap="round"/><ellipse cx="27.5" cy="29" rx="3.6" ry="7.5" fill="#FBF8F2" opacity=".26" transform="rotate(-14 27.5 29)"/><path d="M30 15.5c-5.5-3.5-10-2.5-12.5 1.5 4.5 2.5 9 1.5 12.5-1.5z" fill="#6E7F55"/></svg>{% endif %}{{ sp_heading }}</h2></div>
+    {%- if section.settings.show_view_all and coll != blank -%}
+      <a class="button-unstyled sp-viewall" href="{{ coll.url }}">{{ section.settings.view_all_label }}</a>
+    {%- endif -%}
+  </div>
+
+  <div class="sp-track-wrap">
+    <div class="sp-track" id="sp-track-{{ section.id }}">
+      {%- if coll != blank -%}
+        {%- assign shown = 0 -%}
+        {%- paginate coll.products by 50 -%}
+          {%- for product in coll.products -%}
+            {%- if shown >= max_items -%}{%- break -%}{%- endif -%}
+
+            {%- comment -%}
+              Pick the in-stock variant that belongs to this row. stage_seen records
+              whether the product uses stage naming at all, so a one-off plant with a
+              single plain variant can still fall back to that variant, while a merged
+              listing never falls back onto the wrong stage's price.
+            {%- endcomment -%}
+            {%- assign chosen = blank -%}
+            {%- assign stage_seen = false -%}
+            {%- for v in product.variants -%}
+              {%- assign matched = false -%}
+              {%- if section.settings.stage_match == blank -%}
+                {%- assign matched = true -%}
+              {%- else -%}
+                {%- for n in needles -%}
+                  {%- assign needle = n | strip -%}
+                  {%- if needle != blank and v.title contains needle -%}
+                    {%- assign matched = true -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+
+              {%- if matched -%}{%- assign stage_seen = true -%}{%- endif -%}
+
+              {%- if matched and section.settings.sale_only and v.compare_at_price <= v.price -%}
+                {%- assign matched = false -%}
+              {%- endif -%}
+
+              {%- if matched and v.available and chosen == blank -%}
+                {%- assign chosen = v -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if chosen == blank and section.settings.allow_fallback and stage_seen == false -%}
+              {%- assign fallback = product.selected_or_first_available_variant -%}
+              {%- if fallback.available -%}{%- assign chosen = fallback -%}{%- endif -%}
+            {%- endif -%}
+
+            {%- if chosen == blank -%}{%- continue -%}{%- endif -%}
+
+            {%- liquid
+              assign card_image = chosen.image | default: product.featured_image
+              assign on_sale = false
+              if chosen.compare_at_price > chosen.price
+                assign on_sale = true
+              endif
+              assign card_url = product.url | append: '?variant=' | append: chosen.id
+              assign shown = shown | plus: 1
+            -%}
+
+            <div class="sp-card">
+              <a class="sp-card__link" href="{{ card_url }}" aria-label="{{ product.title | escape }}">
+                <div class="sp-card__media">
+                  {%- if card_image -%}
+                    <img
+                      src="{{ card_image | image_url: width: 700 }}"
+                      srcset="{{ card_image | image_url: width: 350 }} 350w, {{ card_image | image_url: width: 700 }} 700w, {{ card_image | image_url: width: 1050 }} 1050w"
+                      sizes="(min-width: 750px) {{ 100 | divided_by: section.settings.columns }}vw, 60vw"
+                      alt="{{ card_image.alt | default: product.title | escape }}"
+                      width="{{ card_image.width }}"
+                      height="{{ card_image.height }}"
+                      loading="lazy"
+                    >
+                  {%- else -%}
+                    <span class="sp-card__noimage">{{ product.title }}</span>
+                  {%- endif -%}
+                  {%- if on_sale -%}<span class="sp-badge">{{ 'content.product_badge_sale' | t }}</span>{%- endif -%}
+                  {%- render 'halloween-sale-badge', product: product, context: 'card' -%}
+                </div>
+                <span class="sp-card__title">{{ product.title }}</span>
+                <span class="sp-card__price">
+                  <span class="sp-card__now">{{ chosen.price | money }}</span>
+                  {%- if on_sale -%}<s class="sp-card__was">{{ chosen.compare_at_price | money }}</s>{%- endif -%}
+                </span>
+              </a>
+            </div>
+          {%- endfor -%}
+        {%- endpaginate -%}
+      {%- endif -%}
+    </div>
+
+    <button class="sp-arrow sp-arrow--prev" type="button" data-sp-scroll="-1" data-sp-target="sp-track-{{ section.id }}" aria-label="Previous">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="sp-arrow sp-arrow--next" type="button" data-sp-scroll="1" data-sp-target="sp-track-{{ section.id }}" aria-label="Next">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</div>
+
+{% stylesheet %}
+  .sp-section {
+    padding-block-start: var(--padding-block-start, 48px);
+    padding-block-end: var(--padding-block-end, 48px);
+  }
+
+  .sp-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-block-end: 28px;
+  }
+
+  .sp-heading {
+    --color: var(--color-foreground);
+    min-width: 0;
+  }
+
+  .sp-heading h2 {
+    margin: 0;
+  }
+
+  .sp-viewall {
+    flex: none;
+  }
+
+  .sp-track-wrap { position: relative; }
+
+  .sp-track {
+    display: grid;
+    grid-template-columns: repeat(var(--sp-cols, 4), minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 28px;
+  }
+
+  .sp-card { min-width: 0; }
+
+  .sp-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .sp-card__media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 2px;
+    background-color: rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .sp-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .sp-card__noimage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 12px;
+    font-family: var(--font-body--family);
+    font-size: 0.875rem;
+    text-align: center;
+    color: var(--color-foreground);
+  }
+
+  .sp-badge {
+    position: absolute;
+    inset-block-start: 8px;
+    inset-inline-end: 8px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background-color: #b4693c;
+    color: #fff;
+    font-family: var(--font-body--family);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .sp-card__title {
+    display: block;
+    margin-block-start: 10px;
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    line-height: 1.35;
+    color: var(--color-foreground);
+    text-wrap: pretty;
+  }
+
+  .sp-card__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+    margin-block-start: 6px;
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    color: var(--color-foreground);
+  }
+
+  .sp-card__was {
+    color: rgb(var(--color-foreground-rgb) / 0.55);
+    text-decoration: line-through;
+  }
+
+  .sp-arrow { display: none; }
+
+  @media screen and (max-width: 749px) {
+    .sp-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 12px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .sp-track::-webkit-scrollbar { display: none; }
+
+    .sp-card {
+      flex: 0 0 60%;
+      scroll-snap-align: start;
+    }
+
+    .sp-arrow {
+      position: absolute;
+      inset-block-start: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background-color: #5c6b4c;
+      color: #fff;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .sp-arrow svg { width: 20px; height: 20px; }
+    .sp-arrow--prev { inset-inline-start: -6px; }
+    .sp-arrow--next { inset-inline-end: -6px; }
+  }
+  /* ---- Halloween decoration (section setting) ---- */
+  .sp-section--hw { position: relative; }
+  .sp-section--hw .sp-head, .sp-section--hw .sp-track-wrap { position: relative; z-index: 1; }
+  .sp-hw { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; color: #F0A04B; }
+  .sp-hw__bat { position: absolute; width: 34px; height: 20px; opacity: 0.85; animation: sp-hw-drift 7s ease-in-out infinite alternate; }
+  .sp-hw__bat--1 { top: 14px; right: 6%; width: 40px; height: 24px; }
+  .sp-hw__bat--2 { top: 46px; right: 13%; width: 26px; height: 15px; opacity: 0.6; animation-duration: 9s; animation-delay: -3s; }
+  .sp-hw__bat--3 { top: 22px; right: 20%; width: 20px; height: 12px; opacity: 0.45; animation-duration: 8s; animation-delay: -5s; }
+  .sp-hw__bat--4 { bottom: 18px; left: 4%; width: 28px; height: 16px; opacity: 0.5; animation-duration: 10s; animation-delay: -2s; }
+  @keyframes sp-hw-drift { from { transform: translate(0, 0) rotate(-6deg); } to { transform: translate(-14px, -8px) rotate(6deg); } }
+  .sp-hw__pumpkin { display: inline-block; width: 1.15em; height: 1.15em; margin-inline-end: 0.28em; vertical-align: -0.18em; }
+  .sp-hw__accent { color: #F0A04B; white-space: nowrap; }
+  .sp-section--hw .sp-viewall { color: #F0A04B; }
+  @media screen and (max-width: 749px) {
+    .sp-hw__bat--2, .sp-hw__bat--3 { display: none; }
+    .sp-hw__bat--1 { top: 10px; right: 4%; width: 30px; height: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .sp-hw__bat { animation: none; } }
+{% endstylesheet %}
+
+{% javascript %}
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-sp-scroll]');
+    if (!button) return;
+    const track = document.getElementById(button.dataset.spTarget);
+    if (!track) return;
+    const card = track.querySelector('.sp-card');
+    const step = card ? card.getBoundingClientRect().width + 12 : track.clientWidth * 0.6;
+    track.scrollBy({ left: step * Number(button.dataset.spScroll), behavior: 'smooth' });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Stage product row",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Products" },
+    {
+      "type": "text",
+      "id": "stage_match",
+      "label": "Plant stage",
+      "info": "Words to look for in the variant name, comma separated. The card then shows that variant's photo and price. Leave blank to use the first variant in stock."
+    },
+    {
+      "type": "checkbox",
+      "id": "sale_only",
+      "label": "Only show variants that are on sale",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_fallback",
+      "label": "Include plants that have no plant stage",
+      "info": "One-off plants sold as a single item have no stage in their variant name. Tick this to show them using their own price.",
+      "default": false
+    },
+    { "type": "checkbox", "id": "show_view_all", "label": "Show View all link", "default": true },
+    { "type": "checkbox", "id": "halloween_decor", "label": "Halloween decoration", "info": "Bats, a pumpkin by the heading, and the offer in orange.", "default": false },
+    { "type": "text", "id": "view_all_label", "label": "View all label", "default": "View all" },
+    { "type": "range", "id": "max_products", "label": "Products to show", "min": 2, "max": 16, "step": 1, "default": 8 },
+    { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 2, "max": 6, "step": 1, "default": 4 },
+    { "type": "header", "content": "Section layout" },
+    { "type": "color", "id": "background_color", "label": "Background", "placeholder": "Default" },
+    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "presets": [
+    { "name": "Stage product row", "category": "Products", "settings": { "heading": "Tissue culture pre-orders", "stage_match": "Tissue Culture (Pre-Order)" } }
+  ]
+}
+{% endschema %}

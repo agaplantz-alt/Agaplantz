@@ -1,0 +1,882 @@
+{
+  "sections": {
+    "hero_main": {
+      "type": "hero",
+      "blocks": {
+        "hero_css": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<style>\n  /* hide this block's own wrapper so it adds no flex gap */\n  #Hero-{{ section.id }} .hero__content-wrapper > div:has(> style) { display: none; }\n\n  @media screen and (max-width: 749px) {\n    #Hero-{{ section.id }} [class*=\"__hero_heading\"] { --font-size: 1.875rem !important; }\n    #Hero-{{ section.id }} [class*=\"__hero_sub\"]     { --font-size: 0.9375rem !important; }\n    #Hero-{{ section.id }} [class*=\"__hero_eyebrow\"] { --font-size: 0.6875rem !important; }\n    #Hero-{{ section.id }} .hero__container {\n      --padding-block-start: 56px !important;\n      --padding-block-end: 56px !important;\n    }\n  }\n</style>"
+          },
+          "blocks": {}
+        },
+        "hero_eyebrow": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Rare aroids · Acclimated in Canada</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "hero_heading": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h1>Rare & healthy houseplants</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "2.5rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "balance",
+            "text_color": "#fbf8f2",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "hero_sub": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Collector-grade Philodendron, Alocasia, Monstera and Anthurium — rooted, acclimated and shipped Canada-wide.</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#fbf8f2",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "hero_cta": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Shop",
+            "link": "shopify://collections",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "#fbf8f2",
+            "custom_button_text": "#2f2a22",
+            "custom_button_border": "rgba(0,0,0,0)",
+            "link_text_color": "",
+            "width": "custom",
+            "custom_width": 13,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "hero_css",
+        "hero_eyebrow",
+        "hero_heading",
+        "hero_sub",
+        "hero_cta"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/agaplantz-hero-2026-v2.jpg",
+        "media_type_2": "image",
+        "stack_media_on_mobile": true,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-end",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 4,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 100,
+        "background_color": "rgba(0,0,0,0)",
+        "toggle_overlay": true,
+        "overlay_color": "#2f2a22d9",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": true,
+        "reflection_opacity": 50,
+        "padding-block-start": 34,
+        "padding-block-end": 30
+      }
+    },
+    "marquee_trust": {
+      "type": "marquee",
+      "blocks": {
+        "m1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Canada-wide shipping</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "m2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Rooted & acclimated before it ships</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "m3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Insulated seasonal packing</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "m4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Rare aroid specialists</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ],
+      "settings": {
+        "movement_direction": "normal",
+        "background_color": "#405029",
+        "padding-block-start": 18,
+        "padding-block-end": 18,
+        "gap_between_elements": 56
+      }
+    },
+    "custom_liquid_KL8FyB": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "{% assign deadline = '2026-11-30T23:59:59-05:00' %}\n{%- liquid\n  assign now_s = 'now' | date: '%s' | plus: 0\n\n  comment\n    November 2026 promo ladder. Each card is gated on the clock, server-side, so the\n    homepage changes offers on its own: a tier disappears the moment it ends (a card you\n    can no longer use reads as a loss, not an incentive), and the Black Friday card is\n    hidden until it starts — the owner wanted it unannounced. Times are Toronto, EST.\n    The discounts themselves are automatic discounts in admin; this only describes them.\n  endcomment\n  assign sale20_end = '2026-11-05T23:59:59-05:00' | date: '%s' | plus: 0\n  assign sale15_end = '2026-11-15T23:59:59-05:00' | date: '%s' | plus: 0\n  assign sale10_end = '2026-11-26T19:59:59-05:00' | date: '%s' | plus: 0\n  assign bf_start = '2026-11-26T20:00:00-05:00' | date: '%s' | plus: 0\n  assign bf_end = '2026-11-30T23:59:59-05:00' | date: '%s' | plus: 0\n  assign tier_count = 0\n  if now_s <= sale20_end\n    assign tier_count = tier_count | plus: 1\n  endif\n  if now_s <= sale15_end\n    assign tier_count = tier_count | plus: 1\n  endif\n  if now_s <= sale10_end\n    assign tier_count = tier_count | plus: 1\n  endif\n  if now_s >= bf_start and now_s <= bf_end\n    assign tier_count = tier_count | plus: 1\n  endif\n-%}\n\n<style>\n  .aga-batch {\n    max-width: 760px; margin: 0 auto; text-align: center; color: #2F2A22;\n    padding: clamp(56px, 8vw, 92px) 20px;\n  }\n  .aga-batch__added {\n    margin: 0 0 clamp(16px, 2.6vw, 22px); color: #B4693C;\n    font-family: var(--font-body--family, \"Work Sans\", sans-serif);\n    font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;\n  }\n  .aga-batch__title {\n    margin: 0; color: #2F2A22;\n    font-family: var(--font-accent--family, Lora, serif);\n    font-weight: 400; font-size: clamp(22px, 4.4vw, 30px); line-height: 1.25;\n  }\n  .aga-batch__timer {\n    display: flex; justify-content: center; max-width: 520px;\n    margin: clamp(26px, 4vw, 38px) auto 0;\n  }\n  .aga-batch__unit { position: relative; flex: 1 1 0; padding: 0 clamp(6px, 2vw, 16px); }\n  .aga-batch__unit + .aga-batch__unit::before {\n    content: \"\"; position: absolute; left: 0; top: 4%; bottom: 20%;\n    width: 1px; background: rgb(47 42 34 / .14);\n  }\n  .aga-batch__num {\n    display: block; color: #2F2A22;\n    font-family: var(--font-accent--family, Lora, serif);\n    font-weight: 400; font-size: clamp(30px, 8vw, 48px); line-height: 1;\n    font-variant-numeric: tabular-nums; font-feature-settings: \"tnum\" 1;\n  }\n  .aga-batch__lbl {\n    display: block; margin-top: clamp(8px, 1.6vw, 12px); color: #56503F;\n    font-family: var(--font-body--family, \"Work Sans\", sans-serif);\n    font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;\n  }\n  .aga-batch__sub {\n    margin: clamp(26px, 4vw, 36px) auto 0; max-width: 44ch; color: #56503F;\n    font-family: var(--font-body--family, \"Work Sans\", sans-serif);\n    font-size: 15px; font-weight: 400; line-height: 1.65;\n  }\n  .aga-batch__cta {\n    display: inline-block; margin-top: clamp(24px, 3.5vw, 32px);\n    padding: 15px 34px; border-radius: 2px; background: #5C6B4C; color: #FBF8F2;\n    font-family: var(--font-body--family, \"Work Sans\", sans-serif);\n    font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;\n    text-decoration: none; transition: background-color .2s ease;\n  }\n  .aga-batch__cta:hover, .aga-batch__cta:focus { background: #4A573D; color: #FBF8F2; }\n  .aga-batch__tiers {\n    display: grid; grid-template-columns: repeat(var(--tiers, 4), minmax(0, 1fr)); gap: 12px;\n    margin: clamp(28px, 4vw, 40px) auto 0; padding: 0; list-style: none;\n    max-width: max(300px, calc(var(--tiers, 4) * 190px));\n  }\n  .aga-batch__tier {\n    position: relative; padding: 16px 10px 14px;\n    border: 1px solid rgb(47 42 34 / .14); border-radius: 2px;\n    background: rgb(251 248 242 / .7);\n  }\n  .aga-batch__tier.is-now { background: #5C6B4C; border-color: #5C6B4C; color: #FBF8F2; }\n  .aga-batch__pill {\n    position: absolute; top: -9px; left: 50%; transform: translateX(-50%);\n    padding: 3px 10px; border-radius: 999px; background: #B4693C; color: #FBF8F2;\n    font-family: var(--font-body--family, \"Work Sans\", sans-serif);\n    font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;\n    white-space: nowrap;\n  }\n  .aga-batch__when {\n    display: block; color: #56503F;\n    font-family: var(--font-body--family, \"Work Sans\", sans-serif);\n    font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;\n  }\n  .aga-batch__off {\n    display: block; margin-top: 6px;\n    font-family: var(--font-accent--family, Lora, serif);\n    font-weight: 400; font-size: clamp(20px, 3.2vw, 27px); line-height: 1.1;\n  }\n  .aga-batch__min {\n    display: block; margin-top: 6px; color: #56503F;\n    font-family: var(--font-body--family, \"Work Sans\", sans-serif);\n    font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;\n  }\n  .aga-batch__tier.is-now .aga-batch__when,\n  .aga-batch__tier.is-now .aga-batch__min { color: rgb(251 248 242 / .85); }\n  @media (max-width: 560px) {\n    .aga-batch__tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: none; }\n    .aga-batch__tier:last-child:nth-child(odd) { grid-column: span 2; }\n  }\n  @media (max-width: 420px) {\n    .aga-batch__lbl { font-size: 9px; letter-spacing: .12em; }\n  }\n</style>\n\n<section class=\"aga-batch\" data-deadline=\"{{ deadline }}\">\n  <p class=\"aga-batch__added\">New batch now open</p>\n\n  <h2 class=\"aga-batch__title\">This batch closes in</h2>\n\n  <div class=\"aga-batch__timer\">\n    <div class=\"aga-batch__unit\"><span class=\"aga-batch__num\" data-u=\"d\">--</span><span class=\"aga-batch__lbl\">Days</span></div>\n    <div class=\"aga-batch__unit\"><span class=\"aga-batch__num\" data-u=\"h\">--</span><span class=\"aga-batch__lbl\">Hours</span></div>\n    <div class=\"aga-batch__unit\"><span class=\"aga-batch__num\" data-u=\"m\">--</span><span class=\"aga-batch__lbl\">Min</span></div>\n    <div class=\"aga-batch__unit\"><span class=\"aga-batch__num\" data-u=\"s\">--</span><span class=\"aga-batch__lbl\">Sec</span></div>\n  </div>\n\n  {% if tier_count > 0 %}\n  <ol class=\"aga-batch__tiers\" style=\"--tiers: {{ tier_count }};\">\n    {% if now_s <= sale20_end %}\n    <li class=\"aga-batch__tier is-now\">\n      <span class=\"aga-batch__pill\">Now</span>\n      <span class=\"aga-batch__when\">Nov 1&ndash;5</span>\n      <span class=\"aga-batch__off\">20% off</span>\n      <span class=\"aga-batch__min\">Orders $100+</span>\n    </li>\n    {% endif %}\n    {% if now_s <= sale15_end %}\n    <li class=\"aga-batch__tier{% if now_s > sale20_end %} is-now{% endif %}\">\n      {% if now_s > sale20_end %}<span class=\"aga-batch__pill\">Now</span>{% endif %}\n      <span class=\"aga-batch__when\">Nov 6&ndash;15</span>\n      <span class=\"aga-batch__off\">15% off</span>\n      <span class=\"aga-batch__min\">Orders $100+</span>\n    </li>\n    {% endif %}\n    {% if now_s <= sale10_end %}\n    <li class=\"aga-batch__tier{% if now_s > sale15_end %} is-now{% endif %}\">\n      {% if now_s > sale15_end %}<span class=\"aga-batch__pill\">Now</span>{% endif %}\n      <span class=\"aga-batch__when\">Nov 16&ndash;26</span>\n      <span class=\"aga-batch__off\">10% off</span>\n      <span class=\"aga-batch__min\">Orders $100+</span>\n    </li>\n    {% endif %}\n    {% if now_s >= bf_start and now_s <= bf_end %}\n    <li class=\"aga-batch__tier is-now\">\n      <span class=\"aga-batch__pill\">Now</span>\n      <span class=\"aga-batch__when\">Nov 26&ndash;30 &middot; Black Friday</span>\n      <span class=\"aga-batch__off\">Up to 40% off</span>\n      <span class=\"aga-batch__min\">Ready to ship 40% &middot; Acclimated 30% &middot; Pre-orders 10&ndash;20%</span>\n    </li>\n    {% endif %}\n  </ol>\n  {% endif %}\n\n  <p class=\"aga-batch__sub\">Every batch is repriced to supply and demand &mdash; up or down. Yours is locked the moment you order.</p>\n  <a class=\"aga-batch__cta\" href=\"/collections/pre-order\">Lock in this batch&rsquo;s price</a>\n</section>\n\n<script>\n(function () {\n  function init(box) {\n    if (box.getAttribute('data-ready')) return;\n    box.setAttribute('data-ready', '1');\n    var end = new Date(box.getAttribute('data-deadline')).getTime();\n    var q = function (sel) { return box.querySelector(sel); };\n    var pad = function (n) { return (n < 10 ? '0' : '') + n; };\n    function tick() {\n      var left = end - Date.now();\n      if (isNaN(end) || left <= 0) {\n        clearInterval(timer);\n        q('.aga-batch__timer').style.display = 'none';\n        q('.aga-batch__added').style.display = 'none';\n        if (q('.aga-batch__tiers')) q('.aga-batch__tiers').style.display = 'none';\n        q('.aga-batch__title').textContent = 'This batch has closed';\n        q('.aga-batch__sub').textContent = 'The next batch opens at new pricing. Ready-to-ship plants are available now.';\n        q('.aga-batch__cta').textContent = 'Shop ready to ship';\n        q('.aga-batch__cta').href = '/collections/ready-to-ship-tissue-culture';\n        return;\n      }\n      var s = Math.floor(left / 1000);\n      q('[data-u=\"d\"]').textContent = pad(Math.floor(s / 86400));\n      q('[data-u=\"h\"]').textContent = pad(Math.floor(s % 86400 / 3600));\n      q('[data-u=\"m\"]').textContent = pad(Math.floor(s % 3600 / 60));\n      q('[data-u=\"s\"]').textContent = pad(s % 60);\n    }\n    var timer = setInterval(tick, 1000);\n    tick();\n  }\n  function run() {\n    var all = document.querySelectorAll('.aga-batch');\n    for (var i = 0; i < all.length; i++) init(all[i]);\n  }\n  run();\n  document.addEventListener('DOMContentLoaded', run);\n  document.addEventListener('shopify:section:load', run);\n})();\n</script>",
+        "background_color": "{{ settings.color_palette.color4 }}",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "collections_genus": {
+      "type": "collection-list",
+      "blocks": {
+        "genus_header": {
+          "type": "group",
+          "name": "t:names.header",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "genus_title": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<h2>Shop by genus</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2",
+                "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "genus_sub": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Four families we know inside out — browse the one you're collecting.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "genus_title",
+            "genus_sub"
+          ]
+        },
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "on_image",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-end",
+            "collection_card_gap": 8,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 2
+          },
+          "blocks": {
+            "collection-title": {
+              "type": "collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h5",
+                "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": true,
+                "background_color": "#fbf8f2",
+                "text_color": "{{ settings.color_palette.foreground }}",
+                "corner_radius": 0,
+                "padding-block-start": 6,
+                "padding-block-end": 6,
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "portrait",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "collection-title"
+          ]
+        }
+      },
+      "block_order": [
+        "genus_header"
+      ],
+      "settings": {
+        "collection_list": [
+          "philodendron",
+          "alocasia",
+          "monstera",
+          "anthurium-1",
+          "begonia"
+        ],
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "columns": 5,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 12,
+        "bento_gap": 8,
+        "rows_gap": 12,
+        "max_collections": 5,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 16,
+        "background_color": "",
+        "padding-block-start": 80,
+        "padding-block-end": 48
+      }
+    },
+    "tc_learn_more": {
+      "type": "tc-learn-more",
+      "settings": {
+        "eyebrow": "New here?",
+        "heading": "What is a tissue culture plant?",
+        "text": "How our plants are grown, shipped and guaranteed — from the lab to your windowsill.",
+        "link_label": "Learn more",
+        "link": "shopify://pages/tissue-culture",
+        "background_color": "#e8ede1",
+        "padding-block-start": 28,
+        "padding-block-end": 28
+      }
+    },
+    "tissue_culture": {
+      "type": "tc-stages",
+      "blocks": {
+        "stage_rts": {
+          "type": "stage",
+          "settings": {
+            "tag": "Ships in 1–3 days",
+            "featured": false,
+            "title": "Ready to ship",
+            "text": "Rooted and acclimated in our greenhouse.",
+            "collection": "ready-to-ship-tissue-culture",
+            "link": "/collections/ready-to-ship-tissue-culture",
+            "cta_label": "Shop now"
+          }
+        },
+        "stage_pre": {
+          "type": "stage",
+          "settings": {
+            "tag": "Next lab batch",
+            "featured": true,
+            "title": "Pre-order",
+            "text": "Reserved from our next lab batch, at a lower price.",
+            "collection": "pre-order",
+            "link": "/collections/pre-order",
+            "cta_label": "Browse"
+          }
+        }
+      },
+      "block_order": [
+        "stage_rts",
+        "stage_pre"
+      ],
+      "settings": {
+        "eyebrow": "Two ways to buy",
+        "heading": "New to tissue culture?",
+        "text": "Grown from a parent plant in a sterile lab: pest-free, disease-free and true to type. It is how we can offer collector aroids that are otherwise almost impossible to find in Canada.",
+        "link_label": "Read the full guide",
+        "link_url": "/pages/tissue-culture",
+        "show_guarantee": true,
+        "guarantee_title": "Every plant is covered for 30 days",
+        "guarantee_text": "Free replacement under $200, half price above. Just photograph it the day it arrives.",
+        "guarantee_label": "How it works",
+        "guarantee_url": "/pages/30-day-plant-guarantee",
+        "background_color": "#F2EBDE",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "products_tc": {
+      "type": "stage-products",
+      "settings": {
+        "collection": "pre-order",
+        "heading": "Tissue culture pre-orders",
+        "stage_match": "Tissue Culture (Pre-Order)",
+        "sale_only": false,
+        "allow_fallback": false,
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "max_products": 8,
+        "columns": 4,
+        "background_color": "",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      },
+      "disabled": true
+    },
+    "products_sale": {
+      "type": "stage-products",
+      "settings": {
+        "collection": "on-sale",
+        "heading": "Collector favourites on sale",
+        "stage_match": "",
+        "sale_only": true,
+        "allow_fallback": false,
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "max_products": 8,
+        "columns": 4,
+        "background_color": "#f2ebde",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "disabled": true
+    },
+    "products_rts": {
+      "type": "stage-products",
+      "settings": {
+        "collection": "ready-to-ship",
+        "heading": "Ready to ship",
+        "stage_match": "Tissue Culture (Ready to Ship), Mature Plant",
+        "sale_only": false,
+        "allow_fallback": true,
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "max_products": 8,
+        "columns": 4,
+        "background_color": "",
+        "padding-block-start": 48,
+        "padding-block-end": 56
+      },
+      "disabled": true
+    },
+    "products_acclimated": {
+      "type": "stage-products",
+      "settings": {
+        "collection": "mature-specimens",
+        "heading": "Mature specimens",
+        "stage_match": "Mature Plant",
+        "sale_only": false,
+        "allow_fallback": false,
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "max_products": 8,
+        "columns": 4,
+        "background_color": "#f2ebde",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "disabled": true
+    },
+    "why_agaplantz": {
+      "type": "why-agaplantz",
+      "blocks": {
+        "why_1": {
+          "type": "reason",
+          "settings": {
+            "icon": "plant",
+            "title": "Rooted before it ships",
+            "text": "Established and acclimated in our greenhouse, never straight from the lab."
+          }
+        },
+        "why_2": {
+          "type": "reason",
+          "settings": {
+            "icon": "box",
+            "title": "Packed for the season",
+            "text": "Insulated boxes and heat packs right through the Canadian winter."
+          }
+        },
+        "why_3": {
+          "type": "reason",
+          "settings": {
+            "icon": "truck",
+            "title": "Shipped Canada-wide",
+            "text": "Tracked delivery to every province, with local pickup in Brampton."
+          }
+        },
+        "why_4": {
+          "type": "reason",
+          "settings": {
+            "icon": "leaf",
+            "title": "Pest-free by design",
+            "text": "Lab-propagated stock means no thrips, no mealybugs, no quarantine."
+          }
+        }
+      },
+      "block_order": [
+        "why_1",
+        "why_2",
+        "why_3",
+        "why_4"
+      ],
+      "settings": {
+        "eyebrow": "The AgaPlantz way",
+        "heading": "Why collectors choose AgaPlantz",
+        "text": "",
+        "show_numbers": false,
+        "background_color": "#F2EBDE",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "image": "shopify://shop_images/edited-edited20.png",
+        "product": "monstera-white-lava-ghost-pre-order",
+        "image_link": "/products/monstera-white-lava-ghost-pre-order",
+        "image_caption": "Monstera White Lava Ghost",
+        "image_position": "left"
+      }
+    },
+    "178828179731f4290e": {
+      "type": "_blocks",
+      "blocks": {
+        "loox_reviews_loox_dynamic_carousel_DPDpcd": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-carousel/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "corner-radius": 40,
+            "items-per-view": 3,
+            "items-per-view-mobile": 1,
+            "max-characters": 180,
+            "autoplay": false,
+            "autoplay-delay": 5,
+            "main-color": "#ae8868",
+            "stars-color": "#ff8d00",
+            "show-review-text": true,
+            "text-color": "",
+            "reviewer-name-color": "",
+            "verified-badge-color": "",
+            "quote-marks-icon": "style-1",
+            "quote-marks-icon-color": "",
+            "review-background-color": "",
+            "product-ids": ""
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_carousel_DPDpcd"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "products_popular": {
+      "type": "stage-products",
+      "settings": {
+        "collection": "popular",
+        "heading": "Popular right now",
+        "stage_match": "",
+        "sale_only": false,
+        "allow_fallback": true,
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "max_products": 8,
+        "columns": 4,
+        "background_color": "",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "spotlight_plant": {
+      "type": "spotlight-plant",
+      "settings": {
+        "image_position": "left",
+        "autoplay": true,
+        "autoplay_seconds": 6,
+        "background_color": "#f2ebde",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      },
+      "blocks": {
+        "slide_devil": {
+          "type": "plant",
+          "settings": {
+            "product": "monstera-devil-monster-premium-variegated-pre-order",
+            "eyebrow": "Collector favourite",
+            "heading": "",
+            "text": "<p>The one collectors keep coming back for — deep green leaves split with cream, and a variegation pattern no two plants share. On sale while this batch is open.</p>",
+            "cta_label": "Shop this plant"
+          }
+        },
+        "slide_cuprea": {
+          "type": "plant",
+          "settings": {
+            "product": "alocasia-cuprea-red-secret-variegated-super-pink-pre-order",
+            "eyebrow": "Collector favourite",
+            "heading": "",
+            "text": "<p>Metallic copper leaves shot through with pink — the Cuprea that collectors chase. Reserved from the current lab batch.</p>",
+            "cta_label": "Shop this plant"
+          }
+        }
+      },
+      "block_order": [
+        "slide_devil",
+        "slide_cuprea"
+      ]
+    },
+    "subscription_box": {
+      "type": "subscription-callout",
+      "settings": {
+        "product": "monthly-mystery-plant-box",
+        "plant_1": "shopify://shop_images/aga-box-plantlet-green.png",
+        "plant_2": "shopify://shop_images/aga-box-plantlet-pink.png",
+        "plant_3": "shopify://shop_images/aga-box-monstera-variegated.png",
+        "plant_4": "shopify://shop_images/aga-box-alocasia-dark-cup.png",
+        "plant_5": "shopify://shop_images/aga-box-alocasia-pink-cup.png",
+        "eyebrow": "Not sure what to buy?",
+        "heading": "Let us choose. Every month.",
+        "text": "<p>A rare tropical plant, picked by us and delivered to your door every month. You choose the tier, we choose the plant.</p>",
+        "show_tiers": true,
+        "cta_label": "Start a monthly box",
+        "note": "Manage or cancel it any time from your account.",
+        "image_position": "left",
+        "background_color": "#5c6b4c",
+        "text_color": "#fbf8f2",
+        "button_background": "#fbf8f2",
+        "button_text": "#2f2a22",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "crochet_feature": {
+      "type": "crochet-feature",
+      "blocks": {
+        "tile_flowers": {
+          "type": "tile",
+          "settings": {
+            "collection": "crochet-flowers",
+            "title": "Flowers",
+            "text": "Roses, lilies and tulips in decorated pots.",
+            "link": "/collections/crochet-flowers",
+            "glyph": "flower"
+          }
+        },
+        "tile_bags": {
+          "type": "tile",
+          "settings": {
+            "collection": "crochet-bags",
+            "title": "Bags",
+            "text": "Shell bags, daisy granny bags and totes.",
+            "link": "/collections/crochet-bags",
+            "glyph": "bag"
+          }
+        },
+        "tile_gifts": {
+          "type": "tile",
+          "settings": {
+            "collection": "crochet-gifts-under-25",
+            "title": "Gifts under $25",
+            "text": "Keychains, bag charms and flower hangings.",
+            "link": "/collections/crochet-gifts-under-25",
+            "glyph": "gift"
+          }
+        }
+      },
+      "block_order": [
+        "tile_flowers",
+        "tile_bags",
+        "tile_gifts"
+      ],
+      "settings": {
+        "eyebrow": "New at AgaPlantz",
+        "heading": "Flowers that never wilt",
+        "text": "Hand-crocheted flowers, bags and charms. No water, no light, no wilting.",
+        "collection": "crochet",
+        "max_products": 8,
+        "columns": 4,
+        "cta_label": "Shop crochet",
+        "cta_url": "/collections/crochet",
+        "show_gift": false,
+        "gift_collection": "crochet-gifts-under-25",
+        "gift_url": "/collections/crochet-gifts-under-25",
+        "gift_heading": "Gifts under $25",
+        "gift_text": "Keychains, bag charms and flower hangings. Easy to post, easy to love.",
+        "gift_cta": "See them all",
+        "note": "Every piece is hand-crocheted by our artisan partner. Crochet is not included in plant discounts.",
+        "background_color": "#FBEEF3",
+        "padding-block-start": 64,
+        "padding-block-end": 64,
+        "show_yarn": true,
+        "tile_size": "photo"
+      }
+    }
+  },
+  "order": [
+    "hero_main",
+    "marquee_trust",
+    "custom_liquid_KL8FyB",
+    "collections_genus",
+    "tc_learn_more",
+    "spotlight_plant",
+    "subscription_box",
+    "tissue_culture",
+    "products_popular",
+    "products_tc",
+    "products_sale",
+    "products_rts",
+    "products_acclimated",
+    "crochet_feature",
+    "why_agaplantz",
+    "178828179731f4290e"
+  ]
+}

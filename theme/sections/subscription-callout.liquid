@@ -1,0 +1,390 @@
+{%- doc -%}
+  AgaPlantz — "not sure what to buy?" band for the monthly mystery box.
+
+  A compact, dark feature band: the box photo one side, the pitch and a CTA the other.
+  It sits under the plant spotlight on the home page, where a visitor who has just
+  looked at two expensive named plants is most likely to still be undecided.
+
+  Everything is a setting so the owner can edit the copy in the theme editor, and the
+  tier chips are read from the product's own variants — rename a tier or change a price
+  in admin and this band follows, with no theme edit. Each chip carries ?variant= so the
+  product page opens on that tier. A tier that is unavailable is simply not rendered.
+
+  The picture side is a "stage": up to five cut-out plant photos (transparent PNGs, see
+  Files: aga-box-*.png) arranged three-over-two and floating gently. Slots 1–3 are the lab
+  plantlets in tweezers — the tweezer ends fade out so the crop never shows — and slots 4–5
+  are rooted plants that sit on an implied floor. Each slot is an image picker, so the owner
+  can swap a photo; leave all five empty and the band falls back to the product's own photo.
+  Two layers of motion, both off under prefers-reduced-motion. A slow CSS float on each
+  image, and a scroll-linked choreography on the stage: a tiny script writes the stage's
+  position in the viewport to --q (-1 … 1, 0 = centred) and --aq (its magnitude), and the
+  CSS does the rest — the plants spread apart and sit smaller when the band is off-centre,
+  converge and zoom to full size as it centres, turn slightly as you pass, and drift at
+  different speeds so the rows separate in depth. All of it is transform-only, one number
+  per frame, so it costs nothing to scroll.
+{%- enddoc -%}
+
+{%- liquid
+  assign box = section.settings.product
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+-%}
+
+<div class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"></div>
+
+{%- if box != blank -%}
+  <div
+    class="section section--page-width{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} agmb"
+    style="
+      --padding-block-start: {{ section.settings.padding-block-start }}px;
+      --padding-block-end: {{ section.settings.padding-block-end }}px;
+      --agmb-ink: {{ section.settings.text_color | default: '#FBF8F2' }};
+      --agmb-btn-bg: {{ section.settings.button_background | default: '#FBF8F2' }};
+      --agmb-btn-ink: {{ section.settings.button_text | default: '#2F2A22' }};
+    "
+  >
+    <div class="agmb__grid{% if section.settings.image_position == 'right' %} agmb__grid--flip{% endif %}">
+      {%- liquid
+        assign stage_count = 0
+        for i in (1..5)
+          assign key = 'plant_' | append: i
+          if section.settings[key] != blank
+            assign stage_count = stage_count | plus: 1
+          endif
+        endfor
+      -%}
+      {%- if stage_count > 0 -%}
+        <a class="agmb__stage" href="{{ box.url }}" aria-label="{{ box.title | escape }}" data-agmb-stage>
+          {%- for i in (1..5) -%}
+            {%- assign key = 'plant_' | append: i -%}
+            {%- assign img = section.settings[key] -%}
+            {%- if img != blank -%}
+              <span class="agmb__plant agmb__plant--{{ i }}">
+                {{ img | image_url: width: 800 | image_tag:
+                   widths: '200, 300, 400, 600, 800',
+                   sizes: '(max-width: 749px) 45vw, 18vw',
+                   loading: 'lazy',
+                   alt: '' }}
+              </span>
+            {%- endif -%}
+          {%- endfor -%}
+        </a>
+      {%- else -%}
+        <a class="agmb__media" href="{{ box.url }}">
+          {%- if box.featured_media != blank -%}
+            {{ box.featured_media | image_url: width: 1000 | image_tag:
+               widths: '300, 440, 600, 800, 1000',
+               sizes: '(max-width: 749px) 100vw, 34vw',
+               loading: 'lazy',
+               class: 'agmb__img',
+               alt: box.title }}
+          {%- endif -%}
+        </a>
+      {%- endif -%}
+
+      <div class="agmb__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="agmb__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        <h2 class="agmb__title">
+          {%- if section.settings.heading != blank -%}{{ section.settings.heading }}{%- else -%}{{ box.title }}{%- endif -%}
+        </h2>
+
+        {%- if section.settings.text != blank -%}
+          <div class="agmb__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.show_tiers -%}
+          {%- assign tiers = 0 -%}
+          <ul class="agmb__tiers">
+            {%- for v in box.variants -%}
+              {%- if v.available -%}
+                {%- assign tiers = tiers | plus: 1 -%}
+                <li class="agmb__tier">
+                  <a class="agmb__chip" href="{{ box.url }}?variant={{ v.id }}">
+                    {%- if v.title == 'Default Title' -%}{{ v.price | money }}{%- else -%}{{ v.title }}{%- endif -%}
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if box.available -%}
+          <a class="agmb__cta" href="{{ box.url }}">{{ section.settings.cta_label }}</a>
+        {%- else -%}
+          <p class="agmb__note">Boxes are closed for this month.</p>
+        {%- endif -%}
+
+        {%- if section.settings.note != blank -%}
+          <p class="agmb__note">{{ section.settings.note }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="section section--page-width">
+    <p>Pick the subscription product in this section's settings.</p>
+  </div>
+{%- endif -%}
+
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stages = [];
+  var ticking = false;
+
+  function collect() {
+    stages = Array.prototype.slice.call(document.querySelectorAll('[data-agmb-stage]'));
+  }
+  function update() {
+    ticking = false;
+    var vh = window.innerHeight || 1;
+    for (var i = 0; i < stages.length; i++) {
+      var r = stages[i].getBoundingClientRect();
+      // Skip stages that are far off screen; -1 … 1 covers entering to leaving.
+      if (r.bottom < -vh || r.top > vh * 2) continue;
+      var q = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+      q = Math.max(-1, Math.min(1, q));
+      stages[i].style.setProperty('--q', q.toFixed(4));
+      stages[i].style.setProperty('--aq', Math.abs(q).toFixed(4));
+    }
+  }
+  function schedule() {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }
+  function start() { collect(); update(); }
+
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  document.addEventListener('shopify:section:load', start);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+{% stylesheet %}
+  /* Horizon's .section does not consume --padding-block-*, so the band would sit flush
+     against the sections above and below it. On a dark band that reads as a mistake. */
+  .agmb {
+    padding-block-start: var(--padding-block-start, 56px);
+    padding-block-end: var(--padding-block-end, 56px);
+  }
+
+  .agmb__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: clamp(24px, 4vw, 56px);
+    color: var(--agmb-ink);
+  }
+  .agmb__grid--flip .agmb__media,
+  .agmb__grid--flip .agmb__stage { order: 2; }
+
+  .agmb__media {
+    display: block;
+    text-decoration: none;
+    background: rgb(251 248 242 / 0.06);
+  }
+  .agmb__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+
+  /* The stage: five cut-outs, three lab plantlets over two rooted plants. Positions are
+     percentages of a square, so the arrangement scales with the column. */
+  .agmb { overflow: hidden; }   /* the plants spread past the stage while off-centre */
+  .agmb__stage {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    --q: 0;    /* where the stage is in the viewport: -1 leaving at the top … 0 centred … 1 entering at the bottom */
+    --aq: 0;   /* its magnitude */
+    --k: 1;    /* amplitude scale, smaller on phones */
+  }
+  /* The scroll choreography lives on the wrapper: spread (--sx/--sy, by distance from
+     centre), drift (--px/--py, by direction, so the rows move at different speeds),
+     a turn (--r) and a zoom that lands at 1 when the stage is centred. */
+  .agmb__plant {
+    position: absolute;
+    display: block;
+    transform:
+      translate3d(
+        calc((var(--aq) * var(--sx, 0px) + var(--q) * var(--px, 0px)) * var(--k)),
+        calc((var(--aq) * var(--sy, 0px) + var(--q) * var(--py, 0px)) * var(--k)),
+        0
+      )
+      rotate(calc(var(--q) * var(--r, 0deg)))
+      scale(calc(1 - 0.3 * var(--aq)));
+    transition: transform 140ms ease-out;
+    will-change: transform;
+  }
+  /* The slow float sits on the image so it never fights the scroll transform. */
+  .agmb__plant img {
+    display: block;
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: var(--mask, none);
+    mask-image: var(--mask, none);
+    animation: agmb-float var(--d, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+  }
+  /* top row — the tweezers fade out toward the edge they come from, so the crop never shows */
+  .agmb__plant--1 { left: 0;    top: 7%; width: 45%; --d: 7.5s; --delay: -1s;   --mask: linear-gradient(135deg, #000 58%, transparent 90%); --sx: -60px; --sy: -70px;  --px: -8px;  --py: -30px; --r: -9deg; }
+  .agmb__plant--2 { left: 45%;  top: 1%; width: 27%; --d: 8.5s; --delay: -4s;   --mask: linear-gradient(160deg, #000 62%, transparent 92%); --sx: 0px;   --sy: -100px; --px: 0px;   --py: -45px; --r: 6deg; }
+  .agmb__plant--3 { right: 0;   top: 0;  width: 29%; --d: 6.5s; --delay: -2.5s; --mask: linear-gradient(205deg, #000 60%, transparent 92%); --sx: 60px;  --sy: -85px;  --px: 8px;   --py: -40px; --r: 10deg; }
+  /* bottom row — rooted plants, barely moving. No shadows anywhere: the owner asked for none. */
+  .agmb__plant--4 { left: 5%;  bottom: 0; width: 47%; --d: 9s; --delay: -6s; --amp: -4px; --rot: 0deg; --sx: -50px; --sy: 80px;  --px: -6px; --py: 20px; --r: -4deg; }
+  .agmb__plant--5 { right: 9%; bottom: 0; width: 30%; --d: 8s; --delay: -3s; --amp: -4px; --rot: 0deg; --sx: 60px;  --sy: 100px; --px: 8px;  --py: 30px; --r: 6deg; }
+  @keyframes agmb-float {
+    from { transform: translateY(0) rotate(0); }
+    to   { transform: translateY(var(--amp, -10px)) rotate(var(--rot, 0.8deg)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .agmb__plant img { animation: none; }
+    .agmb__plant { transform: none; transition: none; }
+  }
+
+  .agmb__copy { color: var(--agmb-ink); }
+
+  .agmb__eyebrow {
+    margin: 0 0 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .agmb__title {
+    margin: 0;
+    color: var(--agmb-ink);
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: clamp(24px, 3.4vw, 34px);
+    line-height: 1.18;
+  }
+  .agmb__text {
+    margin-block-start: 14px;
+    max-width: 48ch;
+    font-size: 15px;
+    line-height: 1.65;
+    opacity: 0.88;
+  }
+  .agmb__text > :first-child { margin-block-start: 0; }
+  .agmb__text > :last-child { margin-block-end: 0; }
+
+  .agmb__tiers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .agmb__chip {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid rgb(251 248 242 / 0.38);
+    border-radius: 2px;
+    color: var(--agmb-ink);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .agmb__chip:hover, .agmb__chip:focus {
+    background: rgb(251 248 242 / 0.14);
+    border-color: var(--agmb-ink);
+    color: var(--agmb-ink);
+  }
+
+  .agmb__cta {
+    display: inline-block;
+    margin-block-start: 24px;
+    padding: 15px 34px;
+    border-radius: 2px;
+    background: var(--agmb-btn-bg);
+    color: var(--agmb-btn-ink);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .agmb__cta:hover, .agmb__cta:focus { opacity: 0.86; color: var(--agmb-btn-ink); }
+
+  .agmb__note {
+    margin: 14px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    opacity: 0.72;
+  }
+
+  @media screen and (max-width: 749px) {
+    .agmb__grid { grid-template-columns: 1fr; }
+    .agmb__grid--flip .agmb__media,
+    .agmb__grid--flip .agmb__stage { order: 0; }
+    .agmb__img { aspect-ratio: 4 / 3; }
+    .agmb__stage { width: 100%; max-width: 420px; margin: 0 auto; --k: 0.6; }
+  }
+
+  /* 2x2 tiers on a phone, the same shape as the batch discount ladder */
+  @media screen and (max-width: 560px) {
+    .agmb__tiers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .agmb__chip { display: block; text-align: center; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Subscription call-out",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "product", "id": "product", "label": "Subscription product" },
+    { "type": "header", "content": "Plant photos", "info": "Cut-out PNGs with a transparent background. Slots 1–3 sit in the top row (lab plantlets), 4–5 in the bottom row (rooted plants). Leave all five empty to show the product's own photo instead." },
+    { "type": "image_picker", "id": "plant_1", "label": "Top left" },
+    { "type": "image_picker", "id": "plant_2", "label": "Top middle" },
+    { "type": "image_picker", "id": "plant_3", "label": "Top right" },
+    { "type": "image_picker", "id": "plant_4", "label": "Bottom left" },
+    { "type": "image_picker", "id": "plant_5", "label": "Bottom right" },
+    { "type": "header", "content": "Copy" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Not sure what to buy?" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Let us choose. Every month.", "info": "Leave blank to use the product's own name." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>A rare tropical plant, picked by us and delivered to your door every month. You choose the tier, we choose the plant.</p>" },
+    { "type": "checkbox", "id": "show_tiers", "label": "Show the tiers", "default": true },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Start a monthly box" },
+    { "type": "text", "id": "note", "label": "Small print", "default": "Manage or cancel it any time from your account." },
+    { "type": "header", "content": "Section layout" },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Photo position on desktop",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#5C6B4C" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#FBF8F2" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#FBF8F2" },
+    { "type": "color", "id": "button_text", "label": "Button text", "default": "#2F2A22" },
+    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "presets": [
+    { "name": "Subscription call-out", "category": "Promotions" }
+  ]
+}
+{% endschema %}
