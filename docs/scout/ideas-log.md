@@ -10,6 +10,77 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-08
+
+Evidence was thin again: retail listings, third-party price trackers and app-vendor blogs, no hard sales data.
+
+### Product ideas
+
+**1. Philodendron melanochrysum, the "black gold" climber.**
+- What: the parent species, sold on its own. The 'Glorious' hybrid logged on 2026-11-04 is a cross of this plant
+  and gloriosum; this is the pure species, which many collectors want too.
+- Why now: third-party price trackers show small US pots rising. One went from $25 to $30 USD, another from $27 to
+  $32 and then $35. European wholesale still lists small pots at about €7 to €9.
+  ([Spacecraft Vapor 4-inch](https://reach.dog/shop/spacecraft-vapor/products/04-philodendron-melanochrysum),
+  [Thai Exotic Greenery](https://reach.dog/shop/thai-exotic-greenery/products/philodendron-melanochrysum),
+  [Floraccess](https://www.floraccess.com/en/product/53408/philodendron-melanochrysum/))
+- Price signal: about €7 wholesale against $30 to $35 USD retail. The price rises come from tracker sites and may not
+  be market-wide (unverified).
+- Difficulty: medium. It climbs, so it sells best with a moss pole (see idea 3).
+- First step: ask your lab or a Canadian wholesaler for melanochrysum plugs and price per 50.
+
+**2. Philodendron gloriosum, the crawling velvet Philodendron.**
+- What: a velvet-leaf Philodendron that creeps along the soil instead of climbing, so it needs a long, shallow pot.
+- Why now: one US shop calls it sought after by collectors, and a tracker shows its price rising from $19.99 to
+  $24.99 USD before a later listing at $35, marked down from $55.
+  ([Jordan's Jungle](https://reach.dog/shop/jordans-jungle/products/philodendron-gloriosum),
+  [Bumble Plants](https://m.reach.dog/shop/bumble-plants/products/philodendron-gloriosum))
+- Price signal: $25 to $35 USD retail at these shops. Wholesale price not found (unverified).
+- Difficulty: medium. Crawlers rot if over-watered, so pair with a clear care card.
+- First step: check whether your lab offers gloriosum as TC.
+
+**3. Extendable moss poles, bought wholesale.**
+- What: stackable sphagnum or coir poles for climbers, sold as a stand-alone add-on. Earlier ideas bundled a moss
+  pole into kits (2026-11-02 cabinet kit, 2026-11-05 substrate); this is the pole on its own, with a wholesale route.
+- What changed: Faire lists several moss-pole brands at wholesale with small minimums, one with a Canadian reviewer.
+  ([The Soil Pot on Faire](https://www.faire.com/product/p_q87t5edczz),
+  [Mossify wholesale](https://eddiswholesale.com/mossify),
+  [Highland Moss extendable pole](https://highlandmoss.com/extendable-moss-pole))
+- Price signal: The Soil Pot lists a £12 suggested retail price with a £100 minimum order; Mossify a $150 minimum.
+  Canadian landed cost after duties not checked (unverified).
+- Difficulty: easy. Not alive, ships any season.
+- First step: order one Faire minimum and offer the pole as a checkout add-on for Monstera and climbing Philodendron.
+
+### Business ideas
+
+**1. Rent statement plants for photoshoots and events.**
+- What: lend large, striking plants for a few days to photographers, studios and event planners, with delivery in
+  the GTA.
+- Why now: Toronto already has a busy rental market for event greenery and flower walls, and studio rentals such as
+  ThatTorontoStudio operate locally. A Giggster listing says plant-filled spaces are becoming popular for Toronto
+  shoots. No dedicated live-plant rental business in the GTA turned up, though that gap is unverified.
+  ([Luxe Rentals](https://www.luxerentals.com/product-category/boxwood-topiary),
+  [Giggster Toronto](https://www.giggster.com/find/toronto--on/plants),
+  [Interior Tropical Gardens](https://www.interiortropicalgardens.com/plant-rentals-and-short-term-plant-rentals))
+- Price signal: no Toronto rental rates found (unverified).
+- Difficulty: medium. Plants must come back healthy, and transport in winter is risky.
+- First step: email two Toronto photo studios to ask whether they would rent rare plants for shoots.
+
+**2. A back-in-stock waitlist on sold-out plants.**
+- What: a "notify me" button on sold-out products that collects emails, so each restock goes first to people who
+  already want it. The store already sells pre-orders; this adds a way to measure demand before ordering from the lab.
+- Why now: many Shopify apps now combine a waitlist with pre-orders and deposits. One plant-store guide stresses that
+  live plants are a stock-and-timing problem, so knowing demand before a lab batch matters.
+  ([Shopify App Store, Amp Back in Stock](https://apps.shopify.com/back-in-stock),
+  [Restokly](https://restokly.pages.dev/blog/pre-orders-vs-waitlists-vs-back-in-stock/),
+  [Craftshift plant-store apps](https://craftshift.com/?p=22278))
+- Price signal: app pricing varies, and the vendor figures conflict (unverified).
+- Difficulty: easy. It's a Shopify app.
+- First step: install a free-tier back-in-stock app on your three most-asked-about sold-out plants and count signups
+  for two weeks.
+
+---
+
 ## 2026-11-07
 
 Evidence was thin again: mostly undated retail and wholesale listings, no hard sales data. Today looks at three
