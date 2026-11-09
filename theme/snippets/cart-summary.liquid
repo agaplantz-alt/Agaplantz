@@ -18,7 +18,7 @@
           class="cart-totals__original-value cart-secondary-typography"
           data-testid="cart-subtotal-value"
         >
-          {{- cart.items_subtotal_price | money -}}
+          <bdi>{{- cart.items_subtotal_price | money -}}</bdi>
         </span>
       </span>
       <ul
@@ -30,10 +30,10 @@
           <li class="cart-discounts__item">
             <span class="cart-discounts__label">
               {{- 'icon-discount.svg' | inline_asset_content -}}
-              {{ discount.title | escape }}
+              <bdi>{{ discount.title | escape }}</bdi>
             </span>
             <span class="cart-discounts__value cart-secondary-typography"
-              >-{{ discount.total_allocated_amount | money -}}
+              ><bdi>-{{ discount.total_allocated_amount | money }}</bdi>
             </span>
           </li>
         {%- endfor -%}
@@ -44,11 +44,6 @@
   {% if settings.show_cart_note or settings.show_add_discount_code %}
     <div class="cart-actions">
       {% if settings.show_cart_note %}
-        <script
-          type="module"
-          src="{{ 'cart-note.js' | asset_url }}"
-        ></script>
-
         <cart-note style="display: flex;">
           {% capture cart_note_accordion_children %}
             <details
@@ -196,7 +191,7 @@
                         aria-label="{{ 'accessibility.discount_applied' | t: code: discount_code }}"
                       >
                         <p class="cart-discount__pill-code">
-                          {{ discount_code }}
+                          <bdi>{{ discount_code }}</bdi>
                         </p>
                         <button
                           type="button"
@@ -241,7 +236,7 @@
         data-testid="cart-total-value"
         data-cart-subtotal
       >
-        {{ total_price }}
+        <bdi>{{ total_price }}</bdi>
       </text-component>
     </span>
     {% if settings.show_installments %}
@@ -286,9 +281,11 @@
 </div>
 
 {%- comment -%}
-  AgaPlantz: 30-Day Plant Guarantee reassurance line. This snippet is rendered by both the
-  cart page (via blocks/_cart-summary.liquid) and the cart drawer (which renders it
-  directly), so one insertion covers both. Core Horizon file — re-apply after a theme upgrade.
+  AgaPlantz: 30-Day Plant Guarantee reassurance line plus the opt-in cart offers (starter kit,
+  winter heat pack), all rendered by snippets/acclimation-guarantee-badge.liquid in cart
+  context. This snippet is rendered by both the cart page (via blocks/_cart-summary.liquid)
+  and the cart drawer (which renders it directly), so one insertion covers both.
+  Core Horizon file — re-apply after a theme upgrade or a stock-file overwrite.
 {%- endcomment -%}
 {%- unless cart == empty -%}
   {% render 'acclimation-guarantee-badge', context: 'cart' %}

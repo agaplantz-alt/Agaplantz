@@ -35,7 +35,27 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 5 Nov 2026, 20:21Z: MAIN is `AgaPlantz 2026 — guide pages repaired (from live)` =
+**As of 9 Nov 2026: MAIN is `AgaPlantz 2026 — crochet line` = `190192943183`** — the owner
+published the crochet draft on 7 Nov at 20:34Z and it became MAIN **in place** (same id, no
+"Updated copy of"). Merge check on 9 Nov: every file we wrote matches the repo by checksum
+(index, header-group, crochet-feature, tc-stages, why-agaplantz, the three re-seed-prone
+templates); `product.json`, `product.tissue-culture.json`, `product.crochet.json`,
+`footer-group.json`, `page.faq.json` and `settings_data.json` differ only by re-serialisation
+(all stamped 06 Nov 18:55Z, the duplicate's creation). **The cart add-ons were gone on live** —
+the owner's screenshot of the drawer on 9 Nov (*"it does not show add-ups"*): no guarantee line,
+no heat-pack offer, no substrate offer. Cause: `snippets/cart-summary.liquid` is stock Horizon
+on every theme since 1 Nov (see the 5 Nov note below), and it is the **only** file that renders
+`acclimation-guarantee-badge` in cart context (the drawer and `blocks/_cart-summary.liquid`
+both render `cart-summary`). The 5 Nov claim that the cart line "survived" was wrong — rendered
+with an item in the cart, both `190146576463` and the live theme show zero `.hp-addon` and no
+guarantee line. Fix: draft **`AgaPlantz 2026 — cart add-ons restored (from live)` =
+`190324277327`** (duplicated from MAIN), with the live stock `cart-summary.liquid` plus the one
+render block after `.cart__ctas` (checksum `0b41a1877f7f779e4221902ea92f0645`); the repo copy is
+now that file, so it is no longer stale. Verified on the preview with a pre-order in the cart:
+substrate offer, heat-pack offer with Add, and "Covered by our 30-Day Plant Guarantee" all render
+on `/cart`, and the drawer's DOM carries the same three. The owner publishes it.
+
+**Earlier, 5 Nov 2026, 20:21Z: MAIN was `AgaPlantz 2026 — guide pages repaired (from live)` =
 `190146576463`** — the owner published the repair draft and it became MAIN **in place** (same
 id, no "Updated copy of"), so nothing was re-seeded this time. Full sweep the same hour: all 31
 repo-tracked files compared (Liquid by checksum, JSON parsed), 23 live pages rendered with no
@@ -1993,7 +2013,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/blocks/ai_gen_block_651bd33.liquid` | footer block (policy + quick links, email) |
 | `theme/blocks/acclimation-guarantee.liquid` | guarantee product block |
 | `theme/snippets/acclimation-guarantee-badge.liquid` | all guarantee copy |
-| `theme/snippets/cart-summary.liquid` | core Horizon, patched for the cart line |
+| `theme/snippets/cart-summary.liquid` | core Horizon (live stock copy as of 9 Nov), patched with the one cart render block — re-apply after every upgrade or stock overwrite |
 | `theme/snippets/price.liquid` | Save X% badge |
 | `theme/templates/page.plant-guarantee.json` | the guarantee page (suffix `plant-guarantee`) |
 | `theme/templates/page.json` | default page template — FAQ accordion removed |
