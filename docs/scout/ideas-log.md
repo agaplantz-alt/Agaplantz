@@ -10,6 +10,83 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-09
+
+Evidence was thin again: retail listings, a manufacturer blog and press pieces, no hard sales data. Business idea 2
+has firmer sources than usual: an Ontario government release.
+
+### Product ideas
+
+**1. Anthurium veitchii, the "King Anthurium".**
+- What: a large, ribbed, hanging-leaf Anthurium. The store carries warocqueanum, the "Queen"; veitchii would pair with
+  it as the King.
+- Why now: it is sold as TC and as small plants by several US shops. Marketplace data shows an average asking price
+  of $53.99 USD for rare veitchii listings (unverified).
+  ([Orchidweb veitchii](https://store.orchidweb.com/products/anthurium-veitchii.oembed),
+  [Makerwords veitchii](https://makerwords.com/keyword/veitchii-anthurium-plants-rare))
+- Price signal: TC around $15.72 USD, 4-inch plants at $49.99, mature plants about $75, by the same marketplace data.
+- Difficulty: medium. It needs high humidity and space for long hanging leaves.
+- First step: ask your lab whether it offers veitchii TC and at what price per 100.
+
+**2. Anthurium 'Dark Mama' at the top of the range.**
+- What: a named collector hybrid of warocqueanum and papillilaminum, sold as a clone from a known breeder (NSE
+  Tropicals), which carries a premium.
+- Why now: one US shop lists an NSE clone at $149.99 USD, marked down from $199.99. A related "Dark Form"
+  warocqueanum sells as TC from $12.99 to $39.99, some backordered.
+  ([Carnivero Dark Mama](https://www.carnivero.com/products/w081-anthurium-dark-mama-clone),
+  [TropicFlow Dark Form TC](https://m.reach.dog/shop/tropicflow/products/anthurium-warocqueanum-dark-form-tissue-culture-plant),
+  [Orange Lake Dark TC](https://orangelakenursery.com/products/anthurium-warocqueanum-dark-tissue-culture))
+- Price signal: $149.99 USD for a named clone. No TC price found for Dark Mama itself (unverified).
+- Difficulty: hard. A named clone needs a trusted source, and buyers will want proof of origin.
+- First step: start with the cheaper "Dark Form" warocqueanum TC as a step up from your current warocqueanum, and
+  watch how it sells.
+
+**3. A plant humidifier as an accessory.**
+- What: a small, quiet ultrasonic humidifier sold for plant shelves and tents. The cabinet kit on 2026-11-02 measured
+  humidity with a hygrometer; this raises it.
+- Why now: Canadian retailers carry humidifiers marketed for plants, and Canadian winters dry indoor air. Levoit's
+  plant model lists at $124.99 CAD at Best Buy, and a 6.8-litre "super quiet" unit ships within Canada.
+  ([Best Buy humidifiers for plants](https://bestbuy.ca/en-ca/shop/humidifiers/humidifiers-for-plants),
+  [Best Buy 6.8L unit](https://www.bestbuy.ca/en-ca/product/ultrasonic-humidifier-super-quiet-for-bedroom-plants-6-8l/19518148),
+  [Levoit blog](https://levoit.com/blogs/levoit-blog/how-ultrasonic-humidifiers-help-you-your-plants-thrive))
+- Price signal: $79.99 to $124.99 CAD retail at Canadian Tire and Best Buy. Wholesale cost not checked (unverified).
+- Difficulty: medium. Big-box stores already sell these, so margin will be thin unless bundled.
+- First step: find one quiet unit you can buy at wholesale and test it only as part of a winter bundle.
+
+### Business ideas
+
+**1. Live auctions on Palmstreet.**
+- What: sell rare plants in live video auctions, with collectors bidding in real time.
+- Why now: a 2026 comparison calls Palmstreet the leading live-auction app for rare plants, and its own year-end post
+  names Alocasia as a category to watch in 2026. Record sales of $16,000 and $26,000 for single plants have been
+  reported, though those are outliers. Whatnot blocks buyers outside the streamer's jurisdiction from bidding on
+  plants, so it suits Canadian sellers only for Canadian buyers.
+  ([Frevana](https://www.frevana.com/content/en/the-best-live-auction-apps-for-buying-rare-plants-in-2026-featuring-palmstreet--zsh4yin104cez),
+  [Palmstreet 2025 takeaways](https://palmstreet.app/blog/palmstreets-2025-takeaways),
+  [Forbes Australia](https://www.forbes.com.au/life/lifestyle/houseplant-sells-for-26000-on-palmstreet-app-breaking-recent-record/),
+  [Whatnot plant rules](https://help.whatnot.com/hc/en-us/articles/21500460513549))
+- Price signal: a 2024 report put Palmstreet's entry tier at free with a 5.9% selling fee; current terms and
+  whether it accepts Canadian sellers are unverified.
+  ([Modern Retail](https://www.modernretail.co/technology/definitely-not-on-my-bingo-card-plants-are-the-latest-live-shopping-trend/))
+- Difficulty: medium. It needs someone comfortable on camera for an hour.
+- First step: check whether Palmstreet accepts sellers shipping from Canada.
+
+**2. Apply for Ontario's digital-adoption grant.**
+- What: a matched grant that pays half the cost of planning technology for the business, such as inventory, a
+  better Shopify setup or automation.
+- Why now: Ontario announced $5 million in May 2026 for the Digital Modernization and Adoption Plan (DMAP), run by
+  the Ontario Centre of Innovation. It offers a matched grant of up to $15,000. The federal online-store micro-grant
+  has closed.
+  ([Ontario release via MPP Bob Bailey](https://bobbaileympp.com/ontario-investing-5-million-to-help-small-businesses-adopt-digital-technologies/),
+  [Sydenham Current](https://sydenhamcurrent.ca/2026/05/22/ontario-invests-5-million-to-expand-digital-support-for-small-businesses/),
+  [Ontario Chamber of Commerce](https://occ.ca/growyourbusinessonline))
+- Price signal: up to $15,000 CAD, matched by the business. Whether AgaPlantz qualifies and whether intake is still
+  open are unverified.
+- Difficulty: easy to medium. It's paperwork.
+- First step: check eligibility on the Ontario Centre of Innovation's DMAP page.
+
+---
+
 ## 2026-11-08
 
 Evidence was thin again: retail listings, third-party price trackers and app-vendor blogs, no hard sales data.
