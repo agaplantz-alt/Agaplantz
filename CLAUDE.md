@@ -314,6 +314,22 @@ Verified: `/collections/monstera` now leads Bulbasaur, Devil Monster, White Mons
 Brulee, the same order as the ShopifyQL ranking. Shopify's ranking is its own rolling window;
 nothing to maintain.
 
+**"BEST SELLERS" in the menu, 10 Nov 2026.** The owner read Karan's ask again — *"one more bar
+at the top, like after all collections, best sellings"* — so the live menu `main-menu-crochet`
+(`gid://shopify/Menu/275458555983`, `menuUpdate`, whole tree resent with every `id`) now has a
+**BEST SELLERS** item in the Plants collections submenu directly after "All collections",
+pointing at the `popular` collection (`491313004623`), which was **retitled "BEST SELLERS"**
+(handle still `popular`; the homepage row heading is the section's own "Popular right now"
+string, so it did not change). Its first render led with the $3.50 heat-pack add-on, and the
+old `TITLE NOT_CONTAINS "Starter Kit"` rule no longer catches the substrate kit (its title is
+"Tissue Culture Substrate" now), so both are **excluded by product selection** on the
+collection's conditions source (`sourcesToUpdate` → `exclusion.selectionsToAdd`; the source is
+`gid://shopify/CollectionConditionsSource/53987278927`). The 2026-10 schema replaced
+`ruleSet` with `sources` and `collectionUpdate(input:)` with `collectionUpdate(collection:)`.
+The 15 crochet products are still in it and sit at the bottom until they sell; the pot
+accessory too. Verified live: the page is titled BEST SELLERS and opens Bulbasaur, Devil
+Monster, White Monster, Bambino Pink.
+
 **`ready-to-ship` no longer exists.** The owner deleted it some time before 1 Oct, and
 `collectionByHandle(handle: "ready-to-ship")` now returns `null`. It had been wired into
 two places and both broke silently: the homepage `products_rts` row rendered a heading
