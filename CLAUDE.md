@@ -35,7 +35,15 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 9 Nov 2026: MAIN is `AgaPlantz 2026 — crochet line` = `190192943183`** — the owner
+**As of 10 Nov 2026: MAIN is `AgaPlantz 2026 — cart add-ons restored (from live)` =
+`190324277327`** — the owner published it (*"Cart restored is live"*) and it became MAIN **in
+place** (same id). Post-publish check the same hour: `cart-summary.liquid`, `index.json`,
+`header-group.json` and the three re-seed-prone templates all match the repo by checksum, and
+the **live** cart with a pre-order in it renders the substrate offer, the heat-pack offer and
+the guarantee line (drawer DOM carries the same three). The next change starts with a fresh
+`themeDuplicate` of `190324277327`.
+
+**Earlier, 9 Nov 2026: MAIN was `AgaPlantz 2026 — crochet line` = `190192943183`** — the owner
 published the crochet draft on 7 Nov at 20:34Z and it became MAIN **in place** (same id, no
 "Updated copy of"). Merge check on 9 Nov: every file we wrote matches the repo by checksum
 (index, header-group, crochet-feature, tc-stages, why-agaplantz, the three re-seed-prone
