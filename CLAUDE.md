@@ -1913,7 +1913,13 @@ offer: set the free product to DRAFT** — the snippet falls back to the paid of
 The BXGY discount `1539479961679` (from 1 Dec) stays as a harmless safety net for a paid pack.
 
 Draft **`AgaPlantz 2026 — free heat pack over $100 (from live)` = `190392369231`** (from MAIN
-`190382866511`): four files, checksums match the repo.
+`190382866511`): four files, checksums match the repo. **Verified on the preview at 390, 10 Nov
+23:40Z, by clicking, not by URL:** $36 cart → paid offer + "Spend $64.00 more and it is free";
+$108 cart (total $91.80 after the 15%) → "Free winter protection" + Add free; clicking it → the
+free pack in the cart at $0; the plant's minus button to $72 → the guard removed the free pack
+and the paid offer came back ("Spend $28.00 more"); $108 + the paid pack → swapped to the free
+pack on page load. No Liquid error, no script error. The homepage band reads "Free on orders
+$100+". Space cart calls ~10 s apart or the storefront answers 429.
 
 **Verified on the earlier preview at 390, 10 Nov 20:06Z:** the band's third fact reads "$3.50 per
 order" and the cart with one $36 pre-order shows the substrate offer, "Worried about winter?
