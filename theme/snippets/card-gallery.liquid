@@ -48,6 +48,43 @@
     assign image_sizes = sizes_attribute | strip
   endif
 
+  assign featured_media = product.featured_media
+  # AgaPlantz: lead the card with the plant's mature photo when the product carries one.
+  # custom.big_one is the file the product-page profile uses for "what this plant
+  # becomes"; products with no mature photo point it at a grey placeholder (media id
+  # 35435106304079), which is skipped. The matching object is taken from product.media
+  # when it is attached there, so the slideshow gets the real media object; otherwise
+  # the metafield image is used as-is. Core Horizon file — re-apply after upgrades.
+  assign agmp_used = false
+  assign agmp_ref = product.metafields.custom.big_one.value
+  if agmp_ref != blank and agmp_ref.id != 35435106304079
+    for agmp_m in product.media
+      if agmp_m.id == agmp_ref.id
+        assign featured_media = agmp_m
+        assign agmp_used = true
+        break
+      endif
+    endfor
+    # The mature photo is sometimes a Files upload that is not attached to the
+    # product's media at all (17 of 615 products); the image object itself carries
+    # preview_image / media_type / aspect_ratio, so it can lead the card directly.
+    unless agmp_used
+      if agmp_ref.src != blank
+        assign featured_media = agmp_ref
+        assign agmp_used = true
+      endif
+    endunless
+  endif
+  assign agmp_tc = false
+  if agmp_used
+    for agmp_v in product.variants
+      if agmp_v.available and agmp_v.title contains 'Tissue Culture'
+        assign agmp_tc = true
+        break
+      endif
+    endfor
+  endif
+
   assign ratio = '1'
   case block_settings.image_ratio
     when 'landscape'
@@ -57,7 +94,7 @@
     when 'square'
       assign ratio = '1'
     when 'adapt'
-      assign ratio = product.featured_media.preview_image.aspect_ratio | default: '1'
+      assign ratio = featured_media.preview_image.aspect_ratio | default: '1'
   endcase
 
   if block_settings.image_ratio == 'adapt' and block_settings.constrain_to_viewport
@@ -95,33 +132,8 @@
       aria-label="{{- product.title -}}"
     >
       {% liquid
-        assign featured_media = product.featured_media
-
-        # AgaPlantz: lead the card with the plant's mature photo when the product carries one.
-        # custom.big_one is the file the product-page profile uses for "what this plant
-        # becomes"; products with no mature photo point it at a grey placeholder (media id
-        # 35435106304079), which is skipped. The matching object is taken from product.media
-        # so the slideshow gets a real media object. Core Horizon file — re-apply after upgrades.
-        assign agmp_used = false
-        assign agmp_ref = product.metafields.custom.big_one.value
-        if agmp_ref != blank and agmp_ref.id != 35435106304079
-          for agmp_m in product.media
-            if agmp_m.id == agmp_ref.id
-              assign featured_media = agmp_m
-              assign agmp_used = true
-              break
-            endif
-          endfor
-        endif
-        assign agmp_tc = false
-        if agmp_used
-          for agmp_v in product.variants
-            if agmp_v.available and agmp_v.title contains 'Tissue Culture'
-              assign agmp_tc = true
-              break
-            endif
-          endfor
-        endif
+        # featured_media (and the AgaPlantz mature-photo override) is set at the top of
+        # this file, before the card ratio, so an 'adapt' card fits the photo it shows.
 
         assign featured_media_loading = 'lazy'
         assign featured_media_sizes = 'auto, ' | append: image_sizes

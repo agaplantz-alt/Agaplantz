@@ -1670,10 +1670,44 @@ They chose a draft of the theme route: **`AgaPlantz 2026 — mature photo on car
   order and variant images are unchanged), and the channel feeds (first media unchanged).
 - Verified on the preview at 390: `/collections/monstera` leads Bulbasaur, Devil Monster,
   White Monster with mature photos and the label on one line, no Liquid error; the homepage
-  Popular row shows 8 labels and mature images. **Devil Monster still shows its plantlet** —
-  its `big_one` is blank or the placeholder, so the fallback kicked in; that is a data gap
-  for the product session, not the theme. Plants with no mature photo keep the plantlet and
-  get no label.
+  Popular row shows 8 labels and mature images. Plants with no mature photo keep the plantlet
+  and get no label. (An earlier note here said Devil Monster still showed its plantlet — wrong;
+  its `big_one` is `IMG_3566.jpg`, the mature plant on grey concrete, and the card shows it.)
+- **Full-catalogue diagnosis, 10 Nov 2026** — the owner: *"run the diagnosis if everything's
+  working fine? Because some clients might not just have [a mature photo]"*. All 615 ACTIVE
+  products paged (`products(first: 100, query: "status:active")`, seven pages; the data is in
+  the session scratchpad, not the repo):
+
+  | Case | Count | What the card shows |
+  | --- | --- | --- |
+  | **B** — `big_one` is a real photo attached to the product's media | 240 | the mature photo, label when a TC variant is in stock |
+  | **C** — `big_one` is a real photo but **not** in `product.media` (a Files upload) | 17 | **was the plantlet** (the `product.media` lookup found nothing); now the mature photo — see the fix below |
+  | **A1** — product has photos but `big_one` is blank | ~53 | its first photo, as before. Mostly non-plants (15 crochet, pot, heat pack, mystery box, substrate kit), the six mature-specimen listings (already mature), 9 Begonias, and ~20 plants |
+  | **A2** — product has **no media at all** | **305** | Shopify's grey placeholder, as before |
+
+  So the earlier line "`big_one` is filled on nearly every active product" was a page-1
+  artefact: the first 100 products (the photographed bestsellers) are, the long tail is not.
+  **305 active plants have no photograph of any kind** — 125 Alocasia, 116 Philodendron, 33
+  Anthurium, 15 Monstera, 12 Begonia (the ones from pages 4–6: Alocasia Grandis, Black Velvet,
+  Zebrina, Frydek, Dragon Scale, Philodendron Melanochrysum, Gloriosum sp., Mamei, Anthurium
+  Clarinervium, Crystallinum…). They are in the pre-order collection with placeholder cards
+  today, before and after this change; it is the product session's queue, not theme work.
+  **Case C fix:** the lookup now falls back to the metafield image itself when it is not in
+  `product.media` (`agmp_ref.src != blank` → `featured_media = agmp_ref`; an `image` object
+  carries `preview_image`, `media_type`, `aspect_ratio` and `presentation`, which is all
+  `product-media.liquid` reads). The whole lookup moved to the **top** `{% liquid %}` block,
+  before the ratio `case`, so an `adapt` card takes the ratio of the photo it actually shows
+  (it used to take the plantlet's). Verified on the preview: `search?q=veitchii` (case C) shows
+  `anthurium-veitchii-mature-pedestal.jpg` with the label at the same card height as its
+  neighbour; Patriciae (case C, sold out) shows `edited_59.png` with no label; Monstera row
+  unchanged. Draft checksum `ad85d3e8…` matches the repo. The 17 case-C handles: Spiritus
+  Sancti (rear), McDowell, Obliqua Peru, Florida Beauty, Goeldii Mint, Scindapsus Pictus Var.,
+  Tortum, Cuprea Red Secret Super Pink, Pink Dragon Stardust Mint, Orange Marmalade Green,
+  Patriciae, Gloriosum Pink Back, Anthurium Dark Phoenix Mint, Red Crystallinum Wonderboy,
+  Sp. Napo, Veitchii, Vittarifolium Var.
+- **Label wording settled:** "Ships as a plantlet" stays (the owner: *"ship as plotlet or ship
+  as TC is good"*). "Plantlet" is a word a first-time buyer understands; "TC" is nursery
+  shorthand the FAQ has to explain.
 
 ## Product photos: what drives the card, and the conflict it causes
 
