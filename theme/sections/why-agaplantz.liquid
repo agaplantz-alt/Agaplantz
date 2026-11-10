@@ -30,8 +30,9 @@
   <div class="agwy__grid{% if photo %} agwy__grid--photo agwy__grid--{{ section.settings.image_position }}{% endif %}">
   {%- if photo -%}
     <div class="agwy__figure">
+      {%- assign photo_alt = photo.alt | default: section.settings.image_caption | default: '' -%}
       {%- if photo_url != blank -%}<a class="agwy__photo" href="{{ photo_url }}" aria-label="{{ section.settings.image_caption | default: photo.alt | escape }}">{%- else -%}<span class="agwy__photo">{%- endif -%}
-        {{ photo | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 40vw, 100vw', widths: '400, 600, 800, 1200', alt: photo.alt }}
+        {{ photo | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 40vw, 100vw', widths: '400, 600, 800, 1200', alt: photo_alt }}
         {%- if section.settings.image_caption != blank -%}<span class="agwy__caption">{{ section.settings.image_caption }}</span>{%- endif -%}
       {%- if photo_url != blank -%}</a>{%- else -%}</span>{%- endif -%}
     </div>
@@ -93,7 +94,7 @@
   .agwy__head { margin-block-end: 24px; max-width: 56ch; }
   .agwy__eyebrow {
     margin: 0 0 8px;
-    color: #B4693C;
+    color: #9F582E;
     font-family: var(--font-body--family);
     font-size: 11px;
     font-weight: 600;

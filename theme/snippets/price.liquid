@@ -89,12 +89,12 @@
     {% if show_compare_price %}
       <span class="price-item__group compare-at-price">
         <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
-        {{- compare_at_price -}}
+        <bdi>{{- compare_at_price -}}</bdi>
       </span>
     {% endif %}
     <span class="price-item__group price">
       <span class="visually-hidden">{{ 'content.price_range' | t }}&nbsp;</span>
-      {{ price_min }} - {{ price_max }}
+      <bdi>{{ price_min }} - {{ price_max }}</bdi>
     </span>
   {% else %}
     {% comment %} Standard pricing display: render only the active branch (regular or sale) {% endcomment %}
@@ -102,24 +102,26 @@
       {% if show_sale_price_first %}
         <span class="price-item__group price">
           <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
-          {{ price | default: '&nbsp;' }}
+          <bdi>{{ price | default: '&nbsp;' }}</bdi>
         </span>
         <span class="price-item__group price-item--regular compare-at-price">
           <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
-          {{- compare_at_price -}}
+          <bdi>{{- compare_at_price -}}</bdi>
         </span>
       {% else %}
         <span class="price-item__group price-item--regular compare-at-price">
           <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
-          {{- compare_at_price -}}
+          <bdi>{{- compare_at_price -}}</bdi>
         </span>
         <span class="price-item__group price">
           <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
-          {{ price | default: '&nbsp;' }}
+          <bdi>{{ price | default: '&nbsp;' }}</bdi>
         </span>
       {% endif %}
     {% else %}
-      <span class="price">{{ price | default: '&nbsp;' }}</span>
+      <span class="price"
+        ><bdi>{{ price | default: '&nbsp;' }}</bdi></span
+      >
     {% endif %}
   {% endif %}
 
@@ -127,17 +129,19 @@
     AgaPlantz — savings badge, on the product page only. `is_product_card` is derived from
     template.name, so it is false for every price on a product page including the
     recommendation cards; matching the handle keeps the badge on the plant being viewed.
-    Styles are inline because a snippet cannot carry a {% stylesheet %} block of its own.
+    It sits inside priceContainer, which product-price morphs on a variant tap, so the
+    percentage follows the selected stage. Styles are inline because a snippet cannot carry
+    a {% stylesheet %} block. #9F582E, not #B4693C: white on it is 5.4:1.
+    Core Horizon file — re-apply after every upgrade (lost once already, 1 Nov 2026).
   {%- endcomment -%}
   {%- if show_compare_price and saving_percent > 0 and product.handle == product_resource.handle -%}
     <span
       class="price-saving-badge"
-      style="display: inline-block; margin-inline-start: 10px; padding: 5px 10px; border-radius: 2px; background-color: #b4693c; color: #ffffff; font-family: var(--font-body--family); font-size: 0.8125rem; line-height: 1.3; letter-spacing: 0.02em; text-transform: uppercase; white-space: nowrap; vertical-align: middle;"
+      style="display: inline-block; margin-inline-start: 10px; padding: 5px 10px; border-radius: 2px; background-color: #9F582E; color: #ffffff; font-family: var(--font-body--family); font-size: 0.8125rem; line-height: 1.3; letter-spacing: 0.02em; text-transform: uppercase; white-space: nowrap; vertical-align: middle;"
     >
       {{- 'Save' }} {{ saving_percent }}%
     </span>
   {%- endif -%}
-
   {%- if selected_variant.unit_price and show_unit_price %}
     {%- liquid
       if use_currency

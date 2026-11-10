@@ -175,7 +175,7 @@
   .ai-footer-payment-text-{{ ai_gen_id }} {
     font-size: {{ block.settings.text_size | minus: 2 }}px;
     color: {{ block.settings.text_color }};
-    opacity: 0.8;
+    opacity: 1; /* was 0.8, which put this 13px line at 4.2:1 */
     margin: 0;
   }
 

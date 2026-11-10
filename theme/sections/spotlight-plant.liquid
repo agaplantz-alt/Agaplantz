@@ -250,7 +250,7 @@
     inset-inline-start: 12px;
     padding: 5px 10px;
     border-radius: 2px;
-    background: #B4693C;
+    background: #9F582E;
     color: #FBF8F2;
     font-size: 11px;
     font-weight: 600;
@@ -260,7 +260,7 @@
 
   .agsp__eyebrow {
     margin: 0 0 14px;
-    color: #B4693C;
+    color: #9F582E;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -347,18 +347,27 @@
   .agsp__arrow svg { width: 20px; height: 20px; }
   .agsp__arrow:hover { background: #5C6B4C; border-color: #5C6B4C; color: #FBF8F2; }
 
-  .agsp__dots { display: flex; align-items: center; gap: 8px; }
+  /* The dot is 8px; the button around it is 24px so a thumb can hit it. */
+  .agsp__dots { display: flex; align-items: center; gap: 0; }
   .agsp__dot {
-    width: 8px;
-    height: 8px;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
     padding: 0;
     border: 0;
-    border-radius: 50%;
-    background: rgb(47 42 34 / 0.22);
+    background: none;
     cursor: pointer;
+  }
+  .agsp__dot::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgb(47 42 34 / 0.45);
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
-  .agsp__dot.is-on { background: #5C6B4C; transform: scale(1.35); }
+  .agsp__dot.is-on::before { background: #5C6B4C; transform: scale(1.35); }
 
   @media screen and (max-width: 749px) {
     .agsp__grid { grid-template-columns: 1fr; }

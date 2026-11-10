@@ -8,6 +8,13 @@
   free tier on the $450 one. Horizon re-renders the product-information section on variant
   change, so reading selected_or_first_available_variant keeps this in step with the picker.
 
+  Correction, 10 Nov 2026: Horizon does NOT re-render this block on a variant tap. Each core
+  component morphs only its own piece, so the tier stayed on the first variant's wording
+  (Devil Monster: tap from the $150 stage to the $240 one and it still said "Free
+  replacement"). The block now always renders a [data-agpg-host] wrapper and the script at
+  the bottom swaps it from the HTML Horizon fetches on product-select, the same way
+  blocks/availability-chance.liquid does.
+
   All copy lives in snippets/acclimation-guarantee-badge.liquid.
 {% enddoc %}
 
@@ -18,6 +25,7 @@
   assign threshold_cents = block_settings.threshold | times: 100 | round
 -%}
 
+<div data-agpg-host="{{ block.id }}" style="width: 100%;">
 {%- if selected_variant != blank -%}
   <div
     class="acclimation-guarantee-block spacing-style"
@@ -42,6 +50,25 @@
     %}
   </div>
 {%- endif -%}
+</div>
+
+<script type="module">
+  import { StandardEvents } from '@shopify/events';
+  if (!window.__agpgInit) {
+    window.__agpgInit = true;
+    document.addEventListener(StandardEvents.productSelect, function (e) {
+      if (!(e.target instanceof Element) || e.target.closest('product-card') || !e.promise) return;
+      e.promise.then(function (r) {
+        var html = r && r.detail && r.detail.html;
+        if (!html) return;
+        document.querySelectorAll('[data-agpg-host]').forEach(function (host) {
+          var fresh = html.querySelector('[data-agpg-host="' + host.dataset.agpgHost + '"]');
+          if (fresh) host.replaceWith(document.importNode(fresh, true));
+        });
+      }).catch(function () {});
+    }, true);
+  }
+</script>
 
 {% schema %}
 {

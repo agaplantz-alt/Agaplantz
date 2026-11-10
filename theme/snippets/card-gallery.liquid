@@ -56,6 +56,7 @@
   # when it is attached there, so the slideshow gets the real media object; otherwise
   # the metafield image is used as-is. Core Horizon file — re-apply after upgrades.
   assign agmp_used = false
+  assign agmp_direct = false
   assign agmp_ref = product.metafields.custom.big_one.value
   if agmp_ref != blank and agmp_ref.id != 35435106304079
     for agmp_m in product.media
@@ -72,8 +73,15 @@
       if agmp_ref.src != blank
         assign featured_media = agmp_ref
         assign agmp_used = true
+        assign agmp_direct = true
       endif
     endunless
+  endif
+  # A Files image has no alt of its own, so it gets one; and it counts as one more photo.
+  assign agmp_alt = product.title | append: ', mature plant'
+  assign agmp_media_count = product.media.size
+  if agmp_direct
+    assign agmp_media_count = agmp_media_count | plus: 1
   endif
   assign agmp_tc = false
   if agmp_used
@@ -124,7 +132,7 @@
   data-image-ratio="{{ block_settings.image_ratio }}"
   {{ block.shopify_attributes }}
 >
-  {%- if product.media.size > 0 -%}
+  {%- if agmp_media_count > 0 -%}
     <a
       class="contents"
       ref="cardGalleryLink"
@@ -152,17 +160,38 @@
 
         assign featured_media_class = media_class | replace: '[media_type]', featured_media.media_type | append: media_class_suffix
       %}
-      {%- if product.media.size == 1 -%}
+      {%- if agmp_direct -%}
+        {%- comment -%} AgaPlantz: same markup product-media renders, with a real alt. {%- endcomment -%}
+        {%- capture agmp_direct_html -%}
+          <div class="product-media" style="--ratio: {{ featured_media.aspect_ratio }}" data-media-id="{{ featured_media.id }}">
+            {{
+              featured_media
+              | image_url: width: 3840
+              | image_tag:
+                widths: '240, 352, 640, 832, 1200, 1600, 1920, 2560, 3840',
+                alt: agmp_alt,
+                sizes: featured_media_sizes,
+                loading: featured_media_loading,
+                class: 'product-media__image'
+            }}
+          </div>
+        {%- endcapture -%}
+      {%- endif -%}
+      {%- if agmp_media_count == 1 -%}
         <div
           class="{{ featured_media_class }}"
           style="--product-media-fit: {{ media_fit | default: 'cover' }};"
         >
-          {% render 'product-media',
-            media: featured_media,
-            sizes: featured_media_sizes,
-            loading: featured_media_loading,
-            preview_image_only: true
-          %}
+          {%- if agmp_direct -%}
+            {{ agmp_direct_html }}
+          {%- else -%}
+            {% render 'product-media',
+              media: featured_media,
+              sizes: featured_media_sizes,
+              loading: featured_media_loading,
+              preview_image_only: true
+            %}
+          {%- endif -%}
         </div>
       {%- else -%}
         {% liquid
@@ -220,7 +249,11 @@
               assign class = media_class | replace: '[media_type]', media.media_type | append: media_class_suffix
 
               capture slideshow_children
-                render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true
+                if agmp_direct and forloop.first
+                  echo agmp_direct_html
+                else
+                  render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true
+                endif
               endcapture
 
               render 'slideshow-slide', slide_id: media.id, index: forloop.index0, hidden: hidden, class: class, attributes: attributes, children: slideshow_children, media_fit: media_fit
@@ -251,13 +284,25 @@
       {%- if agmp_tc -%}<span class="agmp-tag">Ships as a plantlet</span>{%- endif -%}
     </a>
   {% elsif product != blank and product.media.size == 0 %}
-    <div class="product-card-gallery__title-placeholder">
+    {%- comment -%}
+      AgaPlantz: about half the catalogue has no photograph yet. Stock Horizon prints the
+      title in an empty grey tile, which reads as a broken card. This is a deliberate
+      "photo coming soon" tile instead: leaf mark, the plant's name, one small line.
+    {%- endcomment -%}
+    <div class="product-card-gallery__title-placeholder agnp">
       <a
-        class="contents"
+        class="agnp__link"
         ref="cardGalleryLink"
         href="{{ product.url }}"
+        aria-label="{{ product.title | escape }}, photo coming soon"
       >
-        <span class="title-text">{{- product.title -}}</span>
+        <svg class="agnp__leaf" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M24 42V22"/>
+          <path d="M24 30c-9 0-14-5-14-13 8 0 14 4 14 13Z"/>
+          <path d="M24 24c0-9 4-15 13-17 1 9-3 16-13 17Z"/>
+        </svg>
+        <span class="title-text agnp__name">{{- product.title -}}</span>
+        <span class="agnp__note">Photo coming soon</span>
       </a>
     </div>
   {% elsif product == blank %}
@@ -302,6 +347,52 @@
     pointer-events: none;
   }
   [product-grid-view='zoom-out'] .card-gallery .agmp-tag { display: none; }
+
+  /* AgaPlantz: the "photo coming soon" tile for products with no media */
+  .product-card-gallery__title-placeholder.agnp {
+    padding: 0;
+    background-color: #F2EBDE;
+    font-size: inherit;
+  }
+  .agnp__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    color: #5C6B4C;
+    text-align: center;
+    text-decoration: none;
+  }
+  .card-gallery .agnp svg.agnp__leaf {
+    width: clamp(28px, 22cqi, 44px);
+    height: auto;
+    aspect-ratio: 1;
+    flex: none;
+  }
+  .agnp .agnp__name {
+    font-family: var(--font-heading--family);
+    font-size: clamp(13px, 9cqi, 17px);
+    line-height: 1.25;
+    color: #2F2A22;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+  .agnp__note {
+    font-family: var(--font-body--family);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: #56503F;
+  }
+  [product-grid-view='zoom-out'] .card-gallery .agnp :is(.agnp__leaf, .agnp__note) { display: none; }
+  [product-grid-view='zoom-out'] .card-gallery .agnp .agnp__name { font-size: 9px; }
   .card-gallery {
     position: relative;
     overflow: hidden;

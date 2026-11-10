@@ -262,7 +262,7 @@ Bands alternate sage / default / sand so no two same-coloured sections touch.
 | `color4` | `#F2EBDE` | sand band |
 | `color7` | `#E8EDE1` | sage band |
 | — | `#5C6B4C` | moss — primary buttons, icons |
-| — | `#B4693C` | terracotta — sale badges |
+| — | `#9F582E` | terracotta — sale badges, small-caps eyebrows. **Was `#B4693C` until 10 Nov 2026**: white on that is 4.2:1 and it is 3.5–3.9:1 as text on cream/sand/sage, under the 4.5:1 that small text needs. `#9F582E` is 5.4:1 with white and 4.5–5.1:1 on every band. Do not reintroduce `#B4693C` for text or badges |
 
 Lora 400 headings/accent, Work Sans body/subheading. H1 42 / H2 30 / H3 22 / body 15.
 Corners deliberately sharp — 2px buttons, inputs, badges, product images; 4px cards.
@@ -1709,6 +1709,101 @@ They chose a draft of the theme route: **`AgaPlantz 2026 — mature photo on car
   as TC is good"*). "Plantlet" is a word a first-time buyer understands; "TC" is nursery
   shorthand the FAQ has to explain.
 
+## Site audit and accessibility pass (10 Nov 2026) — on the same draft
+
+The owner: *"check the website again and find if there's something which can cause a break
+issue, or something that our website needs to be improved on. Do it, and I'll approve the draft
+and publish it. Think more about how our website lists the photos … make it more accessible to
+everyone."* 19 pages were rendered on the preview at 390 and 1280 with Playwright plus
+**axe-core** (WCAG 2.0/2.1 A + AA): no Liquid errors, no broken images, no horizontal overflow
+at either width. What it did find, all fixed on draft **`190352719951`** (the mature-photo
+draft, so one publish carries both):
+
+**Two real bugs**
+
+- **The guarantee tier did not follow a variant tap.** On Devil Monster, tapping from the $150
+  stage to the $240 one left the card on "Free replacement" (it should say 50%). The note under
+  30-Day Plant Guarantee that Horizon re-renders the block was wrong, as the availability work
+  had already suspected. `blocks/acclimation-guarantee.liquid` now always renders a
+  `[data-agpg-host="{{ block.id }}"]` wrapper and a module script swaps it from the HTML Horizon
+  fetches on `productSelect` (guard `window.__agpgInit`) — the availability block's pattern.
+  Verified by clicking the stage radios: $150 → FREE, $240 → 50%, Ready to Ship $240 → 50%,
+  back to $150 → FREE. **Test variant behaviour by clicking the radio inputs, not with
+  `?variant=`** — the URL only proves the server render.
+- **The `Save X%` badge was missing** (lost with the stock `price.liquid` on 1 Nov). Re-applied
+  onto the *live* stock file (the one with `<bdi>`), inside `priceContainer` so `product-price`
+  morphs it on a tap: 33% on the $150 stage, 21% on the $240 one, 51% on Ready to Ship. The repo
+  copy is now live-stock + patch, no longer stale. Still a core file — re-apply after upgrades.
+
+**How photos are listed**
+
+- **"Photo coming soon" tile.** 305 active plants have no photograph; stock Horizon printed the
+  title in an empty grey tile, which reads as a broken card. `card-gallery.liquid` now renders a
+  sand tile with a moss leaf mark, the name in Lora and a small-caps "Photo coming soon"
+  (`.agnp`; in zoom-out grid view only the name shows). `stage-products.liquid` got the same
+  tile for its no-image case.
+- **Alt text on the mature photos that come from Files.** A metafield image has no alt, and
+  `product-media.liquid` prints none, so the 17 case-C cards had images with no alt attribute
+  (the only `image-alt` failures on collection pages). For that case the card now renders the
+  same markup itself with `alt="<title>, mature plant"` (`agmp_direct` / `agmp_direct_html`),
+  rather than patching a second core file.
+- `agmp_media_count` replaces `product.media.size` in the two render conditions, so a product
+  with **no** gallery media but a real `big_one` shows that photo instead of the tile.
+- The Why-section photo had no alt (`photo.alt` is nil for a `shopify://shop_images` file); it
+  now falls back to the caption.
+
+**Accessibility**
+
+- **Contrast.** Terracotta `#B4693C` → `#9F582E` everywhere it carries small text or sits under
+  white text (15 files, plus `badge_sale_background_color` in settings and `warm` on both
+  product templates). Horizon's **muted text is the foreground at 60%** (`#817c75`, 3.9:1) — and
+  every `var(--color-foreground-muted, #56503F)` in our sections resolves to that, not to the
+  fallback. One override, `:root{--opacity-muted-text:.78}`, fixes the footer, the guide pages
+  (65 nodes on the TC page alone) and the spotlight in one go. The "Now" ladder card's small
+  lines went from 85% cream to full cream on moss; the struck-through price in product rows from
+  55% to 75%.
+- **Screen readers.** Product-row cards had `aria-label="<title>"` on the link, which *replaces*
+  the link's contents, so the price was never read; the label now carries title, price, the
+  compare-at when on sale and "ships as a plantlet". "View all" links name what they view. The
+  sticky add-to-cart bar hides its label with `display:none` on a phone, leaving a nameless icon
+  button; it is clipped out of sight instead (CSS, because Horizon redraws the bar on every
+  variant tap and an `aria-label` set by script was wiped). The FAQ page had **no `h1`** — the
+  accordion's title is now one (`blocks/ai_gen_block_138208e.liquid`, now tracked in the repo).
+- **Tap targets.** The spotlight dots were 8px buttons; each is now a 24px button around the
+  same 8px dot.
+
+**`site_fixes` — a second invisible `custom-liquid` section in the header group**, after
+`crochet_menu_style`. It carries the muted-text override, the sticky-label CSS and a **promo
+banner guard**: if the "15% Off All Plants" slide is still enabled after 15 Nov 23:59 Toronto,
+a script swaps its text for the 10% line, then the Black Friday line from 26 Nov 8 pm, then a
+neutral "Canada-Wide Shipping • 30-Day Plant Guarantee on Every Plant" after 30 Nov. The dates
+are the automatic discounts' (all five confirmed ACTIVE/SCHEDULED on 10 Nov). Flipping the
+slides by hand as planned makes it a no-op; **delete the guard after November.** A `range`
+setting written as the string `"0"` instead of the number silently rejected the whole
+`header-group.json` on the first upload — same silent-failure class as the others in this file.
+
+Also raised: the footer's payment line (80% → 100% opacity), the mystery-box eyebrow and small
+print (70% → 92% on moss) and the moss "featured" cards on the guide pages (85% cream → full).
+
+**Result, re-run after the fixes:** at 390 the homepage, both guide pages, `/collections` and a
+collection page return **zero** axe violations (the TC page alone had 65 contrast failures, the
+homepage 23 plus a missing alt). What still reports is not ours: the Shopify Forms pop-up's
+grey field labels, Horizon's filter list on desktop, and the core items below. The cart on the
+draft still renders both add-on offers and the guarantee line. 23 files uploaded, every Liquid
+file and `index.json`/`header-group.json` matching the repo by checksum.
+
+**Left alone, deliberately:** two `h1`s on the homepage (Horizon's logo + the hero) and on the
+Acclimation Guide (page title + the block's own); search results has no `h1`; card slideshows
+are not keyboard-scrollable; slideshow dots carry `aria-selected` on buttons; duplicate ids in
+the localisation and filter forms. All are core Horizon markup, none blocks a purchase, and each
+would be another core file to re-apply after upgrades. `#PBarNextFrame` (no title) is Shopify's
+preview bar and does not exist on the live site. A console 400 from `bzr.openai.com` on every
+page is an installed app's pixel, not theme code.
+
+**Not theme work, for the owner:** `/collections/monstera`, `/cart` and the Acclimation Guide
+have no meta description; the hero and mystery-box images have empty alts (decorative, fine);
+and the newsletter pop-up covers the product page's buy box on a first phone visit.
+
 ## Product photos: what drives the card, and the conflict it causes
 
 **A collection card shows `product.featured_media` — the product's first photo.** Not the
@@ -2120,8 +2215,10 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/blocks/acclimation-guarantee.liquid` | guarantee product block |
 | `theme/snippets/acclimation-guarantee-badge.liquid` | all guarantee copy |
 | `theme/snippets/cart-summary.liquid` | core Horizon (live stock copy as of 9 Nov), patched with the one cart render block — re-apply after every upgrade or stock overwrite |
-| `theme/snippets/price.liquid` | Save X% badge |
-| `theme/snippets/card-gallery.liquid` | core Horizon, patched to lead cards with the mature photo (`custom.big_one`) + "Ships as a plantlet" label (10 Nov draft) |
+| `theme/snippets/price.liquid` | core Horizon (live stock copy as of 10 Nov) + the Save X% badge — re-apply after every upgrade |
+| `theme/snippets/acclimation-guarantee-badge-core.liquid` | the guarantee markup and copy; `acclimation-guarantee-badge.liquid` is a wrapper that also renders the two cart add-ons |
+| `theme/blocks/ai_gen_block_138208e.liquid` | FAQ accordion block (title is the page's `h1`) |
+| `theme/snippets/card-gallery.liquid` | core Horizon, patched: mature photo first (`custom.big_one`), "Ships as a plantlet" label, alt text for Files images, "Photo coming soon" tile (10 Nov draft) |
 | `theme/templates/page.plant-guarantee.json` | the guarantee page (suffix `plant-guarantee`) |
 | `theme/templates/page.json` | default page template — FAQ accordion removed |
 | `theme/templates/page.faq.json` / `page.contact.json` | FAQ answers, contact email |

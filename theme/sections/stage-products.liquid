@@ -26,7 +26,7 @@
     link match every other row on the page without restating the type scale here. {%- endcomment -%}
     <div class="h3 sp-heading"><h2>{{ section.settings.heading }}</h2></div>
     {%- if section.settings.show_view_all and coll != blank -%}
-      <a class="button-unstyled sp-viewall" href="{{ coll.url }}">{{ section.settings.view_all_label }}</a>
+      <a class="button-unstyled sp-viewall" href="{{ coll.url }}" aria-label="{{ section.settings.view_all_label | escape }}: {{ section.settings.heading | strip_html | escape }}">{{ section.settings.view_all_label }}</a>
     {%- endif -%}
   </div>
 
@@ -99,7 +99,18 @@
             -%}
 
             <div class="sp-card">
-              <a class="sp-card__link" href="{{ card_url }}" aria-label="{{ product.title | escape }}">
+              {%- comment -%} The label replaces the link's contents for a screen reader, so it has to carry the price too. {%- endcomment -%}
+              {%- liquid
+                assign sp_label = chosen.price | money | strip_html | prepend: ', ' | prepend: product.title
+                if on_sale
+                  assign sp_was = chosen.compare_at_price | money | strip_html
+                  assign sp_label = sp_label | append: ', was ' | append: sp_was
+                endif
+                if agmp_tc
+                  assign sp_label = sp_label | append: ', ships as a plantlet'
+                endif
+              -%}
+              <a class="sp-card__link" href="{{ card_url }}" aria-label="{{ sp_label | escape }}">
                 <div class="sp-card__media">
                   {%- if card_image -%}
                     <img
@@ -112,7 +123,10 @@
                       loading="lazy"
                     >
                   {%- else -%}
-                    <span class="sp-card__noimage">{{ product.title }}</span>
+                    <span class="sp-card__noimage">
+                      <svg viewBox="0 0 48 48" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 42V22"/><path d="M24 30c-9 0-14-5-14-13 8 0 14 4 14 13Z"/><path d="M24 24c0-9 4-15 13-17 1 9-3 16-13 17Z"/></svg>
+                      <span class="sp-card__noimage-note">Photo coming soon</span>
+                    </span>
                   {%- endif -%}
                   {%- if on_sale -%}<span class="sp-badge">{{ 'content.product_badge_sale' | t }}</span>{%- endif -%}
                   {%- if agmp_tc -%}<span class="sp-card__tag">Ships as a plantlet</span>{%- endif -%}
@@ -163,6 +177,8 @@
 
   .sp-viewall {
     flex: none;
+    padding-block: 10px;
+    margin-block: -10px;
   }
 
   .sp-track-wrap { position: relative; }
@@ -216,14 +232,24 @@
   }
   .sp-card__noimage {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     height: 100%;
     padding: 12px;
-    font-family: var(--font-body--family);
-    font-size: 0.875rem;
+    background-color: #F2EBDE;
+    color: #5C6B4C;
     text-align: center;
-    color: var(--color-foreground);
+  }
+  .sp-card__noimage-note {
+    font-family: var(--font-body--family);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: #56503F;
   }
 
   .sp-badge {
@@ -232,7 +258,7 @@
     inset-inline-end: 8px;
     padding: 4px 10px;
     border-radius: 2px;
-    background-color: #b4693c;
+    background-color: #9F582E; /* deeper terracotta: white text on #B4693C is 4.2:1, this is 5.4:1 */
     color: #fff;
     font-family: var(--font-body--family);
     font-size: 0.8125rem;
@@ -261,7 +287,7 @@
   }
 
   .sp-card__was {
-    color: rgb(var(--color-foreground-rgb) / 0.55);
+    color: rgb(var(--color-foreground-rgb) / 0.75);
     text-decoration: line-through;
   }
 
