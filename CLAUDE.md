@@ -301,6 +301,19 @@ Counts as of 1 Oct 2026 — they move a lot, re-read rather than trusting these:
 | `popular` | POPULAR — automated, `sortOrder: BEST_SELLING`, drives the homepage row | ~all in stock |
 | `featured` | FEATURED — manual. **Built 1 Oct, rejected the same day, now unused.** Safe to delete | 8 |
 
+**Every plant collection sorts by BEST_SELLING since 10 Nov 2026.** Karan (the ads agency, in
+the "Aga Plantz X NOIR" WhatsApp group): *"keep all the bestsellers on the top of collection
+pages … based on the sales data"*; the owner: *"Can you do it for me"*. `pre-order`, `monstera`,
+`alocasia`, `philodendron` and `anthurium-1` were `MOST_RELEVANT` and were switched with
+`collectionUpdate(collection: {id, sortOrder: BEST_SELLING})` (the `input:` argument is
+deprecated in 2026-10; `Collection.ruleSet` is too — it is `sources` now). Begonia, RTS,
+on-sale, acclimated, popular and the crochet collections were already BEST_SELLING;
+`mature-specimens` is `PRICE_DESC` (3 products, dearest first — left alone) and
+`crochet-gifts-under-25` is `PRICE_ASC` (left alone). Live immediately — it is data, not theme.
+Verified: `/collections/monstera` now leads Bulbasaur, Devil Monster, White Monster, Creme
+Brulee, the same order as the ShopifyQL ranking. Shopify's ranking is its own rolling window;
+nothing to maintain.
+
 **`ready-to-ship` no longer exists.** The owner deleted it some time before 1 Oct, and
 `collectionByHandle(handle: "ready-to-ship")` now returns `null`. It had been wired into
 two places and both broke silently: the homepage `products_rts` row rendered a heading
