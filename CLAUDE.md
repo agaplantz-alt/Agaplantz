@@ -1820,21 +1820,44 @@ example free after $100. Do not forget to add it, discount will automatically ap
 buy more. And at the cart people can also see that message."* Then, asked which pack goes in the
 box: *"We're also using UniHeat 120 hour pack"* — so "up to 5 days" is an honest upper bound
 (72 h and 120 h packs are both used; copy says "rated for 72 to 120 hours" and never names a
-brand, because the product photo shows a different maker's pack).
+brand, because the product photo shows a different maker's pack). The add-on's own description
+said "up to 3 days"; that one sentence was changed to "up to 5 days" (`productUpdate`, live).
 
 **Why $100.** Last 99 orders (24 Oct – 10 Nov): median subtotal $100, 45% already add the $3.50
 pack, 22% of orders sit between $50 and $100 — those are the ones a free pack can stretch — and
 $100 is where the November discounts already start, so the site says one number.
 
+### The free pack cannot run during a percentage sale — read this before any ladder
+
+**Shopify applies one product discount per cart line, and a Buy X get Y discount counts the
+"buy" lines as its own** (they get a $0 allocation). Every discount in this shop is now
+PRODUCT class — the 15% / 10% ladder and all 40-odd codes were re-pointed at the collection
+`discount-eligible` (`493750190159`, "all except shipping add-ons") by another session on
+2 Nov, which is also why the 15% no longer touches the pack. So with a sale on the plants,
+Shopify can give the plants the 15% **or** use them as the "buy" side of the free pack, never
+both, and it picks the bigger saving: the 15%. Proved with `draftOrderCalculate`
+(`acceptAutomaticDiscounts: true` — it prices a cart with automatic discounts and creates
+nothing, the right tool for testing discounts): $108 of plants + pack → 15% only, pack $3.50;
+with the BXGY threshold dropped to $50 for one call, $72 of plants + pack → pack free (no 15%
+at $72), then restored. `combinesWith.productDiscounts: true` on both sides changes nothing
+(tried, then put back to `false` on the 15% and 10%); the same-line tag option is Plus-only and
+by Shopify's own docs "Buy X Get Y discounts stack only on the customer-gets products".
+
+Two dead ends, so nobody repeats them: `customerBuys.items: { all: true }` is rejected for BXGY
+("Items in 'customer buys' must be defined" — it needs products or collections); and an
+amount-off-products discount "100% off the heat pack, minimum subtotal $100" never fires,
+because for a product discount **the minimum counts only the entitled items** (you would need
+$100 of heat packs).
+
+So the offer **starts on 1 December**, after Black Friday. Any code at checkout knocks it out
+the same way, which is why the copy says "Not combined with other discounts".
+
 **The discount (live data).** `Free Winter Heat Pack on Orders $100+`
-(`gid://shopify/DiscountAutomaticNode/1539479961679`), automatic **Buy X get Y**: buys $100 from
-collection `discount-eligible` (`493750190159`, "all except shipping add-ons" — another session
-made it and the 15% / 10% discounts now target it too, which is why they no longer touch the
-pack), gets 1 × the heat pack (`15403882184783`) at 100% off, one per order, one-time purchases
-only, `2026-11-10T19:40Z` → `2027-04-01T03:59:59Z` (31 Mar 23:59 Toronto), `combinesWith` all
-three true. **`customerBuys.items: { all: true }` is rejected for BXGY** ("Items in 'customer
-buys' must be defined") — it needs products or collections. Shopify cannot add the gift to the
-cart; the customer adds it and checkout zeroes it, which is exactly the owner's wording.
+(`gid://shopify/DiscountAutomaticNode/1539479961679`), automatic Buy X get Y: buys $100 from
+`discount-eligible`, gets 1 × the heat pack (`15403882184783`) at 100% off, one per order,
+one-time purchases only, **`2026-12-01T05:00Z` → `2027-04-01T03:59:59Z`** (1 Dec 00:00 →
+31 Mar 23:59 Toronto), SCHEDULED. Shopify cannot add the gift to the cart; the customer adds it
+and checkout zeroes it, which is the owner's own wording.
 
 **Theme — draft `AgaPlantz 2026 — winter protection (from live)` = `190382866511`** (from MAIN
 `190352719951`):
@@ -1842,19 +1865,30 @@ cart; the customer adds it and checkout zeroes it, which is exactly the owner's 
 - `sections/winter-shipping.liquid` as `winter_shipping` in `index.json`, directly after the
   countdown. Sage band: the product's box photo (square, 240px desktop / 112px phone), eyebrow,
   "Worried about winter?", one line, then three hairline-ruled facts (flame · box · tag) and a
-  link to the add-on's page. The third fact is the offer: "Free on orders $100+" while
-  `free_over` is set and `offer_ends` has not passed, otherwise the add-on's live price.
-  **The whole band stops rendering after `hide_after`** (31 Mar 2027), so it cannot sit on the
-  homepage in July. 482px tall at 390, 314px at 1280; zero axe violations.
-- `snippets/heat-pack-addon.liquid` (now tracked in the repo), four states: not in cart and under
-  $100 → the paid offer plus "Spend $X more and it is free"; not in cart and $100+ → sage card
-  "Free winter protection with this order", button **Add free**; in cart and under $100 → one
-  line "Spend $X more and your heat pack is free"; in cart and $100+ → nothing (the cart line
-  shows the discount). The $100 is counted the way the discount counts it: `original_line_price`
-  of every line except the pack itself and subscription lines. After `hp_free_until` it falls
-  back to the plain paid offer.
-- **The threshold and the end date live in three places** — the discount, the section's settings
-  and the two `assign`s at the top of the cart snippet. Change all three together.
+  link to the add-on's page. The third fact is the offer: between `offer_starts` and
+  `offer_ends`, with `free_over` set, "Free on orders $100+"; otherwise the add-on's live price
+  ("$3.50 per order"), which is what it shows through November. **The whole band stops
+  rendering after `hide_after`** (31 Mar 2027). 482px tall at 390, 314px at 1280; zero axe
+  violations.
+- `snippets/heat-pack-addon.liquid` (now tracked in the repo). Outside the offer dates it is
+  the paid offer with the new copy ("Worried about winter? Heat pack + insulation, up to 5 days
+  of warmth · $3.50"). Inside them: not in cart and under $100 → the paid offer plus "Spend $X
+  more and it is free"; not in cart and $100+ → sage card "Free winter protection with this
+  order", button **Add free**; in cart and under $100 → one line "Spend $X more and your heat
+  pack is free"; in cart and $100+ → nothing (the cart line shows the discount). The $100 is
+  counted the way the discount counts it: `original_line_price` of every line except the pack
+  and subscription lines. **`hp_sale_on`**: if any other line already carries a line-level
+  discount, every "free" claim is dropped, because that discount will win at checkout.
+- **The threshold and the dates live in three places** — the discount, the section's settings
+  and the `assign`s at the top of the cart snippet. Change all three together.
+- **Checklist for the next percentage sale (December ladder included):** it is product class,
+  so the free pack will not apply while it runs. Either set the section's `free_over` to 0 and
+  move `hp_free_from` past the sale's end, or accept that the under-$100 nudge promises
+  something a $100 cart then loses to the sale.
+
+The storefront's Cloudflare bot protection started challenging this session's requests (HTTP
+429, `cf-mitigated: challenge`) after ~40 cart calls in ten minutes, on top of the known
+preview rate limit. Test discounts with `draftOrderCalculate`, not with `/cart.js`.
 
 ## Product photos: what drives the card, and the conflict it causes
 

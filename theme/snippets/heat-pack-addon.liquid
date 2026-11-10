@@ -4,15 +4,23 @@
   and the cart drawer both reach through snippets/cart-summary.liquid.
   CSS order places it between the totals and the checkout button.
 
-  Free over $100 (10 Nov 2026). The automatic discount "Free Winter Heat Pack on Orders $100+"
-  (Buy X get Y: $100 of one-time purchases, 1 heat pack at 100% off, ends 31 Mar 2027) cannot
-  put the pack in the cart itself, so this is where the customer is told to add it:
+  Free over $100 (set up 10 Nov 2026, runs 1 Dec 2026 to 31 Mar 2027). The automatic discount
+  "Free Winter Heat Pack on Orders $100+" (Buy X get Y: $100 of one-time purchases, 1 heat pack
+  at 100% off) cannot put the pack in the cart itself, so this is where the customer is told
+  to add it:
     - not in the cart, under $100   the paid offer, plus how much more makes it free
     - not in the cart, $100 or more "Free with this order" and an Add free button
     - in the cart, under $100       one line: how much more makes it free
     - in the cart, $100 or more     nothing; the cart line already shows the discount
-  hp_free_over and hp_free_until must match the discount and sections/winter-shipping.liquid.
-  After hp_free_until this falls back to the plain paid offer on its own.
+  hp_free_over, hp_free_from and hp_free_until must match the discount and
+  sections/winter-shipping.liquid. Outside those dates this is the plain paid offer.
+
+  It does not run during a percentage sale. Shopify applies one product discount per cart line
+  and a Buy X get Y counts the "buy" plants as its own, so with a sale on the plants Shopify
+  applies the sale and the pack stays $3.50 (proved with draftOrderCalculate on 10 Nov). That
+  is why it starts after Black Friday, and why hp_sale_on below drops every "free" claim as
+  soon as another line in the cart carries a discount. Before the next percentage sale, move
+  hp_free_from past its end or the under-$100 nudge will promise something checkout drops.
   The $100 is counted the way the discount counts it: list prices before other discounts,
   the pack itself and subscription lines left out.
 {%- endcomment -%}
@@ -22,14 +30,16 @@
   assign hp_variant = hp_product.selected_or_first_available_variant
 
   assign hp_free_over = 10000
+  assign hp_free_from = '2026-12-01T00:00:00-05:00' | date: '%s' | plus: 0
   assign hp_free_until = '2027-03-31T23:59:59-04:00' | date: '%s' | plus: 0
   assign hp_now = 'now' | date: '%s' | plus: 0
   assign hp_offer_on = false
-  if hp_now < hp_free_until
+  if hp_now >= hp_free_from and hp_now < hp_free_until
     assign hp_offer_on = true
   endif
 
   assign hp_in_cart = false
+  assign hp_sale_on = false
   assign hp_counted = 0
   for item in cart.items
     if item.product.handle == hp_handle
@@ -40,7 +50,13 @@
       continue
     endif
     assign hp_counted = hp_counted | plus: item.original_line_price
+    if item.line_level_total_discount > 0
+      assign hp_sale_on = true
+    endif
   endfor
+  if hp_sale_on
+    assign hp_offer_on = false
+  endif
 
   assign hp_free_now = false
   assign hp_gap = 0
@@ -74,7 +90,7 @@
           <span>Heat pack + insulation, up to 5 days of warmth. Add it and it is free at checkout.</span>
         {%- else -%}
           <strong>Worried about winter?</strong>
-          <span>Add a heat pack + insulation &middot; {{ hp_variant.price | money }}</span>
+          <span>Heat pack + insulation, up to 5 days of warmth &middot; {{ hp_variant.price | money }}</span>
           {%- if hp_offer_on -%}
             <span class="hp-addon__nudge">Spend {{ hp_gap | money }} more and it is free.</span>
           {%- endif -%}
