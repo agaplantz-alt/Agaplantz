@@ -35,7 +35,9 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 10 Nov 2026, 08:02Z: MAIN is `AgaPlantz 2026 — mature photo on cards (from live)` =
+**As of 10 Nov 2026, evening: MAIN is `AgaPlantz 2026 — winter protection (from live)` = `190382866511`** (published in place). The draft waiting for the owner is `190392369231`, the free heat pack (see **Winter protection**).
+
+**Earlier on 10 Nov 2026, 08:02Z: MAIN was `AgaPlantz 2026 — mature photo on cards (from live)` =
 `190352719951`** — the owner published the mature-photo + audit draft and it became MAIN **in
 place** (same id). Post-publish check the same day: `index.json`, `header-group.json`,
 `price.liquid`, `card-gallery.liquid` and the three re-seed-prone templates all match the repo by
@@ -1886,7 +1888,34 @@ and checkout zeroes it, which is the owner's own wording.
   move `hp_free_from` past the sale's end, or accept that the under-$100 nudge promises
   something a $100 cart then loses to the sale.
 
-**Verified on the preview at 390, 10 Nov 20:06Z:** the band's third fact reads "$3.50 per
+### Free from today: a $0 product, not a discount (10 Nov 2026, evening)
+
+The owner published `190382866511` (it became MAIN in place), saw $3.50, and said *"Free after
+$100. We did not change that. Can you do that?"* So the free pack no longer depends on the
+discount. **`free-winter-heat-pack`** (`gid://shopify/Product/15536177610831`, variant
+`68097047953487`, **$0**, type Shipping Add-On, untracked, 350 g, `seo.hidden` = 1, Online Store
+only, excluded from BEST SELLERS by product selection) is the same pack at $0. A $0 item needs no
+discount, so it works during the 15% / 10% / Black Friday sales and with codes.
+
+**`snippets/heat-pack-addon.liquid` is now the single source of the rule** (`hp_free_over` =
+10000 cents, `hp_free_until` = 31 Mar 2027). It renders three ways: no `mode` = the cart offer;
+`mode: 'state'` = `"1|100"` / `"0|100"`, which `winter-shipping.liquid` captures so the band can
+never disagree with the cart (the band's `free_over` / `offer_starts` / `offer_ends` settings
+are gone); `mode: 'guard'` = a module script rendered on every page from the `site_fixes`
+section in `header-group.json`. **Nothing at checkout enforces the $100; the guard does**: on
+page load (only when the server render says the cart is wrong) and after every Horizon
+`cartLinesUpdate`, it removes a free pack from a cart under $100, keeps it to one, and swaps a
+paid pack for the free one at $100, then redraws the cart with its own `CartLinesUpdateEvent`
+(source `aghp`, ignored by itself; at most 4 writes per page). The $100 is counted on list
+prices before discounts (`original_line_price`), the same way the November sale's own $100
+minimum is counted, so a $108 cart that the 15% takes to $91.80 still qualifies. **To stop the
+offer: set the free product to DRAFT** — the snippet falls back to the paid offer everywhere.
+The BXGY discount `1539479961679` (from 1 Dec) stays as a harmless safety net for a paid pack.
+
+Draft **`AgaPlantz 2026 — free heat pack over $100 (from live)` = `190392369231`** (from MAIN
+`190382866511`): four files, checksums match the repo.
+
+**Verified on the earlier preview at 390, 10 Nov 20:06Z:** the band's third fact reads "$3.50 per
 order" and the cart with one $36 pre-order shows the substrate offer, "Worried about winter?
 Heat pack + insulation, up to 5 days of warmth · $3.50" with Add, and the guarantee line; no
 Liquid error, no overflow. **The three December states (the "Spend $X more" line, the "Add

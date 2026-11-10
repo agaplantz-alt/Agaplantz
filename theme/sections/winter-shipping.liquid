@@ -2,17 +2,11 @@
   AgaPlantz — "Worried about winter?" band for the home page, under the batch countdown.
   A photo of the packed box, one line, three facts and a link to the heat-pack add-on.
 
-  The third fact is the offer. Between `offer_starts` and `offer_ends`, with `free_over` set, it
-  reads "Free on orders $X+"; otherwise it shows the add-on's live price. That mirrors the
-  automatic discount "Free Winter Heat Pack on Orders $100+" (Buy X get Y, 1 Dec 2026 to
-  31 Mar 2027) and snippets/heat-pack-addon.liquid in the cart — change the threshold or the
-  dates in all three.
-
-  Why it starts on 1 December: Shopify applies one product discount per cart line, and a Buy X
-  get Y discount counts the "buy" plants as its own. While a percentage sale is on the plants
-  (the November ladder, Black Friday) Shopify applies the sale and drops the free pack, so
-  saying "free" during a sale would be a promise checkout does not keep. Set `free_over` to 0,
-  or move `offer_starts`, whenever a percentage sale is running.
+  The third fact is the offer. While the free heat pack is on it reads "Free on orders $X+";
+  otherwise it shows the paid add-on's live price. The rule itself (threshold, end date, the two
+  products) lives in snippets/heat-pack-addon.liquid and nowhere else: this section asks that
+  snippet for its state (`mode: 'state'` returns "1|100" or "0|100"), so the band and the cart
+  can never disagree. To change the offer, change the snippet.
 
   The whole band stops rendering after `hide_after`, so it cannot sit on the home page in July.
   Dates carry the Toronto offset, like the countdown's.
@@ -29,22 +23,15 @@
   endif
 
   assign hp = section.settings.product
+  capture hp_state
+    render 'heat-pack-addon', mode: 'state'
+  endcapture
+  assign hp_state = hp_state | strip | split: '|'
   assign offer_on = false
-  if section.settings.free_over > 0
+  if hp_state[0] == '1'
     assign offer_on = true
-    if section.settings.offer_starts != blank
-      assign offer_from_s = section.settings.offer_starts | date: '%s' | plus: 0
-      if now_s < offer_from_s
-        assign offer_on = false
-      endif
-    endif
-    if section.settings.offer_ends != blank
-      assign offer_s = section.settings.offer_ends | date: '%s' | plus: 0
-      if now_s > offer_s
-        assign offer_on = false
-      endif
-    endif
   endif
+  assign free_over = hp_state[1] | default: '100'
 
   assign photo = section.settings.image | default: hp.featured_image
   assign link = section.settings.link | default: hp.url
@@ -109,7 +96,7 @@
           <svg class="agwn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 12.2V4.5h7.7l9.3 9.3-7.7 7.7-9.3-9.3Z"/><path d="M7.7 8.700h.01"/></svg>
           <span class="agwn__fact-copy">
             {%- if offer_on -%}
-              <strong>Free on orders ${{ section.settings.free_over }}+</strong>
+              <strong>Free on orders ${{ free_over }}+</strong>
               {%- if section.settings.offer_text != blank -%}<span>{{ section.settings.offer_text }}</span>{%- endif -%}
             {%- else -%}
               <strong>{{ hp.price | money }} per order</strong>
@@ -287,10 +274,7 @@
     { "type": "text", "id": "fact_2_title", "label": "Fact 2", "default": "Thermal insulation" },
     { "type": "text", "id": "fact_2_text", "label": "Fact 2 line", "default": "Wrapped around your plants to hold the heat in." },
     { "type": "header", "content": "Offer" },
-    { "type": "number", "id": "free_over", "label": "Free on orders of ($)", "default": 100, "info": "0 shows the add-on's price instead. Use 0 while a percentage sale is running: Shopify applies the sale and not the free pack." },
-    { "type": "text", "id": "offer_starts", "label": "Offer starts", "default": "2026-12-01T00:00:00-05:00", "info": "Before this the band shows the price. Match the discount's start date." },
-    { "type": "text", "id": "offer_ends", "label": "Offer ends", "default": "2027-03-31T23:59:59-04:00", "info": "After this the band shows the price again. Match the discount's end date." },
-    { "type": "text", "id": "offer_text", "label": "Offer line", "default": "Add it in your cart and it is free at checkout. Not combined with other discounts." },
+    { "type": "text", "id": "offer_text", "label": "Offer line", "default": "Add it in your cart and it is free. One per order.", "info": "Shown while the free heat pack is on. The $100 and the end date are set in snippets/heat-pack-addon.liquid." },
     { "type": "text", "id": "link_label", "label": "Link label", "default": "See what goes in the box" },
     { "type": "url", "id": "link", "label": "Link", "info": "Leave empty to link to the heat pack product." },
     { "type": "header", "content": "Season" },
