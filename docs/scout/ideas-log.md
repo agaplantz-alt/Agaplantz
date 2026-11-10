@@ -10,6 +10,76 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-10
+
+Evidence was thin again: retailer listings, vendor blogs and one Canadian news story, no hard sales data. Palmstreet's
+own year-end post is the strongest source today.
+
+### Product ideas
+
+**1. "Jewel" Alocasias: Silver Dragon, Pink Dragon and Frydek.**
+- What: compact Alocasias with metallic or velvet leaves, not variegated. The variegated Alocasia idea on 2026-11-02
+  was about colour-splashed leaves; these are about texture.
+- What changed: Palmstreet, a live-auction app, says it passed $100 million in rare-plant sales in 2025 and calls
+  Alocasia one of the most important categories to watch in 2026, with tissue culture as the entry point. A 2026
+  trend list names Silver Dragon, Pink Dragon and Frydek among sought-after varieties, though that list is weak
+  evidence.
+  ([Palmstreet 2025 takeaways](https://palmstreet.app/blog/palmstreets-2025-takeaways),
+  [Accio Alocasia trends](https://de.accio.com/business/alocasia-trends),
+  [Soltech Alocasia guide](https://soltech.com/blogs/blog/most-expensive-alocasia-plants-rare-coveted-varieties))
+- Price signal: no TC prices found for these today (unverified).
+- Difficulty: easy to medium. Same lab path as your current Alocasias.
+- First step: ask your lab which jewel Alocasias are on its next batch list.
+
+**2. Variegated Schismatoglottis and Homalomena.**
+- What: two small, shade-tolerant aroid genera that suit terrariums and shelves. The store doesn't carry either.
+- Why now: several shops sell variegated forms, and some list them sold out. One offers a variegated Homalomena
+  rubescens as a TC plantlet.
+  ([Foliage Factory](https://www.foliage-factory.com/schismatoglottis-longispatha-variegata),
+  [Rare Plant Fairy](https://www.rareplantfairy.com/collections/growers-choice-1/products/schismatoglottis-sp-albo-growers-choice),
+  [BUCE Plant](https://buceplant.com/collections/terrarium-plants/other_rare),
+  [OrchidBox Homalomena TC](https://m.reach.dog/shop/orchidbox/products/homalomena-rubescens-variegated-preorder-1813p-3-us-based-seller-rare-aroid))
+- Price signal: Schismatoglottis variegata at €30.75 on sale; a variegated albo form at $55 USD on sale from $95;
+  Homalomena TC at $77.98 USD. Demand was not confirmed (unverified).
+- Difficulty: medium. Few labs carry them, so supply is the hurdle.
+- First step: ask your lab whether it has any variegated Schismatoglottis or Homalomena.
+
+**3. Rooted cuttings for plants that don't clone well in a lab.**
+- What: sell rooted node cuttings of variegated plants such as Monstera 'Albo', alongside your TC range.
+- Why now: a lab-services company writes that "periclinal chimeras" such as Monstera 'Albo' don't multiply well in
+  tissue culture while keeping their variegation, so supply still depends on cuttings. Meanwhile, plants that do
+  clone well have dropped to under $50 at many retailers. That company sells lab services, so treat its claims with
+  care (unverified).
+  ([Plant Cell Technology](https://plantcelltechnology.com/blogs/blog/how-plant-tissue-culture-changed-the-rare-plant-market-a-scientific-breakdown),
+  [Orange Lake blog](https://orangelakenursery.com/blogs/orange-lake-nursery-blog/what-is-tissue-culture-and-how-it-shapes-the-plant-market))
+- Price signal: none found for Albo cuttings today (unverified).
+- Difficulty: medium. It needs a mother plant and rooting space, but no lab.
+- First step: check whether any mature specimen you already own can be cut for nodes.
+
+### Business ideas
+
+**1. Run group-buy imports for collector clubs.**
+- What: handle the import, phytosanitary paperwork and acclimation for collector groups that want to bulk-order from
+  overseas labs, and charge a fee or margin.
+- Why now: CTV reported that one Edmonton Facebook group had spent around $100,000 importing rare plants from abroad,
+  and it also bought from Canadian sellers. The article is from 2021, so current demand is unverified.
+  ([CTV News Edmonton](https://edmonton.ctvnews.ca/these-enthusiasts-have-sourced-more-than-100k-worth-of-rare-plants-1.5475746))
+- Price signal: no fee benchmarks found (unverified).
+- Difficulty: medium. You already import, so the paperwork is familiar.
+- First step: find two active Canadian group-order communities and ask their admins how they import today.
+
+**2. A "plant purge" sale for slow stock.**
+- What: a short, social-media-only sale of overstock, seconds or slow-selling plants, posted as a photo album with
+  first-come prices. This is different from the November discount ladder, which covers the whole site.
+- Why now: one wholesaler's guide lays out how to run these on Facebook, and notes that many groups have rules on
+  advertising sales, so check each group's rules first.
+  ([Terrafloraglobal guide](https://terrafloraglobal.com/blogs/news/how-to-host-a-successful-facebook-plant-purge))
+- Price signal: none (unverified).
+- Difficulty: easy.
+- First step: list ten slow sellers and post them as one Instagram or Facebook album with fixed prices.
+
+---
+
 ## 2026-11-09
 
 Evidence was thin again: retail listings, a manufacturer blog and press pieces, no hard sales data. Business idea 2
