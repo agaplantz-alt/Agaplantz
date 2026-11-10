@@ -1886,6 +1886,13 @@ and checkout zeroes it, which is the owner's own wording.
   move `hp_free_from` past the sale's end, or accept that the under-$100 nudge promises
   something a $100 cart then loses to the sale.
 
+**Verified on the preview at 390, 10 Nov 20:06Z:** the band's third fact reads "$3.50 per
+order" and the cart with one $36 pre-order shows the substrate offer, "Worried about winter?
+Heat pack + insulation, up to 5 days of warmth · $3.50" with Add, and the guarantee line; no
+Liquid error, no overflow. **The three December states (the "Spend $X more" line, the "Add
+free" card, the in-cart note) are date-gated and have not been seen rendered** — look at the
+live cart on 1 Dec with an under-$100 and an over-$100 cart.
+
 The storefront's Cloudflare bot protection started challenging this session's requests (HTTP
 429, `cf-mitigated: challenge`) after ~40 cart calls in ten minutes, on top of the known
 preview rate limit. Test discounts with `draftOrderCalculate`, not with `/cart.js`.
