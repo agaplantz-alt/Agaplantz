@@ -1640,6 +1640,41 @@ variants also drops Billietiae Variegated and Florida Beauty Variegated out of
 options, media, variants with price/SKU/inventory). Take one before the next structural
 change too.
 
+## Mature photo on every card (draft, 10 Nov 2026)
+
+The owner: *"Is there any way the first picture that shows up everywhere is the picture of the
+mature plant? People find it harder to go into each plant to see how it looks when it grows."*
+Options given: reorder media on ~600 products (changes the feeds too) or configure the theme.
+They chose a draft of the theme route: **`AgaPlantz 2026 — mature photo on cards (from live)` =
+`190352719951`** (from MAIN `190324277327`).
+
+- **Data already exists.** `custom.big_one` (the file the plant profile uses for "what this
+  plant becomes") is filled on nearly every active product (615 active; the first 100 sampled
+  all had it). Products with no mature photo point it at the grey placeholder media
+  **`35435106304079`** (`B2C7BB47-…png`, 1254²) — treat that id as "none". The metafield is not
+  admin-filterable, so it cannot be counted with `productsCount`.
+- **`snippets/card-gallery.liquid`** (core Horizon, every product card: collections, search,
+  Best Sellers): after `assign featured_media = product.featured_media`, if `big_one.value` is
+  set and not the placeholder, the matching object is looked up **in `product.media`** (so the
+  slideshow gets a real media object with `media_type`/`preview_image`) and becomes
+  `featured_media`; the `other_media` reject and `media_list_to_show` now use that variable
+  instead of `product.featured_media`, or the mature shot appeared twice. When the swap
+  happened and an available variant's title contains `Tissue Culture`, a small cream label
+  **"Ships as a plantlet"** (`.agmp-tag`, 10px small caps, bottom-left; hidden in zoom-out
+  grid view) sits on the photo. Core file — re-apply after upgrades, same as `cart-summary`.
+- **`sections/stage-products.liquid`** (homepage Popular row, `/collections` sale row, crochet
+  gift row): same rule, `card_image` becomes `big_one.value` directly (an image object is
+  fine there), label `.sp-card__tag` when the chosen variant is a tissue-culture one.
+- Not touched: `spotlight-plant.liquid` (the owner picked those photos), `crochet-feature`
+  (no `big_one`), the product page (still opens on the plantlet, deliberately — the gallery
+  order and variant images are unchanged), and the channel feeds (first media unchanged).
+- Verified on the preview at 390: `/collections/monstera` leads Bulbasaur, Devil Monster,
+  White Monster with mature photos and the label on one line, no Liquid error; the homepage
+  Popular row shows 8 labels and mature images. **Devil Monster still shows its plantlet** —
+  its `big_one` is blank or the placeholder, so the fallback kicked in; that is a data gap
+  for the product session, not the theme. Plants with no mature photo keep the plantlet and
+  get no label.
+
 ## Product photos: what drives the card, and the conflict it causes
 
 **A collection card shows `product.featured_media` — the product's first photo.** Not the
@@ -2052,6 +2087,7 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/snippets/acclimation-guarantee-badge.liquid` | all guarantee copy |
 | `theme/snippets/cart-summary.liquid` | core Horizon (live stock copy as of 9 Nov), patched with the one cart render block — re-apply after every upgrade or stock overwrite |
 | `theme/snippets/price.liquid` | Save X% badge |
+| `theme/snippets/card-gallery.liquid` | core Horizon, patched to lead cards with the mature photo (`custom.big_one`) + "Ships as a plantlet" label (10 Nov draft) |
 | `theme/templates/page.plant-guarantee.json` | the guarantee page (suffix `plant-guarantee`) |
 | `theme/templates/page.json` | default page template — FAQ accordion removed |
 | `theme/templates/page.faq.json` / `page.contact.json` | FAQ answers, contact email |

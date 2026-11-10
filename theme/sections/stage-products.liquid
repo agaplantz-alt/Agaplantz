@@ -80,6 +80,16 @@
 
             {%- liquid
               assign card_image = chosen.image | default: product.featured_image
+              # AgaPlantz: lead with the mature photo (custom.big_one) when the product has one;
+              # the grey placeholder (media 35435106304079) means "none". Same rule as card-gallery.
+              assign agmp_tc = false
+              assign agmp_ref = product.metafields.custom.big_one.value
+              if agmp_ref != blank and agmp_ref.id != 35435106304079
+                assign card_image = agmp_ref
+                if chosen.title contains 'Tissue Culture'
+                  assign agmp_tc = true
+                endif
+              endif
               assign on_sale = false
               if chosen.compare_at_price > chosen.price
                 assign on_sale = true
@@ -105,6 +115,7 @@
                     <span class="sp-card__noimage">{{ product.title }}</span>
                   {%- endif -%}
                   {%- if on_sale -%}<span class="sp-badge">{{ 'content.product_badge_sale' | t }}</span>{%- endif -%}
+                  {%- if agmp_tc -%}<span class="sp-card__tag">Ships as a plantlet</span>{%- endif -%}
                 </div>
                 <span class="sp-card__title">{{ product.title }}</span>
                 <span class="sp-card__price">
@@ -186,6 +197,23 @@
     display: block;
   }
 
+  .sp-card__tag {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    max-width: calc(100% - 16px);
+    padding: 4px 8px;
+    background: rgba(251, 248, 242, 0.92);
+    color: #2F2A22;
+    border-radius: 2px;
+    font-family: var(--font-body--family);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    pointer-events: none;
+  }
   .sp-card__noimage {
     display: flex;
     align-items: center;
