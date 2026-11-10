@@ -35,7 +35,15 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 10 Nov 2026: MAIN is `AgaPlantz 2026 — cart add-ons restored (from live)` =
+**As of 10 Nov 2026, 08:02Z: MAIN is `AgaPlantz 2026 — mature photo on cards (from live)` =
+`190352719951`** — the owner published the mature-photo + audit draft and it became MAIN **in
+place** (same id). Post-publish check the same day: `index.json`, `header-group.json`,
+`price.liquid`, `card-gallery.liquid` and the three re-seed-prone templates all match the repo by
+checksum; nothing was re-seeded. The draft waiting for them is the winter-protection theme
+`190382866511` (see **Winter protection**). The next change starts with a fresh
+`themeDuplicate` of whatever is MAIN then.
+
+**Earlier on 10 Nov 2026: MAIN was `AgaPlantz 2026 — cart add-ons restored (from live)` =
 `190324277327`** — the owner published it (*"Cart restored is live"*) and it became MAIN **in
 place** (same id). Post-publish check the same hour: `cart-summary.liquid`, `index.json`,
 `header-group.json` and the three re-seed-prone templates all match the repo by checksum, and
@@ -1804,6 +1812,50 @@ page is an installed app's pixel, not theme code.
 have no meta description; the hero and mystery-box images have empty alts (decorative, fine);
 and the newsletter pop-up covers the product page's buy box on a first phone visit.
 
+## Winter protection — free heat pack over $100 (draft, 10 Nov 2026)
+
+The owner: *"putting a one section … just below the clock. Worried about winter. Our insulation
+can protect plants up to 5 days. And I think we should also make it free after some amount, for
+example free after $100. Do not forget to add it, discount will automatically apply … so people
+buy more. And at the cart people can also see that message."* Then, asked which pack goes in the
+box: *"We're also using UniHeat 120 hour pack"* — so "up to 5 days" is an honest upper bound
+(72 h and 120 h packs are both used; copy says "rated for 72 to 120 hours" and never names a
+brand, because the product photo shows a different maker's pack).
+
+**Why $100.** Last 99 orders (24 Oct – 10 Nov): median subtotal $100, 45% already add the $3.50
+pack, 22% of orders sit between $50 and $100 — those are the ones a free pack can stretch — and
+$100 is where the November discounts already start, so the site says one number.
+
+**The discount (live data).** `Free Winter Heat Pack on Orders $100+`
+(`gid://shopify/DiscountAutomaticNode/1539479961679`), automatic **Buy X get Y**: buys $100 from
+collection `discount-eligible` (`493750190159`, "all except shipping add-ons" — another session
+made it and the 15% / 10% discounts now target it too, which is why they no longer touch the
+pack), gets 1 × the heat pack (`15403882184783`) at 100% off, one per order, one-time purchases
+only, `2026-11-10T19:40Z` → `2027-04-01T03:59:59Z` (31 Mar 23:59 Toronto), `combinesWith` all
+three true. **`customerBuys.items: { all: true }` is rejected for BXGY** ("Items in 'customer
+buys' must be defined") — it needs products or collections. Shopify cannot add the gift to the
+cart; the customer adds it and checkout zeroes it, which is exactly the owner's wording.
+
+**Theme — draft `AgaPlantz 2026 — winter protection (from live)` = `190382866511`** (from MAIN
+`190352719951`):
+
+- `sections/winter-shipping.liquid` as `winter_shipping` in `index.json`, directly after the
+  countdown. Sage band: the product's box photo (square, 240px desktop / 112px phone), eyebrow,
+  "Worried about winter?", one line, then three hairline-ruled facts (flame · box · tag) and a
+  link to the add-on's page. The third fact is the offer: "Free on orders $100+" while
+  `free_over` is set and `offer_ends` has not passed, otherwise the add-on's live price.
+  **The whole band stops rendering after `hide_after`** (31 Mar 2027), so it cannot sit on the
+  homepage in July. 482px tall at 390, 314px at 1280; zero axe violations.
+- `snippets/heat-pack-addon.liquid` (now tracked in the repo), four states: not in cart and under
+  $100 → the paid offer plus "Spend $X more and it is free"; not in cart and $100+ → sage card
+  "Free winter protection with this order", button **Add free**; in cart and under $100 → one
+  line "Spend $X more and your heat pack is free"; in cart and $100+ → nothing (the cart line
+  shows the discount). The $100 is counted the way the discount counts it: `original_line_price`
+  of every line except the pack itself and subscription lines. After `hp_free_until` it falls
+  back to the plain paid offer.
+- **The threshold and the end date live in three places** — the discount, the section's settings
+  and the two `assign`s at the top of the cart snippet. Change all three together.
+
 ## Product photos: what drives the card, and the conflict it causes
 
 **A collection card shows `product.featured_media` — the product's first photo.** Not the
@@ -2230,6 +2282,8 @@ Only the files that differ from stock Horizon are tracked:
 | `theme/sections/spotlight-plant.liquid` | plants shown big, one per slide |
 | `theme/sections/subscription-callout.liquid` | mystery-box band, five floating cut-outs, tiers read from the product |
 | `theme/sections/batch-discounts.liquid` | standalone discount ladder — **unused**, the ladder lives in the countdown |
+| `theme/sections/winter-shipping.liquid` | homepage "Worried about winter?" band, hides itself after 31 Mar 2027 |
+| `theme/snippets/heat-pack-addon.liquid` | cart heat-pack offer with the free-over-$100 states |
 | `theme/sections/tc-guide.liquid` | the "What is tissue culture?" page, six block types |
 | `theme/sections/tc-learn-more.liquid` | homepage strip linking to it |
 | `theme/sections/tc-stages.liquid` | homepage "New to tissue culture?" — slim photo rows + guarantee line (7 Nov) |

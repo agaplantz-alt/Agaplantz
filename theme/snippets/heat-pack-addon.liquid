@@ -1,0 +1,152 @@
+{%- comment -%}
+  AgaPlantz: winter heat pack + insulation add-on offer for the cart.
+  Rendered from snippets/acclimation-guarantee-badge.liquid (cart context), which the cart page
+  and the cart drawer both reach through snippets/cart-summary.liquid.
+  CSS order places it between the totals and the checkout button.
+
+  Free over $100 (10 Nov 2026). The automatic discount "Free Winter Heat Pack on Orders $100+"
+  (Buy X get Y: $100 of one-time purchases, 1 heat pack at 100% off, ends 31 Mar 2027) cannot
+  put the pack in the cart itself, so this is where the customer is told to add it:
+    - not in the cart, under $100   the paid offer, plus how much more makes it free
+    - not in the cart, $100 or more "Free with this order" and an Add free button
+    - in the cart, under $100       one line: how much more makes it free
+    - in the cart, $100 or more     nothing; the cart line already shows the discount
+  hp_free_over and hp_free_until must match the discount and sections/winter-shipping.liquid.
+  After hp_free_until this falls back to the plain paid offer on its own.
+  The $100 is counted the way the discount counts it: list prices before other discounts,
+  the pack itself and subscription lines left out.
+{%- endcomment -%}
+{%- liquid
+  assign hp_handle = 'heat-pack-insulation-winter-shipping-add-on'
+  assign hp_product = all_products[hp_handle]
+  assign hp_variant = hp_product.selected_or_first_available_variant
+
+  assign hp_free_over = 10000
+  assign hp_free_until = '2027-03-31T23:59:59-04:00' | date: '%s' | plus: 0
+  assign hp_now = 'now' | date: '%s' | plus: 0
+  assign hp_offer_on = false
+  if hp_now < hp_free_until
+    assign hp_offer_on = true
+  endif
+
+  assign hp_in_cart = false
+  assign hp_counted = 0
+  for item in cart.items
+    if item.product.handle == hp_handle
+      assign hp_in_cart = true
+      continue
+    endif
+    if item.selling_plan_allocation
+      continue
+    endif
+    assign hp_counted = hp_counted | plus: item.original_line_price
+  endfor
+
+  assign hp_free_now = false
+  assign hp_gap = 0
+  if hp_offer_on
+    if hp_counted >= hp_free_over
+      assign hp_free_now = true
+    else
+      assign hp_gap = hp_free_over | minus: hp_counted
+    endif
+  endif
+-%}
+{%- capture hp_add_js -%}
+  var b=this;b.disabled=true;b.textContent='Adding';fetch('{{ routes.cart_add_url }}.js',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({id:{{ hp_variant.id }},quantity:1})}).then(function(){window.location.href='{{ routes.cart_url }}';}).catch(function(){b.disabled=false;b.textContent='Add';});
+{%- endcapture -%}
+{%- if hp_product.id and hp_product.available and cart.item_count > 0 -%}
+  {%- if hp_in_cart == false -%}
+    <div class="hp-addon{% if hp_free_now %} hp-addon--free{% endif %}">
+      {%- if hp_product.featured_image -%}
+        <img
+          class="hp-addon__img"
+          src="{{ hp_product.featured_image | image_url: width: 160 }}"
+          alt=""
+          width="56"
+          height="56"
+          loading="lazy"
+        >
+      {%- endif -%}
+      <div class="hp-addon__text">
+        {%- if hp_free_now -%}
+          <strong>Free winter protection with this order</strong>
+          <span>Heat pack + insulation, up to 5 days of warmth. Add it and it is free at checkout.</span>
+        {%- else -%}
+          <strong>Worried about winter?</strong>
+          <span>Add a heat pack + insulation &middot; {{ hp_variant.price | money }}</span>
+          {%- if hp_offer_on -%}
+            <span class="hp-addon__nudge">Spend {{ hp_gap | money }} more and it is free.</span>
+          {%- endif -%}
+        {%- endif -%}
+        <a href="{{ hp_product.url }}">Details</a>
+      </div>
+      <button
+        type="button"
+        class="hp-addon__btn"
+        onclick="{{ hp_add_js | strip | escape }}"
+      >{% if hp_free_now %}Add free{% else %}Add{% endif %}</button>
+    </div>
+  {%- elsif hp_offer_on and hp_free_now == false -%}
+    <div class="hp-addon hp-addon--note">
+      <div class="hp-addon__text">
+        <span class="hp-addon__nudge">Spend {{ hp_gap | money }} more and your heat pack is free.</span>
+      </div>
+    </div>
+  {%- endif -%}
+<style>
+    .hp-addon {
+      order: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #DED3C2;
+      border-radius: 4px;
+      background-color: #F2EBDE;
+      font-family: var(--font-body--family);
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      color: #56503F;
+      text-align: start;
+      box-sizing: border-box;
+    }
+    .cart-summary__inner > .cart__ctas,
+    .cart-drawer__summary > .cart__ctas { order: 2; }
+    .cart-summary__inner > .acclimation-guarantee--cart,
+    .cart-drawer__summary > .acclimation-guarantee--cart { order: 3; }
+    .hp-addon__img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .hp-addon__text {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+    .hp-addon__text strong { color: #2F2A22; font-weight: 600; }
+    .hp-addon__text a { color: #2F2A22; text-underline-offset: 2px; width: fit-content; }
+    .hp-addon__btn {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: #2F2A22;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .hp-addon__btn:disabled { opacity: 0.6; cursor: default; }
+    .hp-addon--free { border-color: #5C6B4C; background-color: #E8EDE1; }
+    .hp-addon--free .hp-addon__btn { background-color: #5C6B4C; }
+    .hp-addon--note { padding: 8px 12px; }
+    .hp-addon__nudge { color: #2F2A22; font-weight: 600; }
+  </style>
+{%- endif -%}

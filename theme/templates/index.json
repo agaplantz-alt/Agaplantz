@@ -859,12 +859,35 @@
         "show_yarn": true,
         "tile_size": "photo"
       }
+    },
+    "winter_shipping": {
+      "type": "winter-shipping",
+      "settings": {
+        "eyebrow": "Winter shipping",
+        "heading": "Worried about winter?",
+        "text": "Our heat pack and thermal insulation keep your plants warm for up to 5 days in transit.",
+        "product": "heat-pack-insulation-winter-shipping-add-on",
+        "image_alt": "A shipping box lined with thermal insulation, with a heat pack inside",
+        "fact_1_title": "Up to 5 days of warmth",
+        "fact_1_text": "Heat packs rated for 72 to 120 hours.",
+        "fact_2_title": "Thermal insulation",
+        "fact_2_text": "Wrapped around your plants to hold the heat in.",
+        "free_over": 100,
+        "offer_ends": "2027-03-31T23:59:59-04:00",
+        "offer_text": "Add it in your cart. The discount applies at checkout.",
+        "link_label": "See what goes in the box",
+        "hide_after": "2027-03-31T23:59:59-04:00",
+        "background_color": "#e8ede1",
+        "padding-block-start": 36,
+        "padding-block-end": 36
+      }
     }
   },
   "order": [
     "hero_main",
     "marquee_trust",
     "custom_liquid_KL8FyB",
+    "winter_shipping",
     "collections_genus",
     "tc_learn_more",
     "spotlight_plant",
