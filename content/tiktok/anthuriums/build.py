@@ -1,6 +1,6 @@
 """Render the Anthurium tissue-culture TikTok carousel (1080x1920 JPGs).
 
-Usage: python3 build.py <tc_photo_dir> <mature_photo_dir> <out_dir>
+Usage: python3 build.py <tc_photo_dir> <mature_photo_dir> <out_dir> [plants.json] [per_post] [--no-outro]
 Both photo dirs hold Shopify product images named <product-handle>.<ext>
 (tissue-culture shot = image 1, mature plant = image 2 on each listing).
 Each plant gets two slides (mature, then what-you-get). TikTok allows 35
@@ -12,8 +12,12 @@ from playwright.sync_api import sync_playwright
 HERE = pathlib.Path(__file__).parent
 TC, MATURE = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
 OUT = pathlib.Path(sys.argv[3])
-PER_POST = 9
-PLANTS = json.loads((HERE / "plants.json").read_text())
+args = [a for a in sys.argv[4:] if a != "--no-outro"]
+OUTRO = "--no-outro" not in sys.argv
+PLANTS_FILE = HERE / (args[0] if args else "plants.json")
+PER_POST = int(args[1]) if len(args) > 1 else 9
+PLANTS = json.loads(PLANTS_FILE.read_text())
+
 
 def data_uri(handle, folder=None):
     f = next((folder or TC).glob(handle + ".*"))
@@ -114,7 +118,7 @@ with sync_playwright() as pw:
     pg = b.new_page(viewport={"width": 1080, "height": 1920}, device_scale_factor=1)
     for n, plants in enumerate(posts, 1):
         out = OUT / f"post-{n}"; out.mkdir(parents=True, exist_ok=True)
-        slides = [s for p in plants for s in (mature_slide(p), plant_slide(p))] + [outro()]
+        slides = [s for p in plants for s in (mature_slide(p), plant_slide(p))] + ([outro()] if OUTRO else [])
         for i, html_ in enumerate(slides, 1):
             tmp = out / "_slide.html"; tmp.write_text(html_)
             pg.goto(tmp.resolve().as_uri()); pg.wait_for_load_state("networkidle")

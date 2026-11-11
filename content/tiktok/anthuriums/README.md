@@ -21,3 +21,13 @@ Rebuild after editing `plants.json` (handle, name, subtitle, price):
 Suggested caption:
 > Rare Anthuriums, lab-grown 🌱 Mature plant vs. what you get, swipe to see both. Which one is going on your shelf?
 > #AgaPlantz #RarePlants #Anthurium #TissueCulture #PlantTok #RareHouseplants #PlantsOfCanada
+
+## Best sellers post (20 slides, `bestsellers/`, `anthurium-bestsellers.zip`)
+
+Top 10 Anthuriums by units sold, last 12 months (Shopify analytics, 2026-11-11):
+Warocqueanum 21 · Wendlingeri 18 · Delta Force 14 · Pallidiflorum 14 · Black Velvet 13 ·
+Vittarifolium 9 · Veitchii 7 · King of Clarinervium × Silver Tiger 7 · Queen of Hearts 7 ·
+Bonplandii Narrow Pink Variegated 6. Same mature + what-you-get pair per plant, no outro,
+matching the 20-slide Alocasia post.
+
+    python3 build.py <tc dir> <mature dir> bestsellers bestsellers.json 10 --no-outro
