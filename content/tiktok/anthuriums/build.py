@@ -1,18 +1,22 @@
 """Render the Anthurium tissue-culture TikTok carousel (1080x1920 JPGs).
 
-Usage: python3 build.py <photo_dir> <out_dir>
-photo_dir holds the Shopify featured images, named <product-handle>.<ext>.
+Usage: python3 build.py <tc_photo_dir> <mature_photo_dir> <out_dir>
+Both photo dirs hold Shopify product images named <product-handle>.<ext>
+(tissue-culture shot = image 1, mature plant = image 2 on each listing).
+Each plant gets two slides (mature, then what-you-get). TikTok allows 35
+slides per carousel, so plants are split into posts of PER_POST.
 """
 import base64, html, json, pathlib, sys
 from playwright.sync_api import sync_playwright
 
 HERE = pathlib.Path(__file__).parent
-PHOTOS = pathlib.Path(sys.argv[1])
-OUT = pathlib.Path(sys.argv[2]); OUT.mkdir(parents=True, exist_ok=True)
+TC, MATURE = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+OUT = pathlib.Path(sys.argv[3])
+PER_POST = 9
 PLANTS = json.loads((HERE / "plants.json").read_text())
 
-def data_uri(handle):
-    f = next(PHOTOS.glob(handle + ".*"))
+def data_uri(handle, folder=None):
+    f = next((folder or TC).glob(handle + ".*"))
     mime = "image/png" if f.suffix == ".png" else "image/jpeg"
     return f"data:{mime};base64," + base64.b64encode(f.read_bytes()).decode()
 
@@ -35,6 +39,7 @@ body{font-family:Poppins,sans-serif;color:#f4f1ea;position:relative;
 .card{position:relative;margin-top:44px;width:900px;height:880px;border-radius:36px;overflow:hidden;
  background:#fff;box-shadow:0 24px 60px rgba(0,0,0,.5)}
 .card img{width:100%;height:100%;object-fit:contain;background:#fff}
+.card.mature img{object-fit:cover}
 .tag{position:absolute;top:26px;left:26px;background:rgba(40,40,40,.82);color:#fff;font-weight:700;
  font-size:26px;padding:10px 22px;border-radius:999px}
 .price{position:absolute;top:26px;right:26px;background:#c6e57a;color:#1b1f1c;font-weight:800;
@@ -70,6 +75,16 @@ def plant_slide(p):
       <div class=price>CA${p['price']}</div></div>"""
     return page(body, uri)
 
+def mature_slide(p):
+    uri = data_uri(p["handle"], MATURE)
+    body = f"""
+    <div class=pill>MATURE PLANT</div>
+    <div class=genus>ANTHURIUM</div>
+    <div class=name style="--fs:{name_size(p['name'])}px">{html.escape(p['name'])}</div>
+    <div class=sub>{html.escape(p['sub'])}</div>
+    <div class="card mature"><img src="{uri}"><div class=tag>Representative photo</div></div>"""
+    return page(body, uri)
+
 def cover():
     imgs = "".join(f'<div><img src="{data_uri(p["handle"])}"></div>' for p in PLANTS[:6])
     body = f"""
@@ -93,14 +108,18 @@ def outro():
     <div class=cta>Shop the drop · link in bio</div>"""
     return page(body)
 
-slides = [cover()] + [plant_slide(p) for p in PLANTS] + [outro()]
+posts = [PLANTS[i:i + PER_POST] for i in range(0, len(PLANTS), PER_POST)]
 with sync_playwright() as pw:
     b = pw.chromium.launch(executable_path="/opt/pw-browsers/chromium")
     pg = b.new_page(viewport={"width": 1080, "height": 1920}, device_scale_factor=1)
-    for i, s in enumerate(slides, 1):
-        tmp = OUT / "_slide.html"; tmp.write_text(s)
-        pg.goto(tmp.resolve().as_uri()); pg.wait_for_load_state("networkidle")
-        pg.evaluate("document.fonts.ready")
-        pg.screenshot(path=str(OUT / f"{i:02d}.jpg"), type="jpeg", quality=92)
-    tmp.unlink(); b.close()
-print(f"rendered {len(slides)} slides -> {OUT}")
+    for n, plants in enumerate(posts, 1):
+        out = OUT / f"post-{n}"; out.mkdir(parents=True, exist_ok=True)
+        slides = [s for p in plants for s in (mature_slide(p), plant_slide(p))] + [outro()]
+        for i, html_ in enumerate(slides, 1):
+            tmp = out / "_slide.html"; tmp.write_text(html_)
+            pg.goto(tmp.resolve().as_uri()); pg.wait_for_load_state("networkidle")
+            pg.evaluate("document.fonts.ready")
+            pg.screenshot(path=str(out / f"{i:02d}.jpg"), type="jpeg", quality=92)
+        tmp.unlink()
+        print(f"post-{n}: {len(slides)} slides")
+    b.close()
