@@ -10,6 +10,74 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-11
+
+Evidence was thin again: retail listings and blogs, plus one CTV News story. A theme today is plants losing their
+rarity as tissue culture spreads.
+
+### Product ideas
+
+**1. Variegated Monstera 'Peru' (Monstera karstenianum).**
+- What: a small, stiff-leaved climbing Monstera, in a variegated form. The store's Monsteras are all deliciosa types.
+- Why now: US shops list variegated 'Peru' at about $40 to $90 USD, and one tracker shows a rise from $55 to $60.95.
+  European wholesale lists it at about €28.79.
+  ([Plant Vault](https://reach.dog/shop/plant-vault/products/variegated-monstera-peru),
+  [Floraccess](https://www.floraccess.com/en/product/99061/monstera-peru-variegata),
+  [Secret Garden](https://secretgarden.ro/en/products/monstera-peru-variegata-monstera-karstenianum))
+- Price signal: about €29 wholesale against $40 to $90 USD retail. No TC price found (unverified).
+- Difficulty: medium. Sellers mix up the names 'Peru', obliqua and adansonii, so confirm the species with your
+  supplier.
+- First step: ask your lab or a European wholesaler for variegated karstenianum and a price per 50.
+
+**2. Variegated Monstera adansonii, including tricolour.**
+- What: the "Swiss cheese vine" with white or tricolour variegation, a cheaper way into variegated Monstera.
+- Why now: standard variegated adansonii sells for about $18 to $25 USD, and one rooted tricolour cutting lists at
+  about $118, so the tricolour form carries a big premium.
+  ([Floraccess](https://www.floraccess.com/en/product/78760/monstera-adansonii-variegata/),
+  [tricolour listing](https://ava.netmd.org/products/rare-tricolor-variegation-rooted-adansonii-plant-monstera/53224496/))
+  Collector demand for tricolour was not confirmed (unverified).
+- Price signal: €20.72 wholesale for the standard form at Floraccess.
+- Difficulty: easy to medium. It grows fast and roots easily.
+- First step: price the standard variegated form from a wholesaler and test it beside your Monstera range.
+
+**3. Philodendron 'Pink Princess' only as a cheap volume plant.**
+- What: the once-famous pink-variegated Philodendron, priced as an entry plant rather than a collector piece.
+- Why now: tissue culture has made it common. A 2025 article says it "isn't rare anymore", a blog puts the median US
+  TC price around $45, and Walmart lists a 5-inch plant at about $23 USD.
+  ([Soltech](https://soltech.com/blogs/blog/pink-princess-philodendron-rare-in-2025),
+  [The Plant Network](https://theplantnetwork.pages.dev/blog/rare-vs-trendy-plants),
+  [Walmart](https://www.walmart.com/ip/2281343152))
+- Price signal: about $23 to $45 USD now. Only worth stocking if your cost is well under that (unverified).
+- Difficulty: easy.
+- First step: compare your lab's Pink Princess cost against $23 retail before deciding.
+
+### Business ideas
+
+**1. Check your catalogue against big-box stores.**
+- What: a one-time review to find any plant you sell that big stores now stock cheaply, then reprice it, bundle it or
+  drop it.
+- Why now: CTV News reports Canadian shoppers finding once-rare plants at local retailers. Thai Constellation is
+  reported at $25 to $50 at major retailers, and Pink Princess at about $23 at Walmart.
+  ([CTV News](https://www.ctvnews.ca/canada/article/shoppers-are-discovering-once-rare-plants-in-local-retailers-in-canada/),
+  [The Plant Network](https://theplantnetwork.pages.dev/blog/rare-vs-trendy-plants))
+- Price signal: none for your catalogue (unverified).
+- Difficulty: easy. It's an hour with a spreadsheet.
+- First step: search Walmart.ca, Costco.ca and Home Depot for your ten best sellers.
+
+**2. Sell a downloadable care guide.**
+- What: a PDF guide on acclimating and caring for tissue-culture aroids, sold as a digital product and offered free
+  with big orders.
+- Why now: houseplant ebooks sell for about $8 to $27 online, and Shopify can deliver files with a digital-download
+  app. No reliable revenue figures exist for this niche (unverified).
+  ([Packer Plant Co e-book](https://reach.dog/shop/packer-plant-co/products/e-book-light-water-dirt-uncomplicated-plant-care),
+  [Gumroad example](https://cbubak.gumroad.com/l/houseplants),
+  [Outfy guide](https://www.outfy.com/blog/how-to-sell-ebooks-on-shopify/))
+- Price signal: $8 to $27 USD per guide, with almost no cost per sale.
+- Difficulty: easy. You already have an acclimation guide on the site to build from.
+- First step: turn the existing acclimation guide into a 10-page PDF and price it at $12 CAD.
+
+---
+
 ## 2026-11-10
 
 Evidence was thin again: retailer listings, vendor blogs and one Canadian news story, no hard sales data. Palmstreet's
