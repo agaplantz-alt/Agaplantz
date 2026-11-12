@@ -10,6 +10,82 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-12
+
+Evidence was thin again: mostly undated listings and retailer blogs. The Valentine's idea is for planning, since the
+holiday is three months away.
+
+### Product ideas
+
+**1. Cheap TC of classic velvet Anthurium species: forgetii, luxurians and clarinervium.**
+- What: three well-known species Anthuriums as TC plantlets. The crystallinum x regale idea on 2026-11-05 covered
+  hybrids; these are the parent species collectors start with.
+- Why now: one US lab lists forgetii TC at $6.99 USD, luxurians at $12.99 and clarinervium at $16.99, while another
+  shop sells forgetii and clarinervium TC at $39.99, forgetii sold out. At the very top, a variegated luxurians sold
+  for $26,000 on Palmstreet, an outlier from older reporting.
+  ([Orange Lake forgetii](https://orangelakenursery.com/products/anthurium-forgetti-plantlet-1),
+  [Orange Lake luxurians](https://orangelakenursery.com/products/anthurium-luxurians-tissue-culture),
+  [TropicFlow clarinervium](https://m.reach.dog/shop/tropicflow/products/anthurium-clarinervium-tissue-culture-plant),
+  [Forbes Australia](https://www.forbes.com.au/?p=164991))
+- Price signal: $7 to $17 USD per plantlet at one lab against $40 at another; a 4-inch forgetii x luxurians at
+  $59.99. ([BWH Plant Co](https://bwhplantco.com/collections/rare-plants/products/4-anthurium-forgetii-x-luxurians))
+- Difficulty: easy to medium.
+- First step: ask your lab for all three species and build an "Anthurium starter trio".
+
+**2. Philodendron 'Paraiso Verde' and 'Red Anderson'.**
+- What: two variegated Philodendrons in the mid-price range. Paraiso Verde has speckled lime leaves; Red Anderson has
+  pink-and-cream variegation, a step up from Pink Princess.
+- Why now: both are widely listed, and one Red Anderson 4-inch is sold out. Steve's Leaves labels a Paraiso Verde as
+  "non-TC" at $89.99, which suggests buyers pay more for cutting-grown plants.
+  ([Spokane Plant Farm](https://spokaneplantfarm.com/collections/house-plants/products/philodendron-red-anderson-4-plant),
+  [Steve's Leaves](https://stevesleaves.com/products/philodendron-paraiso-verde-non-tc-1626),
+  [Urban Sprouts](https://urbansproutsstore.com/products/philodendron-paraiso-verde-4))
+- Price signal: Red Anderson €3.57 to €24.42 wholesale by size and $32 to $39.99 USD retail; variegated Red Anderson
+  €44.10 wholesale. Paraiso Verde about $25 for 4 inches, up to $60 to $90 elsewhere.
+  ([Floraccess Red Anderson](https://www.floraccess.com/en/product/114444/philodendron-red-anderson),
+  [Floraccess variegated](https://www.floraccess.com/en/product/122864/philodendron-red-anderson-variegata/))
+- Difficulty: easy.
+- First step: price both from a European wholesaler and compare with your lab.
+
+**3. Self-watering "anti-spiral" aroid pots.**
+- What: slotted pots with a removable water reservoir, sold clear so collectors can see roots. The LECA kit on
+  2026-11-03 used a self-watering pot for clay balls; these work with ordinary aroid mix.
+- Why now: Plantscraper sells a clear version marketed for aroids and Alocasias, and big grower Costa Farms launched a
+  self-watering system in March 2026, which suggests mainstream demand. One retailer warns they don't suit every plant.
+  ([Plantscraper](https://plantscraper.com/products/self-watering-aroid-pots),
+  [Greenhouse Grower on Costa Farms](https://www.greenhousegrower.com/?p=178046),
+  [Tumbleweed Plants](https://tumbleweedplants.com/blogs/plant-101/self-watering-pots-explained-do-they-really-work-for-singapore-plant-parents))
+- Price signal: none found (unverified).
+- Difficulty: easy. Not alive, ships any season.
+- First step: ask Plantscraper or a Canadian distributor for wholesale terms.
+
+### Business ideas
+
+**1. A Valentine's 2027 "heart-leaf" pre-order.**
+- What: a gift line of heart-shaped aroids, such as Anthuriums and heartleaf Philodendron, sold on pre-order for
+  delivery by 14 February.
+- Why now: in 2026, retailers pitched potted plants as longer-lasting than roses. The Sill reported orchid sales
+  climbing and set a 9 February order cutoff. Heartleaf Philodendron was on several 2026 gift lists. All of this is
+  retailer marketing (unverified).
+  ([Homes & Gardens](https://www.homesandgardens.com/gardens/orchids-for-valentines-day),
+  [Refinery29 on The Sill](https://refinery29.com/en-us/the-sill-valentines-day-gift-guide),
+  [Plants4Presents](https://plants4presents.co.uk/news/valentines-day-trends-and-plant-gift-ideas))
+- Price signal: none found (unverified).
+- Difficulty: easy to medium. February cold is the risk, so courier and heat packs matter.
+- First step: in early January, set up a pre-order page with a 5 February cutoff.
+
+**2. Curated "one genus, many forms" collector sets.**
+- What: sets of three to five related plants, such as an Anthurium species trio or an Alocasia texture set, sold as
+  one product.
+- Why now: Homes & Gardens cites the Garden Media Group's 2026 report saying unusual houseplants are becoming
+  collectibles, with collectors gathering many varieties of one plant. No sales data was given (unverified).
+  ([Homes & Gardens 2026 trends](https://www.homesandgardens.com/gardens/houseplants-trends-2026))
+- Price signal: none found (unverified).
+- Difficulty: easy. You already have the plants; it's packaging and a product page.
+- First step: pick three Anthuriums you stock and list them together at a small discount.
+
+---
+
 ## 2026-11-11
 
 Evidence was thin again: retail listings and blogs, plus one CTV News story. A theme today is plants losing their
