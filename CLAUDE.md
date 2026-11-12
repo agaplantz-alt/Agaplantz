@@ -35,7 +35,20 @@ published theme while our work sat in an unrelated draft).
 They edit in the theme editor freely. Always re-pull live before editing, and treat
 their version as the base to merge onto.
 
-**As of 10 Nov 2026, evening: MAIN is `AgaPlantz 2026 — winter protection (from live)` = `190382866511`** (published in place). The draft waiting for the owner is `190392369231`, the free heat pack (see **Winter protection**).
+**As of 12 Nov 2026: MAIN is `AgaPlantz 2026 — BF 30% sale block (from live)` = `190458888271`**
+(another session's work; the free heat pack theme `190392369231` was published before it). The
+draft waiting for the owner is **`AgaPlantz 2026 — pre-order timing wording (from live)` =
+`190486052943`**: the pre-order page, FAQ and tissue culture page no longer say the lab gets the
+order at the cut-off. Work may start once the 48-hour cancellation window has passed, mixed
+orders are switched to ready-to-ship stock, orders move to earlier shipments when there is room.
+The three agreed lines, the policy text the owner must paste (policies are read-only) and the
+support-agent note are in **`docs/pre-order-timing-wording-2026-11-12.md`**. The FAQ block
+`ai_gen_block_138208e.liquid` now has **17 slots** (15 = when will my pre-order ship, 16 = mixed
+orders, 17 = why buy). Four of four files match by checksum; verified on the preview at 390.
+Not changed: the disabled availability block on both product templates still says "After the
+cut-off we place the batch".
+
+**Earlier, 10 Nov 2026, evening: MAIN was `AgaPlantz 2026 — winter protection (from live)` = `190382866511`** (published in place). The draft waiting for the owner is `190392369231`, the free heat pack (see **Winter protection**).
 
 **Earlier on 10 Nov 2026, 08:02Z: MAIN was `AgaPlantz 2026 — mature photo on cards (from live)` =
 `190352719951`** — the owner published the mature-photo + audit draft and it became MAIN **in

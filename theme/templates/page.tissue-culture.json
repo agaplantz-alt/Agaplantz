@@ -56,7 +56,7 @@
           "settings": {
             "eyebrow": "Lower price · next batch",
             "title": "Pre-order",
-            "text": "<p>Reserved from the next lab batch. Price locked when you order; ships two to three weeks after the cut-off.</p>",
+            "text": "<p>Reserved from the next lab batch. Price locked when you order; ships two to three weeks after the cut-off, or earlier.</p>",
             "link_label": "Browse pre-orders",
             "link": "shopify://collections/pre-order",
             "featured": true
@@ -104,7 +104,7 @@
           "type": "step",
           "settings": {
             "title": "Cut-off date",
-            "text": "<p>The batch closes and we order from the lab. Later orders join the next batch.</p>",
+            "text": "<p>The last day to join a batch. Once the 48-hour cancellation window has passed, work on your order may begin before it.</p>",
             "icon": "calendar"
           }
         },
@@ -128,7 +128,7 @@
           "type": "step",
           "settings": {
             "title": "Delivered to you",
-            "text": "<p>Tracked, early in the week. About two to three weeks after the cut-off.</p>",
+            "text": "<p>Tracked, early in the week. About two to three weeks after the cut-off, or earlier.</p>",
             "icon": "home"
           }
         },
@@ -229,7 +229,7 @@
           "type": "faq",
           "settings": {
             "question": "Can I cancel a pre-order?",
-            "answer": "<p>Within 48 hours of ordering, yes: email info@agaplantz.com with your order number. After that the lab has your order and it can’t be cancelled. Ready-to-ship orders: within 48 hours, as long as they haven’t shipped.</p>"
+            "answer": "<p>Within 48 hours of ordering, yes: email info@agaplantz.com with your order number. After that we may start on your order right away, even before the cut-off, and it can’t be cancelled. Ready-to-ship orders: within 48 hours, as long as they haven’t shipped.</p>"
           }
         },
         "fq_who": {

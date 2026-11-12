@@ -468,6 +468,38 @@
         </div>
       </div>
     {% endif %}
+
+    {% if block.settings.faq_16_question != blank %}
+      <div class="ai-faq-item-{{ ai_gen_id }}" data-faq-item>
+        <button class="ai-faq-question-button-{{ ai_gen_id }}" aria-expanded="false">
+          <h3 class="ai-faq-question-text-{{ ai_gen_id }}">{{ block.settings.faq_16_question }}</h3>
+          <span class="ai-faq-icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="ai-faq-answer-{{ ai_gen_id }}">
+          <div class="ai-faq-answer-content-{{ ai_gen_id }}">{{ block.settings.faq_16_answer }}</div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.faq_17_question != blank %}
+      <div class="ai-faq-item-{{ ai_gen_id }}" data-faq-item>
+        <button class="ai-faq-question-button-{{ ai_gen_id }}" aria-expanded="false">
+          <h3 class="ai-faq-question-text-{{ ai_gen_id }}">{{ block.settings.faq_17_question }}</h3>
+          <span class="ai-faq-icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="ai-faq-answer-{{ ai_gen_id }}">
+          <div class="ai-faq-answer-content-{{ ai_gen_id }}">{{ block.settings.faq_17_answer }}</div>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </faq-accordion-{{ ai_gen_id }}>
 
@@ -979,11 +1011,43 @@
       "type": "text",
       "id": "faq_15_question",
       "label": "Question",
-      "default": "Why buy from AgaPlantz?"
+      "default": "When will my pre-order ship?"
     },
     {
       "type": "richtext",
       "id": "faq_15_answer",
+      "label": "Answer",
+      "default": "<p>We are passionate about rare tropical plants and carefully handle every order with attention and care. Our goal is to provide healthy, beautiful plants for collectors and plant lovers across Canada.</p>"
+    },
+    {
+      "type": "header",
+      "content": "FAQ 16"
+    },
+    {
+      "type": "text",
+      "id": "faq_16_question",
+      "label": "Question",
+      "default": "What if I order ready-to-ship and pre-order plants together?"
+    },
+    {
+      "type": "richtext",
+      "id": "faq_16_answer",
+      "label": "Answer",
+      "default": "<p>If you order ready-to-ship and pre-order plants together and we have your pre-order variety in ready-to-ship stock, it is automatically switched to the ready-to-ship plant so your order ships sooner.</p>"
+    },
+    {
+      "type": "header",
+      "content": "FAQ 17"
+    },
+    {
+      "type": "text",
+      "id": "faq_17_question",
+      "label": "Question",
+      "default": "Why buy from AgaPlantz?"
+    },
+    {
+      "type": "richtext",
+      "id": "faq_17_answer",
       "label": "Answer",
       "default": "<p>We are passionate about rare tropical plants and carefully handle every order with attention and care. Our goal is to provide healthy, beautiful plants for collectors and plant lovers across Canada.</p>"
     }
