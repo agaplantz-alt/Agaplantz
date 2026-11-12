@@ -1,0 +1,392 @@
+# Products with no photograph (10 Nov 2026)
+
+Taken from the mature-photo-on-cards diagnosis: all 615 ACTIVE products were paged and classified.
+These products have **no media at all**, so every card (collection, search, Best Sellers) shows
+Shopify's grey placeholder, and no mature photo can lead the card. This is the product session's
+queue. Page 1 of the paging (the 100 photographed bestsellers) had 4 more with no media:
+`alocasia-polly-green-pre-order`, `alocasia-portei-aurea-variegated-pre-order`,
+`alocasia-longiloba-suhirmaniana-green-pre-order`, `alocasia-macrorrhiza-albo-variegated-pre-order`.
+
+**305 products in total**, by genus:
+
+## ALOCASIA — 125
+- `alocasia-aegis-green-pre-order` — Alocasia Aegis (Green)
+- `alocasia-alba` — Alocasia Alba
+- `alocasia-amazonica-ivory-coast` — Alocasia Amazonica Ivory Coast
+- `alocasia-amazonica-ivory-coast-albo-variegated` — Alocasia Amazonica Ivory Coast Albo Variegated
+- `alocasia-antoro-velvet` — Alocasia Antoro Velvet
+- `alocasia-aranea` — Alocasia Aranea
+- `alocasia-azlanii-red-mambo` — Alocasia Azlanii Red Mambo
+- `alocasia-bimasena` — Alocasia Bimasena
+- `alocasia-bisma` — Alocasia Bisma
+- `alocasia-black-borneo` — Alocasia Black Borneo
+- `alocasia-black-stem-variegated-pre-order` — Alocasia Black Stem Variegated
+- `alocasia-black-velvet` — Alocasia Black Velvet
+- `alocasia-black-velvet-pink-variegated-single-leaf-pre-order` — Alocasia Black Velvet Pink Variegated (Single Leaf)
+- `alocasia-blue-dragon` — Alocasia Blue Dragon
+- `alocasia-boa` — Alocasia Boa
+- `alocasia-brancifolia-aurea-variegated-pre-order` — Alocasia Brancifolia Aurea Variegated
+- `alocasia-brancifolia-pink-passion` — Alocasia Brancifolia Pink Passion
+- `alocasia-brancifolia-red-stem` — Alocasia Brancifolia Red Stem
+- `alocasia-calidora` — Alocasia Calidora
+- `alocasia-california-round-form` — Alocasia California Round Form
+- `alocasia-chaii` — Alocasia Chaii
+- `alocasia-chantrieri` — Alocasia Chantrieri
+- `alocasia-clypeolata` — Alocasia Clypeolata
+- `alocasia-corazon` — Alocasia Corazon
+- `alocasia-crystal` — Alocasia Crystal
+- `alocasia-cucullata-yellow-tail` — Alocasia Cucullata Yellow Tail
+- `alocasia-cuprea-black` — Alocasia Cuprea Black
+- `alocasia-cuprea-black-pink-mint-variegated` — Alocasia Cuprea Black Pink Mint Variegated
+- `alocasia-cuprea-red-secret` — Alocasia Cuprea Red Secret
+- `alocasia-cuprea-red-secret-pink-variegated` — Alocasia Cuprea Red Secret Pink Variegated
+- `alocasia-curup-green-stem` — Alocasia Curup Green Stem
+- `alocasia-dark-star` — Alocasia Dark Star
+- `alocasia-doff-watsoniana-black-leaf` — Alocasia Doff Watsoniana Black Leaf
+- `alocasia-dragon-scale` — Alocasia Dragon Scale
+- `alocasia-dragon-scale-white-lava-variegated-pre-order` — Alocasia Dragon Scale White Lava Variegated
+- `alocasia-dragon-wings` — Alocasia Dragon Wings
+- `alocasia-dwarf-knight` — Alocasia Dwarf Knight
+- `alocasia-eukri` — Alocasia Eukri
+- `alocasia-foam` — Alocasia Foam
+- `alocasia-frydek` — Alocasia Frydek
+- `alocasia-frydek-aurea-variegated-pre-order` — Alocasia Frydek Aurea Variegated
+- `alocasia-gold-bone` — Alocasia Gold Bone
+- `alocasia-golden-bone-mutation-variegated-pre-order` — Alocasia Golden Bone Mutation Variegated
+- `alocasia-golden-bone-pink-variegated-pre-order` — Alocasia Golden Bone Pink Variegated
+- `alocasia-grandis` — Alocasia Grandis
+- `alocasia-green-silk` — Alocasia Green Silk
+- `alocasia-green-unicorn-albo-variegated` — Alocasia Green Unicorn Albo Variegated
+- `alocasia-heart-balloon` — Alocasia Heart Balloon
+- `alocasia-heterophylla-metallic-blue` — Alocasia Heterophylla Metallic Blue
+- `alocasia-holy-grail-pre-order` — Alocasia Holy Grail
+- `alocasia-infernalis-black-magic` — Alocasia Infernalis Black Magic
+- `alocasia-king-red-imperial-red` — Alocasia King Red (Imperial Red)
+- `alocasia-lauterbachiana-albo-variegated` — Alocasia Lauterbachiana Albo Variegated
+- `alocasia-lauterbachiana-mint-variegated` — Alocasia Lauterbachiana Mint Variegated
+- `alocasia-longiloba-purple-pre-order` — Alocasia Longiloba Purple
+- `alocasia-longiloba-red-back` — Alocasia Longiloba Red Back
+- `alocasia-longiloba-silver` — Alocasia Longiloba Silver
+- `alocasia-longiloba-sp-golden` — Alocasia Longiloba sp. Golden
+- `alocasia-lukiwan` — Alocasia Lukiwan
+- `alocasia-macrorrhiza-stingray` — Alocasia Macrorrhiza Stingray
+- `alocasia-macrorrhizos-camouflage` — Alocasia Macrorrhizos Camouflage
+- `alocasia-macrorrhizos-camouflage-aurea-variegated` — Alocasia Macrorrhizos Camouflage Aurea Variegated
+- `alocasia-maharani-moonlight` — Alocasia Maharani Moonlight
+- `alocasia-mandalay-pink-variegated-pre-order` — Alocasia Mandalay Pink Variegated
+- `alocasia-melo` — Alocasia Melo
+- `alocasia-metal` — Alocasia Metal
+- `alocasia-mini-jacklyn-pre-order` — Alocasia Mini Jacklyn
+- `alocasia-mirror-watsoniana-pixie` — Alocasia Mirror Watsoniana Pixie
+- `alocasia-mirror-watsoniana-pixie-aurea-variegated` — Alocasia Mirror Watsoniana Pixie Aurea Variegated
+- `alocasia-new-guinea-gold-aurea-variegated` — Alocasia New Guinea Gold Aurea Variegated
+- `alocasia-ninja-albo-lava-variegated-pre-order` — Alocasia Ninja Albo Lava Variegated
+- `alocasia-ninja-green` — Alocasia Ninja Green
+- `alocasia-ninja-silver` — Alocasia Ninja Silver
+- `alocasia-nycteris` — Alocasia Nycteris
+- `alocasia-odora-batik-variegated` — Alocasia Odora Batik Variegated
+- `alocasia-odora-california` — Alocasia Odora California
+- `alocasia-parasol` — Alocasia Parasol
+- `alocasia-parasol-pink-variegated` — Alocasia Parasol Pink Variegated
+- `alocasia-peltata-silver-grey` — Alocasia Peltata Silver Grey
+- `alocasia-pink-dragon` — Alocasia Pink Dragon
+- `alocasia-pink-dragon-albo-variegated` — Alocasia Pink Dragon Albo Variegated
+- `alocasia-plumea-nigra` — Alocasia Plumea Nigra
+- `alocasia-polly-shattered-ruby-variegated-pre-order` — Alocasia Polly Shattered Ruby Variegated
+- `alocasia-portei` — Alocasia Portei
+- `alocasia-portei-malaysian-monster` — Alocasia Portei Malaysian Monster
+- `alocasia-portora-aurea-variegated` — Alocasia Portora Aurea Variegated
+- `alocasia-portora-green` — Alocasia Portora Green
+- `alocasia-portora-small-leaf-aurea-variegated` — Alocasia Portora Small Leaf Aurea Variegated
+- `alocasia-pride-of-cup` — Alocasia Pride of Cup
+- `alocasia-princeps` — Alocasia Princeps
+- `alocasia-princeps-aurea-variegated` — Alocasia Princeps Aurea Variegated
+- `alocasia-princeps-mint-variegated` — Alocasia Princeps Mint Variegated
+- `alocasia-puncak-borneensis` — Alocasia Puncak Borneensis
+- `alocasia-reginae-aurea-variegated-pre-order` — Alocasia Reginae Aurea Variegated
+- `alocasia-reginae-elaine` — Alocasia Reginae Elaine
+- `alocasia-reticulata` — Alocasia Reticulata
+- `alocasia-reversa` — Alocasia Reversa
+- `alocasia-ridleyi` — Alocasia Ridleyi
+- `alocasia-sanderiana-nobilis` — Alocasia Sanderiana Nobilis
+- `alocasia-sarian` — Alocasia Sarian
+- `alocasia-scabriuscula-mint-variegated` — Alocasia Scabriuscula Mint Variegated
+- `alocasia-scalprum` — Alocasia Scalprum
+- `alocasia-scalprum-golden-aurea-variegated` — Alocasia Scalprum Golden Aurea Variegated
+- `alocasia-scalprum-golden-variegated` — Alocasia Scalprum Golden Variegated
+- `alocasia-scalprum-lava-albo-variegated` — Alocasia Scalprum Lava Albo Variegated
+- `alocasia-scalprum-sp` — Alocasia Scalprum sp
+- `alocasia-sedenii-pink-mint-variegated` — Alocasia Sedenii Pink Mint Variegated
+- `alocasia-sedenii-pink-variegated-pre-order` — Alocasia Sedenii Pink Variegated
+- `alocasia-silver-dragon-albo-lava-variegated-pre-order` — Alocasia Silver Dragon Albo Lava Variegated
+- `alocasia-silver-dragon-aurea-lava-variegated-pre-order` — Alocasia Silver Dragon Aurea Lava Variegated
+- `alocasia-silver-nebula` — Alocasia Silver Nebula
+- `alocasia-simpo` — Alocasia Simpo
+- `alocasia-sinuata-albo-variegated` — Alocasia Sinuata Albo Variegated
+- `alocasia-sp-borneo` — Alocasia Sp. Borneo
+- `alocasia-suhirmaniana` — Alocasia Suhirmaniana
+- `alocasia-triangularis` — Alocasia Triangularis
+- `alocasia-venom-pink-variegated-a-grade-pre-order` — Alocasia Venom Pink Variegated A Grade
+- `alocasia-venom-pink-variegated-b-grade-pre-order` — Alocasia Venom Pink Variegated B Grade
+- `alocasia-venom-pink-variegated-s-grade-pre-order` — Alocasia Venom Pink Variegated S Grade
+- `alocasia-venusta` — Alocasia Venusta
+- `alocasia-watsoniana` — Alocasia Watsoniana
+- `alocasia-watsoniana-sp` — Alocasia Watsoniana sp.
+- `alocasia-wentii` — Alocasia Wentii
+- `alocasia-zebrina` — Alocasia Zebrina
+- `alocasia-zebrina-raven-stalk` — Alocasia Zebrina Raven Stalk
+
+## ANTHURIUM — 33
+- `anthurium-angel-wings-sp` — Anthurium Angel Wings sp
+- `anthurium-arrow` — Anthurium Arrow
+- `anthurium-barkeri` — Anthurium Barkeri
+- `anthurium-big-bill` — Anthurium Big Bill
+- `anthurium-black-luxurians` — Anthurium Black Luxurians
+- `anthurium-clarinervium` — Anthurium Clarinervium
+- `anthurium-clarinervium-sp-702` — Anthurium Clarinervium Sp. 702
+- `anthurium-crystallinum` — Anthurium Crystallinum
+- `anthurium-crystallinum-matcha-x-red-crystal` — Anthurium Crystallinum Matcha x Red Crystal
+- `anthurium-crystallinum-purple-crystal` — Anthurium Crystallinum Purple Crystal
+- `anthurium-crystallinum-red-crystal` — Anthurium Crystallinum Red Crystal
+- `anthurium-crystallinum-red-purple` — Anthurium Crystallinum Red-Purple
+- `anthurium-dark-phoenix-x-forgetii` — Anthurium Dark Phoenix x Forgetii
+- `anthurium-dorayaki` — Anthurium Dorayaki
+- `anthurium-forgetii-x-crystallinum` — Anthurium Forgetii x Crystallinum
+- `anthurium-forgetii-x-red-crystal` — Anthurium Forgetii x Red Crystal
+- `anthurium-kos-golden` — Anthurium KOS Golden
+- `anthurium-macrolobium` — Anthurium Macrolobium
+- `anthurium-pink-veil` — Anthurium Pink Veil
+- `anthurium-pink-veil-variegated` — Anthurium Pink Veil Variegated
+- `anthurium-plowmanii-sp` — Anthurium Plowmanii sp.
+- `anthurium-polystictum` — Anthurium Polystictum
+- `anthurium-purple-amethyst-x-dreamweaver` — Anthurium Purple Amethyst x Dreamweaver
+- `anthurium-purple-aurora` — Anthurium Purple Aurora
+- `anthurium-red-crystallinum-2` — Anthurium Red Crystallinum #2
+- `anthurium-regale` — Anthurium Regale
+- `anthurium-regale-hybrid` — Anthurium Regale Hybrid
+- `anthurium-renaissance-variegated` — Anthurium Renaissance Variegated
+- `anthurium-scandens` — Anthurium Scandens
+- `anthurium-silver-bowl` — Anthurium Silver Bowl
+- `anthurium-silver-veil` — Anthurium Silver Veil
+- `anthurium-skg-super-silver` — Anthurium SKG Super Silver
+- `anthurium-variabile` — Anthurium Variabile
+
+## BEGONIA — 12
+- `begonia-brook-crystal` — Begonia Brook Crystal
+- `begonia-ds-dolce-vita` — Begonia Dolce Vita
+- `begonia-ds-fairytale` — Begonia Fairytale
+- `begonia-flamingo-soul` — Begonia Flamingo Soul
+- `begonia-geometry` — Begonia Golden Geometry
+- `begonia-java` — Begonia Java
+- `begonia-midnight-sun` — Begonia Midnight Sun
+- `begonia-pink-minx` — Begonia Pink Minx
+- `begonia-pseudoedulis` — Begonia Pseudoedulis
+- `begonia-silver-treasure` — Begonia Silver Treasure
+- `begonia-superuniverse` — Begonia Superuniverse
+- `begonia-tanjiewhoeii` — Begonia Tanjiewhoeii
+
+## MONSTERA — 15
+- `monstera-acacoyaguensis` — Monstera Acacoyaguensis
+- `monstera-adansonii` — Monstera Adansonii
+- `monstera-brazil` — Monstera Brazil
+- `monstera-cheese` — Monstera Cheese
+- `monstera-croatii` — Monstera Croatii
+- `monstera-cultivar-compact` — Monstera Cultivar Compact
+- `monstera-deliciosa` — Monstera Deliciosa
+- `monstera-esqueleto` — Monstera Esqueleto
+- `monstera-giant` — Monstera Giant
+- `monstera-green-coral` — Monstera Green Coral
+- `monstera-napo` — Monstera Napo
+- `monstera-sierrana` — Monstera Sierrana
+- `monstera-siltepecana` — Monstera Siltepecana
+- `monstera-siltepecana-green` — Monstera Siltepecana Green
+- `monstera-white-tears` — Monstera White Tears
+
+## PHILODENDRON — 116
+- `philodendron-anderson` — Philodendron Anderson
+- `philodendron-angela-aurea-variegated` — Philodendron Angela Aurea Variegated
+- `philodendron-atabapoense` — Philodendron Atabapoense
+- `philodendron-atom` — Philodendron Atom
+- `philodendron-black-billietiae` — Philodendron Black Billietiae
+- `philodendron-black-cardinal-green` — Philodendron Black Cardinal (Green)
+- `philodendron-blood-luna` — Philodendron Blood Luna
+- `philodendron-bob-cee-x-polypodioides` — Philodendron Bob Cee x Polypodioides
+- `philodendron-brandi` — Philodendron Brandi
+- `philodendron-brandi-variegated` — Philodendron Brandi Variegated
+- `philodendron-calkins-gold` — Philodendron Calkins Gold
+- `philodendron-camposportoanum` — Philodendron Camposportoanum
+- `philodendron-code-69686` — Philodendron Code 69686
+- `philodendron-congo-thailand` — Philodendron Congo Thailand
+- `philodendron-crassinervium` — Philodendron Crassinervium
+- `philodendron-cuckoo` — Philodendron Cuckoo
+- `philodendron-ecuadorian-canoe` — Philodendron Ecuadorian Canoe
+- `philodendron-extremely-dense-princess` — Philodendron Extremely Dense Princess
+- `philodendron-fire-tiger-variegated` — Philodendron Fire Tiger Variegated
+- `philodendron-florida-albo-variegated` — Philodendron Florida Albo Variegated
+- `philodendron-florida-bronze` — Philodendron Florida Bronze
+- `philodendron-florida-ghost-mint` — Philodendron Florida Ghost Mint
+- `philodendron-gigante` — Philodendron Gigante
+- `philodendron-gloriosum-legacy-variegated-pre-order` — Philodendron Gloriosum Legacy Variegated
+- `philodendron-gloriosum-sp` — Philodendron Gloriosum sp.
+- `philodendron-gloriosum-variegated-tri-color-pre-order` — Philodendron Gloriosum Variegated Tri-Color
+- `philodendron-glorious` — Philodendron Glorious
+- `philodendron-golden-crocodile-green-pre-order` — Philodendron Golden Crocodile Green
+- `philodendron-golden-xanadu` — Philodendron Golden Xanadu
+- `philodendron-green-emerald-variegated` — Philodendron Green Emerald Variegated
+- `philodendron-green-princess-pre-order` — Philodendron Green Princess
+- `philodendron-hastatum-silver-sword` — Philodendron Hastatum Silver Sword
+- `philodendron-heather-may` — Philodendron Heather May
+- `philodendron-holtonianum` — Philodendron Holtonianum
+- `philodendron-ice-and-snow-pink-princess` — Philodendron Ice and Snow Pink Princess
+- `philodendron-imperial-golden-moonlight` — Philodendron Imperial Golden (Moonlight)
+- `philodendron-imperial-red` — Philodendron Imperial Red
+- `philodendron-jerry-horne` — Philodendron Jerry Horne
+- `philodendron-jungle-fever` — Philodendron Jungle Fever
+- `philodendron-linnaei` — Philodendron Linnaei
+- `philodendron-lupinum` — Philodendron Lupinum
+- `philodendron-lvsiao` — Philodendron Lvsiao
+- `philodendron-majestic` — Philodendron Majestic
+- `philodendron-malay-gold-lemon-lime` — Philodendron Malay Gold (Lemon Lime)
+- `philodendron-mamei` — Philodendron Mamei
+- `philodendron-martianum-fat-boy` — Philodendron Martianum Fat Boy
+- `philodendron-maximum` — Philodendron Maximum
+- `philodendron-mayoi` — Philodendron Mayoi
+- `philodendron-mccolleys-finale` — Philodendron McColley's Finale
+- `philodendron-melaloni` — Philodendron Melaloni
+- `philodendron-melanochrysum` — Philodendron Melanochrysum
+- `philodendron-mexicanum` — Philodendron Mexicanum
+- `philodendron-micans-green-pre-order` — Philodendron Micans Green
+- `philodendron-mini-sodiroi` — Philodendron Mini Sodiroi
+- `philodendron-minima` — Philodendron Minima
+- `philodendron-nangaritense-fuzzy-petiole` — Philodendron Nangaritense Fuzzy Petiole
+- `philodendron-narrow-escape-jungle-boogie` — Philodendron Narrow Escape (Jungle Boogie)
+- `philodendron-octopus-atlantis` — Philodendron Octopus (Atlantis)
+- `philodendron-olecranon` — Philodendron Olecranon
+- `philodendron-olympiad-green` — Philodendron Olympiad Green
+- `philodendron-orange-congo-variegated` — Philodendron Orange Congo Variegated
+- `philodendron-oxycardium-variegated` — Philodendron Oxycardium Variegated
+- `philodendron-painted-lady-pre-order` — Philodendron Painted Lady
+- `philodendron-panduriforme` — Philodendron Panduriforme
+- `philodendron-paraiso-verde-variegated` — Philodendron Paraiso Verde Variegated
+- `philodendron-paraiso-x-billietiae` — Philodendron Paraiso x Billietiae
+- `philodendron-pastazanum-silver` — Philodendron Pastazanum Silver
+- `philodendron-pastazanum-silver-hybrid-green` — Philodendron Pastazanum Silver Hybrid Green
+- `philodendron-pedatum-glad-hands` — Philodendron Pedatum Glad Hands
+- `philodendron-pink-princess-marble-aurea-variegated` — Philodendron Pink Princess Marble Aurea Variegated
+- `philodendron-plowmanii-green-pre-order` — Philodendron Plowmanii Green
+- `philodendron-prince-of-orange` — Philodendron Prince of Orange
+- `philodendron-radiatum` — Philodendron Radiatum
+- `philodendron-red-flame` — Philodendron Red Flame
+- `philodendron-red-heart` — Philodendron Red Heart
+- `philodendron-ring-of-fire-matcha` — Philodendron Ring of Fire Matcha
+- `philodendron-ring-of-fire-pre-order` — Philodendron Ring of Fire
+- `philodendron-rojo-congo` — Philodendron Rojo Congo
+- `philodendron-rosy-clouds` — Philodendron Rosy Clouds
+- `philodendron-rugosum` — Philodendron Rugosum
+- `philodendron-rugosum-aberrant` — Philodendron Rugosum Aberrant
+- `philodendron-ruizii` — Philodendron Ruizii
+- `philodendron-sayaka` — Philodendron Sayaka
+- `philodendron-serpens` — Philodendron Serpens
+- `philodendron-sharoniae` — Philodendron Sharoniae
+- `philodendron-skeleton-key` — Philodendron Skeleton Key
+- `philodendron-snowdrift` — Philodendron Snowdrift
+- `philodendron-sodiroi` — Philodendron Sodiroi
+- `philodendron-sodiroi-variegated` — Philodendron Sodiroi Variegated
+- `philodendron-sp-original` — Philodendron Sp. Original
+- `philodendron-subhastatum-green-pre-order` — Philodendron Subhastatum Green
+- `philodendron-sucre-slim` — Philodendron Sucre Slim
+- `philodendron-sun-red` — Philodendron Sun Red
+- `philodendron-sunset-fairy` — Philodendron Sunset Fairy
+- `philodendron-tenue` — Philodendron Tenue
+- `philodendron-tripartitum` — Philodendron Tripartitum
+- `philodendron-verrucosum-fantasy` — Philodendron Verrucosum Fantasy
+- `philodendron-verrucosum-green-hair` — Philodendron Verrucosum Green Hair
+- `philodendron-verrucosum-magic-marks` — Philodendron Verrucosum Magic Marks
+- `philodendron-verrucosum-sp-holland` — Philodendron Verrucosum Sp. Holland
+- `philodendron-verrucosum-x-melanochrysum` — Philodendron Verrucosum x Melanochrysum
+- `philodendron-warscewiczii-aurea-flavum-pre-order` — Philodendron Warscewiczii Aurea Flavum
+- `philodendron-warscewiczii-green` — Philodendron Warscewiczii Green
+- `philodendron-warscewiczii-variegated` — Philodendron Warscewiczii Variegated
+- `philodendron-white-knight-mint-variegated-pre-order` — Philodendron White Knight Mint Variegated
+- `philodendron-white-knight-pre-order` — Philodendron White Knight
+- `philodendron-white-measure` — Philodendron White Measure
+- `philodendron-white-night-princess` — Philodendron White Night Princess
+- `philodendron-white-princess-mint-variegated` — Philodendron White Princess Mint Variegated
+- `philodendron-white-princess-tricolor-variegated-2-pre-order` — Philodendron White Princess Tricolor Variegated #2
+- `philodendron-white-wizard-pink-variegated` — Philodendron White Wizard Pink Variegated
+- `philodendron-williamsii` — Philodendron Williamsii
+- `philodendron-xanadu` — Philodendron Xanadu
+- `philodendron-xanadu-giant-upright` — Philodendron Xanadu Giant Upright
+- `philodendron-zebra` — Philodendron Zebra
+- `philodendron-zebra-clump` — Philodendron Zebra Clump
+
+## Products with photos but no mature photo (`custom.big_one` blank) — pages 2–7
+
+Cards show the first product photo, as before. Non-plants are expected here.
+
+- `tissue-culture-starter-kit` — Tissue Culture Substrate ()
+- `alocasia-longiloba-albo-variegated` — Alocasia Longiloba Albo Variegated (ALOCASIA)
+- `alocasia-longiloba-grandis-aurea-variegated-pre-order` — Alocasia Longiloba Grandis Aurea Variegated (ALOCASIA)
+- `alocasia-zebrina-aurea-variegated-pre-order` — Alocasia Zebrina Aurea Variegated (ALOCASIA)
+- `anthurium-skg-red-crystallinum-x-tezula-red-crystallinum-pre-order` — Anthurium SKG Red Crystallinum X Tezula Red Crystallinum (ANTHURIUM)
+- `anthurium-tezula-red-crystallinum-x-starlight-pre-order` — Anthurium Tezula Red Crystallinum x Starlight (ANTHURIUM)
+- `begonia-lamoon` — Begonia Lamoon (BEGONIA)
+- `begonia-pink-rouge` — Begonia Pink Rouge (BEGONIA)
+- `begonia-pink-rouge-super-pink` — Begonia Pink Rouge Super Pink (BEGONIA)
+- `begonia-rouge-pink-variegated-pre-order` — Begonia Rouge Pink Variegated (BEGONIA)
+- `begonia-rouge-variegated` — Begonia Rouge Variegated (BEGONIA)
+- `crochet-bellflower-hanging-charm` — Crochet Bellflower Hanging Charm (Crochet)
+- `crochet-bellflower-pot` — Crochet Bellflower Pot (Crochet)
+- `crochet-bouquet-keychain` — Crochet Bouquet Keychain (Crochet)
+- `crochet-capybara-turtle` — Crochet Capybara with Turtle Friend (Crochet)
+- `crochet-daisy-granny-bag` — Crochet Daisy Granny Bag (Crochet)
+- `crochet-flower-wreath-pearl` — Crochet Flower Wreath with Pearl Strap (Crochet)
+- `crochet-gingham-flower-tote` — Crochet Gingham Flower Tote (Crochet)
+- `crochet-jellyfish-bag-charm` — Crochet Jellyfish Bag Charm (Crochet)
+- `crochet-lily-pot` — Crochet Lily Pot (Crochet)
+- `crochet-mini-flower-vase` — Crochet Mini Flower Vase (Crochet)
+- `crochet-orange-turtle-keychain` — Crochet Orange Turtle Keychain (Crochet)
+- `crochet-pearl-shell-bag` — Crochet Pearl Shell Bag (Crochet)
+- `crochet-rose-pot` — Crochet Rose Pot (Crochet)
+- `crochet-tulip-heart-pot` — Crochet Tulip Heart Pot (Crochet)
+- `crochet-wisteria-hanging-basket` — Crochet Wisteria Hanging Basket (Crochet)
+- `monstera-bulbasaur-mature-specimen` — Monstera Bulbasaur — Mature Specimen (MONSTERA)
+- `monstera-devil-monster-premium-variegated-mature-specimen` — Monstera Devil Monster Premium Variegated — Mature Specimen (MONSTERA)
+- `monstera-thai-constellation-round-form-pre-order` — Monstera Thai Constellation Round Form (MONSTERA)
+- `philodendron-billietiae-variegated-mature-specimen` — Philodendron Billietiae Variegated — Mature Specimen (PHILODENDRON)
+- `philodendron-caramel-marble-variegated-mature-specimen` — Philodendron Caramel Marble Variegated — Mature Specimen (PHILODENDRON)
+- `philodendron-cherry-red-green-pre-order` — Philodendron Cherry Red Green (PHILODENDRON)
+- `philodendron-el-choco-red` — Philodendron El Choco Red (PHILODENDRON)
+- `philodendron-florida-beauty-variegated-mature-specimen` — Philodendron Florida Beauty Variegated — Mature Specimen (PHILODENDRON)
+- `philodendron-gigas-pre-order` — Philodendron Gigas (PHILODENDRON)
+- `philodendron-gloriosum-dark-form` — Philodendron Gloriosum Dark Form (PHILODENDRON)
+- `philodendron-gloriosum-variegated-mature-specimen` — Philodendron Gloriosum Variegated — Mature Specimen (PHILODENDRON)
+- `philodendron-golden-dragon-green` — Philodendron Golden Dragon (Green) (PHILODENDRON)
+- `philodendron-paraiso-verde-pre-order` — Philodendron Paraiso Verde (PHILODENDRON)
+- `self-watering-pot-humidity-dome` — Self-Watering Pot with Humidity Dome (Pots)
+- `rhaphidophora-puberula-variegated` — Rhaphidophora Puberula Variegated (RHAPHIDOPHORA)
+- `spathiphyllum-sensation-albo-variegated-peace-lily` — Spathiphyllum Sensation Albo Variegated (Peace Lily) (SPATHIPHYLLUM)
+- `monthly-mystery-plant-box` — Monthly Mystery Plant Box (Service)
+- `heat-pack-insulation-winter-shipping-add-on` — 72-120-Hour Heat Pack & Thermal Insulation (Winter Shipping Add-On) (Shipping Add-On)
+
+## Mature photo not attached to the product (case C, now handled by the theme)
+
+The card shows the `big_one` file directly. Attaching the same file to the product media would also put it in the product gallery.
+
+- `philodendron-spiritus-sancti-rear`
+- `philodendron-mcdowell`
+- `monstera-obliqua-peru`
+- `philodendron-florida-beauty`
+- `philodendron-goeldii-mint`
+- `scindapsus-pictus-variegated`
+- `philodendron-tortum`
+- `alocasia-cuprea-red-secret-variegated-super-pink-pre-order`
+- `alocasia-pink-dragon-stardust-mint-variegated-pre-order`
+- `philodendron-orange-marmalade-green-pre-order`
+- `philodendron-patriciae`
+- `philodendron-gloriosum-pink-back`
+- `anthurium-dark-phoenix-mint-variegated-pre-order`
+- `anthurium-red-crystallinum-wonderboy-pre-order`
+- `anthurium-sp-napo-pre-order`
+- `anthurium-veitchii-pre-order`
+- `anthurium-vittarifolium-variegated-pre-order`

@@ -1,0 +1,308 @@
+{%- comment -%}
+  AgaPlantz: winter heat pack + insulation, free on orders of $100 or more.
+  This file is the one place the rule lives. It renders three things, by `mode`:
+
+    (no mode)  the cart offer. Rendered from snippets/acclimation-guarantee-badge.liquid (cart
+               context), which the cart page and the drawer both reach through cart-summary.
+    'state'    "1|100" while the free offer is on, "0|100" otherwise. Captured by
+               sections/winter-shipping.liquid so the home page band says the same thing.
+    'guard'    a small script, rendered on every page from the site_fixes section in
+               sections/header-group.json, that keeps the cart honest (see below).
+
+  How it works. There are two products:
+    heat-pack-insulation-winter-shipping-add-on   the paid pack, $3.50
+    free-winter-heat-pack                         the same pack at $0, hidden from search
+  The free one is a $0 item, not a discount, on purpose. Shopify applies one product discount
+  per cart line and a Buy X get Y counts the "buy" plants as its own, so during a percentage
+  sale or with a code on the plants a free-pack discount is dropped at checkout (proved with
+  draftOrderCalculate on 10 Nov 2026). A $0 item works whatever else is discounted.
+
+  Cart states while the offer is on:
+    no pack, under $100        the paid offer, plus how much more makes it free
+    no pack, $100 or more      "Free with this order", button Add free (adds the $0 item)
+    paid pack, under $100      one line: how much more makes it free
+    paid pack, $100 or more    the guard swaps it for the free one (a "Make it free" button
+                               is the fallback if the script did not run)
+    free pack, $100 or more    nothing; the cart line shows it at $0
+    free pack, under $100      the guard removes it; the fallback line says why
+  Nothing at checkout enforces the $100. The guard does: on page load and after every cart
+  change it removes a free pack from a cart under $100, keeps it to one, and swaps a paid pack
+  for the free one at $100. It then tells Horizon's cart to redraw (a CartLinesUpdateEvent with
+  source 'aghp'), or reloads if that fails.
+
+  The $100 counts list prices before discounts, the same way the November sale counts its own
+  $100. Both packs and subscription lines are left out.
+
+  To change the offer: hp_free_over (cents) and hp_free_until below. To switch it off, set the
+  free product to draft: everything falls back to the paid offer. The automatic discount
+  "Free Winter Heat Pack on Orders $100+" (1 Dec 2026 to 31 Mar 2027) is only a safety net for
+  a paid pack that reaches checkout on a $100 order outside a sale.
+{%- endcomment -%}
+{%- liquid
+  assign hp_handle = 'heat-pack-insulation-winter-shipping-add-on'
+  assign hp_free_handle = 'free-winter-heat-pack'
+  assign hp_product = all_products[hp_handle]
+  assign hp_variant = hp_product.selected_or_first_available_variant
+  assign hp_free_product = all_products[hp_free_handle]
+  assign hp_free_variant = hp_free_product.selected_or_first_available_variant
+
+  assign hp_free_over = 10000
+  assign hp_free_until = '2027-03-31T23:59:59-04:00' | date: '%s' | plus: 0
+  assign hp_now = 'now' | date: '%s' | plus: 0
+  assign hp_offer_on = false
+  if hp_free_product.id and hp_free_product.available and hp_product.id and hp_now < hp_free_until
+    assign hp_offer_on = true
+  endif
+
+  assign hp_paid_qty = 0
+  assign hp_free_qty = 0
+  assign hp_counted = 0
+  for item in cart.items
+    if item.product_id == hp_product.id
+      assign hp_paid_qty = hp_paid_qty | plus: item.quantity
+      continue
+    endif
+    if item.product_id == hp_free_product.id
+      assign hp_free_qty = hp_free_qty | plus: item.quantity
+      continue
+    endif
+    if item.selling_plan_allocation
+      continue
+    endif
+    assign hp_counted = hp_counted | plus: item.original_line_price
+  endfor
+
+  assign hp_free_now = false
+  assign hp_gap = 0
+  if hp_offer_on
+    if hp_counted >= hp_free_over
+      assign hp_free_now = true
+    else
+      assign hp_gap = hp_free_over | minus: hp_counted
+    endif
+  endif
+
+  # Does the cart need the guard on this page load?
+  assign hp_fix = false
+  if hp_free_qty > 0
+    if hp_free_now == false or hp_free_qty > 1
+      assign hp_fix = true
+    endif
+  elsif hp_paid_qty > 0 and hp_free_now
+    assign hp_fix = true
+  endif
+-%}
+{%- if mode == 'state' -%}
+  {%- if hp_offer_on -%}1{%- else -%}0{%- endif -%}|{{ hp_free_over | divided_by: 100 }}
+{%- elsif mode == 'guard' -%}
+  {%- if hp_free_product.id and hp_product.id -%}
+    <script type="module">
+      import { StandardEvents, CartLinesUpdateEvent } from '@shopify/events';
+      if (!window.__aghpInit) {
+        window.__aghpInit = true;
+        const C = {
+          on: {{ hp_offer_on | json }},
+          free: {{ hp_free_product.id | json }},
+          freeVariant: {{ hp_free_variant.id | json }},
+          paid: {{ hp_product.id | json }},
+          paidVariant: {{ hp_variant.id | json }},
+          over: {{ hp_free_over | json }},
+          update: {{ routes.cart_update_url | append: '.js' | json }},
+          cart: {{ routes.cart_url | append: '.js' | json }},
+        };
+        let busy = false;
+        let acts = 0;
+        let timer = 0;
+        const plan = (items) => {
+          let paid = 0;
+          let free = 0;
+          let counted = 0;
+          for (const i of items) {
+            if (i.product_id === C.paid) paid += i.quantity;
+            else if (i.product_id === C.free) free += i.quantity;
+            else if (!i.selling_plan_allocation) counted += i.original_line_price;
+          }
+          const enough = C.on && counted >= C.over;
+          const u = {};
+          if (free > 0 && !enough) u[C.freeVariant] = 0;
+          else if (free > 1) u[C.freeVariant] = 1;
+          else if (free === 0 && paid > 0 && enough) {
+            u[C.paidVariant] = paid - 1;
+            u[C.freeVariant] = 1;
+          } else return null;
+          return u;
+        };
+        const redraw = (cart) => {
+          try {
+            const d = CartLinesUpdateEvent.createPromise();
+            document.dispatchEvent(
+              new CartLinesUpdateEvent({ action: 'update', context: 'cart', lines: [], promise: d.promise })
+            );
+            d.resolve({
+              cart: CartLinesUpdateEvent.createCartFromAjaxResponse(cart),
+              detail: { items: cart.items, itemCount: cart.item_count, source: 'aghp', didError: false },
+            });
+          } catch (e) {
+            window.location.reload();
+          }
+        };
+        const check = async () => {
+          if (busy || acts >= 4) return;
+          busy = true;
+          try {
+            const r = await fetch(C.cart, { headers: { Accept: 'application/json' }, credentials: 'same-origin' });
+            if (!r.ok) return;
+            const updates = plan((await r.json()).items || []);
+            if (!updates) return;
+            acts++;
+            const w = await fetch(C.update, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              credentials: 'same-origin',
+              body: JSON.stringify({ updates }),
+            });
+            if (w.ok) redraw(await w.json());
+          } catch (e) {
+          } finally {
+            busy = false;
+          }
+        };
+        const soon = () => {
+          clearTimeout(timer);
+          timer = setTimeout(check, 400);
+        };
+        document.addEventListener(StandardEvents.cartLinesUpdate, (event) => {
+          if (event.promise && typeof event.promise.then === 'function') {
+            event.promise
+              .then((result) => {
+                if (result && result.detail && result.detail.source === 'aghp') return;
+                soon();
+              })
+              .catch(() => {});
+          } else {
+            soon();
+          }
+        });
+        {% if hp_fix %}check();{% endif %}
+      }
+    </script>
+  {%- endif -%}
+{%- elsif hp_product.id and hp_product.available and cart.item_count > 0 -%}
+  {%- capture hp_add_js -%}
+    var b=this;b.disabled=true;b.textContent='Adding';fetch('{{ routes.cart_add_url }}.js',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({id:{% if hp_free_now %}{{ hp_free_variant.id }}{% else %}{{ hp_variant.id }}{% endif %},quantity:1})}).then(function(){window.location.href='{{ routes.cart_url }}';}).catch(function(){b.disabled=false;b.textContent='{% if hp_free_now %}Add free{% else %}Add{% endif %}';});
+  {%- endcapture -%}
+  {%- capture hp_swap_js -%}
+    var b=this;b.disabled=true;b.textContent='Updating';fetch('{{ routes.cart_update_url }}.js',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({updates:{'{{ hp_variant.id }}':{{ hp_paid_qty | minus: 1 }},'{{ hp_free_variant.id }}':1}})}).then(function(){window.location.href='{{ routes.cart_url }}';}).catch(function(){b.disabled=false;b.textContent='Make it free';});
+  {%- endcapture -%}
+  {%- if hp_paid_qty == 0 and hp_free_qty == 0 -%}
+    <div class="hp-addon{% if hp_free_now %} hp-addon--free{% endif %}">
+      {%- if hp_product.featured_image -%}
+        <img
+          class="hp-addon__img"
+          src="{{ hp_product.featured_image | image_url: width: 160 }}"
+          alt=""
+          width="56"
+          height="56"
+          loading="lazy"
+        >
+      {%- endif -%}
+      <div class="hp-addon__text">
+        {%- if hp_free_now -%}
+          <strong>Free winter protection with this order</strong>
+          <span>Heat pack + insulation, up to 5 days of warmth. Free on orders {{ hp_free_over | money_without_trailing_zeros }}+. We only send it if you add it.</span>
+        {%- else -%}
+          <strong>Worried about winter?</strong>
+          <span>Heat pack + insulation, up to 5 days of warmth &middot; {{ hp_variant.price | money }}</span>
+          {%- if hp_offer_on -%}
+            <span class="hp-addon__nudge">Spend {{ hp_gap | money }} more and it is free.</span>
+          {%- endif -%}
+        {%- endif -%}
+        <a href="{{ hp_product.url }}">Details</a>
+      </div>
+      <button
+        type="button"
+        class="hp-addon__btn"
+        onclick="{{ hp_add_js | strip | escape }}"
+      >{% if hp_free_now %}Add free{% else %}Add{% endif %}</button>
+    </div>
+  {%- elsif hp_free_qty == 0 and hp_free_now -%}
+    <div class="hp-addon hp-addon--free">
+      <div class="hp-addon__text">
+        <strong>Your heat pack is free on this order</strong>
+        <span>Orders {{ hp_free_over | money_without_trailing_zeros }}+ get winter protection free.</span>
+      </div>
+      <button
+        type="button"
+        class="hp-addon__btn"
+        onclick="{{ hp_swap_js | strip | escape }}"
+      >Make it free</button>
+    </div>
+  {%- elsif hp_free_qty == 0 and hp_offer_on -%}
+    <div class="hp-addon hp-addon--note">
+      <div class="hp-addon__text">
+        <span class="hp-addon__nudge">Spend {{ hp_gap | money }} more and your heat pack is free.</span>
+      </div>
+    </div>
+  {%- elsif hp_free_qty > 0 and hp_free_now == false -%}
+    <div class="hp-addon hp-addon--note">
+      <div class="hp-addon__text">
+        <span class="hp-addon__nudge">The free heat pack is for orders {{ hp_free_over | money_without_trailing_zeros }}+.{% if hp_offer_on %} Spend {{ hp_gap | money }} more to keep it.{% endif %}</span>
+      </div>
+    </div>
+  {%- endif -%}
+  <style>
+    .hp-addon {
+      order: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #DED3C2;
+      border-radius: 4px;
+      background-color: #F2EBDE;
+      font-family: var(--font-body--family);
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      color: #56503F;
+      text-align: start;
+      box-sizing: border-box;
+    }
+    .cart-summary__inner > .cart__ctas,
+    .cart-drawer__summary > .cart__ctas { order: 2; }
+    .cart-summary__inner > .acclimation-guarantee--cart,
+    .cart-drawer__summary > .acclimation-guarantee--cart { order: 3; }
+    .hp-addon__img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .hp-addon__text {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+    .hp-addon__text strong { color: #2F2A22; font-weight: 600; }
+    .hp-addon__text a { color: #2F2A22; text-underline-offset: 2px; width: fit-content; }
+    .hp-addon__btn {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: #2F2A22;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .hp-addon__btn:disabled { opacity: 0.6; cursor: default; }
+    .hp-addon--free { border-color: #5C6B4C; background-color: #E8EDE1; }
+    .hp-addon--free .hp-addon__btn { background-color: #5C6B4C; }
+    .hp-addon--note { padding: 8px 12px; }
+    .hp-addon__nudge { color: #2F2A22; font-weight: 600; }
+  </style>
+{%- endif -%}

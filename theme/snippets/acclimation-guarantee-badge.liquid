@@ -1,0 +1,23 @@
+{%- comment -%}
+  AgaPlantz wrapper. The guarantee markup and copy live in
+  snippets/acclimation-guarantee-badge-core.liquid; this file forwards every parameter to it.
+  In the cart context it also renders the opt-in cart offers — the Tissue Culture Starter Kit
+  (snippets/tc-kit-addon.liquid) and the winter heat pack (snippets/heat-pack-addon.liquid) —
+  so they appear on the cart page and in the cart drawer.
+{%- endcomment -%}
+{%- if context == 'cart' -%}
+  {% render 'tc-kit-addon' %}
+  {% render 'heat-pack-addon' %}
+{%- endif -%}
+{% render 'acclimation-guarantee-badge-core',
+  context: context,
+  price: price,
+  threshold_cents: threshold_cents,
+  shipping_amount: shipping_amount,
+  page_url: page_url,
+  heading: heading,
+  under_text: under_text,
+  over_text: over_text,
+  cart_text: cart_text,
+  link_text: link_text
+%}

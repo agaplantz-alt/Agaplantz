@@ -1,0 +1,514 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "header_announcements_ELa3gw": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_guarantee": {
+          "type": "_announcement",
+          "settings": {
+            "text": "New: 30-Day Plant Guarantee — Plants Under $200 Replaced Free If They Don’t Make It • Learn More",
+            "link": "/pages/30-day-plant-guarantee",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_labour_day": {
+          "type": "_announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Labour Day Sale — 20% Off Everything • Discount Applied Automatically at Checkout • Ends Monday Night",
+            "link": "/collections",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_nzpPzh": {
+          "type": "_announcement",
+          "settings": {
+            "text": "",
+            "link": "",
+            "font": "var(--font-heading--family)",
+            "font_size": "0.75rem",
+            "weight": "400",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {},
+          "disabled": true
+        },
+        "announcement_4FEDb9": {
+          "type": "_announcement",
+          "disabled": true,
+          "settings": {
+            "text": "",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_jeGMHt": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "Tissue Culture Pre-Orders Close November 30 • Next Batch Opens In Approximately 15-30 Days",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_pricing": {
+          "type": "_announcement",
+          "settings": {
+            "text": "New Batch Pricing — Nearly 200 Plants Now Cheaper • Your Price Is Locked Until Your Plant Ships",
+            "link": "/pages/pre-order",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_JRWntd": {
+          "type": "_announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Acclimated plants — 20% off, no minimum. Ends Aug 31",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_HUGfag": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Free Standard Shipping From $200 in Ontario • Flat Province Rates Shown at Checkout",
+            "link": "/policies/shipping-policy",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_early": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Order Early, Pay Less — The Pre-Order Discount Drops As This Batch Fills • Orders $100+",
+            "link": "/collections/pre-order",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {},
+          "disabled": true
+        },
+        "announcement_sale": {
+          "type": "_announcement",
+          "settings": {
+            "text": "20% Off All Plants — Orders $100+ • Applied Automatically at Checkout • Ends Thursday, November 5",
+            "link": "/collections/all",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {},
+          "disabled": true
+        },
+        "announcement_sale15": {
+          "type": "_announcement",
+          "settings": {
+            "text": "15% Off All Plants — Orders $100+ • Applied Automatically at Checkout • November 6 to 15",
+            "link": "/collections/all",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_bf": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Black Friday — Ready-to-Ship 40% Off • Acclimated 30% Off • Pre-Orders Up to 20% Off • Free Mystery Plant With $150+ Pre-Orders • Ends November 30",
+            "link": "/collections/all",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {},
+          "disabled": true
+        },
+        "announcement_sale10": {
+          "type": "_announcement",
+          "settings": {
+            "text": "10% Off All Plants — Orders $100+ • Applied Automatically at Checkout • November 16 to 26",
+            "link": "/collections/all",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "100",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {},
+          "disabled": true
+        }
+      },
+      "block_order": [
+        "announcement_sale",
+        "announcement_sale15",
+        "announcement_sale10",
+        "announcement_bf",
+        "announcement_early",
+        "announcement_guarantee",
+        "announcement_labour_day",
+        "announcement_nzpPzh",
+        "announcement_4FEDb9",
+        "announcement_jeGMHt",
+        "announcement_pricing",
+        "announcement_JRWntd",
+        "announcement_HUGfag"
+      ],
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 3,
+        "section_width": "full-width",
+        "background_color": "#21381e",
+        "divider_width": 0,
+        "divider_color": "",
+        "padding-block-start": 6,
+        "padding-block-end": 6
+      }
+    },
+    "header_announcements_9jGBFp": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_DcQkww": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "Free delivery on orders over $120",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_BxgCk9": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_DcQkww",
+        "announcement_BxgCk9"
+      ],
+      "disabled": true,
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 3,
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.background }}",
+        "divider_width": 1,
+        "divider_color": "",
+        "padding-block-start": 15,
+        "padding-block-end": 15
+      }
+    },
+    "header_section": {
+      "type": "header",
+      "blocks": {
+        "header-logo": {
+          "type": "_header-logo",
+          "static": true,
+          "settings": {
+            "hide_logo_on_home_page": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "header-menu": {
+          "type": "_header-menu",
+          "static": true,
+          "settings": {
+            "menu": "main-menu-crochet",
+            "background_color": "{{ settings.color_palette.background }}",
+            "text_color": "",
+            "type_font_primary_size": "0.875rem",
+            "menu_font_style": "inverse",
+            "type_font_primary_link": "body",
+            "type_case_primary_link": "none",
+            "menu_style": "featured_products",
+            "featured_products_aspect_ratio": "4 / 5",
+            "featured_collections_aspect_ratio": "16 / 9",
+            "image_border_radius": 0,
+            "navigation_bar": false,
+            "background_color_navigation_bar": "{{ settings.color_palette.background }}",
+            "text_color_navigation_bar": "",
+            "drawer_accordion": true,
+            "drawer_accordion_expand_first": false,
+            "drawer_dividers": false
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "logo_position": "left",
+        "menu_position": "left",
+        "menu_row": "top",
+        "customer_account_menu": "customer-account-main-menu",
+        "show_search": true,
+        "search_position": "right",
+        "search_row": "top",
+        "show_country": true,
+        "country_selector_style": false,
+        "show_language": true,
+        "localization_font": "heading",
+        "localization_font_size": "0.625rem",
+        "localization_position": "right",
+        "localization_row": "top",
+        "section_width": "page-width",
+        "section_height": "standard",
+        "enable_sticky_header": "always",
+        "divider_width": 0,
+        "divider_size": "page-width",
+        "divider_color": "",
+        "border_width": 0,
+        "bottom_border_color": "",
+        "actions_display_style": "icon",
+        "actions_font_size": "0.875rem",
+        "actions_font": "body",
+        "actions_text_case": "none",
+        "background_color_top": "{{ settings.color_palette.background }}",
+        "text_color_top": "",
+        "background_color_bottom": "",
+        "text_color_bottom": "",
+        "bubble_style": "default",
+        "bubble_background_color": "",
+        "bubble_text_color": "",
+        "enable_transparent_header_home": false,
+        "home_inverse_logo": false,
+        "text_color_transparent_home": "",
+        "enable_transparent_header_product": false,
+        "product_inverse_logo": false,
+        "text_color_transparent_product": "",
+        "enable_transparent_header_collection": false,
+        "collection_inverse_logo": false,
+        "text_color_transparent_collection": ""
+      }
+    },
+    "1778569306a523b493": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "1777752810e8b9dfa8": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "1782369314e434d0cd": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "17834122603593ce94": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "crochet_menu_style": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\n#shopify-section-crochet_menu_style,[id$=\"__crochet_menu_style\"]{display:none}\na[href=\"/collections/crochet\"]>.menu-list__link-title,#HeaderDrawer-crochet>.menu-drawer__menu-item-text,a[href=\"/collections/crochet\"]>.menu-drawer__menu-item-text{display:inline-block;width:4.29em;height:1em;vertical-align:-.1em;background:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4701 1096'><defs><pattern id='y' patternUnits='userSpaceOnUse' width='151' height='151' patternTransform='rotate(40)'><rect width='151' height='151' fill='%23E8A3BE'/><rect width='76' height='151' fill='%23CF6F96'/></pattern></defs><circle cx='302' cy='737' r='227' fill='url(%23y)' stroke='%23B8577D' stroke-width='43'/><path d='M87 669q227 -113 431 11M98 823q227 -113 408 0M234 522q125 227 45 431' fill='none' stroke='%23B8577D' stroke-width='34' stroke-linecap='round'/><path d='M427 544C507 312 716 123 948 189' fill='none' stroke='%23CF6F96' stroke-width='64' stroke-linecap='round'/><path transform='translate(586 1016)' d='M64 -348Q64 -495 120 -609Q175 -723 270 -786Q365 -848 481 -848Q589 -848 645 -792Q701 -737 701 -646Q701 -585 680 -548Q658 -511 618 -511Q590 -511 574 -524Q558 -537 558 -562Q558 -571 562 -595Q568 -625 568 -643Q568 -734 471 -734Q405 -734 345 -691Q285 -648 248 -564Q211 -481 211 -366Q211 -246 278 -180Q345 -115 476 -115Q541 -115 608 -132Q674 -148 755 -182Q770 -188 780 -188Q796 -188 804 -176Q812 -164 812 -145Q812 -84 746 -55Q675 -24 598 -10Q522 5 453 5Q334 5 246 -38Q158 -82 111 -162Q64 -242 64 -348Z M736 -163Q736 -293 773 -410Q782 -439 802 -452Q823 -466 860 -466Q880 -466 888 -461Q896 -456 896 -442Q896 -426 881 -370Q871 -330 865 -300Q859 -270 855 -226Q888 -312 929 -366Q970 -420 1010 -443Q1049 -466 1082 -466Q1147 -466 1147 -401Q1147 -388 1138 -338Q1130 -298 1130 -288Q1130 -253 1155 -253Q1183 -253 1227 -297Q1240 -310 1254 -310Q1267 -310 1274 -298Q1282 -287 1282 -268Q1282 -231 1262 -210Q1234 -181 1196 -160Q1159 -140 1117 -140Q1064 -140 1036 -167Q1009 -194 1009 -240Q1009 -255 1012 -270Q1014 -290 1014 -297Q1014 -313 1003 -313Q988 -313 964 -280Q939 -246 915 -191Q891 -136 876 -75Q865 -28 850 -12Q836 5 805 5Q767 5 752 -35Q736 -75 736 -163Z M1726 -261Q1726 -213 1697 -204Q1637 -183 1565 -180Q1546 -96 1490 -46Q1434 5 1363 5Q1303 5 1260 -24Q1218 -53 1196 -101Q1174 -149 1174 -205Q1174 -281 1203 -340Q1232 -400 1283 -434Q1334 -467 1396 -467Q1472 -467 1518 -414Q1565 -362 1573 -285Q1620 -288 1685 -305Q1693 -307 1699 -307Q1712 -307 1719 -294Q1726 -281 1726 -261ZM1458 -202Q1427 -223 1410 -257Q1394 -291 1394 -329Q1394 -345 1397 -361H1392Q1352 -361 1326 -322Q1299 -284 1299 -214Q1299 -159 1320 -130Q1342 -101 1371 -101Q1403 -101 1426 -127Q1450 -153 1458 -202Z M1624 -197Q1624 -278 1656 -339Q1688 -400 1739 -433Q1790 -466 1846 -466Q1901 -466 1932 -434Q1962 -401 1962 -350Q1962 -308 1944 -279Q1925 -250 1895 -250Q1876 -250 1864 -259Q1853 -268 1853 -284Q1853 -291 1855 -300Q1857 -309 1858 -313Q1863 -328 1863 -341Q1863 -354 1856 -361Q1850 -368 1838 -368Q1815 -368 1795 -348Q1775 -327 1763 -292Q1751 -257 1751 -215Q1751 -99 1852 -99Q1893 -99 1940 -126Q1988 -154 2034 -209Q2046 -223 2061 -223Q2074 -223 2082 -211Q2089 -199 2089 -178Q2089 -140 2070 -116Q2023 -58 1958 -26Q1892 5 1831 5Q1733 5 1678 -50Q1624 -106 1624 -197Z M2591 -178Q2591 -138 2572 -116Q2526 -63 2478 -29Q2429 5 2367 5Q2316 5 2290 -24Q2264 -54 2264 -110Q2264 -138 2278 -210Q2291 -273 2291 -297Q2291 -313 2280 -313Q2267 -313 2243 -280Q2219 -246 2195 -191Q2171 -136 2156 -75Q2137 5 2062 5Q2032 5 2022 -16Q2013 -38 2013 -94Q2013 -126 2014 -145L2015 -225Q2015 -379 2046 -546Q2078 -713 2140 -826Q2201 -940 2287 -940Q2333 -940 2362 -900Q2390 -861 2390 -798Q2390 -697 2331 -588Q2272 -480 2139 -335Q2136 -283 2136 -228Q2169 -313 2210 -366Q2250 -420 2290 -443Q2329 -466 2362 -466Q2427 -466 2427 -401Q2427 -362 2405 -260Q2386 -173 2386 -145Q2386 -105 2415 -105Q2435 -105 2462 -130Q2490 -154 2536 -209Q2548 -223 2563 -223Q2576 -223 2584 -211Q2591 -199 2591 -178ZM2150 -460Q2212 -533 2252 -619Q2293 -705 2293 -775Q2293 -807 2286 -824Q2279 -841 2266 -841Q2248 -841 2226 -790Q2204 -738 2184 -650Q2163 -563 2150 -460Z M2984 -178Q2984 -138 2965 -116Q2928 -71 2860 -33Q2793 5 2716 5Q2611 5 2553 -52Q2495 -109 2495 -208Q2495 -277 2524 -336Q2553 -396 2604 -431Q2656 -466 2721 -466Q2779 -466 2814 -432Q2849 -397 2849 -338Q2849 -269 2800 -220Q2750 -170 2632 -141Q2657 -95 2727 -95Q2772 -95 2830 -126Q2887 -158 2929 -209Q2941 -223 2956 -223Q2969 -223 2976 -211Q2984 -199 2984 -178ZM2616 -221V-219Q2675 -233 2709 -261Q2743 -289 2743 -326Q2743 -345 2732 -356Q2722 -368 2704 -368Q2667 -368 2642 -325Q2616 -282 2616 -221Z M3377 -178Q3377 -138 3358 -116Q3315 -63 3264 -29Q3213 5 3147 5Q2943 5 2943 -282Q2943 -326 2946 -371H2907Q2877 -371 2866 -382Q2856 -393 2856 -417Q2856 -473 2901 -473H2958Q2975 -583 3010 -674Q3045 -765 3094 -819Q3144 -873 3201 -873Q3243 -873 3267 -836Q3291 -799 3291 -743Q3291 -588 3161 -473H3273Q3289 -473 3296 -466Q3303 -459 3303 -440Q3303 -371 3190 -371H3068Q3066 -321 3066 -293Q3066 -189 3090 -147Q3115 -105 3168 -105Q3211 -105 3244 -131Q3277 -157 3322 -209Q3334 -223 3349 -223Q3362 -223 3370 -211Q3377 -199 3377 -178ZM3078 -488Q3137 -539 3166 -602Q3196 -666 3196 -718Q3196 -777 3174 -777Q3159 -777 3140 -740Q3122 -702 3106 -636Q3089 -569 3078 -488Z' fill='url(%23y)' stroke='%23B8577D' stroke-width='43' stroke-linejoin='round'/><path d='M3913 605c199 132 298 -284 451 -57s119 265 199 151' fill='none' stroke='%23CF6F96' stroke-width='64' stroke-linecap='round'/></svg>\") no-repeat center/contain;color:transparent!important;line-height:1;overflow:hidden;white-space:nowrap;text-indent:-200%}\na[href=\"/collections/crochet\"]>.menu-list__link-title{font-size:1.5em}\n#HeaderDrawer-crochet>.menu-drawer__menu-item-text,a[href=\"/collections/crochet\"]>.menu-drawer__menu-item-text{font-size:1.3em}\n</style>",
+        "background_color": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "site_fixes": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{%- comment -%}\n  AgaPlantz site-wide fixes (10 Nov 2026). This section renders nothing visible.\n  1. Faint text: Horizon's \"muted\" text is the foreground at 60%, which is 3.9:1 on the cream\n     page (WCAG AA needs 4.5:1). 78% is 6:1. One variable, every muted line on the site.\n  2. The sticky add-to-cart bar hides its label on a phone with display:none, leaving an\n     icon-only button with no name for a screen reader. The label is clipped out of sight\n     instead, so it is still read. CSS rather than an aria-label, because Horizon redraws\n     the bar on every variant tap and would drop the attribute.\n  3. Promo banner guard. Announcement slides are plain text with no expiry and have gone\n     stale three times. If the \"15% Off All Plants\" slide is still enabled after its discount\n     ends, its text is swapped for the offer that is actually running. The dates mirror the\n     automatic discounts and the countdown ladder on the homepage. Flip the slides by hand as\n     usual and this does nothing. Delete it after the November calendar.\n{%- endcomment -%}\n{%- liquid\n  assign now_s = 'now' | date: '%s' | plus: 0\n  assign s15_end = '2026-11-15T23:59:59-05:00' | date: '%s' | plus: 0\n  assign bf_start = '2026-11-26T19:59:59-05:00' | date: '%s' | plus: 0\n  assign bf_end = '2026-11-30T23:59:59-05:00' | date: '%s' | plus: 0\n  assign promo_text = ''\n  if now_s > bf_end\n    assign promo_text = 'Canada-Wide Shipping • 30-Day Plant Guarantee on Every Plant'\n  elsif now_s > bf_start\n    assign promo_text = 'Black Friday — Ready-to-Ship 40% Off • Acclimated 30% Off • Pre-Orders Up to 20% Off • Free Mystery Plant With $150+ Pre-Orders • Ends November 30'\n  elsif now_s > s15_end\n    assign promo_text = '10% Off All Plants — Orders $100+ • Applied Automatically at Checkout • November 16 to 26'\n  endif\n-%}\n<style>\n  [id$=\"__site_fixes\"]{display:none}\n  :root{--opacity-muted-text:.78}\n  @media screen and (max-width:749px){\n    sticky-add-to-cart[data-variant-available='true'] .sticky-add-to-cart__bar .add-to-cart-text__content{display:block;position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}\n  }\n</style>\n<script>\n  (function () {\n    var next = {{ promo_text | json }};\n    function fix() {\n      if (!next) return;\n      document.querySelectorAll('.announcement-bar__text, .announcement-bar__link .visually-hidden').forEach(function (el) {\n        if (el.textContent.trim().indexOf('15% Off All Plants') === 0) el.textContent = next;\n      });\n    }\n    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fix);\n    else fix();\n  })();\n</script>\n{% render 'heat-pack-addon', mode: 'guard' %}",
+        "background_color": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "crochet_menu_style",
+    "site_fixes",
+    "header_announcements_ELa3gw",
+    "header_announcements_9jGBFp",
+    "header_section",
+    "1778569306a523b493",
+    "1777752810e8b9dfa8",
+    "1782369314e434d0cd",
+    "17834122603593ce94"
+  ]
+}
