@@ -10,6 +10,84 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-13
+
+Evidence was thin again: retail and wholesale listings, influencer directories and one news feature. No hard sales
+data.
+
+### Product ideas
+
+**1. Dark-leaf Philodendrons: 'Dark Lord' and 'El Choco Red'.**
+- What: two Philodendrons grown for deep burgundy or near-black new leaves. 'El Choco Red' (P. rubrijuvenile) has
+  large, textured leaves with red undersides.
+- Why now: both are widely listed, and Steve's Leaves sells a 'Dark Lord' labelled "non-TC" at $104.99 USD, while
+  ordinary listings run $18.78 to $60. That gap suggests cutting-grown plants carry a premium.
+  ([Steve's Leaves](https://stevesleaves.com/products/philodendron-dark-lord-non-tc-1457),
+  [Plant Vault Dark Lord](https://www.plantvault.com/products/philodendron-dark-lord),
+  [Spokane Plant Farm](https://spokaneplantfarm.com/products/philodendron-dark-lord-4-plant))
+- Price signal: El Choco Red from about €9.95 for a 12 cm pot to €53.96 for a large plant in Europe; $29.99 USD for
+  a 3-inch at one US lab.
+  ([Floraccess El Choco Red](https://www.floraccess.com/en/product/64062/philodendron-el-choco-red),
+  [Orange Lake El Choco Red](https://orangelakenursery.com/collections/philodendron/products/philodendron-el-choco-red-3in-105))
+- Difficulty: easy.
+- First step: ask your lab for both, and price them against the $20 to $60 USD retail range.
+
+**2. Rhizomatous "blue iridescent" Begonias.**
+- What: Begonias whose leaves shimmer blue under light. The species Begonia idea on 2026-11-02 covered amphioxus
+  and melanobullata; this is a different look.
+- Why now: Walmart lists a 4-inch rhizomatous "rare blue iridescent" Begonia at $19.99 USD, marked down from
+  $44.99, and Begonia maculata is common at €6.49 to €8.73 wholesale. A 2026 research review confirms Begonia
+  tissue culture is well established.
+  ([Walmart Begonia](https://www.walmart.com/c/kp/begonia-maculum),
+  [Floraccess maculata](https://www.floraccess.com/en/product/94864/begonia-maculata),
+  [Ornamental Plant Research review](https://www.maxapress.com/data/article/opr/preview/pdf/opr-0026-0024.pdf))
+  Collector demand for the blue form was not confirmed (unverified).
+- Price signal: $19.99 to $44.99 USD retail for the blue form.
+- Difficulty: medium. Blue Begonias need high humidity, which pairs with the cabinet kit idea.
+- First step: ask your lab whether it has any iridescent Begonia species.
+
+**3. A house-brand aroid fertilizer.**
+- What: an AgaPlantz-labelled liquid feed for aroids. The house substrate on 2026-11-05 covered the mix; this is
+  the food.
+- Why now: several brands sell aroid-specific feeds, such as a 3-1-2 concentrate, a 10-0-10 mist and a urea-free
+  formula for chunky mixes. An OEM maker offers private labelling with a 500-litre minimum, and a US brand sells
+  wholesale on Faire with a $172 minimum.
+  ([Plant Runner](https://theplantrunner.com/products/aroid-plant-food),
+  [Perfect Plants](https://myperfectplants.com/products/aroid-fertilizer-mist),
+  [OEM maker](https://greengrow-beczk2cu.manus.space/business/oem-fertilizer),
+  [Faire listing](https://www.faire.com/product/p_7memn6mr3s))
+  The OEM maker's claims are unverified.
+- Price signal: no retail price captured for these feeds (unverified).
+- Difficulty: medium for private label because of the volume; easy if you resell an existing brand.
+- First step: start by reselling one existing aroid feed from Faire, before considering your own label.
+
+### Business ideas
+
+**1. Paid posts with Canadian plant micro-influencers.**
+- What: pay small Canadian plant creators to film unboxings of your plantlets. The YouTube idea on 2026-11-04 was
+  your own channel; this pays others with existing audiences.
+- Why now: Modash lists Canadian plant creators and affiliates who already use promo codes. One Canadian creator on
+  Collabstr charges $1,250 for 3 sponsored Reels. JOMO Studio, a Toronto plant shop, already runs creator unboxing
+  content.
+  ([Modash Canadian plant influencers](https://www.modash.io/find-influencers/canada/plant),
+  [Collabstr creator](https://collabstr.com/sweetlifeflora?p=instagram),
+  [JOMO Studio](https://jomostudio.com/))
+- Price signal: about $1,250 for 3 Reels from one creator; others may cost less (unverified).
+- Difficulty: easy, but it costs money.
+- First step: pick three Canadian plant creators under 20,000 followers and offer free plants for an honest unboxing
+  instead of cash.
+
+**2. Weekly "story drops" on Instagram.**
+- What: post a few new plants each week to Instagram Stories with a link to buy, so followers learn to check in.
+- Why now: Narcity reports that Toronto's Urban Gardener lets customers buy plants straight from its weekly
+  Instagram stories, with GTA delivery.
+  ([Narcity](https://www.narcity.com/en-ca/things-to-do/toronto/a-toronto-plant-shop-delivers-to-your-door-so-you-can-finally-set-up-that-home-garden))
+- Price signal: none (unverified).
+- Difficulty: easy.
+- First step: pick one day a week, post three new arrivals as Stories with product links, and watch sales that day.
+
+---
+
 ## 2026-11-12
 
 Evidence was thin again: mostly undated listings and retailer blogs. The Valentine's idea is for planning, since the
