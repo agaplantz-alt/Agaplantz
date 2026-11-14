@@ -10,6 +10,78 @@ the winter heat-pack add-on and the 30-day guarantee.
 
 ---
 
+## 2026-11-14
+
+Evidence was thin again: undated listings, supplier pages and Canadian payment-data reporting. The Boxing Week idea
+rests on the firmest source today, Moneris card data reported by Retail Insider.
+
+### Product ideas
+
+**1. Alocasia 'Black Velvet' and 'Azlanii' plantlets.**
+- What: two dark, velvety "jewel" Alocasias. The jewel Alocasia idea on 2026-11-10 named Silver Dragon, Pink Dragon
+  and Frydek but found no prices.
+- What changed: prices turned up today. Black Velvet Pink TC lists at $19.99 USD at one lab, and seedlings at $10 to
+  $20. Azlanii TC lists at $69.99, down from $89.99. A large variegated Black Velvet lists at €178.14 wholesale, so
+  the variegated form carries a big premium.
+  ([Orange Lake Black Velvet Pink](https://orangelakenursery.com/products/alocasia-variegated-black-velvet-pink-plantlet),
+  [Glass Aqua Azlanii](https://amp.glassaqua.com/products/alocasia-azlanii),
+  [Ecuagenera Alocasia](https://ecuageneraus.com/collections/alocasia),
+  [Floraccess variegated](https://floraccess.com/en/product/99915/alocasia-black-velvet-variegata))
+- Price signal: $10 to $20 USD for plain Black Velvet, $70 for Azlanii TC.
+- Difficulty: easy to medium. Same lab path as your current Alocasias.
+- First step: ask your lab for Black Velvet Pink and Azlanii on the next batch.
+
+**2. Philodendron 'Florida Ghost'.**
+- What: a climbing Philodendron whose new leaves open almost white, then turn green. It is a good mid-price climber.
+- Why now: it is widely stocked, from about €19 to €25 in Europe and $20 to $25 USD for small plants in the US, with
+  one high listing at $134.
+  ([Floraccess](https://www.floraccess.com/en/product/70027/philodendron-florida-ghost),
+  [Terrarium Plant House](https://reach.dog/shop/terrarium-plant-house/products/philodendron-florida-ghost),
+  [Planta](https://shop.getplanta.com/products/philodendron-florida-ghost))
+- Price signal: about €25 wholesale against $20 to $135 USD retail.
+- Difficulty: easy.
+- First step: price it from a European wholesaler or your lab and pair it with a moss pole.
+
+**3. Variegated Philodendron 'Florida Beauty' crosses.**
+- What: the variegated relative of Florida Ghost, including a Florida Beauty x tortum cross sold as TC.
+- Why now: variegated Florida Beauty plants list at $40 for a rooted cutting and $75 for a 4-inch, and a Florida
+  Beauty x Bobcee variegated at $375 USD. A Faire wholesaler sells Florida Beauty x tortum TC with a $170.54 MSRP and
+  a $150 minimum order.
+  ([Etsy Florida Beauty](https://www.etsy.com/listing/1263445998),
+  [Faire Florida Beauty x tortum](https://www.faire.com/product/p_9wp4ut2cu2),
+  [Secret Garden](https://secretgarden.ro/en/products/philodendron-florida-beauty-green-ghost))
+- Price signal: $40 to $375 USD retail by size and cross.
+- Difficulty: medium. Variegation can fade, so check each plant before sale.
+- First step: request the wholesale price behind the $170 MSRP on Faire.
+
+### Business ideas
+
+**1. A week-long Boxing Week sale.**
+- What: a 26 December to 1 January sale, after the November ladder ends on 30 November.
+- Why now: Moneris data shows Boxing Day volume is falling, under half of Black Friday's. But only 35% of Canadian
+  small businesses surveyed planned Boxing Week promotions, so there is less competition. Shopify says week-long
+  Boxing Week campaigns outperform one-day sales; that is a vendor claim.
+  ([Retail Insider on Moneris](https://retail-insider.com/retail-insider/2026/01/black-friday-tops-holiday-shopping-days-in-2025-moneris-data-shows/),
+  [Chain Store Age survey](https://chainstoreage.com/survey-canadian-small-businesses-scale-back-holiday-promotions),
+  [Shopify Boxing Day](https://www.shopify.com/ng/enterprise/blog/boxing-day-the-post-holiday-holiday))
+- Price signal: none for plants (unverified).
+- Difficulty: easy. Keep it to accessories and hardy plants, since late-December shipping is cold.
+- First step: decide which items go into a Boxing Week sale and set the discount now.
+
+**2. Better insulated liners for winter boxes.**
+- What: switch to ready-made insulated box liners, so fewer plants arrive cold-damaged. The store already sells a
+  heat-pack add-on; this improves the box itself.
+- Why now: Uline Canada sells insulated liners in 6-, 8- and 11-inch sizes for up to 24-hour shipping. Cascades, a
+  Canadian company, makes a recyclable paper version. Neither is rated specifically for live plants (unverified).
+  ([Uline Canada liners](https://www.uline.ca/Product/Detail/S-15221/Insulated-Shippers-and-Supplies/Insulated-Box-Liners-8-x-8-x-8),
+  [Cascades northbox](https://cascades.com/en/products-services/packaging/protective-packaging/insulated-boxes))
+- Price signal: not captured (unverified).
+- Difficulty: easy.
+- First step: order one pack of Uline liners in your usual box size and ship a test plant to a friend in another
+  province.
+
+---
+
 ## 2026-11-13
 
 Evidence was thin again: retail and wholesale listings, influencer directories and one news feature. No hard sales
